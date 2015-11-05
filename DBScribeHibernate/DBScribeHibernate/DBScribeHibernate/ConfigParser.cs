@@ -17,7 +17,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         public ConfigParser(string targetProjPath, string cfgFileName)
         {
             this.TargetProjPath = targetProjPath;
-            this._cfgFilePath = Directory.GetFiles(this.TargetProjPath, cfgFileName, SearchOption.AllDirectories).SingleOrDefault();
+            this._cfgFilePath = Directory.GetFiles(this.TargetProjPath, cfgFileName, SearchOption.AllDirectories).FirstOrDefault();
 
             // get mapping file type
             XElement rootEle = XElement.Load(this._cfgFilePath);
@@ -36,7 +36,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         private string _GetMappingFilePath(string mappingFileName)
         {
             //string mappingFilePath = this.TargetProjPath + @"\src\" + mappingFileName;
-            string mappingFilePath = Directory.GetFiles(this.TargetProjPath, mappingFileName, SearchOption.AllDirectories).SingleOrDefault();
+            string mappingFilePath = Directory.GetFiles(this.TargetProjPath, mappingFileName, SearchOption.AllDirectories).FirstOrDefault();
             return mappingFilePath;
         }
 
@@ -135,7 +135,16 @@ namespace DBScribeHibernate.DBScribeHibernate
                 {
                     tablePk = idEle.Descendants("column").SingleOrDefault().Attributes("name").SingleOrDefault().Value;
                 }
-                string pkType = idEle.Attributes("type").SingleOrDefault().Value;
+                string pkType;
+                try
+                {
+                    pkType = idEle.Attributes("type").SingleOrDefault().Value;
+                }
+                catch (NullReferenceException e)
+                {
+                    pkType = "int";  // <id> tag can only be "int" type or "Integer"
+                }
+                
                 return new Tuple<string, string, string>(classPk, tablePk, pkType);
             }
             else // if (this.mappingFileType == Constants.MappingFileType.AnnotationMapping)

@@ -38,6 +38,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             //method signiture? (Just implemented an Dictionary)
             foreach (MethodDefinition method in methods)
             {
+                // method.GetFullName(): include package name+class name + function name
                 methodDictionary[method.GetFullName()] = method;
                 //add the method.
                 cg.AddNode(method);

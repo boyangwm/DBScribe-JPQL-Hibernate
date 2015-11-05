@@ -19,8 +19,9 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly string TargetProjPath = @"C:\Users\Dephien\Documents\workspace_hibernate";
         //// IF using <mapping resource="...xml" /> ---> xml
         //public static readonly string ProjName = @"MyFirstHibernate";
-        public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
+        //public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
         //public static readonly string ProjName = @"HibernateComponentMappingExample";
+        public static readonly string ProjName = @"hibernateSchemaGenerationExample";
 
         //// IF using <mapping class="..."/>  ---> annotation
         //public static readonly string ProjName = @"HibernateManyToManyAnnotation";

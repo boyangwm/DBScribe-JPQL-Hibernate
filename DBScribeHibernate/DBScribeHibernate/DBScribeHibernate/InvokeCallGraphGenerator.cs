@@ -62,8 +62,8 @@ namespace DBScribeHibernate.DBScribeHibernate
                     cgm.BuildCallGraph(methods);
 
                     // Step 2.   Testing
-                    //TestUse1_FindCalleeList(methods, cgm);
-                    TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
+                    TestUse1_FindCalleeList(methods, cgm);
+                    //TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
                     //TestUse3_FindCallerList(methods, cgm);
 
                 }
