@@ -17,7 +17,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         private readonly Dictionary<MethodDefinition, int> index = new Dictionary<MethodDefinition, int>();
 
 
-        /// <summary>size of current graph </summary>
+        /// <summary>size of current graph (which is nodes.Count())</summary>
         private int size = 0;
 
 
@@ -33,7 +33,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// check if the graph contains the method m 
         /// </summary>
         /// <param name="m"></param>
-        /// <returns></returns>
+        /// <returns>return the index of the given method in the CallGraph</returns>
         public bool ContainsMethod(MethodDefinition m)
         {
             if (m == null)
@@ -55,6 +55,9 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             {
                 this.nodes.Add(m);
                 this.index[m] = size++;
+                // add the calleeEdge and the callerEdge for this newly added method
+                // _calleeEdge[index[m]] --> m's calleeEdge
+                // _callerEdge[index[m]] --> m's callerEdge
                 this._calleeEdge.Add(new HashSet<int>());
                 this._callerEdge.Add(new HashSet<int>());
                 return true;
@@ -74,10 +77,10 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// <returns> true if this set did not already contain the specified element </returns>
         public bool AddCalleeEdge(MethodDefinition m_caller, MethodDefinition m_callee)
         {
-            int colPos = index[m_caller];
-            int linkedNodePos = index[m_callee];
-            HashSet<int> hs = _calleeEdge[colPos];
-            return hs.Add(linkedNodePos);
+            int colPos = index[m_caller]; // index for the caller in the CallGraph
+            int linkedNodePos = index[m_callee]; // index for the callee in the CallGraph
+            HashSet<int> hs = _calleeEdge[colPos];  // get caller's _calleeEdge set
+            return hs.Add(linkedNodePos); // add the index of m's callee
         }
 
 
@@ -105,7 +108,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         {
             HashSet<MethodDefinition> ret_al = new HashSet<MethodDefinition>();
             int colPos = index[m];
-            HashSet<int> hs = _calleeEdge[colPos];
+            HashSet<int> hs = _calleeEdge[colPos];  // get all m's _calleeEdge set
             foreach (int i in hs)
             {
                 ret_al.Add(nodes[i]);

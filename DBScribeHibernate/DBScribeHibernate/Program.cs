@@ -26,10 +26,10 @@ namespace DBScribeHibernate.DBScribeHibernate
             //TestSrcML();
 
             /// step1: run ConfigParser to link POJOs to tables in the database
-            TestUseConfigParser();
+            //TestUseConfigParser();
 
             /// step2: use call graph generator to generate the call-chains
-            //TestUseCallGraphGenerator();
+            TestUseCallGraphGenerator();
 
             /// step3: based on POJO/database links and call-chains, 
             /// annotate all database access methods (bottom level database accessors)
