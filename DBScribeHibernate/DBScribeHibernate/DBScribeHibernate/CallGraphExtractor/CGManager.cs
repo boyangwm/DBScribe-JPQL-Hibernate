@@ -68,10 +68,10 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 }
 
             }
-            //cg.cgPrint();
+            //cg.CgPrint();
         }
 
-
+        
         /// <summary>
         /// Find MethodDefinition matching from MethodCall
         /// </summary>

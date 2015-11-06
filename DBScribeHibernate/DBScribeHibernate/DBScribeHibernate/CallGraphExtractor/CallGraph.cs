@@ -114,7 +114,6 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 ret_al.Add(nodes[i]);
             }
             return ret_al;
-
         }
 
 
