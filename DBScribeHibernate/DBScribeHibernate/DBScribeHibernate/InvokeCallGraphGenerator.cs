@@ -29,11 +29,8 @@ namespace DBScribeHibernate.DBScribeHibernate
             //Console.Out.WriteLine("Invoke call graph generator ");
 
             string dataDir = @"TESTNAIVE_1.0";
-            //string proPath = @"C:\Users\boyang.li@us.abb.com\Documents\RunningTest\Input\ConsoleApplication1";
-            //string proPath = @"C:\Users\boyang.li@us.abb.com\Documents\RunningTest\Input\SrcML\ABB.SrcML";
             using (var project = new DataProject<CompleteWorkingSet>(dataDir, this.LocalProj, this.SrcmlLoc))
             {
-                /// ????
                 Console.WriteLine("============================");
                 string unknownLogPath = Path.Combine(project.StoragePath, "unknown.log");
                 DateTime start = DateTime.Now, end;
@@ -45,7 +42,6 @@ namespace DBScribeHibernate.DBScribeHibernate
 
                 }
                 end = DateTime.Now;
-
 
                 NamespaceDefinition globalNamespace;
                 project.WorkingSet.TryObtainReadLock(5000, out globalNamespace);
@@ -61,11 +57,11 @@ namespace DBScribeHibernate.DBScribeHibernate
                     CGManager cgm = new CGManager();
                     cgm.BuildCallGraph(methods);
 
-                    GetLevelMap("com.mkyong.StockManager.main", cgm);
+                    GetLevelMap(Constants.getMainMethodFullName(), cgm);
 
                     // Step 2.   Testing
                     //TestUse1_FindCalleeList(methods, cgm);
-                    TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
+                    //TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
                     //TestUse2_FindCallerListByName("com.mkyong.stock.Stock.getStockDailyRecords", methods, cgm);
                     //TestUse3_FindCallerList(methods, cgm);
 
@@ -78,10 +74,53 @@ namespace DBScribeHibernate.DBScribeHibernate
             Console.ReadKey();
         }
 
-        public void GetLevelMap(string mainMethod, CGManager cgm)
+
+        /// <summary>
+        /// Given the main method of a program, build the level map,
+        /// which for each method assign a maximum level
+        /// (Later description propagation pushes from maximum level to top level!)
+        /// </summary>
+        /// <param name="mainMethod"></param>
+        /// <param name="cgm"></param>
+        public Tuple<int, Dictionary<MethodDefinition, int>, Dictionary<int, HashSet<MethodDefinition>>> GetLevelMap(string mainMethod, CGManager cgm)
         {
-            cgm.BuildLevelMap(mainMethod);
+            Tuple<int, Dictionary<MethodDefinition, int>> levelMapTuple = cgm.BuildLevelMap(mainMethod);
+            int levelDepth = levelMapTuple.Item1;
+            Dictionary<MethodDefinition, int> method2MaxLevel = levelMapTuple.Item2;
+            Dictionary<int, HashSet<MethodDefinition>> maxLevel2Method = new Dictionary<int, HashSet<MethodDefinition>>();
+            if (method2MaxLevel.Count() == 0)
+            {
+                return Tuple.Create(levelDepth, method2MaxLevel, maxLevel2Method);
+            }
+
+            // convert method2MaxLevel to maxLevel2Method
+            foreach (KeyValuePair<MethodDefinition, int> entry in method2MaxLevel)
+            {
+                Console.WriteLine(entry.Key.GetFullName() + ": " + entry.Value);
+                if (maxLevel2Method.ContainsKey(entry.Value))
+                {
+                    maxLevel2Method[entry.Value].Add(entry.Key);
+                }
+                else
+                {
+                    HashSet<MethodDefinition> temp_hs = new HashSet<MethodDefinition>();
+                    temp_hs.Add(entry.Key);
+                    maxLevel2Method.Add(entry.Value, temp_hs);
+                }
+            }
+
+            // print methods bottom-up
+            for (int i = levelDepth; i >= 0; i--)
+            {
+                Console.WriteLine("Level " + i + ": ");
+                foreach (MethodDefinition md in maxLevel2Method[i])
+                {
+                    Console.WriteLine(md.GetFullName());
+                }
+            }
+            return Tuple.Create(levelDepth, method2MaxLevel, maxLevel2Method);
         }
+
 
         public void TestUse1_FindCalleeList(IEnumerable<MethodDefinition> methods, CGManager cgm)
         {

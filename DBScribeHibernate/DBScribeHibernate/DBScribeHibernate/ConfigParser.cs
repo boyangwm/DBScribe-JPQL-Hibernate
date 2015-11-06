@@ -140,7 +140,7 @@ namespace DBScribeHibernate.DBScribeHibernate
                 {
                     pkType = idEle.Attributes("type").SingleOrDefault().Value;
                 }
-                catch (NullReferenceException e)
+                catch (NullReferenceException)
                 {
                     pkType = "int";  // <id> tag can only be "int" type or "Integer"
                 }

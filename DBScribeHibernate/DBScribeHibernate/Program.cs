@@ -23,8 +23,6 @@ namespace DBScribeHibernate.DBScribeHibernate
             //String srcmlExe = @"E:\research\SrcML\src2srcml.exe";
             //Src2XML.SourceFileToXml(source, xMLOutput, srcmlExe);
 
-            //TestSrcML();
-
             /// step1: run ConfigParser to link POJOs to tables in the database
             //TestUseConfigParser();
 
@@ -125,17 +123,6 @@ namespace DBScribeHibernate.DBScribeHibernate
             Console.WriteLine(line);
             line = SchemaConstraintsTemplates.SchemaConstraintsNotNull("Employee", "Salary");
             Console.WriteLine(line);
-        }
-
-        public static void TestSrcML()
-        {
-            Console.WriteLine(SRC.Function);
-            Console.WriteLine(SRC.Class);
-            Console.WriteLine(SRC.Namespace);
-            Console.WriteLine(SRC.Name);
-            Console.WriteLine(SRC.Type);
-            Console.WriteLine(SRC.Attribute);
-
         }
     }
 }

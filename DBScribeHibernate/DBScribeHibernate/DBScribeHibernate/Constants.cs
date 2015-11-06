@@ -37,5 +37,19 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// Self-defined enumerations
         /// </summary>
         public enum MappingFileType { XMLMapping, AnnotationMapping };
+
+
+        public static string getMainMethodFullName()
+        {
+            if (ProjName.Equals(@"MyFirstHibernate"))
+            {
+                return "ManageEmployee.main";
+            }
+            else if (ProjName.Equals(@"HibernateOneToManyXMLMapping"))
+            {
+                return "com.mkyong.StockManager.main";
+            }
+            return "";
+        }
     }
 }
