@@ -61,11 +61,10 @@ namespace DBScribeHibernate.DBScribeHibernate
                     CGManager cgm = new CGManager();
                     cgm.BuildCallGraph(methods);
 
-                    cgm.PrintCallGraph();
-
                     // Step 2.   Testing
                     //TestUse1_FindCalleeList(methods, cgm);
-                    //TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
+                    TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
+                    TestUse2_FindCallerListByName("com.mkyong.stock.Stock.getStockDailyRecords", methods, cgm);
                     //TestUse3_FindCallerList(methods, cgm);
 
                 }
@@ -99,6 +98,19 @@ namespace DBScribeHibernate.DBScribeHibernate
         {
             Console.WriteLine("======  test 2 ========= ");
             List<List<MethodDefinition>> paths2 = cgm.findCalleeListByName(methodName);
+            foreach (List<MethodDefinition> path in paths2)
+            {
+                foreach (MethodDefinition mc in path)
+                {
+                    Console.Write("{0}--->", mc.Name);
+                }
+                Console.WriteLine("");
+            }
+        }
+
+        public void TestUse2_FindCallerListByName(string methodName, IEnumerable<MethodDefinition> methods, CGManager cgm)
+        {
+            List<List<MethodDefinition>> paths2 = cgm.FindCallerListByName(methodName);
             foreach (List<MethodDefinition> path in paths2)
             {
                 foreach (MethodDefinition mc in path)
