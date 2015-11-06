@@ -17,19 +17,22 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// <summary>call graph </summary>
         CallGraph cg = new CallGraph();
 
-        /// <summary> record the maximum call level for the method  </summary>
-        private readonly Dictionary<MethodDefinition, int> levelMap = new Dictionary<MethodDefinition, int>();
+        /// <summary> record the maximum call level for the method 
+        /// root/main --> level 0
+        /// leaf --> last level
+        /// </summary>
+        private Dictionary<MethodDefinition, int> method2Level;
+        private Dictionary<int, List<MethodDefinition>> level2Method;
 
         /// <summary> A dictionary for finding a method by the signiture </summary>
         readonly Dictionary<String, MethodDefinition> methodDictionary = new Dictionary<String, MethodDefinition>();
 
-
         private List<List<MethodDefinition>> _calleeList;
         private List<List<MethodDefinition>> _callerList;
 
-
         /// <summary>
         /// build the call graph based on all methods in the project
+        /// add method and add caller-->callee edge
         /// </summary>
         /// <param name="methods"></param>
         public void BuildCallGraph(IEnumerable<MethodDefinition> methods)
@@ -106,7 +109,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// <summary>
         /// return function by the full name
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="key">Method's Full Name</param>
         /// <returns></returns>
         public MethodDefinition getMethodByFullName(string key)
         {
@@ -141,9 +144,8 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         }
 
 
-
         /// <summary>
-        /// The helper function for findCalleeList
+        /// The helper function for findCalleeList (level by level)
         /// </summary>
         /// <param name="m"></param>
         /// <param name="path"></param>
@@ -177,19 +179,16 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         }
 
 
-
         /// <summary>
         /// return all callee paths from m to all its reachable paths by function name. 
         /// </summary>
-        /// <param name="m"></param>
+        /// <param name="m">Method's full name</param>
         /// <returns></returns>
         public List<List<MethodDefinition>> findCalleeListByName(String m)
         {
             MethodDefinition currentM = getMethodByFullName(m);
             return findCalleeList(currentM);
         }
-
-
 
 
         /// <summary>
@@ -233,7 +232,6 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 return;
             }
 
-
             HashSet<MethodDefinition> curCallerList = cg.ReturnCaller(m);
             if (curCallerList.Count == 0)
             {
@@ -247,7 +245,6 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         }
 
 
-
         /// <summary>
         /// return all callee paths from m to all its reachable paths by function name. 
         /// </summary>
@@ -257,6 +254,57 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         {
             MethodDefinition currentM = getMethodByFullName(m);
             return FindCallerList(currentM);
+        }
+
+        /// <summary>
+        /// Given the main function of the program, return the maximum level for each method
+        /// </summary>
+        /// <param name="mainMethod"></param>
+        /// <returns></returns>
+        public Tuple<Dictionary<MethodDefinition, int>, Dictionary<int, List<MethodDefinition>>> BuildLevelMap(String mainMethod)
+        {
+            MethodDefinition currentM = getMethodByFullName(mainMethod);
+
+            method2Level = new Dictionary<MethodDefinition, int>();
+            level2Method = new Dictionary<int, List<MethodDefinition>>();
+            
+            if(!cg.ContainsMethod(currentM))
+            {
+                return Tuple.Create(method2Level, level2Method);
+            }
+            FindCalleeListHelperForLevelMap(currentM, 0);
+            
+            return Tuple.Create(method2Level, level2Method);
+        }
+
+
+        private void FindCalleeListHelperForLevelMap(MethodDefinition m, int level)
+        {
+            Console.WriteLine(m.GetFullName() + ": " + level);
+
+            if (m == null)
+            {
+                //_calleeList.Add(path);
+                return;
+            }
+
+            //path.Add(m);
+            if (level > this.LEVELTHRESHOLD)
+            {
+                //_calleeList.Add(path);
+                return;
+            }
+
+            HashSet<MethodDefinition> curCalleeList = cg.ReturnCallee(m);
+            if (curCalleeList.Count == 0)
+            {
+                //_calleeList.Add(path);
+                return;
+            }
+            foreach (MethodDefinition calleeM in curCalleeList)
+            {
+                FindCalleeListHelperForLevelMap(calleeM, level + 1);
+            }
         }
 
     }

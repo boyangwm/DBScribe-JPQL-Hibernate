@@ -87,7 +87,7 @@ namespace DBScribeHibernate.DBScribeHibernate
                 {
                     foreach (MethodDefinition mc in path)
                     {
-                        Console.Write("{0}--->", mc.Name);
+                        Console.Write("{0}--->", mc.GetFullName());
                     }
                     Console.WriteLine("");
                 }
@@ -136,7 +136,7 @@ namespace DBScribeHibernate.DBScribeHibernate
                     pathNum++;
                     foreach (MethodDefinition mc in path)
                     {
-                        Console.Write("{0}<---", mc.Name);
+                        Console.Write("{0}<---", mc.GetFullName());
                     }
                     Console.WriteLine("");
                 }
