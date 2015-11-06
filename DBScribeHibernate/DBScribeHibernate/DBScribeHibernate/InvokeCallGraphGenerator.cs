@@ -27,19 +27,15 @@ namespace DBScribeHibernate.DBScribeHibernate
         public void run()
         {
             //Console.Out.WriteLine("Invoke call graph generator ");
-
             string dataDir = @"TESTNAIVE_1.0";
             using (var project = new DataProject<CompleteWorkingSet>(dataDir, this.LocalProj, this.SrcmlLoc))
             {
-                Console.WriteLine("============================");
                 string unknownLogPath = Path.Combine(project.StoragePath, "unknown.log");
                 DateTime start = DateTime.Now, end;
-                Console.WriteLine("============================");
                 using (var unknownLog = new StreamWriter(unknownLogPath))
                 {
                     project.UnknownLog = unknownLog;
                     project.UpdateAsync().Wait();
-
                 }
                 end = DateTime.Now;
 
@@ -51,13 +47,23 @@ namespace DBScribeHibernate.DBScribeHibernate
                     //Console.WriteLine("{0,10:N0} files", project.Data.GetFiles().Count());
                     //Console.WriteLine("{0,10:N0} namespaces", globalNamespace.GetDescendants<NamespaceDefinition>().Count());
                     //Console.WriteLine("{0,10:N0} types", globalNamespace.GetDescendants<TypeDefinition>().Count());
-                    Console.WriteLine("{0,10:N0} methods", globalNamespace.GetDescendants<MethodDefinition>().Count());
+                    Console.WriteLine("Program " + Constants.ProjName + " contains " + globalNamespace.GetDescendants<MethodDefinition>().Count() + " methods.");
                     var methods = globalNamespace.GetDescendants<MethodDefinition>();
 
                     CGManager cgm = new CGManager();
                     cgm.BuildCallGraph(methods);
 
-                    GetLevelMap(Constants.getMainMethodFullName(), cgm);
+                    // build level map
+                    Tuple<int, Dictionary<MethodDefinition, int>, Dictionary<int, HashSet<MethodDefinition>>> levelMapTuple;
+                    levelMapTuple = GetLevelMap(Constants.getMainMethodFullName(), cgm);
+                    int levelDepth = levelMapTuple.Item1;
+                    Dictionary<MethodDefinition, int> method2MaxLevel = levelMapTuple.Item2;
+                    Dictionary<int, HashSet<MethodDefinition>> maxLevel2Method = levelMapTuple.Item3;
+
+                    // method name --> method full name
+                    // class name --> class full name
+                    LinkFullNameWithName(methods, cgm);
+
 
                     // Step 2.   Testing
                     //TestUse1_FindCalleeList(methods, cgm);
@@ -72,6 +78,12 @@ namespace DBScribeHibernate.DBScribeHibernate
                 }
             }
             Console.ReadKey();
+        }
+
+
+        public void LinkFullNameWithName(IEnumerable<MethodDefinition> methods, CGManager cgm)
+        {
+
         }
 
 

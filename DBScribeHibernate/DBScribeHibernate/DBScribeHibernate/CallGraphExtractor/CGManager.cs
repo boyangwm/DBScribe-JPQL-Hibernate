@@ -47,7 +47,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 cg.AddNode(method);
             }
 
-            Console.WriteLine("build call graph");
+            Console.WriteLine("***Build call graph ...");
 
             foreach (MethodDefinition method in methods)
             {
@@ -272,6 +272,8 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             {
                 return Tuple.Create(levelDepth, method2MaxLevel);
             }
+
+            Console.WriteLine("***Build level map ...");
 
             FindCalleeListHelperForLevelMap(currentM, 0);
             return Tuple.Create(levelDepth, method2MaxLevel);
