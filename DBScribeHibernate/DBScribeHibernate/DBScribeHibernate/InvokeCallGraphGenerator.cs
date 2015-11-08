@@ -47,22 +47,50 @@ namespace DBScribeHibernate.DBScribeHibernate
                     //Console.WriteLine("{0,10:N0} files", project.Data.GetFiles().Count());
                     //Console.WriteLine("{0,10:N0} namespaces", globalNamespace.GetDescendants<NamespaceDefinition>().Count());
                     //Console.WriteLine("{0,10:N0} types", globalNamespace.GetDescendants<TypeDefinition>().Count());
-                    Console.WriteLine("Program " + Constants.ProjName + " contains " + globalNamespace.GetDescendants<MethodDefinition>().Count() + " methods.");
+                    //Console.WriteLine("Program " + Constants.ProjName + " contains " + globalNamespace.GetDescendants<MethodDefinition>().Count() + " methods.");
+
+                    // return IEnumerable<MethodDefinition> type
+                    // could contain duplicated methods!
                     var methods = globalNamespace.GetDescendants<MethodDefinition>();
+                    int num_of_methods_with_duplicate = globalNamespace.GetDescendants<MethodDefinition>().Count();
+                    Console.WriteLine("# of methods = " + num_of_methods_with_duplicate);
 
                     CGManager cgm = new CGManager();
                     cgm.BuildCallGraph(methods);
 
-                    // build level map
-                    Tuple<int, Dictionary<MethodDefinition, int>, Dictionary<int, HashSet<MethodDefinition>>> levelMapTuple;
-                    levelMapTuple = GetLevelMap(Constants.getMainMethodFullName(), cgm);
-                    int levelDepth = levelMapTuple.Item1;
-                    Dictionary<MethodDefinition, int> method2MaxLevel = levelMapTuple.Item2;
-                    Dictionary<int, HashSet<MethodDefinition>> maxLevel2Method = levelMapTuple.Item3;
+                    //TestUse3_FindCallerList(methods, cgm);
+
+                    Tuple<HashSet<MethodDefinition>, HashSet<Tuple<MethodDefinition, MethodDefinition>>> cgTuple = GetUniqueMethodsAndCallerToCalleeEdges(methods, cgm);
+                    HashSet<MethodDefinition> uniqueMethods = cgTuple.Item1;
+                    HashSet<Tuple<MethodDefinition, MethodDefinition>> callerToCalleeEdges = cgTuple.Item2;
+                    //Console.WriteLine("# of unique methods = " + uniqueMethods.Count());
+                    //foreach (MethodDefinition m in uniqueMethods)
+                    //{
+                    //    Console.WriteLine(m.GetFullName());
+                    //}
+                    foreach (Tuple<MethodDefinition, MethodDefinition> edge in callerToCalleeEdges)
+                    {
+                        Console.WriteLine(edge.Item1.Name + "-->" + edge.Item2.Name);
+                    }
+
+                    //TopoSortCallGraph tscg = new TopoSortCallGraph();
+                    //foreach (MethodDefinition m in uniqueMethods)
+                    //{
+                    //    tscg.addMethod(m);
+                    //}
+                    //foreach (Tuple<MethodDefinition, MethodDefinition> edge in callerToCalleeEdges)
+                    //{
+                    //    tscg.addCallerToCalleeEdge(edge.Item1, edge.Item2);
+                    //}
+                    //List<MethodDefinition> sortedMethodsBottomToTop = tscg.topoSort();
+                    //foreach (MethodDefinition m in sortedMethodsBottomToTop)
+                    //{
+                    //    Console.WriteLine(m.GetFullName());
+                    //}
 
                     // method name --> method full name
                     // class name --> class full name
-                    LinkFullNameWithName(methods, cgm);
+                    //LinkFullNameWithName(methods, cgm);
 
 
                     // Step 2.   Testing
@@ -80,58 +108,32 @@ namespace DBScribeHibernate.DBScribeHibernate
             Console.ReadKey();
         }
 
-
-        public void LinkFullNameWithName(IEnumerable<MethodDefinition> methods, CGManager cgm)
+        public Tuple<HashSet<MethodDefinition>, HashSet<Tuple<MethodDefinition, MethodDefinition>>> GetUniqueMethodsAndCallerToCalleeEdges(IEnumerable<MethodDefinition> methods, CGManager cgm)
         {
+            HashSet<Tuple<MethodDefinition, MethodDefinition>> callerToCalleeEdges = new HashSet<Tuple<MethodDefinition, MethodDefinition>>();
+            HashSet<MethodDefinition> uniqueMethods = new HashSet<MethodDefinition>();
 
+            foreach (MethodDefinition callee in methods)
+            {
+                uniqueMethods.Add(callee);
+                List<List<MethodDefinition>> paths = cgm.FindCallerList(callee);
+                foreach (List<MethodDefinition> path in paths)
+                // path[0]--> this callee, path[1]--> this callee's immediate caller, path[2]--> that caller's immediate caller ...
+                {
+                    if (path.Count() == 1) // along this path, no caller
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        MethodDefinition immediate_caller = path[1];
+                        callerToCalleeEdges.Add(Tuple.Create(immediate_caller, callee));
+                    }
+                }
+            }
+            return Tuple.Create(uniqueMethods, callerToCalleeEdges);
         }
 
-
-        /// <summary>
-        /// Given the main method of a program, build the level map,
-        /// which for each method assign a maximum level
-        /// (Later description propagation pushes from maximum level to top level!)
-        /// </summary>
-        /// <param name="mainMethod"></param>
-        /// <param name="cgm"></param>
-        public Tuple<int, Dictionary<MethodDefinition, int>, Dictionary<int, HashSet<MethodDefinition>>> GetLevelMap(string mainMethod, CGManager cgm)
-        {
-            Tuple<int, Dictionary<MethodDefinition, int>> levelMapTuple = cgm.BuildLevelMap(mainMethod);
-            int levelDepth = levelMapTuple.Item1;
-            Dictionary<MethodDefinition, int> method2MaxLevel = levelMapTuple.Item2;
-            Dictionary<int, HashSet<MethodDefinition>> maxLevel2Method = new Dictionary<int, HashSet<MethodDefinition>>();
-            if (method2MaxLevel.Count() == 0)
-            {
-                return Tuple.Create(levelDepth, method2MaxLevel, maxLevel2Method);
-            }
-
-            // convert method2MaxLevel to maxLevel2Method
-            foreach (KeyValuePair<MethodDefinition, int> entry in method2MaxLevel)
-            {
-                Console.WriteLine(entry.Key.GetFullName() + ": " + entry.Value);
-                if (maxLevel2Method.ContainsKey(entry.Value))
-                {
-                    maxLevel2Method[entry.Value].Add(entry.Key);
-                }
-                else
-                {
-                    HashSet<MethodDefinition> temp_hs = new HashSet<MethodDefinition>();
-                    temp_hs.Add(entry.Key);
-                    maxLevel2Method.Add(entry.Value, temp_hs);
-                }
-            }
-
-            // print methods bottom-up
-            for (int i = levelDepth; i >= 0; i--)
-            {
-                Console.WriteLine("Level " + i + ": ");
-                foreach (MethodDefinition md in maxLevel2Method[i])
-                {
-                    Console.WriteLine(md.GetFullName());
-                }
-            }
-            return Tuple.Create(levelDepth, method2MaxLevel, maxLevel2Method);
-        }
 
 
         public void TestUse1_FindCalleeList(IEnumerable<MethodDefinition> methods, CGManager cgm)
@@ -194,10 +196,11 @@ namespace DBScribeHibernate.DBScribeHibernate
                     pathNum++;
                     foreach (MethodDefinition mc in path)
                     {
-                        Console.Write("{0}<---", mc.GetFullName());
+                        Console.Write("{0}<---", mc.Name);
                     }
                     Console.WriteLine("");
                 }
+                Console.WriteLine("");
             }
             Console.WriteLine("average level : " + (double)sum / pathNum);
         }

@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraph.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CGManager.cs" />
+    <Compile Include="DBScribeHibernate\CallGraphExtractor\TopoSortCallGraph.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser.cs" />
     <Compile Include="DBScribeHibernate\Constants.cs" />
     <Compile Include="DBScribeHibernate\DatabaseConstraintExtractor.cs" />

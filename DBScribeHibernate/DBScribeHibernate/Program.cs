@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using DBScribeHibernate.DBScribeHibernate.DescriptionTemplates;
 using DBScribeHibernate.DBScribeHibernate.Util;
+using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
 using ABB.SrcML;
 using ABB.SrcML.Data;
 
@@ -18,6 +19,27 @@ namespace DBScribeHibernate.DBScribeHibernate
 
         static void Main(string[] args)
         {
+            //int num_of_nodes = 6;
+            //TopoSortCallGraph ts = new TopoSortCallGraph();
+            //for (int i = 0; i < num_of_nodes; i++)
+            //{
+            //    ts.addMethod(i);
+            //}
+            //ts.addCallerToCalleeEdge(2, 1);
+            //ts.addCallerToCalleeEdge(3, 0);
+            //ts.addCallerToCalleeEdge(3, 2);
+            //ts.addCallerToCalleeEdge(4, 3);
+            //ts.printGraph();
+
+            //List<int> bottomToTop = ts.topoSort();
+            //Console.WriteLine("");
+            //foreach (int method in bottomToTop)
+            //{
+            //    Console.Write(method + " ");
+            //}
+
+
+
             //String source = @"E:\workspace_vs2013\srcML_example\Stock.java";
             //String xMLOutput = @"E:\workspace_vs2013\srcML_example\Stock_xml2.xml";
             //String srcmlExe = @"E:\research\SrcML\src2srcml.exe";

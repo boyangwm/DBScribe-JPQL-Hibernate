@@ -28,6 +28,10 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// <summary> caller edges </summary>
         private readonly List<HashSet<int>> _callerEdge = new List<HashSet<int>>();
 
+        public int GetNumberOfMethods()
+        {
+            return size;
+        }
 
         /// <summary>
         /// check if the graph contains the method m 

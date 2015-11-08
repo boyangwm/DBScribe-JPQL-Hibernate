@@ -17,13 +17,6 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// <summary>call graph </summary>
         CallGraph cg = new CallGraph();
 
-        /// <summary> record the maximum call level for the method 
-        /// root/main --> level 0
-        /// leaf --> last level
-        /// </summary>
-        private Dictionary<MethodDefinition, int> method2MaxLevel;
-        private int levelDepth;
-
         /// <summary> A dictionary for finding a method by the signiture </summary>
         readonly Dictionary<String, MethodDefinition> methodDictionary = new Dictionary<String, MethodDefinition>();
 
@@ -256,71 +249,6 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             return FindCallerList(currentM);
         }
 
-        /// <summary>
-        /// Given the main function of the program, return the maximum level for each method
-        /// </summary>
-        /// <param name="mainMethod"></param>
-        /// <returns></returns>
-        public Tuple<int, Dictionary<MethodDefinition, int>> BuildLevelMap(String mainMethod)
-        {
-            MethodDefinition currentM = getMethodByFullName(mainMethod);
-
-            method2MaxLevel = new Dictionary<MethodDefinition, int>();
-            levelDepth = 0;
-
-            if (!cg.ContainsMethod(currentM))
-            {
-                return Tuple.Create(levelDepth, method2MaxLevel);
-            }
-
-            Console.WriteLine("***Build level map ...");
-
-            FindCalleeListHelperForLevelMap(currentM, 0);
-            return Tuple.Create(levelDepth, method2MaxLevel);
-        }
-
-        /// <summary>
-        /// Maintain Level Map: method <--> maximum level
-        /// </summary>
-        /// <param name="m"></param>
-        /// <param name="level"></param>
-        private void FindCalleeListHelperForLevelMap(MethodDefinition m, int level)
-        {
-            // update level map
-            if (method2MaxLevel.ContainsKey(m))
-            {
-                method2MaxLevel[m] = level;
-            }
-            else
-            {
-                method2MaxLevel.Add(m, level);
-            }
-            if (level > levelDepth)
-            {
-                levelDepth = level;
-            }
-
-            // continue BFS graph
-            if (m == null)
-            {
-                return;
-            }
-
-            if (level > this.LEVELTHRESHOLD)
-            {
-                return;
-            }
-
-            HashSet<MethodDefinition> curCalleeList = cg.ReturnCallee(m);
-            if (curCalleeList.Count == 0)
-            {
-                return;
-            }
-            foreach (MethodDefinition calleeM in curCalleeList)
-            {
-                FindCalleeListHelperForLevelMap(calleeM, level + 1);
-            }
-        }
-
+        
     }
 }
