@@ -23,7 +23,6 @@ namespace DBScribeHibernate.DBScribeHibernate
             this.SrcmlLoc = srcmlloc;
         }
 
-
         public void run()
         {
             //Console.Out.WriteLine("Invoke call graph generator ");
@@ -52,41 +51,13 @@ namespace DBScribeHibernate.DBScribeHibernate
                     // return IEnumerable<MethodDefinition> type
                     // could contain duplicated methods!
                     var methods = globalNamespace.GetDescendants<MethodDefinition>();
-                    int num_of_methods_with_duplicate = globalNamespace.GetDescendants<MethodDefinition>().Count();
-                    Console.WriteLine("# of methods = " + num_of_methods_with_duplicate);
+                    int num_of_methods = globalNamespace.GetDescendants<MethodDefinition>().Count();
+                    Console.WriteLine("# of methods = " + num_of_methods);
 
                     CGManager cgm = new CGManager();
                     cgm.BuildCallGraph(methods);
 
-                    //TestUse3_FindCallerList(methods, cgm);
-
-                    Tuple<HashSet<MethodDefinition>, HashSet<Tuple<MethodDefinition, MethodDefinition>>> cgTuple = GetUniqueMethodsAndCallerToCalleeEdges(methods, cgm);
-                    HashSet<MethodDefinition> uniqueMethods = cgTuple.Item1;
-                    HashSet<Tuple<MethodDefinition, MethodDefinition>> callerToCalleeEdges = cgTuple.Item2;
-                    //Console.WriteLine("# of unique methods = " + uniqueMethods.Count());
-                    //foreach (MethodDefinition m in uniqueMethods)
-                    //{
-                    //    Console.WriteLine(m.GetFullName());
-                    //}
-                    foreach (Tuple<MethodDefinition, MethodDefinition> edge in callerToCalleeEdges)
-                    {
-                        Console.WriteLine(edge.Item1.Name + "-->" + edge.Item2.Name);
-                    }
-
-                    //TopoSortCallGraph tscg = new TopoSortCallGraph();
-                    //foreach (MethodDefinition m in uniqueMethods)
-                    //{
-                    //    tscg.addMethod(m);
-                    //}
-                    //foreach (Tuple<MethodDefinition, MethodDefinition> edge in callerToCalleeEdges)
-                    //{
-                    //    tscg.addCallerToCalleeEdge(edge.Item1, edge.Item2);
-                    //}
-                    //List<MethodDefinition> sortedMethodsBottomToTop = tscg.topoSort();
-                    //foreach (MethodDefinition m in sortedMethodsBottomToTop)
-                    //{
-                    //    Console.WriteLine(m.GetFullName());
-                    //}
+                    List<MethodDefinition> bottomUpSortedMethods = GetBottomUpSortedMethodsFromCallGraph(methods, cgm);
 
                     // method name --> method full name
                     // class name --> class full name
@@ -105,17 +76,46 @@ namespace DBScribeHibernate.DBScribeHibernate
                     project.WorkingSet.ReleaseReadLock();
                 }
             }
-            Console.ReadKey();
         }
 
-        public Tuple<HashSet<MethodDefinition>, HashSet<Tuple<MethodDefinition, MethodDefinition>>> GetUniqueMethodsAndCallerToCalleeEdges(IEnumerable<MethodDefinition> methods, CGManager cgm)
+        /// <summary>
+        /// Get topologically sorted methods in call graph
+        /// </summary>
+        /// <param name="methods"></param>
+        /// <param name="cgm"></param>
+        /// <returns>Bottom-up ordering of the methods, which is later used to propagate method description!</returns>
+        public List<MethodDefinition> GetBottomUpSortedMethodsFromCallGraph(IEnumerable<MethodDefinition> methods, CGManager cgm)
+        {
+            Console.WriteLine("***Getting ordered (bottom-up) methods in call graph...");
+
+            HashSet<Tuple<MethodDefinition, MethodDefinition>> callerToCalleeEdges = GetCallerToCalleeEdges(methods, cgm);
+
+            TopoSortCallGraph tscg = new TopoSortCallGraph();
+            foreach (MethodDefinition m in methods)
+            {
+                tscg.addMethod(m);
+            }
+            foreach (Tuple<MethodDefinition, MethodDefinition> edge in callerToCalleeEdges)
+            {
+                tscg.addCallerToCalleeEdge(edge.Item1, edge.Item2);
+            }
+            List<MethodDefinition> sortedMethodsBottomToTop = tscg.topoSort();
+
+            return sortedMethodsBottomToTop;
+        }
+
+        /// <summary>
+        /// Get all edges in call graph
+        /// </summary>
+        /// <param name="methods"></param>
+        /// <param name="cgm"></param>
+        /// <returns></returns>
+        public HashSet<Tuple<MethodDefinition, MethodDefinition>> GetCallerToCalleeEdges(IEnumerable<MethodDefinition> methods, CGManager cgm)
         {
             HashSet<Tuple<MethodDefinition, MethodDefinition>> callerToCalleeEdges = new HashSet<Tuple<MethodDefinition, MethodDefinition>>();
-            HashSet<MethodDefinition> uniqueMethods = new HashSet<MethodDefinition>();
 
             foreach (MethodDefinition callee in methods)
             {
-                uniqueMethods.Add(callee);
                 List<List<MethodDefinition>> paths = cgm.FindCallerList(callee);
                 foreach (List<MethodDefinition> path in paths)
                 // path[0]--> this callee, path[1]--> this callee's immediate caller, path[2]--> that caller's immediate caller ...
@@ -131,7 +131,7 @@ namespace DBScribeHibernate.DBScribeHibernate
                     }
                 }
             }
-            return Tuple.Create(uniqueMethods, callerToCalleeEdges);
+            return callerToCalleeEdges;
         }
 
 

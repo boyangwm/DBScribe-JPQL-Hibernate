@@ -10,7 +10,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
     /// <summary>
     /// Topological sort the methods in call graph(bottom-up)
     /// Each method is represented by its MethodDefinition
-    /// Problem: doesn't take isolated node into consideration!!!
+    /// The resulted bottom-up ordering of methods is used to propagate method description!
     /// </summary>
     class TopoSortCallGraph
     {
@@ -30,7 +30,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         }
 
         /// <summary>
-        /// caller --> callee
+        /// Edge: (caller --> callee)
         /// </summary>
         /// <param name="caller"></param>
         /// <param name="callee"></param>
@@ -39,24 +39,10 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             callerToCalleeEdges[caller].Add(callee);
         }
 
-        // A recursive helper used by topoSort
-        private void topSortHelper(MethodDefinition m, Dictionary<MethodDefinition, bool> visited, Stack<MethodDefinition> topToBottom)
-        {
-            // Mark the current method as visited
-            visited[m] = true;
-
-            List<MethodDefinition> calleeList = callerToCalleeEdges[m];
-            foreach (MethodDefinition callee in calleeList)
-            {
-                if (!visited[callee])
-                {
-                    topSortHelper(callee, visited, topToBottom);
-                }
-            }
-            topToBottom.Push(m);
-        }
-
-        // The function to do TopoSort.
+        /// <summary>
+        /// Topologically sort the methods in call graph
+        /// </summary>
+        /// <returns>Bottom-up ordering of the methods, which is later used to propagate method description!</returns>
         public List<MethodDefinition> topoSort()
         {
             Stack<MethodDefinition> topToBottom = new Stack<MethodDefinition>();
@@ -73,7 +59,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             {
                 if (visited[m] == false)
                 {
-                    topSortHelper(m, visited, topToBottom);
+                    topoSortHelper(m, visited, topToBottom);
                 }
             }
 
@@ -87,6 +73,31 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             return bottomToTop.ToList();
         }
 
+        /// <summary>
+        /// A recursive helper for topoSort
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="visited"></param>
+        /// <param name="topToBottom"></param>
+        private void topoSortHelper(MethodDefinition m, Dictionary<MethodDefinition, bool> visited, Stack<MethodDefinition> topToBottom)
+        {
+            // Mark the current method as visited
+            visited[m] = true;
+
+            List<MethodDefinition> calleeList = callerToCalleeEdges[m];
+            foreach (MethodDefinition callee in calleeList)
+            {
+                if (!visited[callee])
+                {
+                    topoSortHelper(callee, visited, topToBottom);
+                }
+            }
+            topToBottom.Push(m);
+        }
+
+        /// <summary>
+        /// Print Call Graph
+        /// </summary>
         public void printGraph()
         {
             foreach (MethodDefinition m in methods)
@@ -106,8 +117,6 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 Console.WriteLine(" ");
             }
         }
-
-
 
     }
 }

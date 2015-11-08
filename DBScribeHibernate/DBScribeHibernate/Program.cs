@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ABB.SrcML.Data;
+using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using DBScribeHibernate.DBScribeHibernate.DescriptionTemplates;
-using DBScribeHibernate.DBScribeHibernate.Util;
-using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
-using ABB.SrcML;
-using ABB.SrcML.Data;
 
 namespace DBScribeHibernate.DBScribeHibernate
 {
@@ -19,37 +16,11 @@ namespace DBScribeHibernate.DBScribeHibernate
 
         static void Main(string[] args)
         {
-            //int num_of_nodes = 6;
-            //TopoSortCallGraph ts = new TopoSortCallGraph();
-            //for (int i = 0; i < num_of_nodes; i++)
-            //{
-            //    ts.addMethod(i);
-            //}
-            //ts.addCallerToCalleeEdge(2, 1);
-            //ts.addCallerToCalleeEdge(3, 0);
-            //ts.addCallerToCalleeEdge(3, 2);
-            //ts.addCallerToCalleeEdge(4, 3);
-            //ts.printGraph();
-
-            //List<int> bottomToTop = ts.topoSort();
-            //Console.WriteLine("");
-            //foreach (int method in bottomToTop)
-            //{
-            //    Console.Write(method + " ");
-            //}
-
-
-
-            //String source = @"E:\workspace_vs2013\srcML_example\Stock.java";
-            //String xMLOutput = @"E:\workspace_vs2013\srcML_example\Stock_xml2.xml";
-            //String srcmlExe = @"E:\research\SrcML\src2srcml.exe";
-            //Src2XML.SourceFileToXml(source, xMLOutput, srcmlExe);
+            TestingPurpose.MainTestingFunction();
 
             /// step1: run ConfigParser to link POJOs to tables in the database
-            //TestUseConfigParser();
 
             /// step2: use call graph generator to generate the call-chains
-            TestUseCallGraphGenerator();
 
             /// step3: based on POJO/database links and call-chains, 
             /// annotate all database access methods (bottom level database accessors)
@@ -65,87 +36,10 @@ namespace DBScribeHibernate.DBScribeHibernate
 
             /// step7: generate natural language descriptions using the
             /// (1) propagated information and (2) local generatd information
-            //TestUseDescriptionTemplates();
 
             Console.ReadKey();
         }
 
-        public static void TestUseConfigParser()
-        {
-            ConfigParser cpu = new ConfigParser(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
-            Console.WriteLine("Project Name: " + Constants.ProjName);
-            string hibernateDtd = cpu.GetHibernateVersion();
-            Console.WriteLine("Hibernate DTD: " + hibernateDtd);
-            Console.WriteLine("Mapping File Type: " + cpu.mappingFileType.ToString());
-            if (cpu.mappingFileType == Constants.MappingFileType.AnnotationMapping)
-            {
-                Console.WriteLine("Will handle " + cpu.mappingFileType.ToString() + " later!!!");
-                Console.ReadKey();
-                System.Environment.Exit(1);
-            }
-
-            List<string> mappingFileNameList = cpu.GetCfgFileList();
-            int idx = 0;
-            foreach (var mappingFileName in mappingFileNameList)
-            {
-                idx++;
-                Console.WriteLine("--------------------------------------------------");
-                Console.WriteLine("MappingFile-{0}: " + mappingFileName, idx);
-
-                Tuple<string, string> name = cpu.GetMappingFileClassName(mappingFileName);
-                Console.WriteLine("ClassName: " + name.Item1 + "\tTableName: " + name.Item2);
-
-                Tuple<string, string, string> pk = cpu.GetMappingFilePrimaryKey(mappingFileName);
-                Console.WriteLine("ClassPk: " + pk.Item1 + "\tTablePk: " + pk.Item2 + "\tPkType: " + pk.Item3);
-
-                List<Tuple<string, string, string>> propList = cpu.GetMappingFilePropertyList(mappingFileName);
-                foreach (var prop in propList)
-                {
-                    Console.WriteLine("ClassProp: " + prop.Item1 + "\tTableProp: " + prop.Item2 + "\tPropType: " + prop.Item3);
-                }
-
-            }
-        }
-
-        public static void TestUseCallGraphGenerator()
-        {
-            InvokeCallGraphGenerator CGGenerator = new InvokeCallGraphGenerator(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.SrcmlLoc);
-            CGGenerator.run();
-        }
-
-        public static void TestUseDatabaseConstraintExtractor()
-        {
-            DatabaseConstraintExtractor dce = new DatabaseConstraintExtractor(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
-            ConfigParser cpu = new ConfigParser(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
-            List<string> mappingFileNameList = cpu.GetCfgFileList();
-            int idx = 0;
-            foreach (var mappingFileName in mappingFileNameList)
-            {
-                idx++;
-                Console.WriteLine("--------------------------------------------------");
-                Console.WriteLine("MappingFile-{0}: " + mappingFileName, idx);
-
-                dce.GetSchemaConstraintsByName(mappingFileName, "stockCode");
-            }
-        }
-
-        public static void TestUseDescriptionTemplates()
-        {
-            string line = LocalSqlTemplates.LocalSqlInsert("Employee", "Username", "Password", "SecureQuestion");
-            Console.WriteLine(line);
-            line = LocalSqlTemplates.LocalSqlUpdate("Employee", "Username", "Password", "SecureQuestion");
-            Console.WriteLine(line);
-
-            line = DelegatedSQLTemplates.DelegatedSqlQuery("Employee", "<some_path>");
-            Console.WriteLine(line);
-            line = DelegatedSQLTemplates.DelegatedSqlDelete("Employee", "<some_method>");
-            Console.WriteLine(line);
-
-            line = SchemaConstraintsTemplates.SchemaConstraintsVarchar("Employee", "2 (Grade, Level), 100(FileLocation, FileName)");
-            Console.WriteLine(line);
-            line = SchemaConstraintsTemplates.SchemaConstraintsNotNull("Employee", "Salary");
-            Console.WriteLine(line);
-        }
     }
 }
 
