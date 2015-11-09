@@ -1,4 +1,5 @@
 ﻿using ABB.SrcML.Data;
+using ABB.SrcML;
 using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace DBScribeHibernate.DBScribeHibernate
 
         static void Main(string[] args)
         {
+
             TestingPurpose.MainTestingFunction();
 
             /// step1: run ConfigParser to link POJOs to tables in the database

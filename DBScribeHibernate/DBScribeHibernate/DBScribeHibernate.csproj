@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraph.cs" />
+    <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraphUtil.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CGManager.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\TopoSortCallGraph.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser.cs" />
@@ -82,7 +83,10 @@
     <Compile Include="DBScribeHibernate\DescriptionTemplates\DelegatedSQLTemplates.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\LocalSqlTemplates.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\SchemaConstraintsTemplates.cs" />
+    <Compile Include="DBScribeHibernate\HibernateKeywords.cs" />
     <Compile Include="DBScribeHibernate\InvokeCallGraphGenerator.cs" />
+    <Compile Include="DBScribeHibernate\Stereotype\MethodAnalyzer.cs" />
+    <Compile Include="DBScribeHibernate\Stereotype\VariableInfo.cs" />
     <Compile Include="DBScribeHibernate\Util\Src2XML.cs" />
     <Compile Include="DBScribeHibernate\Util\Utility.cs" />
     <Compile Include="Program.cs" />
@@ -93,7 +97,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,682 @@
+=== Employee.Employee
+private salary Employee() || ABB.SrcML.Data.MethodDefinition
+	salary || ABB.SrcML.Data.TypeUse
+		salary || ABB.SrcML.Data.TypeUse
+---------------------------------------------
+
+=== Employee.Employee
+public Employee(String fname, String lname, int salary) || ABB.SrcML.Data.MethodDefinition
+	String fname || ABB.SrcML.Data.VariableDeclaration
+		String fname || ABB.SrcML.Data.VariableDeclaration
+		String || ABB.SrcML.Data.TypeUse
+	String lname || ABB.SrcML.Data.VariableDeclaration
+		String lname || ABB.SrcML.Data.VariableDeclaration
+		String || ABB.SrcML.Data.TypeUse
+	int salary || ABB.SrcML.Data.VariableDeclaration
+		int salary || ABB.SrcML.Data.VariableDeclaration
+		int || ABB.SrcML.Data.TypeUse
+this . firstName = fname; || ABB.SrcML.Data.Statement
+	this . firstName = fname || ABB.SrcML.Data.Expression
+		this . firstName = fname || ABB.SrcML.Data.Expression
+		this . firstName || ABB.SrcML.Data.Expression
+		this || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		firstName || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		fname || ABB.SrcML.Data.NameUse
+this . lastName = lname; || ABB.SrcML.Data.Statement
+	this . lastName = lname || ABB.SrcML.Data.Expression
+		this . lastName = lname || ABB.SrcML.Data.Expression
+		this . lastName || ABB.SrcML.Data.Expression
+		this || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		lastName || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		lname || ABB.SrcML.Data.NameUse
+this . salary = salary; || ABB.SrcML.Data.Statement
+	this . salary = salary || ABB.SrcML.Data.Expression
+		this . salary = salary || ABB.SrcML.Data.Expression
+		this . salary || ABB.SrcML.Data.Expression
+		this || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		salary || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		salary || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.getId
+public int getId() || ABB.SrcML.Data.MethodDefinition
+	int || ABB.SrcML.Data.TypeUse
+		int || ABB.SrcML.Data.TypeUse
+return id; || ABB.SrcML.Data.ReturnStatement
+	id || ABB.SrcML.Data.NameUse
+		id || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.setId
+public setId(int id) || ABB.SrcML.Data.MethodDefinition
+	int id || ABB.SrcML.Data.VariableDeclaration
+		int id || ABB.SrcML.Data.VariableDeclaration
+		int || ABB.SrcML.Data.TypeUse
+this . id = id; || ABB.SrcML.Data.Statement
+	this . id = id || ABB.SrcML.Data.Expression
+		this . id = id || ABB.SrcML.Data.Expression
+		this . id || ABB.SrcML.Data.Expression
+		this || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		id || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		id || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.getFirstName
+public String getFirstName() || ABB.SrcML.Data.MethodDefinition
+	String || ABB.SrcML.Data.TypeUse
+		String || ABB.SrcML.Data.TypeUse
+return firstName; || ABB.SrcML.Data.ReturnStatement
+	firstName || ABB.SrcML.Data.NameUse
+		firstName || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.setFirstName
+public setFirstName(String first_name) || ABB.SrcML.Data.MethodDefinition
+	String first_name || ABB.SrcML.Data.VariableDeclaration
+		String first_name || ABB.SrcML.Data.VariableDeclaration
+		String || ABB.SrcML.Data.TypeUse
+this . firstName = first_name; || ABB.SrcML.Data.Statement
+	this . firstName = first_name || ABB.SrcML.Data.Expression
+		this . firstName = first_name || ABB.SrcML.Data.Expression
+		this . firstName || ABB.SrcML.Data.Expression
+		this || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		firstName || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		first_name || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.getLastName
+public String getLastName() || ABB.SrcML.Data.MethodDefinition
+	String || ABB.SrcML.Data.TypeUse
+		String || ABB.SrcML.Data.TypeUse
+return lastName; || ABB.SrcML.Data.ReturnStatement
+	lastName || ABB.SrcML.Data.NameUse
+		lastName || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.setLastName
+public setLastName(String last_name) || ABB.SrcML.Data.MethodDefinition
+	String last_name || ABB.SrcML.Data.VariableDeclaration
+		String last_name || ABB.SrcML.Data.VariableDeclaration
+		String || ABB.SrcML.Data.TypeUse
+this . lastName = last_name; || ABB.SrcML.Data.Statement
+	this . lastName = last_name || ABB.SrcML.Data.Expression
+		this . lastName = last_name || ABB.SrcML.Data.Expression
+		this . lastName || ABB.SrcML.Data.Expression
+		this || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		lastName || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		last_name || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.getSalary
+public int getSalary() || ABB.SrcML.Data.MethodDefinition
+	int || ABB.SrcML.Data.TypeUse
+		int || ABB.SrcML.Data.TypeUse
+return salary; || ABB.SrcML.Data.ReturnStatement
+	salary || ABB.SrcML.Data.NameUse
+		salary || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== Employee.setSalary
+public setSalary(int salary) || ABB.SrcML.Data.MethodDefinition
+	int salary || ABB.SrcML.Data.VariableDeclaration
+		int salary || ABB.SrcML.Data.VariableDeclaration
+		int || ABB.SrcML.Data.TypeUse
+this . salary = salary; || ABB.SrcML.Data.Statement
+	this . salary = salary || ABB.SrcML.Data.Expression
+		this . salary = salary || ABB.SrcML.Data.Expression
+		this . salary || ABB.SrcML.Data.Expression
+		this || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		salary || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		salary || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== ManageEmployee.main
+public main(String args) || ABB.SrcML.Data.MethodDefinition
+	String args || ABB.SrcML.Data.VariableDeclaration
+		String args || ABB.SrcML.Data.VariableDeclaration
+		String || ABB.SrcML.Data.TypeUse
+try || ABB.SrcML.Data.TryStatement
+factory = new Configuration() . configure() . buildSessionFactory(); || ABB.SrcML.Data.Statement
+	factory = new Configuration() . configure() . buildSessionFactory() || ABB.SrcML.Data.Expression
+		factory = new Configuration() . configure() . buildSessionFactory() || ABB.SrcML.Data.Expression
+		factory || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		new || ABB.SrcML.Data.OperatorUse
+		Configuration() || ABB.SrcML.Data.MethodCall
+		. || ABB.SrcML.Data.OperatorUse
+		configure() || ABB.SrcML.Data.MethodCall
+		. || ABB.SrcML.Data.OperatorUse
+		buildSessionFactory() || ABB.SrcML.Data.MethodCall
+catch(Throwable ex) || ABB.SrcML.Data.CatchStatement
+	Throwable ex || ABB.SrcML.Data.VariableDeclaration
+		Throwable ex || ABB.SrcML.Data.VariableDeclaration
+		Throwable || ABB.SrcML.Data.TypeUse
+System . err . println("Failed to create sessionFactory object." + ex); || ABB.SrcML.Data.Statement
+	System . err . println("Failed to create sessionFactory object." + ex) || ABB.SrcML.Data.Expression
+		System . err . println("Failed to create sessionFactory object." + ex) || ABB.SrcML.Data.Expression
+		System || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		err || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		println("Failed to create sessionFactory object." + ex) || ABB.SrcML.Data.MethodCall
+		"Failed to create sessionFactory object." + ex || ABB.SrcML.Data.Expression
+		"Failed to create sessionFactory object." || ABB.SrcML.Data.LiteralUse
+		+ || ABB.SrcML.Data.OperatorUse
+		ex || ABB.SrcML.Data.NameUse
+throw new ExceptionInInitializerError(ex); || ABB.SrcML.Data.ThrowStatement
+	new ExceptionInInitializerError(ex) || ABB.SrcML.Data.Expression
+		new ExceptionInInitializerError(ex) || ABB.SrcML.Data.Expression
+		new || ABB.SrcML.Data.OperatorUse
+		ExceptionInInitializerError(ex) || ABB.SrcML.Data.MethodCall
+		ex || ABB.SrcML.Data.NameUse
+ManageEmployee ME = new ManageEmployee(); || ABB.SrcML.Data.DeclarationStatement
+	ManageEmployee ME = new ManageEmployee() || ABB.SrcML.Data.VariableDeclaration
+		ManageEmployee ME = new ManageEmployee() || ABB.SrcML.Data.VariableDeclaration
+		ManageEmployee || ABB.SrcML.Data.TypeUse
+		new ManageEmployee() || ABB.SrcML.Data.Expression
+		new || ABB.SrcML.Data.OperatorUse
+		ManageEmployee() || ABB.SrcML.Data.MethodCall
+Integer empID1 = ME . addEmployee("Zara","Ali",1000); || ABB.SrcML.Data.DeclarationStatement
+	Integer empID1 = ME . addEmployee("Zara","Ali",1000) || ABB.SrcML.Data.VariableDeclaration
+		Integer empID1 = ME . addEmployee("Zara","Ali",1000) || ABB.SrcML.Data.VariableDeclaration
+		Integer || ABB.SrcML.Data.TypeUse
+		ME . addEmployee("Zara","Ali",1000) || ABB.SrcML.Data.Expression
+		ME || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		addEmployee("Zara","Ali",1000) || ABB.SrcML.Data.MethodCall
+		"Zara" || ABB.SrcML.Data.LiteralUse
+		"Ali" || ABB.SrcML.Data.LiteralUse
+		1000 || ABB.SrcML.Data.LiteralUse
+Integer empID2 = ME . addEmployee("Daisy","Das",5000); || ABB.SrcML.Data.DeclarationStatement
+	Integer empID2 = ME . addEmployee("Daisy","Das",5000) || ABB.SrcML.Data.VariableDeclaration
+		Integer empID2 = ME . addEmployee("Daisy","Das",5000) || ABB.SrcML.Data.VariableDeclaration
+		Integer || ABB.SrcML.Data.TypeUse
+		ME . addEmployee("Daisy","Das",5000) || ABB.SrcML.Data.Expression
+		ME || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		addEmployee("Daisy","Das",5000) || ABB.SrcML.Data.MethodCall
+		"Daisy" || ABB.SrcML.Data.LiteralUse
+		"Das" || ABB.SrcML.Data.LiteralUse
+		5000 || ABB.SrcML.Data.LiteralUse
+Integer empID3 = ME . addEmployee("John","Paul",10000); || ABB.SrcML.Data.DeclarationStatement
+	Integer empID3 = ME . addEmployee("John","Paul",10000) || ABB.SrcML.Data.VariableDeclaration
+		Integer empID3 = ME . addEmployee("John","Paul",10000) || ABB.SrcML.Data.VariableDeclaration
+		Integer || ABB.SrcML.Data.TypeUse
+		ME . addEmployee("John","Paul",10000) || ABB.SrcML.Data.Expression
+		ME || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		addEmployee("John","Paul",10000) || ABB.SrcML.Data.MethodCall
+		"John" || ABB.SrcML.Data.LiteralUse
+		"Paul" || ABB.SrcML.Data.LiteralUse
+		10000 || ABB.SrcML.Data.LiteralUse
+ME . listEmployees(); || ABB.SrcML.Data.Statement
+	ME . listEmployees() || ABB.SrcML.Data.Expression
+		ME . listEmployees() || ABB.SrcML.Data.Expression
+		ME || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		listEmployees() || ABB.SrcML.Data.MethodCall
+ME . updateEmployee(empID1,5000); || ABB.SrcML.Data.Statement
+	ME . updateEmployee(empID1,5000) || ABB.SrcML.Data.Expression
+		ME . updateEmployee(empID1,5000) || ABB.SrcML.Data.Expression
+		ME || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		updateEmployee(empID1,5000) || ABB.SrcML.Data.MethodCall
+		empID1 || ABB.SrcML.Data.NameUse
+		5000 || ABB.SrcML.Data.LiteralUse
+ME . deleteEmployee(empID2); || ABB.SrcML.Data.Statement
+	ME . deleteEmployee(empID2) || ABB.SrcML.Data.Expression
+		ME . deleteEmployee(empID2) || ABB.SrcML.Data.Expression
+		ME || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		deleteEmployee(empID2) || ABB.SrcML.Data.MethodCall
+		empID2 || ABB.SrcML.Data.NameUse
+ME . listEmployees(); || ABB.SrcML.Data.Statement
+	ME . listEmployees() || ABB.SrcML.Data.Expression
+		ME . listEmployees() || ABB.SrcML.Data.Expression
+		ME || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		listEmployees() || ABB.SrcML.Data.MethodCall
+---------------------------------------------
+
+=== ManageEmployee.addEmployee
+public Integer addEmployee(String fname, String lname, int salary) || ABB.SrcML.Data.MethodDefinition
+	Integer || ABB.SrcML.Data.TypeUse
+		Integer || ABB.SrcML.Data.TypeUse
+	String fname || ABB.SrcML.Data.VariableDeclaration
+		String fname || ABB.SrcML.Data.VariableDeclaration
+		String || ABB.SrcML.Data.TypeUse
+	String lname || ABB.SrcML.Data.VariableDeclaration
+		String lname || ABB.SrcML.Data.VariableDeclaration
+		String || ABB.SrcML.Data.TypeUse
+	int salary || ABB.SrcML.Data.VariableDeclaration
+		int salary || ABB.SrcML.Data.VariableDeclaration
+		int || ABB.SrcML.Data.TypeUse
+Session session = factory . openSession(); || ABB.SrcML.Data.DeclarationStatement
+	Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session || ABB.SrcML.Data.TypeUse
+		factory . openSession() || ABB.SrcML.Data.Expression
+		factory || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		openSession() || ABB.SrcML.Data.MethodCall
+Transaction tx = null; || ABB.SrcML.Data.DeclarationStatement
+	Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction || ABB.SrcML.Data.TypeUse
+		null || ABB.SrcML.Data.LiteralUse
+Integer employeeID = null; || ABB.SrcML.Data.DeclarationStatement
+	Integer employeeID = null || ABB.SrcML.Data.VariableDeclaration
+		Integer employeeID = null || ABB.SrcML.Data.VariableDeclaration
+		Integer || ABB.SrcML.Data.TypeUse
+		null || ABB.SrcML.Data.LiteralUse
+try || ABB.SrcML.Data.TryStatement
+tx = session . beginTransaction(); || ABB.SrcML.Data.Statement
+	tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		session . beginTransaction() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		beginTransaction() || ABB.SrcML.Data.MethodCall
+Employee employee = new Employee(fname,lname,salary); || ABB.SrcML.Data.DeclarationStatement
+	Employee employee = new Employee(fname,lname,salary) || ABB.SrcML.Data.VariableDeclaration
+		Employee employee = new Employee(fname,lname,salary) || ABB.SrcML.Data.VariableDeclaration
+		Employee || ABB.SrcML.Data.TypeUse
+		new Employee(fname,lname,salary) || ABB.SrcML.Data.Expression
+		new || ABB.SrcML.Data.OperatorUse
+		Employee(fname,lname,salary) || ABB.SrcML.Data.MethodCall
+		fname || ABB.SrcML.Data.NameUse
+		lname || ABB.SrcML.Data.NameUse
+		salary || ABB.SrcML.Data.NameUse
+employeeID = Integer session . save(employee); || ABB.SrcML.Data.Statement
+	employeeID = Integer session . save(employee) || ABB.SrcML.Data.Expression
+		employeeID = Integer session . save(employee) || ABB.SrcML.Data.Expression
+		employeeID || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		Integer || ABB.SrcML.Data.Expression
+		Integer || ABB.SrcML.Data.NameUse
+		session . save(employee) || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		save(employee) || ABB.SrcML.Data.MethodCall
+		employee || ABB.SrcML.Data.NameUse
+tx . commit(); || ABB.SrcML.Data.Statement
+	tx . commit() || ABB.SrcML.Data.Expression
+		tx . commit() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		commit() || ABB.SrcML.Data.MethodCall
+catch(HibernateException e) || ABB.SrcML.Data.CatchStatement
+	HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException || ABB.SrcML.Data.TypeUse
+if(tx != null) || ABB.SrcML.Data.IfStatement
+	tx != null || ABB.SrcML.Data.Expression
+		tx != null || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		!= || ABB.SrcML.Data.OperatorUse
+		null || ABB.SrcML.Data.LiteralUse
+tx . rollback(); || ABB.SrcML.Data.Statement
+	tx . rollback() || ABB.SrcML.Data.Expression
+		tx . rollback() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		rollback() || ABB.SrcML.Data.MethodCall
+e . printStackTrace(); || ABB.SrcML.Data.Statement
+	e . printStackTrace() || ABB.SrcML.Data.Expression
+		e . printStackTrace() || ABB.SrcML.Data.Expression
+		e || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		printStackTrace() || ABB.SrcML.Data.MethodCall
+session . close(); || ABB.SrcML.Data.Statement
+	session . close() || ABB.SrcML.Data.Expression
+		session . close() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		close() || ABB.SrcML.Data.MethodCall
+return employeeID; || ABB.SrcML.Data.ReturnStatement
+	employeeID || ABB.SrcML.Data.NameUse
+		employeeID || ABB.SrcML.Data.NameUse
+---------------------------------------------
+
+=== ManageEmployee.listEmployees
+public listEmployees() || ABB.SrcML.Data.MethodDefinition
+Session session = factory . openSession(); || ABB.SrcML.Data.DeclarationStatement
+	Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session || ABB.SrcML.Data.TypeUse
+		factory . openSession() || ABB.SrcML.Data.Expression
+		factory || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		openSession() || ABB.SrcML.Data.MethodCall
+Transaction tx = null; || ABB.SrcML.Data.DeclarationStatement
+	Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction || ABB.SrcML.Data.TypeUse
+		null || ABB.SrcML.Data.LiteralUse
+try || ABB.SrcML.Data.TryStatement
+tx = session . beginTransaction(); || ABB.SrcML.Data.Statement
+	tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		session . beginTransaction() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		beginTransaction() || ABB.SrcML.Data.MethodCall
+List employees = session . createQuery("FROM Employee") . list(); || ABB.SrcML.Data.DeclarationStatement
+	List employees = session . createQuery("FROM Employee") . list() || ABB.SrcML.Data.VariableDeclaration
+		List employees = session . createQuery("FROM Employee") . list() || ABB.SrcML.Data.VariableDeclaration
+		List || ABB.SrcML.Data.TypeUse
+		session . createQuery("FROM Employee") . list() || ABB.SrcML.Data.Expression
+		session . createQuery("FROM Employee") || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		createQuery("FROM Employee") || ABB.SrcML.Data.MethodCall
+		"FROM Employee" || ABB.SrcML.Data.LiteralUse
+		. || ABB.SrcML.Data.OperatorUse
+		list() || ABB.SrcML.Data.MethodCall
+for(Iterator iterator = employees . iterator(); iterator . hasNext(); ) || ABB.SrcML.Data.ForStatement
+	Iterator iterator = employees . iterator() || ABB.SrcML.Data.VariableDeclaration
+		Iterator iterator = employees . iterator() || ABB.SrcML.Data.VariableDeclaration
+		Iterator || ABB.SrcML.Data.TypeUse
+		employees . iterator() || ABB.SrcML.Data.Expression
+		employees || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		iterator() || ABB.SrcML.Data.MethodCall
+	iterator . hasNext() || ABB.SrcML.Data.Expression
+		iterator . hasNext() || ABB.SrcML.Data.Expression
+		iterator || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		hasNext() || ABB.SrcML.Data.MethodCall
+Employee employee = Employee iterator . next(); || ABB.SrcML.Data.DeclarationStatement
+	Employee employee = Employee iterator . next() || ABB.SrcML.Data.VariableDeclaration
+		Employee employee = Employee iterator . next() || ABB.SrcML.Data.VariableDeclaration
+		Employee || ABB.SrcML.Data.TypeUse
+		Employee iterator . next() || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.NameUse
+		iterator . next() || ABB.SrcML.Data.Expression
+		iterator || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		next() || ABB.SrcML.Data.MethodCall
+System . out . print("First Name: " + employee . getFirstName()); || ABB.SrcML.Data.Statement
+	System . out . print("First Name: " + employee . getFirstName()) || ABB.SrcML.Data.Expression
+		System . out . print("First Name: " + employee . getFirstName()) || ABB.SrcML.Data.Expression
+		System || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		out || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		print("First Name: " + employee . getFirstName()) || ABB.SrcML.Data.MethodCall
+		"First Name: " + employee . getFirstName() || ABB.SrcML.Data.Expression
+		"First Name: " || ABB.SrcML.Data.LiteralUse
+		+ || ABB.SrcML.Data.OperatorUse
+		employee . getFirstName() || ABB.SrcML.Data.Expression
+		employee || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		getFirstName() || ABB.SrcML.Data.MethodCall
+System . out . print("  Last Name: " + employee . getLastName()); || ABB.SrcML.Data.Statement
+	System . out . print("  Last Name: " + employee . getLastName()) || ABB.SrcML.Data.Expression
+		System . out . print("  Last Name: " + employee . getLastName()) || ABB.SrcML.Data.Expression
+		System || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		out || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		print("  Last Name: " + employee . getLastName()) || ABB.SrcML.Data.MethodCall
+		"  Last Name: " + employee . getLastName() || ABB.SrcML.Data.Expression
+		"  Last Name: " || ABB.SrcML.Data.LiteralUse
+		+ || ABB.SrcML.Data.OperatorUse
+		employee . getLastName() || ABB.SrcML.Data.Expression
+		employee || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		getLastName() || ABB.SrcML.Data.MethodCall
+System . out . println("  Salary: " + employee . getSalary()); || ABB.SrcML.Data.Statement
+	System . out . println("  Salary: " + employee . getSalary()) || ABB.SrcML.Data.Expression
+		System . out . println("  Salary: " + employee . getSalary()) || ABB.SrcML.Data.Expression
+		System || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		out || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		println("  Salary: " + employee . getSalary()) || ABB.SrcML.Data.MethodCall
+		"  Salary: " + employee . getSalary() || ABB.SrcML.Data.Expression
+		"  Salary: " || ABB.SrcML.Data.LiteralUse
+		+ || ABB.SrcML.Data.OperatorUse
+		employee . getSalary() || ABB.SrcML.Data.Expression
+		employee || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		getSalary() || ABB.SrcML.Data.MethodCall
+tx . commit(); || ABB.SrcML.Data.Statement
+	tx . commit() || ABB.SrcML.Data.Expression
+		tx . commit() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		commit() || ABB.SrcML.Data.MethodCall
+catch(HibernateException e) || ABB.SrcML.Data.CatchStatement
+	HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException || ABB.SrcML.Data.TypeUse
+if(tx != null) || ABB.SrcML.Data.IfStatement
+	tx != null || ABB.SrcML.Data.Expression
+		tx != null || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		!= || ABB.SrcML.Data.OperatorUse
+		null || ABB.SrcML.Data.LiteralUse
+tx . rollback(); || ABB.SrcML.Data.Statement
+	tx . rollback() || ABB.SrcML.Data.Expression
+		tx . rollback() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		rollback() || ABB.SrcML.Data.MethodCall
+e . printStackTrace(); || ABB.SrcML.Data.Statement
+	e . printStackTrace() || ABB.SrcML.Data.Expression
+		e . printStackTrace() || ABB.SrcML.Data.Expression
+		e || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		printStackTrace() || ABB.SrcML.Data.MethodCall
+session . close(); || ABB.SrcML.Data.Statement
+	session . close() || ABB.SrcML.Data.Expression
+		session . close() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		close() || ABB.SrcML.Data.MethodCall
+---------------------------------------------
+
+=== ManageEmployee.updateEmployee
+public updateEmployee(Integer EmployeeID, int salary) || ABB.SrcML.Data.MethodDefinition
+	Integer EmployeeID || ABB.SrcML.Data.VariableDeclaration
+		Integer EmployeeID || ABB.SrcML.Data.VariableDeclaration
+		Integer || ABB.SrcML.Data.TypeUse
+	int salary || ABB.SrcML.Data.VariableDeclaration
+		int salary || ABB.SrcML.Data.VariableDeclaration
+		int || ABB.SrcML.Data.TypeUse
+Session session = factory . openSession(); || ABB.SrcML.Data.DeclarationStatement
+	Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session || ABB.SrcML.Data.TypeUse
+		factory . openSession() || ABB.SrcML.Data.Expression
+		factory || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		openSession() || ABB.SrcML.Data.MethodCall
+Transaction tx = null; || ABB.SrcML.Data.DeclarationStatement
+	Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction || ABB.SrcML.Data.TypeUse
+		null || ABB.SrcML.Data.LiteralUse
+try || ABB.SrcML.Data.TryStatement
+tx = session . beginTransaction(); || ABB.SrcML.Data.Statement
+	tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		session . beginTransaction() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		beginTransaction() || ABB.SrcML.Data.MethodCall
+Employee employee = Employee session . get(Employee . class,EmployeeID); || ABB.SrcML.Data.DeclarationStatement
+	Employee employee = Employee session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.VariableDeclaration
+		Employee employee = Employee session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.VariableDeclaration
+		Employee || ABB.SrcML.Data.TypeUse
+		Employee session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.NameUse
+		session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		get(Employee . class,EmployeeID) || ABB.SrcML.Data.MethodCall
+		Employee . class || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		class || ABB.SrcML.Data.NameUse
+		EmployeeID || ABB.SrcML.Data.NameUse
+employee . setSalary(salary); || ABB.SrcML.Data.Statement
+	employee . setSalary(salary) || ABB.SrcML.Data.Expression
+		employee . setSalary(salary) || ABB.SrcML.Data.Expression
+		employee || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		setSalary(salary) || ABB.SrcML.Data.MethodCall
+		salary || ABB.SrcML.Data.NameUse
+session . update(employee); || ABB.SrcML.Data.Statement
+	session . update(employee) || ABB.SrcML.Data.Expression
+		session . update(employee) || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		update(employee) || ABB.SrcML.Data.MethodCall
+		employee || ABB.SrcML.Data.NameUse
+tx . commit(); || ABB.SrcML.Data.Statement
+	tx . commit() || ABB.SrcML.Data.Expression
+		tx . commit() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		commit() || ABB.SrcML.Data.MethodCall
+catch(HibernateException e) || ABB.SrcML.Data.CatchStatement
+	HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException || ABB.SrcML.Data.TypeUse
+if(tx != null) || ABB.SrcML.Data.IfStatement
+	tx != null || ABB.SrcML.Data.Expression
+		tx != null || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		!= || ABB.SrcML.Data.OperatorUse
+		null || ABB.SrcML.Data.LiteralUse
+tx . rollback(); || ABB.SrcML.Data.Statement
+	tx . rollback() || ABB.SrcML.Data.Expression
+		tx . rollback() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		rollback() || ABB.SrcML.Data.MethodCall
+e . printStackTrace(); || ABB.SrcML.Data.Statement
+	e . printStackTrace() || ABB.SrcML.Data.Expression
+		e . printStackTrace() || ABB.SrcML.Data.Expression
+		e || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		printStackTrace() || ABB.SrcML.Data.MethodCall
+session . close(); || ABB.SrcML.Data.Statement
+	session . close() || ABB.SrcML.Data.Expression
+		session . close() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		close() || ABB.SrcML.Data.MethodCall
+---------------------------------------------
+
+=== ManageEmployee.deleteEmployee
+public deleteEmployee(Integer EmployeeID) || ABB.SrcML.Data.MethodDefinition
+	Integer EmployeeID || ABB.SrcML.Data.VariableDeclaration
+		Integer EmployeeID || ABB.SrcML.Data.VariableDeclaration
+		Integer || ABB.SrcML.Data.TypeUse
+Session session = factory . openSession(); || ABB.SrcML.Data.DeclarationStatement
+	Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session session = factory . openSession() || ABB.SrcML.Data.VariableDeclaration
+		Session || ABB.SrcML.Data.TypeUse
+		factory . openSession() || ABB.SrcML.Data.Expression
+		factory || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		openSession() || ABB.SrcML.Data.MethodCall
+Transaction tx = null; || ABB.SrcML.Data.DeclarationStatement
+	Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction tx = null || ABB.SrcML.Data.VariableDeclaration
+		Transaction || ABB.SrcML.Data.TypeUse
+		null || ABB.SrcML.Data.LiteralUse
+try || ABB.SrcML.Data.TryStatement
+tx = session . beginTransaction(); || ABB.SrcML.Data.Statement
+	tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx = session . beginTransaction() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		= || ABB.SrcML.Data.OperatorUse
+		session . beginTransaction() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		beginTransaction() || ABB.SrcML.Data.MethodCall
+Employee employee = Employee session . get(Employee . class,EmployeeID); || ABB.SrcML.Data.DeclarationStatement
+	Employee employee = Employee session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.VariableDeclaration
+		Employee employee = Employee session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.VariableDeclaration
+		Employee || ABB.SrcML.Data.TypeUse
+		Employee session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.NameUse
+		session . get(Employee . class,EmployeeID) || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		get(Employee . class,EmployeeID) || ABB.SrcML.Data.MethodCall
+		Employee . class || ABB.SrcML.Data.Expression
+		Employee || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		class || ABB.SrcML.Data.NameUse
+		EmployeeID || ABB.SrcML.Data.NameUse
+session . delete(employee); || ABB.SrcML.Data.Statement
+	session . delete(employee) || ABB.SrcML.Data.Expression
+		session . delete(employee) || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		delete(employee) || ABB.SrcML.Data.MethodCall
+		employee || ABB.SrcML.Data.NameUse
+tx . commit(); || ABB.SrcML.Data.Statement
+	tx . commit() || ABB.SrcML.Data.Expression
+		tx . commit() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		commit() || ABB.SrcML.Data.MethodCall
+catch(HibernateException e) || ABB.SrcML.Data.CatchStatement
+	HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException e || ABB.SrcML.Data.VariableDeclaration
+		HibernateException || ABB.SrcML.Data.TypeUse
+if(tx != null) || ABB.SrcML.Data.IfStatement
+	tx != null || ABB.SrcML.Data.Expression
+		tx != null || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		!= || ABB.SrcML.Data.OperatorUse
+		null || ABB.SrcML.Data.LiteralUse
+tx . rollback(); || ABB.SrcML.Data.Statement
+	tx . rollback() || ABB.SrcML.Data.Expression
+		tx . rollback() || ABB.SrcML.Data.Expression
+		tx || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		rollback() || ABB.SrcML.Data.MethodCall
+e . printStackTrace(); || ABB.SrcML.Data.Statement
+	e . printStackTrace() || ABB.SrcML.Data.Expression
+		e . printStackTrace() || ABB.SrcML.Data.Expression
+		e || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		printStackTrace() || ABB.SrcML.Data.MethodCall
+session . close(); || ABB.SrcML.Data.Statement
+	session . close() || ABB.SrcML.Data.Expression
+		session . close() || ABB.SrcML.Data.Expression
+		session || ABB.SrcML.Data.NameUse
+		. || ABB.SrcML.Data.OperatorUse
+		close() || ABB.SrcML.Data.MethodCall
+---------------------------------------------
+

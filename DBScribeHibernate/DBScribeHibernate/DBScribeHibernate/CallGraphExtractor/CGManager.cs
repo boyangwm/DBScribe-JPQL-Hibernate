@@ -52,7 +52,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 //Console.WriteLine("calls count : {0}" , mdCalls.Count());
                 foreach (MethodCall call in mdCalls)
                 {
-                    MethodDefinition calleeM = FindMatchedMd(call);
+                    MethodDefinition calleeM = CallGraphUtil.FindMatchedMd(call);
                     if (calleeM == null) { continue; }
                     if (!cg.ContainsMethod(calleeM) || !cg.ContainsMethod(method))
                     {
@@ -68,35 +68,35 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         }
 
 
-        /// <summary>
-        /// Find MethodDefinition matching from MethodCall
-        /// </summary>
-        /// <param name="mc"></param>
-        /// <returns></returns>
-        private MethodDefinition FindMatchedMd(MethodCall mc)
-        {
-            INamedEntity match = null;
-            try
-            {
-                match = mc.FindMatches().FirstOrDefault();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("{0}:{1}:{2}: Call Exception {3}", mc.Location.SourceFileName, mc.Location.StartingLineNumber, mc.Location.StartingColumnNumber, e);
-            }
-            if (null != match)
-            {
-                //Console.WriteLine("match : {0} ", match);
-                if (match is MethodDefinition)
-                {
-                    //Console.WriteLine("method Definition");
-                    MethodDefinition md = (MethodDefinition)match;
-                    //Console.WriteLine("md full name :" + md.GetFullName());
-                    return md;
-                }
-            }
-            return null;
-        }
+        ///// <summary>
+        ///// Find MethodDefinition matching from MethodCall
+        ///// </summary>
+        ///// <param name="mc"></param>
+        ///// <returns></returns>
+        //private MethodDefinition FindMatchedMd(MethodCall mc)
+        //{
+        //    INamedEntity match = null;
+        //    try
+        //    {
+        //        match = mc.FindMatches().FirstOrDefault();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("{0}:{1}:{2}: Call Exception {3}", mc.Location.SourceFileName, mc.Location.StartingLineNumber, mc.Location.StartingColumnNumber, e);
+        //    }
+        //    if (null != match)
+        //    {
+        //        //Console.WriteLine("match : {0} ", match);
+        //        if (match is MethodDefinition)
+        //        {
+        //            //Console.WriteLine("method Definition");
+        //            MethodDefinition md = (MethodDefinition)match;
+        //            //Console.WriteLine("md full name :" + md.GetFullName());
+        //            return md;
+        //        }
+        //    }
+        //    return null;
+        //}
 
 
         /// <summary>
