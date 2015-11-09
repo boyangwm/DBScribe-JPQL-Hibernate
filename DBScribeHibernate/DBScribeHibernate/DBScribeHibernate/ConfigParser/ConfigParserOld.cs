@@ -8,13 +8,13 @@ using System.Xml.Linq;
 
 namespace DBScribeHibernate.DBScribeHibernate
 {
-    class ConfigParser
+    class ConfigParserOld
     {
         public string TargetProjPath;
         public readonly Constants.MappingFileType mappingFileType;
         private readonly string _cfgFilePath;
 
-        public ConfigParser(string targetProjPath, string cfgFileName)
+        public ConfigParserOld(string targetProjPath, string cfgFileName)
         {
             this.TargetProjPath = targetProjPath;
             this._cfgFilePath = Directory.GetFiles(this.TargetProjPath, cfgFileName, SearchOption.AllDirectories).FirstOrDefault();

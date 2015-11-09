@@ -7,6 +7,7 @@ using DBScribeHibernate.DBScribeHibernate.DescriptionTemplates;
 using DBScribeHibernate.DBScribeHibernate.Util;
 using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
 using DBScribeHibernate.DBScribeHibernate;
+using DBScribeHibernate.DBScribeHibernate.ConfigParser;
 
 namespace DBScribeHibernate
 {
@@ -20,10 +21,11 @@ namespace DBScribeHibernate
             //Src2XML.SourceFileToXml(source, xMLOutput, srcmlExe);
 
             /// step1: run ConfigParser to link POJOs to tables in the database
-            //TestUseConfigParser();
+            TestUseConfigParser();
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 
             /// step2: use call graph generator to generate the call-chains
-            TestUseCallGraphGenerator();
+            //TestUseCallGraphGenerator();
 
             /// step3: based on POJO/database links and call-chains, 
             /// annotate all database access methods (bottom level database accessors)
@@ -42,9 +44,50 @@ namespace DBScribeHibernate
             //TestUseDescriptionTemplates();
         }
 
+
         public static void TestUseConfigParser()
         {
-            ConfigParser cpu = new ConfigParser(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
+            Console.WriteLine("Project Name: " + Constants.ProjName);
+            ConfigParser configParser = new ConfigParser(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
+            if (configParser.configFilePath == null)
+            {
+                Console.Error.WriteLine("[ERROR] Hibernate configuration file " + Constants.CfgFileName + " not found!");
+                Console.ReadKey();
+                System.Environment.Exit(-1);
+            }
+
+            Console.WriteLine("Hibernate DTD: " + configParser.HibernateDTD);
+            Console.WriteLine("Mapping File Type: " + configParser.MappingFileType);
+            Console.WriteLine("");
+
+            if (configParser.MappingFileType == Constants.MappingFileType.XMLMapping)
+            {
+                XMLMappingParser xmlMappintParser = new XMLMappingParser(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
+                xmlMappintParser.DisplayClassFullNameToTableName();
+                Console.WriteLine("");
+
+                xmlMappintParser.GetSQLOperatingMethodFullNames();
+            }
+            else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
+            {
+                //AnnotationMappingParser annotationMappingParser = new AnnotationMappingParser();
+                Console.WriteLine("Will handle " + configParser.MappingFileType + " later!!!");
+                Console.ReadKey();
+                System.Environment.Exit(1);
+            }
+            else
+            {
+                Console.WriteLine("Unkonw mapping type.");
+                Console.ReadKey();
+                System.Environment.Exit(1);
+            }
+
+        }
+
+
+        public static void TestUseConfigParserOld()
+        {
+            ConfigParserOld cpu = new ConfigParserOld(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
             Console.WriteLine("Project Name: " + Constants.ProjName);
             string hibernateDtd = cpu.GetHibernateVersion();
             Console.WriteLine("Hibernate DTD: " + hibernateDtd);
@@ -88,7 +131,7 @@ namespace DBScribeHibernate
         public static void TestUseDatabaseConstraintExtractor()
         {
             DatabaseConstraintExtractor dce = new DatabaseConstraintExtractor(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
-            ConfigParser cpu = new ConfigParser(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
+            ConfigParserOld cpu = new ConfigParserOld(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
             List<string> mappingFileNameList = cpu.GetCfgFileList();
             int idx = 0;
             foreach (var mappingFileName in mappingFileNameList)

@@ -55,25 +55,23 @@ namespace DBScribeHibernate.DBScribeHibernate
                     int num_of_methods = globalNamespace.GetDescendants<MethodDefinition>().Count();
                     Console.WriteLine("# of methods = " + num_of_methods);
 
-                    //CGManager cgm = new CGManager();
-                    //cgm.BuildCallGraph(methods);
+                    CGManager cgm = new CGManager();
+                    cgm.BuildCallGraph(methods);
 
-                    //List<MethodDefinition> bottomUpSortedMethods = GetBottomUpSortedMethodsFromCallGraph(methods, cgm);
-
-                    //TestHowToAnalyzeMethods(methods);
-                    HashSet<MethodDefinition> methos_HandleSQLTransaction = GetMethodesWithCertainMethodCall(HibernateKeywords.beginTransaction, methods);
-                    foreach (MethodDefinition m in methos_HandleSQLTransaction)
+                    List<MethodDefinition> bottomUpSortedMethods = GetBottomUpSortedMethodsFromCallGraph(methods, cgm);
+                    foreach (MethodDefinition m in bottomUpSortedMethods)
                     {
                         Console.WriteLine(m.GetFullName());
                     }
 
+                    // methods calling "beginTransaction" --> LocalSQLMethods
+                    HashSet<MethodDefinition> methos_LocalSQLMethods = GetMethodesWithCertainMethodCall(HibernateKeywords.beginTransaction, methods);
 
-                    // method name --> method full name
-                    // class name --> class full name
-                    //LinkFullNameWithName(methods, cgm);
-
+                    //cgm.getMethodByFullName();
 
                     // Step 2.   Testing
+                    //TestHowToAnalyzeMethods(methods);
+
                     //TestUse1_FindCalleeList(methods, cgm);
                     //TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
                     //TestUse2_FindCallerListByName("com.mkyong.stock.Stock.getStockDailyRecords", methods, cgm);
@@ -85,111 +83,6 @@ namespace DBScribeHibernate.DBScribeHibernate
                     project.WorkingSet.ReleaseReadLock();
                 }
             }
-        }
-
-        public HashSet<MethodDefinition> GetMethodesWithCertainMethodCall(string methodCallKeyword, IEnumerable<MethodDefinition> methods)
-        {
-            HashSet<MethodDefinition> specialMethods = new HashSet<MethodDefinition>();
-            foreach (MethodDefinition method in methods)
-            {
-                var mdCalls = from statements in method.GetDescendantsAndSelf()
-                              from expressions in statements.GetExpressions()
-                              from call in expressions.GetDescendantsAndSelf<MethodCall>()
-                              select call;
-                foreach (MethodCall call in mdCalls)
-                {
-                    if (call.Name.Contains(methodCallKeyword))
-                    {
-                        //Console.WriteLine(method.GetFullName());
-                        //Console.WriteLine("Call Name: " + call.Name);
-                        //Console.WriteLine("Call ParentExpression: " + call.ParentExpression);
-                        //Console.WriteLine("Call ParentStatement: " + call.ParentStatement);
-                        //Console.WriteLine("Call GetAncestors: ");
-                        specialMethods.Add(method);
-                    }
-                }
-            }
-            return specialMethods;
-        }
-
-        public void TestGetMethodesWithCertainMethodCall(IEnumerable<MethodDefinition> methods)
-        {
-            foreach (MethodDefinition method in methods)
-            {
-                var mdCalls = from statements in method.GetDescendantsAndSelf()
-                              from expressions in statements.GetExpressions()
-                              select expressions;
-                foreach (Expression expression in mdCalls)
-                {
-                    if (expression.ToString().ToLower().Contains("session"))
-                    {
-                        Console.WriteLine(expression + " || " + expression.GetType());
-                        foreach (MethodCall call in expression.GetDescendantsAndSelf<MethodCall>())
-                        {
-                            if (call.Name.ToLower().Contains("session") || call.Name.ToLower().Contains("transaction"))
-                            {
-                                Console.WriteLine("Call Name: " + call.Name);
-                                Console.WriteLine("Call ParentExpression: " + call.ParentExpression);
-                                Console.WriteLine("Call ParentStatement: " + call.ParentStatement);
-                                Console.WriteLine("Call GetAncestors: ");
-                                foreach (NameUse item in call.GetSiblingsBeforeSelf<NameUse>())
-                                {
-                                    Console.WriteLine(item + " || " + item.ParentStatement);
-                                }
-                                
-                                //Console.WriteLine("Arguments: ");
-                                //foreach (var arg in call.Arguments)
-                                //{
-                                //    Console.WriteLine(arg);
-                                //}
-                                //Console.WriteLine("");
-
-                                //Console.WriteLine("Components: ");
-                                //foreach (var arg in call.Components)
-                                //{
-                                //    Console.WriteLine(arg);
-                                //}
-                                
-                            }
-                            Console.WriteLine("-----------------------------------------------");
-                        }
-                    }
-                }
-            }
-        }
-
-        public void TestHowToAnalyzeMethods(IEnumerable<MethodDefinition> methods)
-        {
-            //StreamWriter writetext = new StreamWriter("analyze_methods_get_from_srcml_net.txt");
-            foreach (MethodDefinition method in methods)
-            {
-                //var mdCalls = from statments in method.GetDescendantsAndSelf()
-                //              from expression in statments.GetExpressions()
-                //              from call in expression.GetDescendantsAndSelf<MethodCall>()
-                //              select call;
-                //writetext.WriteLine("=== " + method.GetFullName());
-                Console.WriteLine("=== " + method.GetFullName());
-                foreach (var statements in method.GetDescendantsAndSelf())
-                {
-                    //writetext.WriteLine(statements + " || " + statements.GetType());
-                    foreach (var expression in statements.GetExpressions())
-                    {
-                        //writetext.WriteLine("\t" + expression + " || " + expression.GetType());
-                        foreach (var call in expression.GetDescendantsAndSelf())
-                        {
-                            //writetext.WriteLine("\t\t" + call + " || " + call.GetType());
-                            if (call.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
-                            {
-                                Console.WriteLine(statements);
-                            }
-                        }
-                    }
-                }
-                //writetext.WriteLine("---------------------------------------------\n");
-                Console.WriteLine("---------------------------------------------\n");
-            }
-            //writetext.Close();
-            //Console.WriteLine("Writing to file finished!");
         }
 
         /// <summary>
@@ -249,8 +142,122 @@ namespace DBScribeHibernate.DBScribeHibernate
         }
 
 
+        /// <summary>
+        /// Get methods call certain MethodCalls
+        /// i.e. methods calling "beginTransaction" are LocalSQLMethods
+        /// </summary>
+        /// <param name="methodCallKeyword"></param>
+        /// <param name="methods"></param>
+        /// <returns></returns>
+        public HashSet<MethodDefinition> GetMethodesWithCertainMethodCall(string methodCallKeyword, IEnumerable<MethodDefinition> methods)
+        {
+            HashSet<MethodDefinition> specialMethods = new HashSet<MethodDefinition>();
+            foreach (MethodDefinition method in methods)
+            {
+                var mdCalls = from statements in method.GetDescendantsAndSelf()
+                              from expressions in statements.GetExpressions()
+                              from call in expressions.GetDescendantsAndSelf<MethodCall>()
+                              select call;
+                foreach (MethodCall call in mdCalls)
+                {
+                    if (call.Name.Contains(methodCallKeyword))
+                    {
+                        //Console.WriteLine(method.GetFullName());
+                        //Console.WriteLine("Call Name: " + call.Name);
+                        //Console.WriteLine("Call ParentExpression: " + call.ParentExpression);
+                        //Console.WriteLine("Call ParentStatement: " + call.ParentStatement);
+                        //Console.WriteLine("Call GetAncestors: ");
+                        specialMethods.Add(method);
+                    }
+                }
+            }
+            return specialMethods;
+        }
 
-        public void TestUse1_FindCalleeList(IEnumerable<MethodDefinition> methods, CGManager cgm)
+
+
+        // The following functions are testing functions!
+        private void TestGetMethodesWithCertainMethodCall(IEnumerable<MethodDefinition> methods)
+        {
+            foreach (MethodDefinition method in methods)
+            {
+                var mdCalls = from statements in method.GetDescendantsAndSelf()
+                              from expressions in statements.GetExpressions()
+                              select expressions;
+                foreach (Expression expression in mdCalls)
+                {
+                    if (expression.ToString().ToLower().Contains("session"))
+                    {
+                        Console.WriteLine(expression + " || " + expression.GetType());
+                        foreach (MethodCall call in expression.GetDescendantsAndSelf<MethodCall>())
+                        {
+                            if (call.Name.ToLower().Contains("session") || call.Name.ToLower().Contains("transaction"))
+                            {
+                                Console.WriteLine("Call Name: " + call.Name);
+                                Console.WriteLine("Call ParentExpression: " + call.ParentExpression);
+                                Console.WriteLine("Call ParentStatement: " + call.ParentStatement);
+                                Console.WriteLine("Call GetAncestors: ");
+                                foreach (NameUse item in call.GetSiblingsBeforeSelf<NameUse>())
+                                {
+                                    Console.WriteLine(item + " || " + item.ParentStatement);
+                                }
+                                
+                                //Console.WriteLine("Arguments: ");
+                                //foreach (var arg in call.Arguments)
+                                //{
+                                //    Console.WriteLine(arg);
+                                //}
+                                //Console.WriteLine("");
+
+                                //Console.WriteLine("Components: ");
+                                //foreach (var arg in call.Components)
+                                //{
+                                //    Console.WriteLine(arg);
+                                //}
+                                
+                            }
+                            Console.WriteLine("-----------------------------------------------");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void TestHowToAnalyzeMethods(IEnumerable<MethodDefinition> methods)
+        {
+            //StreamWriter writetext = new StreamWriter("analyze_methods_get_from_srcml_net.txt");
+            foreach (MethodDefinition method in methods)
+            {
+                //var mdCalls = from statments in method.GetDescendantsAndSelf()
+                //              from expression in statments.GetExpressions()
+                //              from call in expression.GetDescendantsAndSelf<MethodCall>()
+                //              select call;
+                //writetext.WriteLine("=== " + method.GetFullName());
+                Console.WriteLine("=== " + method.GetFullName());
+                foreach (var statements in method.GetDescendantsAndSelf())
+                {
+                    //writetext.WriteLine(statements + " || " + statements.GetType());
+                    foreach (var expression in statements.GetExpressions())
+                    {
+                        //writetext.WriteLine("\t" + expression + " || " + expression.GetType());
+                        foreach (var call in expression.GetDescendantsAndSelf())
+                        {
+                            //writetext.WriteLine("\t\t" + call + " || " + call.GetType());
+                            if (call.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
+                            {
+                                Console.WriteLine(statements);
+                            }
+                        }
+                    }
+                }
+                //writetext.WriteLine("---------------------------------------------\n");
+                Console.WriteLine("---------------------------------------------\n");
+            }
+            //writetext.Close();
+            //Console.WriteLine("Writing to file finished!");
+        }
+
+        private void TestUse1_FindCalleeList(IEnumerable<MethodDefinition> methods, CGManager cgm)
         {
             Console.WriteLine("======  test 1 ========= ");
             foreach (MethodDefinition m in methods)
@@ -268,7 +275,7 @@ namespace DBScribeHibernate.DBScribeHibernate
             }
         }
 
-        public void TestUse2_FindCalleeListByName(string methodName, IEnumerable<MethodDefinition> methods, CGManager cgm)
+        private void TestUse2_FindCalleeListByName(string methodName, IEnumerable<MethodDefinition> methods, CGManager cgm)
         {
             Console.WriteLine("======  test 2 ========= ");
             List<List<MethodDefinition>> paths2 = cgm.findCalleeListByName(methodName);
@@ -282,7 +289,7 @@ namespace DBScribeHibernate.DBScribeHibernate
             }
         }
 
-        public void TestUse2_FindCallerListByName(string methodName, IEnumerable<MethodDefinition> methods, CGManager cgm)
+        private void TestUse2_FindCallerListByName(string methodName, IEnumerable<MethodDefinition> methods, CGManager cgm)
         {
             List<List<MethodDefinition>> paths2 = cgm.FindCallerListByName(methodName);
             foreach (List<MethodDefinition> path in paths2)
@@ -295,7 +302,7 @@ namespace DBScribeHibernate.DBScribeHibernate
             }
         }
 
-        public void TestUse3_FindCallerList(IEnumerable<MethodDefinition> methods, CGManager cgm)
+        private void TestUse3_FindCallerList(IEnumerable<MethodDefinition> methods, CGManager cgm)
         {
             Console.WriteLine("======  test 3 ========= ");
             int sum = 0;
