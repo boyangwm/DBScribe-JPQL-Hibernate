@@ -37,6 +37,8 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             if(vd.Initializer != null) {
                 Initialized = true;
             }
+
+            PrintVariableInfo();
         }
 
         /// <summary>
@@ -53,6 +55,11 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// <returns></returns>
         public TypeUse GetVariableType() {
             return this.Variable.VariableType;
+        }
+
+        public void PrintVariableInfo()
+        {
+            Console.WriteLine("varable info: " + this.Variable.Name + " (" + this.Variable.VariableType + ") initialized=" + this.Initialized);
         }
     }
 }

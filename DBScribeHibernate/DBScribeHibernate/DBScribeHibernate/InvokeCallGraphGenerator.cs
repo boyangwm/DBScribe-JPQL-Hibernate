@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ABB.SrcML;
 using ABB.SrcML.Data;
 using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
+using DBScribeHibernate.DBScribeHibernate.Stereotype;
 
 namespace DBScribeHibernate.DBScribeHibernate
 {
@@ -59,6 +60,7 @@ namespace DBScribeHibernate.DBScribeHibernate
                     cgm.BuildCallGraph(methods);
 
                     List<MethodDefinition> bottomUpSortedMethods = GetBottomUpSortedMethodsFromCallGraph(methods, cgm);
+                    Console.WriteLine("\nBottom-up sorted methods:");
                     foreach (MethodDefinition m in bottomUpSortedMethods)
                     {
                         Console.WriteLine(m.GetFullName());
@@ -66,10 +68,23 @@ namespace DBScribeHibernate.DBScribeHibernate
 
                     // methods calling "beginTransaction" --> LocalSQLMethods
                     HashSet<MethodDefinition> methos_LocalSQLMethods = GetMethodesWithCertainMethodCall(HibernateKeywords.beginTransaction, methods);
+                    Console.WriteLine("\nLocal SQL Methods (invoking session/transaction): ");
+                    foreach (MethodDefinition m in methos_LocalSQLMethods)
+                    {
+                        Console.WriteLine(m.GetFullName());
+                    }
+
+                    Console.WriteLine("\nAnalyze methods:");
+                    foreach (MethodDefinition m in methos_LocalSQLMethods)
+                    {
+                        Console.WriteLine("\n***Start Analyzing method: " + m.GetFullName());
+                        HibernateMethodAnalyzer hibernateMethodAnalyzer = new HibernateMethodAnalyzer(m);
+                    }
 
                     //cgm.getMethodByFullName();
 
                     // Step 2.   Testing
+                    //Console.WriteLine("\n================================================");
                     //TestHowToAnalyzeMethods(methods);
 
                     //TestUse1_FindCalleeList(methods, cgm);

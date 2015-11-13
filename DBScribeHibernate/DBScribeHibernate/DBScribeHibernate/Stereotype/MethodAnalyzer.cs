@@ -34,6 +34,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// The declaring class
         /// </summary>
         public TypeDefinition DeclaringClass { get; private set; }
+        public IEnumerable<TypeDefinition> ParentClasses { get; private set; }
 
         /// <summary>
         /// Checks if returns new object in the return statement
@@ -131,6 +132,13 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
             //Method.
             DeclaringClass = Method.GetAncestors<TypeDefinition>().FirstOrDefault();
+            ParentClasses = DeclaringClass.GetParentTypes(true);
+            Console.WriteLine("Declaring Class:");
+            Console.WriteLine(DeclaringClass.GetFullName());
+            foreach (TypeDefinition dc in ParentClasses)
+            {
+                Console.WriteLine(dc.GetFullName());
+            }
 
             //Initilize parameters' info
             foreach(var para in Paras) {
@@ -149,6 +157,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             foreach(var st in statements) {
                 AnalyzeStmt(st);
             }
+
         }
 
 
