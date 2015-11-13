@@ -37,8 +37,6 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             if(vd.Initializer != null) {
                 Initialized = true;
             }
-
-            PrintVariableInfo();
         }
 
         /// <summary>
@@ -57,9 +55,23 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             return this.Variable.VariableType;
         }
 
-        public void PrintVariableInfo()
+        public string GetInitialVariableInfo()
         {
-            Console.WriteLine("varable info: " + this.Variable.Name + " (" + this.Variable.VariableType + ") initialized=" + this.Initialized);
+            string info = this.Variable.Name + "<" + this.Variable.VariableType + "> Initialized=" + this.Initialized;
+            return info;
+        }
+
+        public string GetFullVariableInfo()
+        {
+            string info = this.Variable.Name + "<" + this.Variable.VariableType + "> Initialized=" + this.Initialized;
+            info += ", IsReturned=" + IsReturned + ", IsModified=" + IsModified;
+            info += ", IsInstantiated=" + IsInstantiated + ", IsFieldChange=" + IsFieldChange;
+            info += ", AssignedFields=";
+            foreach (VariableDeclaration af in AssignedFields)
+            {
+                info += af.Name + " <" + af.VariableType + ">, ";
+            }
+            return info;
         }
     }
 }

@@ -50,6 +50,10 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// The return type
         /// </summary>
         public TypeUse ReturnType { get; private set; }
+        /// <summary>
+        /// The returned variable
+        /// </summary>
+        public VariableInfo ReturnedVariable { get; private set; }
 
         /// <summary>
         /// Method parameters' information
@@ -133,12 +137,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             //Method.
             DeclaringClass = Method.GetAncestors<TypeDefinition>().FirstOrDefault();
             ParentClasses = DeclaringClass.GetParentTypes(true);
-            Console.WriteLine("Declaring Class:");
-            Console.WriteLine(DeclaringClass.GetFullName());
-            foreach (TypeDefinition dc in ParentClasses)
-            {
-                Console.WriteLine(dc.GetFullName());
-            }
+            
 
             //Initilize parameters' info
             foreach(var para in Paras) {
@@ -713,6 +712,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                         PropertyFields.Add(vd);
                     }
                     lVarInfo.IsReturned = true;
+                    ReturnedVariable = lVarInfo;  //bnie-add
                 }
                 //update if assignedVar is a paramether
                 var pVarInfo = FindParaVarInfo(nu);
@@ -721,6 +721,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                         PropertyFields.Add(vd);
                     }
                     pVarInfo.IsReturned = true;
+                    ReturnedVariable = lVarInfo;  //bnie-add
                 }
             }
         }

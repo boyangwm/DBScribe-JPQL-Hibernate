@@ -74,18 +74,14 @@ namespace DBScribeHibernate.DBScribeHibernate
                         Console.WriteLine(m.GetFullName());
                     }
 
-                    Console.WriteLine("\nAnalyze methods:");
-                    foreach (MethodDefinition m in methos_LocalSQLMethods)
-                    {
-                        Console.WriteLine("\n***Start Analyzing method: " + m.GetFullName());
-                        HibernateMethodAnalyzer hibernateMethodAnalyzer = new HibernateMethodAnalyzer(m);
-                    }
 
                     //cgm.getMethodByFullName();
 
                     // Step 2.   Testing
                     //Console.WriteLine("\n================================================");
                     //TestHowToAnalyzeMethods(methods);
+                    Console.WriteLine("\nAnalyze methods:");
+                    TestHowToUseMethodAnalyzer(methos_LocalSQLMethods);
 
                     //TestUse1_FindCalleeList(methods, cgm);
                     //TestUse2_FindCalleeListByName("com.mkyong.StockManager.main", methods, cgm);
@@ -270,6 +266,46 @@ namespace DBScribeHibernate.DBScribeHibernate
             }
             //writetext.Close();
             //Console.WriteLine("Writing to file finished!");
+        }
+
+        private void TestHowToUseMethodAnalyzer(IEnumerable<MethodDefinition> methods)
+        {
+            foreach (MethodDefinition m in methods)
+            {
+                Console.WriteLine("\n*** Start Analyzing method: " + m.GetFullName());
+                HibernateMethodAnalyzer hibernateMethodAnalyzer = new HibernateMethodAnalyzer(m);
+                
+                Console.Write("\n1. Declaring Class: " + hibernateMethodAnalyzer.DeclaringClass.GetFullName());
+                foreach (TypeDefinition dc in hibernateMethodAnalyzer.ParentClasses)
+                {
+                    Console.Write(" --> " + dc.GetFullName());
+                }
+                Console.WriteLine("");
+
+                Console.WriteLine("\n2. Method Parameters: ");
+                int idx = 0;
+                foreach (VariableInfo para in hibernateMethodAnalyzer.ParametersInfo)
+                {
+                    idx++;
+                    Console.WriteLine("(" + idx + ") " + para.GetFullVariableInfo());
+                }
+
+                Console.WriteLine("\n3. Local Variables' Info: ");
+                idx = 0;
+                foreach (VariableInfo para in hibernateMethodAnalyzer.VariablesInfo)
+                {
+                    idx++;
+                    Console.WriteLine("(" + idx + ") " + para.GetFullVariableInfo());
+                }
+
+                VariableInfo returnedVar = hibernateMethodAnalyzer.ReturnedVariable;
+                //TypeUse returnedType = hibernateMethodAnalyzer.ReturnType;
+                if (returnedVar != null)
+                {
+                    Console.WriteLine("\nReturn Type: " + returnedVar.GetName() + "<" + returnedVar.GetVariableType() + ">");
+                    Console.WriteLine("IsReturnNewObj: " + hibernateMethodAnalyzer.IsReturnNewObj);
+                }
+            }
         }
 
         private void TestUse1_FindCalleeList(IEnumerable<MethodDefinition> methods, CGManager cgm)
