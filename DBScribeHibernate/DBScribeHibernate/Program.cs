@@ -18,7 +18,11 @@ namespace DBScribeHibernate.DBScribeHibernate
         static void Main(string[] args)
         {
 
-            TestingPurpose.MainTestingFunction();
+            //TestingPurpose.MainTestingFunction();
+
+            DBScribeH dbScribeH = new DBScribeH(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
+            dbScribeH.run();
+
 
             /// step1: run ConfigParser to link POJOs to tables in the database
 

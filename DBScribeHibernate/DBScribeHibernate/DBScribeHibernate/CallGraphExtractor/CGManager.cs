@@ -40,7 +40,11 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 cg.AddNode(method);
             }
 
-            Console.WriteLine("***Build call graph ...");
+            if (Constants.ShowLog)
+            {
+                Console.WriteLine("***Build call graph ...");
+            }
+            
 
             foreach (MethodDefinition method in methods)
             {

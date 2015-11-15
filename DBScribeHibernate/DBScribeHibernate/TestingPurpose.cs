@@ -63,10 +63,10 @@ namespace DBScribeHibernate
             if (configParser.MappingFileType == Constants.MappingFileType.XMLMapping)
             {
                 XMLMappingParser xmlMappintParser = new XMLMappingParser(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
-                xmlMappintParser.DisplayClassFullNameToTableName();
+                xmlMappintParser.GetClassFullNameToTableName();
                 Console.WriteLine("");
 
-                xmlMappintParser.GetSQLOperatingMethodFullNames();
+                //xmlMappintParser.GetSQLOperatingMethodFullNames();
             }
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
             {

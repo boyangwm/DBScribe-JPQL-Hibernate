@@ -8,6 +8,8 @@ namespace DBScribeHibernate.DBScribeHibernate
 {
     class Constants
     {
+        public static readonly Boolean ShowLog = true;
+
         /// <summary>
         /// SrcML Location
         /// </summary>

@@ -8,17 +8,14 @@ using System.Xml.Linq;
 
 namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
-    class XMLMappingParser
+    class XMLMappingParser : MappingParser
     {
-        private readonly string _targetProjPath;
-        private readonly string _cfgFilePath;
-
         private Dictionary<string, string> classFullNameToTableName;
 
-        public XMLMappingParser(string targetProjPath, string cfgFileName)
+
+        public XMLMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
         {
-            this._targetProjPath = targetProjPath;
-            this._cfgFilePath = Directory.GetFiles(this._targetProjPath, cfgFileName, SearchOption.AllDirectories).FirstOrDefault();
+            Console.WriteLine("Using XMLMappingParser.");
 
             _GetMappingFileClassName();
             
@@ -104,18 +101,15 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             }
         }
 
-        public void DisplayClassFullNameToTableName()
+        public override Dictionary<string, string> GetClassFullNameToTableName()
         {
-            foreach (KeyValuePair<string, string> item in classFullNameToTableName)
-            {
-                Console.WriteLine(item.Key + " <--> " + item.Value);
-            }
+            return classFullNameToTableName;
         }
 
         /// <summary>
         /// SQLOperatingMethods --> POJO classes's get/set functions
         /// </summary>
-        public void GetSQLOperatingMethodFullNames()
+        public override void GetSQLOperatingMethodFullNames()
         {
             foreach (string classFullName in this.classFullNameToTableName.Keys)
             {

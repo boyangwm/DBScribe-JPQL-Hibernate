@@ -10,6 +10,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
     class HibernateMethodAnalyzer : MethodAnalyzer
     {
         public HibernateMethodAnalyzer(MethodDefinition method) : base(method) { }
+        
         // BuildInTypeFactory
         /// <summary>
         /// Checks the type is priliminary or not

@@ -105,6 +105,8 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
         private int InReturnStmt;
 
+        public int IsSuccess;
+
 
         /// <summary>
         /// Init the method analyzer and analyze the method automatically
@@ -120,14 +122,15 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             InvokedExternalMethods = new HashSet<MethodDefinition>();
             InvokedLocalMethods = new HashSet<MethodDefinition>();
             IsReturnNewObj = false;
-            Analyze();
+            IsSuccess = 0;
+            IsSuccess = Analyze();
         }
 
 
         /// <summary>
         /// Analyze the method
         /// </summary>
-        private void Analyze() {
+        private int Analyze() {
             //Update basic information
             IsConstructor = Method.IsConstructor;
             IsDestructor = Method.IsDestructor;
@@ -136,8 +139,10 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
             //Method.
             DeclaringClass = Method.GetAncestors<TypeDefinition>().FirstOrDefault();
+            if (DeclaringClass == null){
+                return -1;
+            }
             ParentClasses = DeclaringClass.GetParentTypes(true);
-            
 
             //Initilize parameters' info
             foreach(var para in Paras) {
@@ -157,6 +162,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                 AnalyzeStmt(st);
             }
 
+            return 0;
         }
 
 

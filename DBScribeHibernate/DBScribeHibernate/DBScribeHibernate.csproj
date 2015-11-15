@@ -73,13 +73,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBScribeH.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraph.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraphUtil.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CGManager.cs" />
+    <Compile Include="DBScribeHibernate\CallGraphExtractor\InvokeCGManager.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\TopoSortCallGraph.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\AnnotationMappingParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\ConfigParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\ConfigParserOld.cs" />
+    <Compile Include="DBScribeHibernate\ConfigParser\MappingParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\XMLMappingParser.cs" />
     <Compile Include="DBScribeHibernate\Constants.cs" />
     <Compile Include="DBScribeHibernate\DatabaseConstraintExtractor.cs" />
@@ -87,7 +90,7 @@
     <Compile Include="DBScribeHibernate\DescriptionTemplates\LocalSqlTemplates.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\SchemaConstraintsTemplates.cs" />
     <Compile Include="DBScribeHibernate\HibernateKeywords.cs" />
-    <Compile Include="DBScribeHibernate\InvokeCallGraphGenerator.cs" />
+    <Compile Include="DBScribeHibernate\StaleClasses\InvokeCallGraphGenerator.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\HibernateMethodAnalyzer.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\MethodAnalyzer.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\VariableInfo.cs" />
