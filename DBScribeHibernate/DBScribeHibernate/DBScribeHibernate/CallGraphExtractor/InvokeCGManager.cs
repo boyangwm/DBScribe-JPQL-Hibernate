@@ -121,13 +121,18 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
                 if (mAnalyzer.IsSuccess == -1)
                 {
-                    Console.WriteLine("[Error] Declaration Class == null");
+                    Console.WriteLine("[Error] " + m.GetFullName() + ": Declaration Class == null");
                     continue;
                 }
 
                 if(classFullNameToTableName.ContainsKey(mAnalyzer.DeclaringClass.GetFullName())){
                     methods_SQLOperatingMethods.Add(m);
                 }
+                //Console.WriteLine("Parent Classes: ");
+                //foreach (TypeDefinition dc in mAnalyzer.ParentClasses)
+                //{
+                //    Console.Write(" --> " + dc.GetFullName());
+                //}
             }
             return methods_SQLOperatingMethods;
         }

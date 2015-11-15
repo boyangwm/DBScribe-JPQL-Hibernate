@@ -43,6 +43,7 @@ namespace DBScribeHibernate.DBScribeHibernate
             /// step7: generate natural language descriptions using the
             /// (1) propagated information and (2) local generatd information
 
+            Console.WriteLine("\nDone. Press any key to exit...");
             Console.ReadKey();
         }
 

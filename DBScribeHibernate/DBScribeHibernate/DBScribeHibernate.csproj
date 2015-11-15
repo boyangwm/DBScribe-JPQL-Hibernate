@@ -73,7 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBScribeH.cs" />
+    <Compile Include="DBScribeHibernate\DBScribeH.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraph.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraphUtil.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CGManager.cs" />
