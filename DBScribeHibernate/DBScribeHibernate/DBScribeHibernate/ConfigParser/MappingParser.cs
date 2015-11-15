@@ -28,9 +28,10 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return new Dictionary<string, string>();
         }
 
-        public virtual void GetSQLOperatingMethodFullNames()
+        public virtual Dictionary<string, string> GetAllDBClassPropertyToTableColumnMapping(Dictionary<string, string> allDBClassToTableName)
         {
-
+            return new Dictionary<string, string>();
         }
+
     }
 }

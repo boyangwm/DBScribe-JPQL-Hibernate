@@ -108,17 +108,6 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return classFullNameToTableName;
         }
 
-        /// <summary>
-        /// SQLOperatingMethods --> POJO classes's get/set functions
-        /// </summary>
-        public override void GetSQLOperatingMethodFullNames()
-        {
-            foreach (string classFullName in this.classFullNameToTableName.Keys)
-            {
-                string classFilePath = _GetClassFilePathByClassFullName(classFullName);
-                Console.WriteLine(classFilePath);
-            }
-        }
 
         private string _GetClassFilePathByClassFullName(string classFullName)
         {
@@ -219,6 +208,13 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                 propList.Add(prop);
             }
             return propList;
+        }
+
+        public override Dictionary<string, string> GetAllDBClassPropertyToTableColumnMapping(Dictionary<string, string> allDBClassToTableName)
+        {
+            Dictionary<string, string> allDBClassPropertyToTableColumn = new Dictionary<string, string>();
+
+            return allDBClassPropertyToTableColumn;
         }
 
     }

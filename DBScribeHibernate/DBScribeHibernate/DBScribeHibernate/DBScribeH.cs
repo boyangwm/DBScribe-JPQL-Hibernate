@@ -85,7 +85,7 @@ namespace DBScribeHibernate
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
             {
                 mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
-                Console.WriteLine("Will handle " + configParser.MappingFileType + " later!!!");
+                Console.WriteLine("[Later] Will handle " + configParser.MappingFileType + " later!!!");
                 Console.ReadKey();
                 System.Environment.Exit(1);
             }
@@ -210,7 +210,7 @@ namespace DBScribeHibernate
             allDBClassPropertyToTableColumn = new Dictionary<string, string>();
             if (mappingParser.GetMappingParserType() == Constants.MappingFileType.XMLMapping)
             {
-
+                allDBClassPropertyToTableColumn = mappingParser.GetAllDBClassPropertyToTableColumnMapping(allDBClassToTableName);
             }
             else if (mappingParser.GetMappingParserType() == Constants.MappingFileType.AnnotationMapping)
             {
