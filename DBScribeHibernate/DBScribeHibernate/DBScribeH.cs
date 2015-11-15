@@ -15,10 +15,8 @@ namespace DBScribeHibernate
 {
     class DBScribeH
     {
-        /// <summary> Subject application location </summary>
-        public string LocalProj;
-        /// <summary> SrcML directory location </summary>
-        public string SrcmlLoc;
+        public string TargetProjPath;
+        public string ProjName;
 
         /// <summary> Hibernate Configure File Related Variables</summary>
         public MappingParser mappingParser;
@@ -26,31 +24,32 @@ namespace DBScribeHibernate
 
 
         /// <summary> Call Graph Related Variables</summary>
-        public CGManager cgm;
-        public IEnumerable<MethodDefinition> methods;
+        
         public int num_of_methods;
         public List<MethodDefinition> bottomUpSortedMethods;
         public HashSet<MethodDefinition> methods_LocalSQLMethods;  // methods call transaction and sessions
+        public HashSet<MethodDefinition> methods_SQLOperatingMethods;
 
 
-        public DBScribeH(string localProj, string srcmlloc)
+        public DBScribeH(string targetProjPath, string projName)
         {
-            this.LocalProj = localProj;
-            this.SrcmlLoc = srcmlloc;
+            this.TargetProjPath = targetProjPath;
+            this.ProjName = projName;
         }
 
 
         public void run()
         {
             Step1_ConfigParser(); // Analyze Hibernate Configuration files
+
             Step2_GenerateCallGraph();
         }
 
 
         public void Step1_ConfigParser()
         {
-            Console.WriteLine("Project Name: " + Constants.ProjName);
-            ConfigParser configParser = new ConfigParser(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
+            Console.WriteLine("Project Name: " + ProjName);
+            ConfigParser configParser = new ConfigParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
             if (configParser.configFilePath == null)
             {
                 Console.Error.WriteLine("[ERROR] Hibernate configuration file " + Constants.CfgFileName + " not found!");
@@ -64,7 +63,7 @@ namespace DBScribeHibernate
 
             if (configParser.MappingFileType == Constants.MappingFileType.XMLMapping)
             {
-                mappingParser = new XMLMappingParser(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
+                mappingParser = new XMLMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
                 classFullNameToTableName = mappingParser.GetClassFullNameToTableName();
                 foreach (KeyValuePair<string, string> item in classFullNameToTableName)
                 {
@@ -76,7 +75,7 @@ namespace DBScribeHibernate
             }
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
             {
-                mappingParser = new AnnotationMappingParser(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
+                mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
                 Console.WriteLine("Will handle " + configParser.MappingFileType + " later!!!");
                 Console.ReadKey();
                 System.Environment.Exit(1);
@@ -92,10 +91,14 @@ namespace DBScribeHibernate
 
         public void Step2_GenerateCallGraph()
         {
+            Console.WriteLine("---" + TargetProjPath + "\\" + ProjName);
+            Console.WriteLine("---" + Constants.SrcmlLoc);
+
             // Get methods from SrcML.net
             //Console.Out.WriteLine("Invoke call graph generator ");
             string dataDir = @"TESTNAIVE_1.0";
-            using (var project = new DataProject<CompleteWorkingSet>(dataDir, this.LocalProj, this.SrcmlLoc))
+            string localProj = TargetProjPath + "\\" + ProjName;
+            using (var project = new DataProject<CompleteWorkingSet>(dataDir, localProj, Constants.SrcmlLoc))
             {
                 string unknownLogPath = Path.Combine(project.StoragePath, "unknown.log");
                 DateTime start = DateTime.Now, end;
@@ -111,11 +114,11 @@ namespace DBScribeHibernate
                 try
                 {
                     // return IEnumerable<MethodDefinition> type
-                    methods = globalNamespace.GetDescendants<MethodDefinition>();
+                    IEnumerable<MethodDefinition> methods = globalNamespace.GetDescendants<MethodDefinition>();
                     num_of_methods = globalNamespace.GetDescendants<MethodDefinition>().Count();
                     Console.WriteLine("# of methods = " + num_of_methods);
 
-                    cgm = new CGManager();
+                    CGManager cgm = new CGManager();
                     cgm.BuildCallGraph(methods);
 
                     bottomUpSortedMethods = InvokeCGManager.GetBottomUpSortedMethodsFromCallGraph(methods, cgm);
@@ -125,7 +128,7 @@ namespace DBScribeHibernate
                         Console.WriteLine(m.GetFullName());
                     }
 
-                    // methods calling "beginTransaction" --> LocalSQLMethods
+                    ////methods calling "beginTransaction" --> LocalSQLMethods
                     methods_LocalSQLMethods = InvokeCGManager.GetMethodesWithCertainMethodCall(HibernateKeywords.beginTransaction, methods);
                     Console.WriteLine("\nLocal SQL Methods (invoking session/transaction): ");
                     foreach (MethodDefinition m in methods_LocalSQLMethods)
@@ -135,8 +138,12 @@ namespace DBScribeHibernate
 
 
                     // methods in POJO class: i.e. get/set
-
-
+                    methods_SQLOperatingMethods = InvokeCGManager.GetSQLOperatingMethods(methods, classFullNameToTableName);
+                    Console.WriteLine("\nSQL Operating Methods (in POJO Class): ");
+                    foreach (MethodDefinition m in methods_SQLOperatingMethods)
+                    {
+                        Console.WriteLine(m.GetFullName());
+                    }
 
 
                     //cgm.getMethodByFullName();

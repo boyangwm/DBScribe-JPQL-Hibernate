@@ -20,7 +20,7 @@ namespace DBScribeHibernate.DBScribeHibernate
 
             //TestingPurpose.MainTestingFunction();
 
-            DBScribeH dbScribeH = new DBScribeH(Constants.TargetProjPath + "\\" + Constants.ProjName, Constants.CfgFileName);
+            DBScribeH dbScribeH = new DBScribeH(Constants.TargetProjPath, Constants.ProjName);
             dbScribeH.run();
 
 

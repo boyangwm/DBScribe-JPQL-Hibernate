@@ -108,13 +108,28 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// Get POJO class methods: i.e. get/set. These methods directly interacte with Database
         /// </summary>
         /// <param name="methods"></param>
-        public static void GetDirectSQLInteractiveMethod(IEnumerable<MethodDefinition> methods)
+        public static HashSet<MethodDefinition> GetSQLOperatingMethods(IEnumerable<MethodDefinition> methods, Dictionary<string, string> classFullNameToTableName)
         {
+            HashSet<MethodDefinition> methods_SQLOperatingMethods = new HashSet<MethodDefinition>();
             foreach (MethodDefinition m in methods)
             {
+                //if (Constants.ShowLog == true)
+                //{
+                //    Console.WriteLine("\n*** Start Analyzing method: " + m.GetFullName());
+                //}
+                
                 HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
+                if (mAnalyzer.IsSuccess == -1)
+                {
+                    Console.WriteLine("[Error] Declaration Class == null");
+                    continue;
+                }
 
+                if(classFullNameToTableName.ContainsKey(mAnalyzer.DeclaringClass.GetFullName())){
+                    methods_SQLOperatingMethods.Add(m);
+                }
             }
+            return methods_SQLOperatingMethods;
         }
 
 

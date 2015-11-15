@@ -11,17 +11,13 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly Boolean ShowLog = true;
 
         /// <summary>
-        /// SrcML Location
-        /// </summary>
-        public static readonly string SrcmlLoc = @"E:\research\SrcML";
-
-        /// <summary>
         /// Target Project Location and Name
         /// </summary>
         public static readonly string TargetProjPath = @"E:\workspace_hibernate";
+
         //// IF using <mapping resource="...xml" /> ---> xml
-        public static readonly string ProjName = @"MyFirstHibernate";
-        //public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
+        //public static readonly string ProjName = @"MyFirstHibernate";
+        public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
         //public static readonly string ProjName = @"HibernateComponentMappingExample";
         //public static readonly string ProjName = @"hibernateSchemaGenerationExample";
 
@@ -35,6 +31,11 @@ namespace DBScribeHibernate.DBScribeHibernate
         //public static readonly string ProjName = @"_RealProjects\hibernate-spring-struts-bookstore-master";  // XML mapping
         //public static readonly string ProjName = @"_RealProjects\chat-springmvc-hibernate-master";  // Annotation mapping
         //public static readonly string ProjName = @"_RealProjects\TicketsOn-spring-master"; // Annotation mapping
+
+        /// <summary>
+        /// SrcML Location
+        /// </summary>
+        public static readonly string SrcmlLoc = @"E:\Research\SrcML";
 
         /// <summary>
         /// Hibernate default config file name
