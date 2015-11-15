@@ -126,6 +126,15 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             IsSuccess = Analyze();
         }
 
+        public string GetFailInfo()
+        {
+            string info = "[Error] " + Method.GetFullName() + ": ";
+            if (IsSuccess == -1)
+            {
+                info += "Declaration Class == null";
+            }
+            return info;
+        }
 
         /// <summary>
         /// Analyze the method

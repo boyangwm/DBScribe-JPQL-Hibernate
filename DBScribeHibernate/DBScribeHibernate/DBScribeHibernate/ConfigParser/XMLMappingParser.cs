@@ -15,10 +15,12 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 
         public XMLMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
         {
-            Console.WriteLine("Using XMLMappingParser.");
-
             _GetMappingFileClassName();
-            
+        }
+
+        public override Constants.MappingFileType GetMappingParserType()
+        {
+            return Constants.MappingFileType.XMLMapping;
         }
 
         private string _GetMappingFilePath(string mappingFileName)

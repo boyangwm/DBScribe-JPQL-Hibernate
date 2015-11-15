@@ -11,7 +11,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
     {
         public AnnotationMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
         {
-            Console.WriteLine("Using AnnotationMappingParser.");
+        }
+
+        public override Constants.MappingFileType GetMappingParserType()
+        {
+            return Constants.MappingFileType.AnnotationMapping;
         }
     }
 }

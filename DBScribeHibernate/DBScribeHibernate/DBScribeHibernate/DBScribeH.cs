@@ -20,15 +20,22 @@ namespace DBScribeHibernate
 
         /// <summary> Hibernate Configure File Related Variables</summary>
         public MappingParser mappingParser;
-        public Dictionary<string, string> classFullNameToTableName;
+
+        /// <summary> POJO DB Classes that are registered in the mapping file</summary>
+        public Dictionary<string, string> registeredClassFullNameToTableName;
+        /// <summary> POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
+        public Dictionary<string, string> allDBClassToTableName;
+        /// <summary> POJO DB Class's property --> table attributes </summary>
+        public Dictionary<string, string> allDBClassPropertyToTableColumn;
 
 
         /// <summary> Call Graph Related Variables</summary>
-        
+        IEnumerable<MethodDefinition> methods;
+        CGManager cgm;
         public int num_of_methods;
         public List<MethodDefinition> bottomUpSortedMethods;
-        public HashSet<MethodDefinition> methods_LocalSQLMethods;  // methods call transaction and sessions
-        public HashSet<MethodDefinition> methods_SQLOperatingMethods;
+        //public HashSet<MethodDefinition> methods_LocalSQLMethods;  // methods call transaction and sessions
+        //public HashSet<MethodDefinition> methods_SQLOperatingMethods;
 
 
         public DBScribeH(string targetProjPath, string projName)
@@ -40,19 +47,19 @@ namespace DBScribeHibernate
 
         public void run()
         {
-            Step1_ConfigParser(); // Analyze Hibernate Configuration files
-
-            Step2_GenerateCallGraph();
+            Step1_1_ConfigParser(); // Analyze Hibernate Configuration files
+            Step2_1_GenerateCallGraph();
+            Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
         }
 
 
-        public void Step1_ConfigParser()
+        public void Step1_1_ConfigParser()
         {
             Console.WriteLine("Project Name: " + ProjName);
             ConfigParser configParser = new ConfigParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
             if (configParser.configFilePath == null)
             {
-                Console.Error.WriteLine("[ERROR] Hibernate configuration file " + Constants.CfgFileName + " not found!");
+                Console.Error.WriteLine("[Error] Hibernate configuration file " + Constants.CfgFileName + " not found!");
                 Console.ReadKey();
                 System.Environment.Exit(-1);
             }
@@ -64,14 +71,16 @@ namespace DBScribeHibernate
             if (configParser.MappingFileType == Constants.MappingFileType.XMLMapping)
             {
                 mappingParser = new XMLMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
-                classFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-                foreach (KeyValuePair<string, string> item in classFullNameToTableName)
+                if (Constants.ShowLog)
+                {
+                    Console.WriteLine("Mapping Parser Type: " + mappingParser.GetMappingParserType());
+                }
+                registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
+                foreach (KeyValuePair<string, string> item in registeredClassFullNameToTableName)
                 {
                     Console.WriteLine(item.Key + " <--> " + item.Value);
                 }
                 Console.WriteLine("");
-
-                //mappingParser.GetSQLOperatingMethodFullNames();
             }
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
             {
@@ -89,7 +98,7 @@ namespace DBScribeHibernate
         }
 
 
-        public void Step2_GenerateCallGraph()
+        public void Step2_1_GenerateCallGraph()
         {
             // Get methods from SrcML.net
             //Console.Out.WriteLine("Invoke call graph generator ");
@@ -111,11 +120,11 @@ namespace DBScribeHibernate
                 try
                 {
                     // return IEnumerable<MethodDefinition> type
-                    IEnumerable<MethodDefinition> methods = globalNamespace.GetDescendants<MethodDefinition>();
+                    methods = globalNamespace.GetDescendants<MethodDefinition>();
                     num_of_methods = globalNamespace.GetDescendants<MethodDefinition>().Count();
                     Console.WriteLine("# of methods = " + num_of_methods);
 
-                    CGManager cgm = new CGManager();
+                    cgm = new CGManager();
                     cgm.BuildCallGraph(methods);
 
                     bottomUpSortedMethods = InvokeCGManager.GetBottomUpSortedMethodsFromCallGraph(methods, cgm);
@@ -125,22 +134,22 @@ namespace DBScribeHibernate
                     //    Console.WriteLine(m.GetFullName());
                     //}
 
-                    ////methods calling "beginTransaction" --> LocalSQLMethods
-                    methods_LocalSQLMethods = InvokeCGManager.GetMethodesWithCertainMethodCall(HibernateKeywords.beginTransaction, methods);
-                    Console.WriteLine("\nLocal SQL Methods (invoking session/transaction): ");
-                    foreach (MethodDefinition m in methods_LocalSQLMethods)
-                    {
-                        Console.WriteLine(m.GetFullName());
-                    }
+                    ////methods calling "beginTransaction" --> LocalSQLMethods -- not accurate!!!
+                    //methods_LocalSQLMethods = InvokeCGManager.GetMethodesWithCertainMethodCall(HibernateKeywords.beginTransaction, methods);
+                    //Console.WriteLine("\nLocal SQL Methods (invoking session/transaction): ");
+                    //foreach (MethodDefinition m in methods_LocalSQLMethods)
+                    //{
+                    //    Console.WriteLine(m.GetFullName());
+                    //}
 
 
                     // methods in POJO class: i.e. get/set
-                    Console.WriteLine("\nSQL Operating Methods (in POJO Class): ");
-                    methods_SQLOperatingMethods = InvokeCGManager.GetSQLOperatingMethods(methods, classFullNameToTableName);
-                    foreach (MethodDefinition m in methods_SQLOperatingMethods)
-                    {
-                        Console.WriteLine(m.GetFullName());
-                    }
+                    //Console.WriteLine("\nSQL Operating Methods (in POJO Class): ");
+                    //methods_SQLOperatingMethods = InvokeCGManager.GetSQLOperatingMethods(methods, classFullNameToTableName);
+                    //foreach (MethodDefinition m in methods_SQLOperatingMethods)
+                    //{
+                    //    Console.WriteLine(m.GetFullName());
+                    //}
 
 
                     //cgm.getMethodByFullName();
@@ -156,6 +165,56 @@ namespace DBScribeHibernate
                 {
                     project.WorkingSet.ReleaseReadLock();
                 }
+            }
+        }
+
+        public void Step1_2_ConfigParser()
+        {
+            // all DB class full name <--> table name
+            allDBClassToTableName = new Dictionary<string, string>();
+            foreach (MethodDefinition m in methods)
+            {
+                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
+                if (mAnalyzer.IsSuccess != 0)
+                {
+                    //Console.WriteLine(mAnalyzer.GetFailInfo());
+                    continue;
+                }
+                string curClassName = mAnalyzer.DeclaringClass.GetFullName();
+                if (registeredClassFullNameToTableName.ContainsKey(curClassName))
+                {
+                    if (allDBClassToTableName.ContainsKey(curClassName))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        string curTableName = registeredClassFullNameToTableName[curClassName];
+                        allDBClassToTableName.Add(curClassName, curTableName);
+                        // add its parent class(es)
+                        foreach (TypeDefinition pc in mAnalyzer.ParentClasses)
+                        {
+                            allDBClassToTableName.Add(pc.GetFullName(), curTableName);
+                        }
+                    }
+                }
+            }
+
+            //foreach (KeyValuePair<string, string> item in allDBClassToTableName)
+            //{
+            //    Console.WriteLine(item.Key + " <--> " + item.Value);
+            //}
+
+
+            // all DB class properties <--> table columns
+            allDBClassPropertyToTableColumn = new Dictionary<string, string>();
+            if (mappingParser.GetMappingParserType() == Constants.MappingFileType.XMLMapping)
+            {
+
+            }
+            else if (mappingParser.GetMappingParserType() == Constants.MappingFileType.AnnotationMapping)
+            {
+
             }
         }
 

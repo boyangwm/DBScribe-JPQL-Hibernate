@@ -18,6 +18,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             this._cfgFilePath = Directory.GetFiles(this._targetProjPath, cfgFileName, SearchOption.AllDirectories).FirstOrDefault();
         }
 
+        public virtual Constants.MappingFileType GetMappingParserType()
+        {
+            return Constants.MappingFileType.BaseMapping;
+        }
+
         public virtual Dictionary<string, string> GetClassFullNameToTableName()
         {
             return new Dictionary<string, string>();

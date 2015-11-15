@@ -45,7 +45,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// <summary>
         /// Self-defined enumerations
         /// </summary>
-        public enum MappingFileType { XMLMapping, AnnotationMapping, OtherMapping };
+        public enum MappingFileType { XMLMapping, AnnotationMapping, OtherMapping, BaseMapping };
 
 
         public static string getMainMethodFullName()

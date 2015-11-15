@@ -195,6 +195,18 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 //              from call in expression.GetDescendantsAndSelf<MethodCall>()
                 //              select call;
                 //writetext.WriteLine("=== " + method.GetFullName());
+
+                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(method);
+                if (mAnalyzer.IsSuccess != 0)
+                {
+                    Console.WriteLine(mAnalyzer.GetFailInfo());
+                    continue;
+                }
+                //if (mAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Course")
+                //{
+                //    continue;
+                //}
+
                 Console.WriteLine("=== " + method.GetFullName());
                 foreach (var statements in method.GetDescendantsAndSelf())
                 {
@@ -223,14 +235,19 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         {
             foreach (MethodDefinition m in methods)
             {
-                Console.WriteLine("\n*** Start Analyzing method: " + m.GetFullName());
                 HibernateMethodAnalyzer hibernateMethodAnalyzer = new HibernateMethodAnalyzer(m);
-                if (hibernateMethodAnalyzer.IsSuccess == -1)
+                if (hibernateMethodAnalyzer.IsSuccess != 0)
                 {
-                    Console.WriteLine("[Error] Declaration Class == null");
+                    Console.WriteLine(hibernateMethodAnalyzer.GetFailInfo());
                     continue;
                 }
 
+                //if (hibernateMethodAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Course")
+                //{
+                //    continue;
+                //}
+
+                Console.WriteLine("\n*** Start Analyzing method: " + m.GetFullName());
                 Console.Write("\n1. Declaring Class: " + hibernateMethodAnalyzer.DeclaringClass.GetFullName());
                 foreach (TypeDefinition dc in hibernateMethodAnalyzer.ParentClasses)
                 {
