@@ -73,8 +73,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBScribeHibernate\ConfigParser\ClassProperty.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\CompositePK.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\SinglePK.cs" />
+    <Compile Include="DBScribeHibernate\DBConstraintExtractor\DBConstraintExtractorAnnotation.cs" />
     <Compile Include="DBScribeHibernate\DBScribeH.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraph.cs" />
     <Compile Include="DBScribeHibernate\CallGraphExtractor\CallGraphUtil.cs" />
@@ -87,7 +89,7 @@
     <Compile Include="DBScribeHibernate\ConfigParser\MappingParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\XMLMappingParser.cs" />
     <Compile Include="DBScribeHibernate\Constants.cs" />
-    <Compile Include="DBScribeHibernate\DatabaseConstraintExtractor.cs" />
+    <Compile Include="DBScribeHibernate\DBConstraintExtractor\DBConstraintExtractorXML.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\DelegatedSQLTemplates.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\LocalSqlTemplates.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\SchemaConstraintsTemplates.cs" />
@@ -106,6 +108,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -196,16 +196,21 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 //              select call;
                 //writetext.WriteLine("=== " + method.GetFullName());
 
+                //if (!method.GetFullName().Contains("changeCourseInfo"))
+                //{
+                //    continue;
+                //}
+
                 HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(method);
                 if (mAnalyzer.IsSuccess != 0)
                 {
                     Console.WriteLine(mAnalyzer.GetFailInfo());
                     continue;
                 }
-                //if (mAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Course")
-                //{
-                //    continue;
-                //}
+                if (mAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Grade")
+                {
+                    continue;
+                }
 
                 Console.WriteLine("=== " + method.GetFullName());
                 foreach (var statements in method.GetDescendantsAndSelf())
@@ -220,6 +225,12 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                             if (call.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
                             {
                                 Console.WriteLine(statements);
+                                MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)call);
+                                if (mDef != null)
+                                {
+                                    Console.WriteLine(mDef.GetFullName());
+                                }
+                                Console.WriteLine("");
                             }
                         }
                     }
@@ -318,10 +329,14 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                 }
 
                 VariableInfo returnedVar = hibernateMethodAnalyzer.ReturnedVariable;
-                //TypeUse returnedType = hibernateMethodAnalyzer.ReturnType;
                 if (returnedVar != null)
                 {
-                    Console.WriteLine("\n9. Return Type: " + returnedVar.GetName() + "<" + returnedVar.GetVariableType() + ">");
+                    Console.WriteLine("\n9. Return Type: " + returnedVar.GetName() + "<" + hibernateMethodAnalyzer.ReturnType + ">");
+                    Console.WriteLine("IsReturnNewObj: " + hibernateMethodAnalyzer.IsReturnNewObj);
+                }
+                else if (hibernateMethodAnalyzer.ReturnType != null)
+                {
+                    Console.WriteLine("\n9. Return Type:  <" + hibernateMethodAnalyzer.ReturnType + ">");
                     Console.WriteLine("IsReturnNewObj: " + hibernateMethodAnalyzer.IsReturnNewObj);
                 }
             }

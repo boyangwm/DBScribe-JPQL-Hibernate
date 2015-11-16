@@ -130,18 +130,18 @@ namespace DBScribeHibernate
 
         public static void TestUseDatabaseConstraintExtractor()
         {
-            DatabaseConstraintExtractor dce = new DatabaseConstraintExtractor(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
-            ConfigParserOld cpu = new ConfigParserOld(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
-            List<string> mappingFileNameList = cpu.GetCfgFileList();
-            int idx = 0;
-            foreach (var mappingFileName in mappingFileNameList)
-            {
-                idx++;
-                Console.WriteLine("--------------------------------------------------");
-                Console.WriteLine("MappingFile-{0}: " + mappingFileName, idx);
+            //DatabaseConstraintExtractor dce = new DatabaseConstraintExtractor(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
+            //ConfigParserOld cpu = new ConfigParserOld(Constants.TargetProjPath + "/" + Constants.ProjName, Constants.CfgFileName);
+            //List<string> mappingFileNameList = cpu.GetCfgFileList();
+            //int idx = 0;
+            //foreach (var mappingFileName in mappingFileNameList)
+            //{
+            //    idx++;
+            //    Console.WriteLine("--------------------------------------------------");
+            //    Console.WriteLine("MappingFile-{0}: " + mappingFileName, idx);
 
-                dce.GetSchemaConstraintsByName(mappingFileName, "stockCode");
-            }
+            //    dce.GetSchemaConstraintsByName(mappingFileName, "stockCode");
+            //}
         }
 
         public static void TestUseDescriptionTemplates()

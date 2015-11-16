@@ -30,7 +30,8 @@ namespace DBScribeHibernate
 
         /// <summary> POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
         public Dictionary<string, string> allDBClassToTableName;
-
+        /// <summary> Class properties from POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
+        public Dictionary<string, string> allDBClassPropToTableAttr;
 
         /// <summary> Call Graph Related Variables</summary>
         IEnumerable<MethodDefinition> methods;
@@ -39,6 +40,9 @@ namespace DBScribeHibernate
         public List<MethodDefinition> bottomUpSortedMethods;
         //public HashSet<MethodDefinition> methods_LocalSQLMethods;  // methods call transaction and sessions
         //public HashSet<MethodDefinition> methods_SQLOperatingMethods;
+
+        /// <summary> All classes in the project and their parent classes</summary>
+        public Dictionary<string, List<string>> allClassToParentClasses;
 
 
         public DBScribeH(string targetProjPath, string projName)
@@ -51,8 +55,13 @@ namespace DBScribeHibernate
         public void run()
         {
             Step1_1_ConfigParser(); // Analyze Hibernate Configuration files
-            //Step2_1_GenerateCallGraph();
-            //Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
+            Console.WriteLine("\n\n");
+
+            Step2_1_GenerateCallGraph();
+
+            Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
+
+            Step3_BottomUpTraverseMethods();
         }
 
 
@@ -81,15 +90,15 @@ namespace DBScribeHibernate
 
                 Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
                 registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-                Utility.PrintDictionary(registeredClassFullNameToTableName);
+                //Utility.PrintDictionary(registeredClassFullNameToTableName);
 
                 Console.WriteLine("\n<2> Class Property <--> Table Attribute");
                 classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
-                Utility.PrintDictionary(classPropertyToTableColumn);
+                //Utility.PrintDictionary(classPropertyToTableColumn);
 
                 Console.WriteLine("\n<3> Table Name --> Table Constraints");
                 tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-                Utility.PrintTableConstraints(tableNameToTableConstraints);
+                //Utility.PrintTableConstraints(tableNameToTableConstraints);
 
             }
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
@@ -106,7 +115,6 @@ namespace DBScribeHibernate
                 System.Environment.Exit(1);
             }
         }
-
 
         public void Step2_1_GenerateCallGraph()
         {
@@ -142,6 +150,10 @@ namespace DBScribeHibernate
                     //foreach (MethodDefinition m in bottomUpSortedMethods)
                     //{
                     //    Console.WriteLine(m.GetFullName());
+                    //    //if (m.GetFullName().Contains("BaseGradePK"))
+                    //    //{
+                    //    //    Console.WriteLine(m.GetFullName());
+                    //    //}
                     //}
 
                     ////methods calling "beginTransaction" --> LocalSQLMethods -- not accurate!!!
@@ -181,6 +193,23 @@ namespace DBScribeHibernate
         public void Step1_2_ConfigParser()
         {
             // all DB class full name <--> table name
+            _SetAllDBClassToTableName();
+            //Console.WriteLine("\nAll DB Class Names --> Table Names");
+            //Utility.PrintDictionary(allDBClassToTableName);
+
+            // get all the classes in the project and their parent classes
+            _SetAllClassToParentClasses();
+            //Console.WriteLine("\nAll Project's Classes --> Their Parent Classes");
+            //Utility.PrintDictionary(allClassToParentClasses, false);
+
+            // all DB class property <--> table attribute
+            _SetAllDBClassPropToTableAttr();
+            //Console.WriteLine("\nAll DB Class Property --> Table Attribute");
+            //Utility.PrintDictionary(allDBClassPropToTableAttr);
+        }
+
+        private void _SetAllDBClassToTableName()
+        {
             allDBClassToTableName = new Dictionary<string, string>();
             foreach (MethodDefinition m in methods)
             {
@@ -204,13 +233,126 @@ namespace DBScribeHibernate
                         // add its parent class(es)
                         foreach (TypeDefinition pc in mAnalyzer.ParentClasses)
                         {
-                            allDBClassToTableName.Add(pc.GetFullName(), curTableName);
+                            string pcFullName = pc.GetFullName();
+                            allDBClassToTableName.Add(pcFullName, curTableName);
                         }
                     }
                 }
             }
-            Utility.PrintDictionary(allDBClassToTableName);
         }
 
+        private void _SetAllClassToParentClasses()
+        {
+            allClassToParentClasses = new Dictionary<string, List<string>>();
+            foreach (MethodDefinition m in methods)
+            {
+                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
+                if (mAnalyzer.IsSuccess != 0)
+                {
+                    //Console.WriteLine(mAnalyzer.GetFailInfo());
+                    continue;
+                }
+                string curClassName = mAnalyzer.DeclaringClass.GetFullName();
+                if (allClassToParentClasses.ContainsKey(curClassName))
+                {
+                    continue;  // already handled one method from this class, so moving on
+                }
+                else
+                {
+                    // add its parent class(es)
+                    List<string> pcList = new List<string>();
+                    foreach (TypeDefinition pc in mAnalyzer.ParentClasses)
+                    {
+                        pcList.Add(pc.GetFullName());
+                    }
+                    allClassToParentClasses.Add(curClassName, pcList);
+                }
+            }
+        }
+
+        private void _SetAllDBClassPropToTableAttr()
+        {
+            allDBClassPropToTableAttr = new Dictionary<string, string>();
+            foreach (KeyValuePair<string, string> item in classPropertyToTableColumn)
+            {
+                string curClassProp = item.Key;
+                string tableAttr = item.Value;
+                allDBClassPropToTableAttr.Add(curClassProp, tableAttr);
+
+                string[] segs = curClassProp.Split('.');
+                string curClass = segs[0];
+                for (int i = 1; i < segs.Length - 1; i++)
+                {
+                    curClass += "." + segs[i];
+                }
+                string prop = segs[segs.Length - 1];
+
+                List<string> parentClasses = allClassToParentClasses[curClass];
+                foreach (string pc in parentClasses)
+                {
+                    allDBClassPropToTableAttr.Add(pc + "." + prop, tableAttr);
+                }
+            }
+        }
+
+        public void Step3_BottomUpTraverseMethods()
+        {
+            foreach (MethodDefinition method in bottomUpSortedMethods)
+            {
+                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(method);
+                if (mAnalyzer.IsSuccess != 0)
+                {
+                    Console.WriteLine(mAnalyzer.GetFailInfo());
+                    continue;
+                }
+
+                //if (hibernateMethodAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Course")
+                //{
+                //    continue;
+                //}
+
+                
+                //Console.Write("\n1. Declaring Class: " + mAnalyzer.DeclaringClass.GetFullName());
+                //foreach (TypeDefinition dc in mAnalyzer.ParentClasses)
+                //{
+                //    Console.Write(" --> " + dc.GetFullName());
+                //}
+                //Console.WriteLine("");
+
+                //Console.WriteLine("\n4. Set Self Fields: ");
+                //int idx = 0;
+                //foreach (VariableDeclaration para in mAnalyzer.SetSelfFields)
+                //{
+                //    idx++;
+                //    Console.WriteLine("(" + idx + ") " + Utility.GetVariableDeclarationInfo(para));
+                //}
+
+                //Console.WriteLine("\n5. Get Self Fields: ");
+                //idx = 0;
+                //foreach (VariableDeclaration para in mAnalyzer.GetSelfFields)
+                //{
+                //    idx++;
+                //    Console.WriteLine("(" + idx + ") " + Utility.GetVariableDeclarationInfo(para));
+                //}
+
+                // (1) First, handle POJO DB Class Get/Set methods
+                HashSet<VariableDeclaration> getSelfFiels = mAnalyzer.GetSelfFields;
+                HashSet<VariableDeclaration> setSelfFiels = mAnalyzer.SetSelfFields;
+                if (getSelfFiels.Count() > 0 || setSelfFiels.Count() > 0)
+                {
+                    Console.WriteLine("\n*** Start Analyzing method: " + method.GetFullName());
+                    foreach (VariableDeclaration para in getSelfFiels)
+                    {
+                        Console.WriteLine("Get: " + Utility.GetVariableDeclarationInfo(para));
+                    }
+                    foreach (VariableDeclaration para in setSelfFiels)
+                    {
+                        Console.WriteLine("Set: " + Utility.GetVariableDeclarationInfo(para));
+                    }
+                }
+
+                // (2) Then, handle POJO DB class other methods
+            }
+        }
     }
 }
