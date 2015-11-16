@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBScribeHibernate\CallGraphExtractor\BasicGetSetMethod.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\ClassProperty.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\CompositePK.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\SinglePK.cs" />

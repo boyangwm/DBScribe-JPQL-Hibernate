@@ -33,6 +33,7 @@ namespace DBScribeHibernate
         /// <summary> Class properties from POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
         public Dictionary<string, string> allDBClassPropToTableAttr;
 
+
         /// <summary> Call Graph Related Variables</summary>
         IEnumerable<MethodDefinition> methods;
         CGManager cgm;
@@ -43,6 +44,9 @@ namespace DBScribeHibernate
 
         /// <summary> All classes in the project and their parent classes</summary>
         public Dictionary<string, List<string>> allClassToParentClasses;
+
+
+        public Dictionary<string, BasicGetSetMethod> basicGetSetMethods;
 
 
         public DBScribeH(string targetProjPath, string projName)
@@ -61,7 +65,12 @@ namespace DBScribeHibernate
 
             Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
 
-            Step3_BottomUpTraverseMethods();
+            Step3_1_GetBasicGetSetMethods();
+            Console.WriteLine("\nGet and Set Methods: ");
+            foreach (KeyValuePair<string, BasicGetSetMethod> item in basicGetSetMethods)
+            {
+                Console.WriteLine(item.Key + " <--> " + item.Value);
+            }
         }
 
 
@@ -295,14 +304,15 @@ namespace DBScribeHibernate
             }
         }
 
-        public void Step3_BottomUpTraverseMethods()
+        public void Step3_1_GetBasicGetSetMethods()
         {
+            basicGetSetMethods = new Dictionary<string, BasicGetSetMethod>();
             foreach (MethodDefinition method in bottomUpSortedMethods)
             {
                 HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(method);
                 if (mAnalyzer.IsSuccess != 0)
                 {
-                    Console.WriteLine(mAnalyzer.GetFailInfo());
+                    //Console.WriteLine(mAnalyzer.GetFailInfo());
                     continue;
                 }
 
@@ -310,44 +320,30 @@ namespace DBScribeHibernate
                 //{
                 //    continue;
                 //}
-
                 
-                //Console.Write("\n1. Declaring Class: " + mAnalyzer.DeclaringClass.GetFullName());
-                //foreach (TypeDefinition dc in mAnalyzer.ParentClasses)
-                //{
-                //    Console.Write(" --> " + dc.GetFullName());
-                //}
-                //Console.WriteLine("");
+                string methodFullName = method.GetFullName();
+                string curClassName = mAnalyzer.DeclaringClass.GetFullName();
 
-                //Console.WriteLine("\n4. Set Self Fields: ");
-                //int idx = 0;
-                //foreach (VariableDeclaration para in mAnalyzer.SetSelfFields)
-                //{
-                //    idx++;
-                //    Console.WriteLine("(" + idx + ") " + Utility.GetVariableDeclarationInfo(para));
-                //}
-
-                //Console.WriteLine("\n5. Get Self Fields: ");
-                //idx = 0;
-                //foreach (VariableDeclaration para in mAnalyzer.GetSelfFields)
-                //{
-                //    idx++;
-                //    Console.WriteLine("(" + idx + ") " + Utility.GetVariableDeclarationInfo(para));
-                //}
-
-                // (1) First, handle POJO DB Class Get/Set methods
+                // (1) First, handle Basic POJO DB Class Get/Set methods
                 HashSet<VariableDeclaration> getSelfFiels = mAnalyzer.GetSelfFields;
                 HashSet<VariableDeclaration> setSelfFiels = mAnalyzer.SetSelfFields;
-                if (getSelfFiels.Count() > 0 || setSelfFiels.Count() > 0)
+                if (getSelfFiels.Count() == 1 && setSelfFiels.Count() == 0)
                 {
-                    Console.WriteLine("\n*** Start Analyzing method: " + method.GetFullName());
-                    foreach (VariableDeclaration para in getSelfFiels)
+                    VariableDeclaration para = getSelfFiels.SingleOrDefault();
+                    string fullClassPropName = curClassName + "." + para.Name;
+                    if (allDBClassPropToTableAttr.ContainsKey(fullClassPropName))
                     {
-                        Console.WriteLine("Get: " + Utility.GetVariableDeclarationInfo(para));
+                        basicGetSetMethods.Add(methodFullName, new BasicGetSetMethod(Constants.BasicMethodType.Get, allDBClassPropToTableAttr[fullClassPropName]));
                     }
-                    foreach (VariableDeclaration para in setSelfFiels)
+                }
+
+                if (setSelfFiels.Count() == 1 && getSelfFiels.Count() == 0)
+                {
+                    VariableDeclaration para = setSelfFiels.SingleOrDefault();
+                    string fullClassPropName = curClassName + "." + para.Name;
+                    if (allDBClassPropToTableAttr.ContainsKey(fullClassPropName))
                     {
-                        Console.WriteLine("Set: " + Utility.GetVariableDeclarationInfo(para));
+                        basicGetSetMethods.Add(methodFullName, new BasicGetSetMethod(Constants.BasicMethodType.Set, allDBClassPropToTableAttr[fullClassPropName]));
                     }
                 }
 
