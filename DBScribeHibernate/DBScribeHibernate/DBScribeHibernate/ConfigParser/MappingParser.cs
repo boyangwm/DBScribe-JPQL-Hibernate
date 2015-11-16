@@ -23,9 +23,9 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return Constants.MappingFileType.BaseMapping;
         }
 
-        public virtual Dictionary<string, List<string>> GetClassFullNameToTableName()
+        public virtual Dictionary<string, string> GetClassFullNameToTableName()
         {
-            return new Dictionary<string, List<string>>();
+            return new Dictionary<string, string>();
         }
 
         public virtual Dictionary<string, string> GetClassPropertyToTableColumn()

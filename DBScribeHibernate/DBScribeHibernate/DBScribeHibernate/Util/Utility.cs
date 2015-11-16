@@ -35,6 +35,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Util
                 {
                     Console.Write(tableName + ", ");
                 }
+                Console.WriteLine("");
             }
             Console.WriteLine("");
         }

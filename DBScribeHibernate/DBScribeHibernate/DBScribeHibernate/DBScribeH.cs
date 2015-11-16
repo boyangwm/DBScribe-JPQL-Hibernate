@@ -23,13 +23,13 @@ namespace DBScribeHibernate
         public MappingParser mappingParser;
 
         /// <summary> POJO DB Classes that are registered in the mapping file</summary>
-        public Dictionary<string, List<string>> registeredClassFullNameToTableName;
+        public Dictionary<string, string> registeredClassFullNameToTableName;
         /// <summary> POJO DB Class's property --> table attributes </summary>
         public Dictionary<string, string> classPropertyToTableColumn;
         public Dictionary<string, List<string>> tableNameToTableConstraints;
 
         /// <summary> POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
-        public Dictionary<string, List<string>> allDBClassToTableName;
+        public Dictionary<string, string> allDBClassToTableName;
 
 
         /// <summary> Call Graph Related Variables</summary>
@@ -181,7 +181,7 @@ namespace DBScribeHibernate
         public void Step1_2_ConfigParser()
         {
             // all DB class full name <--> table name
-            allDBClassToTableName = new Dictionary<string, List<string>>();
+            allDBClassToTableName = new Dictionary<string, string>();
             foreach (MethodDefinition m in methods)
             {
                 HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
@@ -199,12 +199,12 @@ namespace DBScribeHibernate
                     }
                     else
                     {
-                        List<string> curTableNames = registeredClassFullNameToTableName[curClassName];
-                        allDBClassToTableName.Add(curClassName, curTableNames);
+                        string curTableName = registeredClassFullNameToTableName[curClassName];
+                        allDBClassToTableName.Add(curClassName, curTableName);
                         // add its parent class(es)
                         foreach (TypeDefinition pc in mAnalyzer.ParentClasses)
                         {
-                            allDBClassToTableName.Add(pc.GetFullName(), curTableNames);
+                            allDBClassToTableName.Add(pc.GetFullName(), curTableName);
                         }
                     }
                 }

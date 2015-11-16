@@ -32,7 +32,8 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 
         public static string SchemaConstraintsPK(SinglePK singlePK)
         {
-            return "Primary key: " + singlePK.TablePK + " (type = " + singlePK.Type + ", generator class = " + singlePK.GeneratorClass + ")";
+            //return "Primary key: " + singlePK.TablePK + " (type = " + singlePK.Type + ", generator class = " + singlePK.GeneratorClass + ")";
+            return "Primary key: " + singlePK.TablePK + " (type=" + singlePK.Type + ")";
         }
 
     }

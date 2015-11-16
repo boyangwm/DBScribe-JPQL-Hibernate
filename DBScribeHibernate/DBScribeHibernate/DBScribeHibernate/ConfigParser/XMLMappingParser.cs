@@ -13,7 +13,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
     {
         private List<string> mappingFileNameList;
         private Dictionary<string, string> mappingFileNameToClassFullName;
-        private Dictionary<string, List<string>> classFullNameToTableName;
+        private Dictionary<string, string> classFullNameToTableName;
         /// <summary>
         /// FullClassName.Property --> TableName.Attribute
         /// </summary>
@@ -27,7 +27,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             _GetMappingFileNameList();  // set mappingFileNameList
 
             mappingFileNameToClassFullName = new Dictionary<string, string>();
-            classFullNameToTableName = new Dictionary<string, List<string>>();
+            classFullNameToTableName = new Dictionary<string, string>();
             classPropertyToTableColumn = new Dictionary<string, string>();
             tableNameToTableConstraints = new Dictionary<string, List<string>>();
             foreach (string mappingFileName in mappingFileNameList)
@@ -40,45 +40,53 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                 {
                     pkgName = pkgAttr.Value;
                 }
-                XElement classEle = rootEle.Elements("class").SingleOrDefault();
-                Tuple<string, string> nameTuple = _GetMappingFileClassName(pkgName, classEle); // set mappingFileNameToClassFullName and classFullNameToTableName
-                string classFullName = nameTuple.Item1;
-                string tableName = nameTuple.Item2;
-                this.mappingFileNameToClassFullName.Add(mappingFileName, classFullName);
-                if (this.classFullNameToTableName.ContainsKey(classFullName))
+                IEnumerable<XElement> classElements = rootEle.Elements("class");
+                foreach (XElement classEle in classElements)
                 {
-                    List<string> tableNames = this.classFullNameToTableName[classFullName];
-                    tableNames.Add(tableName);
-                }
-                else
-                {
-                    List<string> tableNames = new List<string>();
-                    tableNames.Add(tableName);
-                    this.classFullNameToTableName.Add(classFullName, tableNames);
-                }
-
-                ////(2) get Class Primary Key: (2-1) single PK (2-2) composite PK (2-3) composite PK using foreign keys
-                XElement idEle_singlePK = classEle.Elements("id").SingleOrDefault();
-                if (idEle_singlePK != null)
-                {
-                    SinglePK pk = _GetMappingFilePrimaryKey_SinglePK(idEle_singlePK);
-                    //classPropertyToTableColumn = new Dictionary<string, string>();
-                    //tableNameToTableConstraints = new Dictionary<string, List<string>>();
-                    classPropertyToTableColumn.Add(classFullName + "." + pk.ClassPK, tableName + "." + pk.TablePK);
-                    if (tableNameToTableConstraints.ContainsKey(tableName))
+                    Tuple<string, string> nameTuple = _GetMappingFileClassName(pkgName, classEle); // set mappingFileNameToClassFullName and classFullNameToTableName
+                    string classFullName = nameTuple.Item1;
+                    string tableName = nameTuple.Item2;
+                    this.mappingFileNameToClassFullName.Add(mappingFileName, classFullName);
+                    if (this.classFullNameToTableName.ContainsKey(classFullName))
                     {
-                        tableNameToTableConstraints[tableName].Add(SchemaConstraintsTemplates.SchemaConstraintsPK(pk));
-                    }else{
-                        List<string> constraints = new List<string>();
-                        constraints.Add(SchemaConstraintsTemplates.SchemaConstraintsPK(pk));
-                        tableNameToTableConstraints.Add(tableName, constraints);
+                        //Console.WriteLine("[Error] Duplicated " + classFullName);
+                    }
+                    else
+                    {
+                        this.classFullNameToTableName.Add(classFullName, tableName);
+                    }
+
+                    ////(2) get Class Primary Key: (2-1) single PK (2-2) composite PK
+                    XElement idEle_singlePK = classEle.Elements("id").SingleOrDefault();
+                    if (idEle_singlePK != null)
+                    {
+                        SinglePK pk = _GetMappingFilePrimaryKey_SinglePK(idEle_singlePK);
+                        classPropertyToTableColumn.Add(classFullName + "." + pk.ClassPK, tableName + "." + pk.TablePK);
+                        if (tableNameToTableConstraints.ContainsKey(tableName))
+                        {
+                            tableNameToTableConstraints[tableName].Add(SchemaConstraintsTemplates.SchemaConstraintsPK(pk));
+                        }
+                        else
+                        {
+                            List<string> constraints = new List<string>();
+                            constraints.Add(SchemaConstraintsTemplates.SchemaConstraintsPK(pk));
+                            tableNameToTableConstraints.Add(tableName, constraints);
+                        }
+                    }
+                    else
+                    {
+                        XElement idEle_compositePK = classEle.Elements("composite-id").SingleOrDefault();
+                        if (idEle_compositePK == null)
+                        {
+                            Console.WriteLine("[Error] " + classFullName + " cannot find primary key!");
+                        }
+                        else
+                        {
+                            CompositePK pk = _GetMappingFilePrimaryKey_CompositePK(idEle_compositePK);
+                        }
+                        
                     }
                 }
-                else
-                {
-                    Console.WriteLine("[Later] " + classFullName + ": Handle composite PK later");
-                }
-                
             }
             
         }
@@ -200,6 +208,12 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return new SinglePK(classPk, tablePk, pkType, pkGenerator);
         }
 
+
+        private CompositePK _GetMappingFilePrimaryKey_CompositePK(XElement idEle){
+            
+            return new CompositePK();
+        }
+
         /// <summary>
         /// Given the mapping file name,
         /// Return all properties (excluding pk)
@@ -231,7 +245,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return propList;
         }
 
-        public override Dictionary<string, List<string>> GetClassFullNameToTableName()
+        public override Dictionary<string, string> GetClassFullNameToTableName()
         {
             return classFullNameToTableName;
         }

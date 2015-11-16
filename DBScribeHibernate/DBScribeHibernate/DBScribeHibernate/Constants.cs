@@ -28,7 +28,7 @@ namespace DBScribeHibernate.DBScribeHibernate
 
         //// Real projects
         public static readonly string ProjName = @"_RealProjects\biyesheji";    // XML mapping
-        //public static readonly string ProjName = @"_RealProjects\hibernate-spring-struts-bookstore-master";  // XML mapping --> more complex DB structure
+        //public static readonly string ProjName = @"_RealProjects\hibernate-spring-struts-bookstore-master";  // XML mapping
         //public static readonly string ProjName = @"_RealProjects\chat-springmvc-hibernate-master";  // Annotation mapping
         //public static readonly string ProjName = @"_RealProjects\TicketsOn-spring-master"; // Annotation mapping
 
