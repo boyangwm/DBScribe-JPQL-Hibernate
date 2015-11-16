@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBScribeHibernate.DBScribeHibernate.ConfigParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,11 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             string line = SchemaConstraintsHeader();
             line += "Make sure the values in " + tableName + "." + attr + " are not null";
             return line;
+        }
+
+        public static string SchemaConstraintsPK(SinglePK singlePK)
+        {
+            return "Primary key: " + singlePK.TablePK + " (type = " + singlePK.Type + ", generator class = " + singlePK.GeneratorClass + ")";
         }
 
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using DBScribeHibernate.DBScribeHibernate.DescriptionTemplates;
 
 namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
@@ -17,7 +18,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         /// FullClassName.Property --> TableName.Attribute
         /// </summary>
         private Dictionary<string, string> classPropertyToTableColumn;
-        private Dictionary<string, List<string>> classFullNameToTableConstraints;
+        private Dictionary<string, List<string>> tableNameToTableConstraints;
 
 
         public XMLMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
@@ -28,7 +29,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             mappingFileNameToClassFullName = new Dictionary<string, string>();
             classFullNameToTableName = new Dictionary<string, List<string>>();
             classPropertyToTableColumn = new Dictionary<string, string>();
-            classFullNameToTableConstraints = new Dictionary<string, List<string>>();
+            tableNameToTableConstraints = new Dictionary<string, List<string>>();
             foreach (string mappingFileName in mappingFileNameList)
             {
                 XElement rootEle = XElement.Load(_GetMappingFilePath(mappingFileName));
@@ -56,20 +57,27 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                     this.classFullNameToTableName.Add(classFullName, tableNames);
                 }
 
-                // (2) get Class Primary Key: (2-1) single PK (2-2) composite PK (2-3) composite PK using foreign keys
-                //XElement idEle_silePK = classEle.Elements("id").SingleOrDefault();
-                //if (idEle_singlePK != null)
-                //{
-                //    SinglePK pk = _GetMappingFilePrimaryKey_SinglePK(idEle_singlePK);
-                //    //classPropertyToTableColumn = new Dictionary<string, string>();
-                //    //classFullNameToTableConstraints = new Dictionary<string, List<string>>();
-                //    classPropertyToTableColumn.Add(classFullName + "." + pk.ClassPK, )
-
-                //}
-                //else
-                //{
-                //    Console.WriteLine("[Later] " + classFullName + ": Handle composite PK later");
-                //}
+                ////(2) get Class Primary Key: (2-1) single PK (2-2) composite PK (2-3) composite PK using foreign keys
+                XElement idEle_singlePK = classEle.Elements("id").SingleOrDefault();
+                if (idEle_singlePK != null)
+                {
+                    SinglePK pk = _GetMappingFilePrimaryKey_SinglePK(idEle_singlePK);
+                    //classPropertyToTableColumn = new Dictionary<string, string>();
+                    //tableNameToTableConstraints = new Dictionary<string, List<string>>();
+                    classPropertyToTableColumn.Add(classFullName + "." + pk.ClassPK, tableName + "." + pk.TablePK);
+                    if (tableNameToTableConstraints.ContainsKey(tableName))
+                    {
+                        tableNameToTableConstraints[tableName].Add(SchemaConstraintsTemplates.SchemaConstraintsPK(pk));
+                    }else{
+                        List<string> constraints = new List<string>();
+                        constraints.Add(SchemaConstraintsTemplates.SchemaConstraintsPK(pk));
+                        tableNameToTableConstraints.Add(tableName, constraints);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("[Later] " + classFullName + ": Handle composite PK later");
+                }
                 
             }
             
@@ -228,6 +236,15 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return classFullNameToTableName;
         }
 
+        public override Dictionary<string, string> GetClassPropertyToTableColumn()
+        {
+            return classPropertyToTableColumn;
+        }
+
+        public override Dictionary<string, List<string>> GetTableNameToTableConstraints()
+        {
+            return tableNameToTableConstraints;
+        }
 
         private string _GetClassFilePathByClassFullName(string classFullName)
         {

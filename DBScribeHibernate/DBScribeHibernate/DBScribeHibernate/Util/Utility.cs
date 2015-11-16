@@ -25,5 +25,39 @@ namespace DBScribeHibernate.DBScribeHibernate.Util
                 Console.WriteLine("The process failed: {0}", e.ToString());
             }
         }
+
+        public static void PrintDictionary(Dictionary<string, List<string>> dict)
+        {
+            foreach (KeyValuePair<string, List<string>> item in dict)
+            {
+                Console.Write(item.Key + " <--> ");
+                foreach (string tableName in item.Value)
+                {
+                    Console.Write(tableName + ", ");
+                }
+            }
+            Console.WriteLine("");
+        }
+
+        public static void PrintDictionary(Dictionary<string, string> dict)
+        {
+            foreach (KeyValuePair<string, string> item in dict)
+            {
+                Console.WriteLine(item.Key + " <--> " + item.Value);
+            }
+        }
+
+        public static void PrintTableConstraints(Dictionary<string, List<string>> dict)
+        {
+            foreach (KeyValuePair<string, List<string>> item in dict)
+            {
+                Console.WriteLine(item.Key + ": ");
+                foreach (string constraint in item.Value)
+                {
+                    Console.WriteLine(constraint);
+                }
+            }
+        }
+
     }
 }

@@ -10,6 +10,7 @@ using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
 using DBScribeHibernate.DBScribeHibernate.Stereotype;
 using DBScribeHibernate.DBScribeHibernate;
 using DBScribeHibernate.DBScribeHibernate.ConfigParser;
+using DBScribeHibernate.DBScribeHibernate.Util;
 
 namespace DBScribeHibernate
 {
@@ -23,10 +24,12 @@ namespace DBScribeHibernate
 
         /// <summary> POJO DB Classes that are registered in the mapping file</summary>
         public Dictionary<string, List<string>> registeredClassFullNameToTableName;
+        /// <summary> POJO DB Class's property --> table attributes </summary>
+        public Dictionary<string, string> classPropertyToTableColumn;
+        public Dictionary<string, List<string>> tableNameToTableConstraints;
+
         /// <summary> POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
         public Dictionary<string, List<string>> allDBClassToTableName;
-        /// <summary> POJO DB Class's property --> table attributes </summary>
-        public Dictionary<string, string> allDBClassPropertyToTableColumn;
 
 
         /// <summary> Call Graph Related Variables</summary>
@@ -48,8 +51,8 @@ namespace DBScribeHibernate
         public void run()
         {
             Step1_1_ConfigParser(); // Analyze Hibernate Configuration files
-            Step2_1_GenerateCallGraph();
-            Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
+            //Step2_1_GenerateCallGraph();
+            //Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
         }
 
 
@@ -75,17 +78,19 @@ namespace DBScribeHibernate
                 {
                     Console.WriteLine("Mapping Parser Type: " + mappingParser.GetMappingParserType());
                 }
+
+                Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
                 registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-                foreach (KeyValuePair<string, List<string>> item in registeredClassFullNameToTableName)
-                {
-                    Console.Write(item.Key + " <--> ");
-                    foreach (string tableName in item.Value)
-                    {
-                        Console.Write(tableName + ", ");
-                    }
-                    Console.WriteLine("");
-                }
-                Console.WriteLine("");
+                Utility.PrintDictionary(registeredClassFullNameToTableName);
+
+                Console.WriteLine("\n<2> Class Property <--> Table Attribute");
+                classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
+                Utility.PrintDictionary(classPropertyToTableColumn);
+
+                Console.WriteLine("\n<3> Table Name --> Table Constraints");
+                tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
+                Utility.PrintTableConstraints(tableNameToTableConstraints);
+
             }
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
             {
@@ -204,16 +209,7 @@ namespace DBScribeHibernate
                     }
                 }
             }
-
-            foreach (KeyValuePair<string, List<string>> item in allDBClassToTableName)
-            {
-                Console.Write(item.Key + " <--> ");
-                foreach (string tableName in item.Value)
-                {
-                    Console.Write(tableName + ", ");
-                }
-                Console.WriteLine("");
-            }
+            Utility.PrintDictionary(allDBClassToTableName);
         }
 
     }

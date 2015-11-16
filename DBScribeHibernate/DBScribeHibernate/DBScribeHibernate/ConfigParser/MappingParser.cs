@@ -27,5 +27,16 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         {
             return new Dictionary<string, List<string>>();
         }
+
+        public virtual Dictionary<string, string> GetClassPropertyToTableColumn()
+        {
+            return new Dictionary<string, string>();
+        }
+
+        public virtual Dictionary<string, List<string>> GetTableNameToTableConstraints()
+        {
+            return new Dictionary<string, List<string>>();
+        }
+
     }
 }
