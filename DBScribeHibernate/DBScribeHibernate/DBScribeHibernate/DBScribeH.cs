@@ -22,9 +22,9 @@ namespace DBScribeHibernate
         public MappingParser mappingParser;
 
         /// <summary> POJO DB Classes that are registered in the mapping file</summary>
-        public Dictionary<string, string> registeredClassFullNameToTableName;
+        public Dictionary<string, List<string>> registeredClassFullNameToTableName;
         /// <summary> POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
-        public Dictionary<string, string> allDBClassToTableName;
+        public Dictionary<string, List<string>> allDBClassToTableName;
         /// <summary> POJO DB Class's property --> table attributes </summary>
         public Dictionary<string, string> allDBClassPropertyToTableColumn;
 
@@ -76,9 +76,14 @@ namespace DBScribeHibernate
                     Console.WriteLine("Mapping Parser Type: " + mappingParser.GetMappingParserType());
                 }
                 registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-                foreach (KeyValuePair<string, string> item in registeredClassFullNameToTableName)
+                foreach (KeyValuePair<string, List<string>> item in registeredClassFullNameToTableName)
                 {
-                    Console.WriteLine(item.Key + " <--> " + item.Value);
+                    Console.Write(item.Key + " <--> ");
+                    foreach (string tableName in item.Value)
+                    {
+                        Console.Write(tableName + ", ");
+                    }
+                    Console.WriteLine("");
                 }
                 Console.WriteLine("");
             }
@@ -171,7 +176,7 @@ namespace DBScribeHibernate
         public void Step1_2_ConfigParser()
         {
             // all DB class full name <--> table name
-            allDBClassToTableName = new Dictionary<string, string>();
+            allDBClassToTableName = new Dictionary<string, List<string>>();
             foreach (MethodDefinition m in methods)
             {
                 HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
@@ -185,36 +190,29 @@ namespace DBScribeHibernate
                 {
                     if (allDBClassToTableName.ContainsKey(curClassName))
                     {
-                        continue;
+                        continue;  // already handled one method from this class, so moving on
                     }
                     else
                     {
-                        string curTableName = registeredClassFullNameToTableName[curClassName];
-                        allDBClassToTableName.Add(curClassName, curTableName);
+                        List<string> curTableNames = registeredClassFullNameToTableName[curClassName];
+                        allDBClassToTableName.Add(curClassName, curTableNames);
                         // add its parent class(es)
                         foreach (TypeDefinition pc in mAnalyzer.ParentClasses)
                         {
-                            allDBClassToTableName.Add(pc.GetFullName(), curTableName);
+                            allDBClassToTableName.Add(pc.GetFullName(), curTableNames);
                         }
                     }
                 }
             }
 
-            //foreach (KeyValuePair<string, string> item in allDBClassToTableName)
-            //{
-            //    Console.WriteLine(item.Key + " <--> " + item.Value);
-            //}
-
-
-            // all DB class properties <--> table columns
-            allDBClassPropertyToTableColumn = new Dictionary<string, string>();
-            if (mappingParser.GetMappingParserType() == Constants.MappingFileType.XMLMapping)
+            foreach (KeyValuePair<string, List<string>> item in allDBClassToTableName)
             {
-                allDBClassPropertyToTableColumn = mappingParser.GetAllDBClassPropertyToTableColumnMapping(allDBClassToTableName);
-            }
-            else if (mappingParser.GetMappingParserType() == Constants.MappingFileType.AnnotationMapping)
-            {
-
+                Console.Write(item.Key + " <--> ");
+                foreach (string tableName in item.Value)
+                {
+                    Console.Write(tableName + ", ");
+                }
+                Console.WriteLine("");
             }
         }
 

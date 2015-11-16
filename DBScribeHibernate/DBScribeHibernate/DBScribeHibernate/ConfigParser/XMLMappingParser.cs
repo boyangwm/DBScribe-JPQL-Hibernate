@@ -10,19 +10,85 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
     class XMLMappingParser : MappingParser
     {
-        private Dictionary<string, string> classFullNameToTableName;
+        private List<string> mappingFileNameList;
+        private Dictionary<string, string> mappingFileNameToClassFullName;
+        private Dictionary<string, List<string>> classFullNameToTableName;
+        /// <summary>
+        /// FullClassName.Property --> TableName.Attribute
+        /// </summary>
+        private Dictionary<string, string> classPropertyToTableColumn;
+        private Dictionary<string, List<string>> classFullNameToTableConstraints;
 
 
         public XMLMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
         {
-            _GetMappingFileClassName();
+            mappingFileNameList = new List<string>();
+            _GetMappingFileNameList();  // set mappingFileNameList
+
+            mappingFileNameToClassFullName = new Dictionary<string, string>();
+            classFullNameToTableName = new Dictionary<string, List<string>>();
+            classPropertyToTableColumn = new Dictionary<string, string>();
+            classFullNameToTableConstraints = new Dictionary<string, List<string>>();
+            foreach (string mappingFileName in mappingFileNameList)
+            {
+                XElement rootEle = XElement.Load(_GetMappingFilePath(mappingFileName));
+                // (1) get Class Full Name
+                XAttribute pkgAttr = rootEle.Attributes("package").SingleOrDefault();
+                string pkgName = "";
+                if (pkgAttr != null)
+                {
+                    pkgName = pkgAttr.Value;
+                }
+                XElement classEle = rootEle.Elements("class").SingleOrDefault();
+                Tuple<string, string> nameTuple = _GetMappingFileClassName(pkgName, classEle); // set mappingFileNameToClassFullName and classFullNameToTableName
+                string classFullName = nameTuple.Item1;
+                string tableName = nameTuple.Item2;
+                this.mappingFileNameToClassFullName.Add(mappingFileName, classFullName);
+                if (this.classFullNameToTableName.ContainsKey(classFullName))
+                {
+                    List<string> tableNames = this.classFullNameToTableName[classFullName];
+                    tableNames.Add(tableName);
+                }
+                else
+                {
+                    List<string> tableNames = new List<string>();
+                    tableNames.Add(tableName);
+                    this.classFullNameToTableName.Add(classFullName, tableNames);
+                }
+
+                // (2) get Class Primary Key: (2-1) single PK (2-2) composite PK (2-3) composite PK using foreign keys
+                //XElement idEle_silePK = classEle.Elements("id").SingleOrDefault();
+                //if (idEle_singlePK != null)
+                //{
+                //    SinglePK pk = _GetMappingFilePrimaryKey_SinglePK(idEle_singlePK);
+                //    //classPropertyToTableColumn = new Dictionary<string, string>();
+                //    //classFullNameToTableConstraints = new Dictionary<string, List<string>>();
+                //    classPropertyToTableColumn.Add(classFullName + "." + pk.ClassPK, )
+
+                //}
+                //else
+                //{
+                //    Console.WriteLine("[Later] " + classFullName + ": Handle composite PK later");
+                //}
+                
+            }
+            
         }
 
+        /// <summary>
+        /// Get MappingParser Type
+        /// </summary>
+        /// <returns></returns>
         public override Constants.MappingFileType GetMappingParserType()
         {
             return Constants.MappingFileType.XMLMapping;
         }
 
+        /// <summary>
+        /// Given mapping file name, get mapping file path
+        /// </summary>
+        /// <param name="mappingFileName"></param>
+        /// <returns></returns>
         private string _GetMappingFilePath(string mappingFileName)
         {
             //string mappingFilePath = this.TargetProjPath + @"\src\" + mappingFileName;
@@ -31,13 +97,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         }
 
         /// <summary>
-        /// Get ALL Mapping Files
+        /// Get ALL Mapping File Names, called by constructor
         /// </summary>
         /// <returns></returns>
-        private List<string> _GetMappingFileNameList()
+        private void _GetMappingFileNameList()
         {
-            List<string> mappingFileNameList = new List<string>();
-
             XElement rootEle = XElement.Load(this._cfgFilePath);
             //Console.WriteLine("Root:" + rootEle.Name);
 
@@ -49,123 +113,62 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                 string[] words = fullPath.Split('/');
                 mappingFileNameList.Add(words[words.Count() - 1]);
             }
-            return mappingFileNameList;
         }
 
         /// <summary>
-        /// Given the mapping file name,
+        /// Given the mapping file's classEle and parsed packageName
         /// return POJO class name, and table name
         /// </summary>
-        /// <param name="mappingFileName"></param>
-        /// <returns></returns>
-        private void _GetMappingFileClassName()
+        /// <param name="pkgName"></param>
+        /// <param name="classEle"></param>
+        /// <returns>classFullName</returns>
+        private Tuple<string, string> _GetMappingFileClassName(string pkgName, XElement classEle)
         {
-            classFullNameToTableName = new Dictionary<string, string>();
-
-            List<string> mappingFileNameList = _GetMappingFileNameList();
-            foreach (string mappingFileName in mappingFileNameList)
+            string classFullName = classEle.Attributes("name").SingleOrDefault().Value;
+            //string[] words = classNameFullPath.Split('.');
+            //string className = words[words.Count() - 1];
+            XAttribute tableNameAttr = classEle.Attributes("table").SingleOrDefault();
+            string tableName;
+            if (tableNameAttr == null)
             {
-                XElement rootEle = XElement.Load(_GetMappingFilePath(mappingFileName));
-                XAttribute pkgAttr = rootEle.Attributes("package").SingleOrDefault();
-                string pkgName = "";
-                if (pkgAttr != null)
-                {
-                    pkgName = pkgAttr.Value;
-                }
-                XElement classEle = rootEle.Elements("class").SingleOrDefault();
-                string classFullName = classEle.Attributes("name").SingleOrDefault().Value;
-                //string[] words = classNameFullPath.Split('.');
-                //string className = words[words.Count() - 1];
-                XAttribute tableNameAttr = classEle.Attributes("table").SingleOrDefault();
-                string tableName;
-                if (tableNameAttr == null)
-                {
-                    tableName = classFullName;
-                }
-                else
-                {
-                    tableName = tableNameAttr.Value;
-                }
-                // add pkgName prior to className
-                if (pkgName != "")
-                {
-                    classFullName = pkgName + "." + classFullName;
-                }
-                if (this.classFullNameToTableName.ContainsKey(classFullName))
-                {
-                    this.classFullNameToTableName[classFullName] = tableName; // this shouldn't happen! no classes with same full name
-                }
-                else
-                {
-                    this.classFullNameToTableName.Add(classFullName, tableName);
-                }
-                //Console.WriteLine(classFullName + " <--> " +  tableName);
-            }
-        }
-
-        public override Dictionary<string, string> GetClassFullNameToTableName()
-        {
-            return classFullNameToTableName;
-        }
-
-
-        private string _GetClassFilePathByClassFullName(string classFullName)
-        {
-            string classFilePath = "";
-
-            //Console.WriteLine(classFullName);
-            string classFileName = classFullName.Split('.').Last() + ".java";
-            //Console.WriteLine(classFileName);
-            string[] classFilePaths = Directory.GetFiles(this._targetProjPath, classFileName, SearchOption.AllDirectories);
-            
-            if (classFilePaths.Length == 0)
-            {
-                Console.WriteLine("No Java file found for class " + classFileName);
-            }
-            else if (classFilePaths.Length == 1)
-            {
-                classFilePath = classFilePaths[0];
-
+                tableName = classFullName;
             }
             else
             {
-                foreach (string cfp in classFilePaths)
-                {
-                    if (cfp.Contains(classFullName.Replace('.', '\\')))
-                    {
-                        classFilePath = cfp;
-                        break;
-                    }
-                }
+                tableName = tableNameAttr.Value;
             }
-            return classFilePath;
+            // add pkgName prior to className
+            if (pkgName != "")
+            {
+                classFullName = pkgName + "." + classFullName;
+            }
+                        
+            return Tuple.Create(classFullName, tableName);
         }
 
 
-
-        //Previously wrote functions, not sure if useful!
-        
         /// <summary>
-        /// Given the mapping file name,
+        /// Only handle (2-1) single PK
+        /// Given the mapping file's id Element
         /// return POJO class/table primary key
         /// </summary>
-        /// <param name="mappingFileName"></param>
-        /// <returns></returns>
-        private Tuple<string, string, string> GetMappingFilePrimaryKey(string mappingFileName)
+        /// <param name="classEle"></param>
+        /// <returns>SinglePK</returns>
+        private SinglePK _GetMappingFilePrimaryKey_SinglePK(XElement idEle)
         {
-            XElement rootEle = XElement.Load(_GetMappingFilePath(mappingFileName));
-            XElement classEle = rootEle.Elements("class").SingleOrDefault();
-            XElement idEle = classEle.Elements("id").SingleOrDefault();
             string classPk = idEle.Attributes("name").SingleOrDefault().Value;
+
             string tablePk;
             if (idEle.Attributes("column").Count() != 0)
             {
                 tablePk = idEle.Attributes("column").SingleOrDefault().Value;
+
             }
             else
             {
                 tablePk = idEle.Descendants("column").SingleOrDefault().Attributes("name").SingleOrDefault().Value;
             }
+
             string pkType;
             try
             {
@@ -176,7 +179,17 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                 pkType = "int";  // <id> tag can only be "int" type or "Integer"
             }
 
-            return new Tuple<string, string, string>(classPk, tablePk, pkType);
+            string pkGenerator = "";
+            XElement generatorEle = idEle.Descendants("generator").SingleOrDefault();
+            if (generatorEle != null)
+            {
+                XAttribute generatorClassAttr = generatorEle.Attributes("class").SingleOrDefault();
+                if (generatorClassAttr != null)
+                {
+                    pkGenerator = generatorClassAttr.Value;
+                }
+            }
+            return new SinglePK(classPk, tablePk, pkType, pkGenerator);
         }
 
         /// <summary>
@@ -185,7 +198,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         /// </summary>
         /// <param name="mappingFileName"></param>
         /// <returns></returns>
-        private List<Tuple<string, string, string>> GetMappingFilePropertyList(string mappingFileName)
+        private List<Tuple<string, string, string>> _GetMappingFilePropertyList(string mappingFileName)
         {
             List<Tuple<string, string, string>> propList = new List<Tuple<string, string, string>>();
             XElement rootEle = XElement.Load(_GetMappingFilePath(mappingFileName));
@@ -210,12 +223,44 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return propList;
         }
 
-        public override Dictionary<string, string> GetAllDBClassPropertyToTableColumnMapping(Dictionary<string, string> allDBClassToTableName)
+        public override Dictionary<string, List<string>> GetClassFullNameToTableName()
         {
-            Dictionary<string, string> allDBClassPropertyToTableColumn = new Dictionary<string, string>();
-
-            return allDBClassPropertyToTableColumn;
+            return classFullNameToTableName;
         }
 
+
+        private string _GetClassFilePathByClassFullName(string classFullName)
+        {
+            string classFilePath = "";
+
+            //Console.WriteLine(classFullName);
+            string classFileName = classFullName.Split('.').Last() + ".java";
+            //Console.WriteLine(classFileName);
+            string[] classFilePaths = Directory.GetFiles(this._targetProjPath, classFileName, SearchOption.AllDirectories);
+
+            if (classFilePaths.Length == 0)
+            {
+                Console.WriteLine("No Java file found for class " + classFileName);
+            }
+            else if (classFilePaths.Length == 1)
+            {
+                classFilePath = classFilePaths[0];
+
+            }
+            else
+            {
+                foreach (string cfp in classFilePaths)
+                {
+                    if (cfp.Contains(classFullName.Replace('.', '\\')))
+                    {
+                        classFilePath = cfp;
+                        break;
+                    }
+                }
+            }
+            return classFilePath;
+        }
+
+        
     }
 }
