@@ -63,9 +63,9 @@ namespace DBScribeHibernate
 
             Step2_1_GenerateCallGraph();
 
-           // Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
+            Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
 
-            //Step3_1_GetBasicGetSetMethods();
+            Step3_1_GetBasicGetSetMethods();
             //Console.WriteLine("\nGet and Set Methods: ");
             //foreach (KeyValuePair<string, BasicGetSetMethod> item in basicGetSetMethods)
             //{
@@ -107,7 +107,7 @@ namespace DBScribeHibernate
 
                 Console.WriteLine("\n<3> Table Name --> Table Constraints");
                 tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-                Utility.PrintTableConstraints(tableNameToTableConstraints);
+                //Utility.PrintTableConstraints(tableNameToTableConstraints);
 
             }
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
@@ -187,10 +187,10 @@ namespace DBScribeHibernate
 
                     // Step 2.   Testing
                     //Console.WriteLine("\nAnalyze methods:");
-                    InvokeCGManager.TestHowToAnalyzeMethods(methods);
-                    InvokeCGManager.TestHowToUseMethodAnalyzer(methods);
-                    IEnumerable<TypeDefinition> classes = globalNamespace.GetDescendants<TypeDefinition>();
-                    InvokeCGManager.TestHowToAnalyzeClasses(classes);
+                    //InvokeCGManager.TestHowToAnalyzeMethods(methods);
+                    //InvokeCGManager.TestHowToUseMethodAnalyzer(methods);
+                    //IEnumerable<TypeDefinition> classes = globalNamespace.GetDescendants<TypeDefinition>();
+                    //InvokeCGManager.TestHowToAnalyzeClasses(classes);
 
                 }
                 finally
@@ -223,13 +223,14 @@ namespace DBScribeHibernate
             allDBClassToTableName = new Dictionary<string, string>();
             foreach (MethodDefinition m in methods)
             {
-                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
-                if (mAnalyzer.IsSuccess != 0)
+                TypeDefinition curClass = MethodUtil.GetDeclaringClass(m);
+                if (curClass == null)
                 {
-                    //Console.WriteLine(mAnalyzer.GetFailInfo());
+                    //Console.WriteLine("[Error] Cannot method's declaring class!");
                     continue;
                 }
-                string curClassName = mAnalyzer.DeclaringClass.GetFullName();
+
+                string curClassName = MethodUtil.GetDeclaringClass(m).GetFullName();
                 if (registeredClassFullNameToTableName.ContainsKey(curClassName))
                 {
                     if (allDBClassToTableName.ContainsKey(curClassName))
@@ -241,7 +242,7 @@ namespace DBScribeHibernate
                         string curTableName = registeredClassFullNameToTableName[curClassName];
                         allDBClassToTableName.Add(curClassName, curTableName);
                         // add its parent class(es)
-                        foreach (TypeDefinition pc in mAnalyzer.ParentClasses)
+                        foreach (TypeDefinition pc in MethodUtil.GetParentClasses(curClass))
                         {
                             string pcFullName = pc.GetFullName();
                             allDBClassToTableName.Add(pcFullName, curTableName);
@@ -256,13 +257,13 @@ namespace DBScribeHibernate
             allClassToParentClasses = new Dictionary<string, List<string>>();
             foreach (MethodDefinition m in methods)
             {
-                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
-                if (mAnalyzer.IsSuccess != 0)
+                TypeDefinition curClass = MethodUtil.GetDeclaringClass(m);
+                if (curClass == null)
                 {
-                    //Console.WriteLine(mAnalyzer.GetFailInfo());
+                    //Console.WriteLine(Console.WriteLine("[Error] Cannot method's declaring class!");
                     continue;
                 }
-                string curClassName = mAnalyzer.DeclaringClass.GetFullName();
+                string curClassName = curClass.GetFullName();
                 if (allClassToParentClasses.ContainsKey(curClassName))
                 {
                     continue;  // already handled one method from this class, so moving on
@@ -271,7 +272,7 @@ namespace DBScribeHibernate
                 {
                     // add its parent class(es)
                     List<string> pcList = new List<string>();
-                    foreach (TypeDefinition pc in mAnalyzer.ParentClasses)
+                    foreach (TypeDefinition pc in MethodUtil.GetParentClasses(curClass))
                     {
                         pcList.Add(pc.GetFullName());
                     }
