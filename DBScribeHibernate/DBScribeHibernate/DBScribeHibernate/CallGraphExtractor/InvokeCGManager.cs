@@ -189,6 +189,9 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         public static void TestHowToAnalyzeMethods(IEnumerable<MethodDefinition> methods)
         {
             StringBuilder outputBuilder = new StringBuilder();
+            outputBuilder.AppendLine(Util.Utility.GetProjectName(Constants.ProjName) + ": Analyze Methods Using Srcml.Net");
+            outputBuilder.AppendLine("");
+
             int idx_method = 0;
             foreach (MethodDefinition method in methods)
             {
@@ -268,6 +271,9 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         public static void TestHowToUseMethodAnalyzer(IEnumerable<MethodDefinition> methods)
         {
             StringBuilder outputBuilder = new StringBuilder();
+            outputBuilder.AppendLine(Util.Utility.GetProjectName(Constants.ProjName) + ": Analyze Methods Using MethodAnalyzer");
+            outputBuilder.AppendLine("");
+
             int idx_method = 0;
             foreach (MethodDefinition m in methods)
             {
@@ -380,6 +386,9 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         public static void TestHowToAnalyzeClasses(IEnumerable<TypeDefinition> classes)
         {
             StringBuilder outputBuilder = new StringBuilder();
+            outputBuilder.AppendLine(Util.Utility.GetProjectName(Constants.ProjName) + ": Analyze Classes Using Srcml.Net");
+            outputBuilder.AppendLine("");
+
             int idx_class = 0;
             foreach (TypeDefinition curClass in classes)
             {
