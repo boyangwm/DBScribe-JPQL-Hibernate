@@ -63,14 +63,14 @@ namespace DBScribeHibernate
 
             Step2_1_GenerateCallGraph();
 
-            //Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
+            Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
 
-            //Step3_1_GetBasicGetSetMethods();
-            //Console.WriteLine("\nGet and Set Methods: ");
-            //foreach (KeyValuePair<string, BasicGetSetMethod> item in basicGetSetMethods)
-            //{
-            //    Console.WriteLine(item.Key + " <--> " + item.Value);
-            //}
+            Step3_1_GetBasicGetSetMethods();
+            Console.WriteLine("\nGet and Set Methods: ");
+            foreach (KeyValuePair<string, BasicGetSetMethod> item in basicGetSetMethods)
+            {
+                Console.WriteLine(item.Key + " <--> " + item.Value);
+            }
         }
 
 
@@ -186,11 +186,11 @@ namespace DBScribeHibernate
                     //cgm.getMethodByFullName();
 
                     // Step 2.   Testing
-                    Console.WriteLine("\nAnalyze methods:");
-                    InvokeCGManager.TestHowToAnalyzeMethods(bottomUpSortedMethods);
-                    InvokeCGManager.TestHowToUseMethodAnalyzer(bottomUpSortedMethods);
-                    IEnumerable<TypeDefinition> classes = globalNamespace.GetDescendants<TypeDefinition>();
-                    InvokeCGManager.TestHowToAnalyzeClasses(classes);
+                    //Console.WriteLine("\nAnalyze methods:");
+                    //InvokeCGManager.TestHowToAnalyzeMethods(bottomUpSortedMethods);
+                    //InvokeCGManager.TestHowToUseMethodAnalyzer(bottomUpSortedMethods);
+                    //IEnumerable<TypeDefinition> classes = globalNamespace.GetDescendants<TypeDefinition>();
+                    //InvokeCGManager.TestHowToAnalyzeClasses(classes);
 
                 }
                 finally
