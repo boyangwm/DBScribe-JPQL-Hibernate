@@ -17,6 +17,7 @@ namespace DBScribeHibernate.DBScribeHibernate
 
         static void Main(string[] args)
         {
+            Util.Utility.CreateDirectoryIfNotExist(Constants.LogPath);
 
             //TestingPurpose.MainTestingFunction();
 

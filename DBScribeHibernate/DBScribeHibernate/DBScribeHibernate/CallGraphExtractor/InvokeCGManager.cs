@@ -2,6 +2,7 @@
 using DBScribeHibernate.DBScribeHibernate.Stereotype;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -187,59 +188,81 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
         public static void TestHowToAnalyzeMethods(IEnumerable<MethodDefinition> methods)
         {
-            //StreamWriter writetext = new StreamWriter("analyze_methods_get_from_srcml_net.txt");
+            StringBuilder outputBuilder = new StringBuilder();
+            int idx_method = 0;
             foreach (MethodDefinition method in methods)
             {
                 //var mdCalls = from statments in method.GetDescendantsAndSelf()
                 //              from expression in statments.GetExpressions()
                 //              from call in expression.GetDescendantsAndSelf<MethodCall>()
                 //              select call;
-                //writetext.WriteLine("=== " + method.GetFullName());
 
-                //if (!method.GetFullName().Contains("changeCourseInfo"))
-                //{
-                //    continue;
-                //}
-
-                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(method);
-                if (mAnalyzer.IsSuccess != 0)
+                idx_method += 1;
+                outputBuilder.AppendLine("=== [M-" + idx_method + "] Full Name: " + method.GetFullName());
+                outputBuilder.Append("Parameters: ");
+                foreach (VariableDeclaration para in method.Parameters)
                 {
-                    Console.WriteLine(mAnalyzer.GetFailInfo());
-                    continue;
+                    outputBuilder.Append(para.Name + "<" + para.VariableType + ">, ");
                 }
-                if (mAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Grade")
-                {
-                    continue;
-                }
+                outputBuilder.AppendLine("");
+                outputBuilder.AppendLine("ReturnType: " + method.ReturnType);
+                outputBuilder.AppendLine("IsConstructor: " + method.IsConstructor);
 
-                Console.WriteLine("=== " + method.GetFullName());
+                TypeDefinition curClass = MethodUtil.GetDeclaringClass(method);
+                if (curClass != null)
+                {
+                    outputBuilder.Append("DeclaringClass: " + curClass.GetFullName());
+                    foreach (TypeDefinition pc in MethodUtil.GetParentClasses(curClass))
+                    {
+                        outputBuilder.Append(" --> " + pc.GetFullName());
+                    }
+                    outputBuilder.AppendLine("");
+                }
+                else
+                {
+                    outputBuilder.Append("DeclaringClass: null");
+                }
+                
+
+                outputBuilder.AppendLine("Analyze each statement: ");
+                int idx_stmt = 0;
                 foreach (var statements in method.GetDescendantsAndSelf())
                 {
-                    //writetext.WriteLine(statements + " || " + statements.GetType());
+                    idx_stmt += 1;
+                    outputBuilder.AppendLine("[Stmt-" + idx_stmt + "] " + statements + " || " + statements.GetType());
+
+                    int idx_expr = 0;
                     foreach (var expression in statements.GetExpressions())
                     {
-                        //writetext.WriteLine("\t" + expression + " || " + expression.GetType());
-                        foreach (var call in expression.GetDescendantsAndSelf())
+                        idx_expr += 1;
+                        outputBuilder.AppendLine("\t[Expr-" + idx_expr + "] " + expression + " || " + expression.GetType());
+
+                        int idx_exprDesc = 0;
+                        foreach (var exprDesc in expression.GetDescendantsAndSelf())
                         {
-                            //writetext.WriteLine("\t\t" + call + " || " + call.GetType());
-                            if (call.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
+                            idx_exprDesc += 1;
+                            outputBuilder.AppendLine("\t\t [D-" + idx_exprDesc + "] " + exprDesc + " || " + exprDesc.GetType());
+                            if (exprDesc.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
                             {
-                                Console.WriteLine(statements);
-                                MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)call);
+                                MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)exprDesc);
                                 if (mDef != null)
                                 {
-                                    Console.WriteLine(mDef.GetFullName());
+                                    outputBuilder.AppendLine("\t\t\t*Found MethodDefinition: " + mDef.GetFullName());
                                 }
-                                Console.WriteLine("");
                             }
                         }
                     }
                 }
-                //writetext.WriteLine("---------------------------------------------\n");
-                Console.WriteLine("---------------------------------------------\n");
+                outputBuilder.AppendLine("---------------------------------------------");
+                outputBuilder.AppendLine("");
             }
-            //writetext.Close();
-            //Console.WriteLine("Writing to file finished!");
+
+            string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
+            Util.Utility.CreateDirectoryIfNotExist(filePath);
+            StreamWriter writetext = new StreamWriter(filePath + "\\" +"analyze_methods_using_srcml.net.txt");
+            writetext.Write(outputBuilder.ToString());
+            writetext.Close();
+            Console.WriteLine("Writing to file finished!");
         }
 
         public static void TestHowToUseMethodAnalyzer(IEnumerable<MethodDefinition> methods)

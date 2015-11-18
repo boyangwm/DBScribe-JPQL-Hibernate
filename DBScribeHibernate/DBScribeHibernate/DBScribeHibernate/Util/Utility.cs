@@ -87,5 +87,25 @@ namespace DBScribeHibernate.DBScribeHibernate.Util
             return info;
         }
 
+        public static void CreateDirectoryIfNotExist(string path)
+        {
+            bool exists = System.IO.Directory.Exists(path);
+            if (!exists)
+                System.IO.Directory.CreateDirectory(path);
+        }
+
+        public static string GetProjectName(string projNameFull)
+        {
+            string[] cols = projNameFull.Split('\\');
+            if (cols.Length == 1)
+            {
+                return projNameFull;
+            }
+            else
+            {
+                return cols[cols.Length - 1];
+            }
+        }
+
     }
 }

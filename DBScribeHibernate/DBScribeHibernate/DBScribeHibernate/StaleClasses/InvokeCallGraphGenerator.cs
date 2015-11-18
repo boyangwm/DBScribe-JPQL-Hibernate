@@ -53,8 +53,27 @@ namespace DBScribeHibernate.DBScribeHibernate
                     // return IEnumerable<MethodDefinition> type
                     // could contain duplicated methods!
                     var methods = globalNamespace.GetDescendants<MethodDefinition>();
+                    var types = globalNamespace.GetDescendants<TypeDefinition>();
                     int num_of_methods = globalNamespace.GetDescendants<MethodDefinition>().Count();
                     Console.WriteLine("# of methods = " + num_of_methods);
+
+                    Console.WriteLine("-------------------");
+                    foreach (TypeDefinition type in types)
+                    {
+                        //Console.WriteLine(type.GetFullName());
+                        if (type.GetFullName().Contains("Course"))
+                        {
+                            var mds = type.GetDescendants<MethodDefinition>();
+                            foreach (var md in mds)
+                            {
+                                Console.WriteLine(md.GetFullName());
+                                //md.Parameters;
+                            }
+                        }
+                        
+                    }
+                    Console.WriteLine("-------------------");
+
 
                     CGManager cgm = new CGManager();
                     cgm.BuildCallGraph(methods);

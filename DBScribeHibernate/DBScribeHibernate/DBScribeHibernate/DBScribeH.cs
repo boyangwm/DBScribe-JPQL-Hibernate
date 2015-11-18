@@ -63,14 +63,14 @@ namespace DBScribeHibernate
 
             Step2_1_GenerateCallGraph();
 
-            Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
+           // Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
 
-            Step3_1_GetBasicGetSetMethods();
-            Console.WriteLine("\nGet and Set Methods: ");
-            foreach (KeyValuePair<string, BasicGetSetMethod> item in basicGetSetMethods)
-            {
-                Console.WriteLine(item.Key + " <--> " + item.Value);
-            }
+            //Step3_1_GetBasicGetSetMethods();
+            //Console.WriteLine("\nGet and Set Methods: ");
+            //foreach (KeyValuePair<string, BasicGetSetMethod> item in basicGetSetMethods)
+            //{
+            //    Console.WriteLine(item.Key + " <--> " + item.Value);
+            //}
         }
 
 
@@ -107,7 +107,7 @@ namespace DBScribeHibernate
 
                 Console.WriteLine("\n<3> Table Name --> Table Constraints");
                 tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-                //Utility.PrintTableConstraints(tableNameToTableConstraints);
+                Utility.PrintTableConstraints(tableNameToTableConstraints);
 
             }
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
@@ -186,8 +186,8 @@ namespace DBScribeHibernate
                     //cgm.getMethodByFullName();
 
                     // Step 2.   Testing
-                    //Console.WriteLine("\n================================================");
-                    //InvokeCGManager.TestHowToAnalyzeMethods(methods);
+                    Console.WriteLine("\n================================================");
+                    InvokeCGManager.TestHowToAnalyzeMethods(methods);
                     //Console.WriteLine("\nAnalyze methods:");
                     //InvokeCGManager.TestHowToUseMethodAnalyzer(methods);
 
