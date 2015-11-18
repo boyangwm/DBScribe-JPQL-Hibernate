@@ -262,7 +262,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
             string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
             Util.Utility.CreateDirectoryIfNotExist(filePath);
-            StreamWriter writetext = new StreamWriter(filePath + "\\" +"analyze_methods_using_srcml.net.txt");
+            StreamWriter writetext = new StreamWriter(filePath + "\\" +"2_analyze_methods_using_srcml.net.txt");
             writetext.Write(outputBuilder.ToString());
             writetext.Close();
             Console.WriteLine("Writing to file finished!");
@@ -371,7 +371,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
             string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
             Util.Utility.CreateDirectoryIfNotExist(filePath);
-            StreamWriter writetext = new StreamWriter(filePath + "\\" + "analyze_methods_using_MethodAnalyzer.txt");
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + "3_analyze_methods_using_MethodAnalyzer.txt");
             writetext.Write(outputBuilder.ToString());
             writetext.Close();
             Console.WriteLine("Writing to file finished!");
@@ -443,7 +443,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
             string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
             Util.Utility.CreateDirectoryIfNotExist(filePath);
-            StreamWriter writetext = new StreamWriter(filePath + "\\" + "analyze_classes_using_srcml.net.txt");
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + "1_analyze_classes_using_srcml.net.txt");
             writetext.Write(outputBuilder.ToString());
             writetext.Close();
             Console.WriteLine("Writing to file finished!");

@@ -186,11 +186,11 @@ namespace DBScribeHibernate
                     //cgm.getMethodByFullName();
 
                     // Step 2.   Testing
-                    //Console.WriteLine("\nAnalyze methods:");
-                    //InvokeCGManager.TestHowToAnalyzeMethods(bottomUpSortedMethods);
-                    //InvokeCGManager.TestHowToUseMethodAnalyzer(bottomUpSortedMethods);
-                    //IEnumerable<TypeDefinition> classes = globalNamespace.GetDescendants<TypeDefinition>();
-                    //InvokeCGManager.TestHowToAnalyzeClasses(classes);
+                    Console.WriteLine("\nAnalyze methods:");
+                    InvokeCGManager.TestHowToAnalyzeMethods(bottomUpSortedMethods);
+                    InvokeCGManager.TestHowToUseMethodAnalyzer(bottomUpSortedMethods);
+                    IEnumerable<TypeDefinition> classes = globalNamespace.GetDescendants<TypeDefinition>();
+                    InvokeCGManager.TestHowToAnalyzeClasses(classes);
 
                 }
                 finally
