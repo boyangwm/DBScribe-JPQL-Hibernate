@@ -267,108 +267,177 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
         public static void TestHowToUseMethodAnalyzer(IEnumerable<MethodDefinition> methods)
         {
+            StringBuilder outputBuilder = new StringBuilder();
+            int idx_method = 0;
             foreach (MethodDefinition m in methods)
             {
-                HibernateMethodAnalyzer hibernateMethodAnalyzer = new HibernateMethodAnalyzer(m);
-                if (hibernateMethodAnalyzer.IsSuccess != 0)
+                idx_method += 1;
+                outputBuilder.AppendLine("=== [M-" + idx_method + "] Full Name: " + m.GetFullName());
+                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(m);
+                if (mAnalyzer.IsSuccess != 0)
                 {
-                    Console.WriteLine(hibernateMethodAnalyzer.GetFailInfo());
+                    outputBuilder.AppendLine(mAnalyzer.GetFailInfo());
                     continue;
                 }
 
-                //if (hibernateMethodAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Course")
-                //{
-                //    continue;
-                //}
-
-                Console.WriteLine("\n*** Start Analyzing method: " + m.GetFullName());
-                Console.Write("\n1. Declaring Class: " + hibernateMethodAnalyzer.DeclaringClass.GetFullName());
-                foreach (TypeDefinition dc in hibernateMethodAnalyzer.ParentClasses)
+                outputBuilder.Append("1. Declaring Class: " + mAnalyzer.DeclaringClass.GetFullName());
+                foreach (TypeDefinition dc in mAnalyzer.ParentClasses)
                 {
-                    Console.Write(" --> " + dc.GetFullName());
+                    outputBuilder.Append(" --> " + dc.GetFullName());
                 }
-                Console.WriteLine("");
+                outputBuilder.AppendLine("");
 
-                Console.WriteLine("\n2. Method Parameters: ");
+                outputBuilder.AppendLine("2. Method Parameters: ");
                 int idx = 0;
-                foreach (VariableInfo para in hibernateMethodAnalyzer.ParametersInfo)
+                foreach (VariableInfo para in mAnalyzer.ParametersInfo)
                 {
                     idx++;
-                    Console.WriteLine("(" + idx + ") " + para.GetFullVariableInfo());
+                    outputBuilder.AppendLine("\t(" + idx + ") " + para.GetFullVariableInfo());
                 }
 
-                Console.WriteLine("\n3. Local Variables' Info: ");
+                outputBuilder.AppendLine("3. Local Variables' Info: ");
                 idx = 0;
-                foreach (VariableInfo para in hibernateMethodAnalyzer.VariablesInfo)
+                foreach (VariableInfo para in mAnalyzer.VariablesInfo)
                 {
                     idx++;
-                    Console.WriteLine("(" + idx + ") " + para.GetFullVariableInfo());
+                    outputBuilder.AppendLine("\t(" + idx + ") " + para.GetFullVariableInfo());
                 }
 
-                Console.WriteLine("\n4. Set Self Fields: ");
+                outputBuilder.AppendLine("4. Set Self Fields: ");
                 idx = 0;
-                foreach (VariableDeclaration para in hibernateMethodAnalyzer.SetSelfFields)
+                foreach (VariableDeclaration para in mAnalyzer.SetSelfFields)
                 {
                     idx++;
-                    Console.WriteLine("(" + idx + ") " + GetVariableDeclarationInfo(para));
+                    outputBuilder.AppendLine("\t(" + idx + ") " + GetVariableDeclarationInfo(para));
                 }
 
-                Console.WriteLine("\n5. Get Self Fields: ");
+                outputBuilder.AppendLine("5. Get Self Fields: ");
                 idx = 0;
-                foreach (VariableDeclaration para in hibernateMethodAnalyzer.GetSelfFields)
+                foreach (VariableDeclaration para in mAnalyzer.GetSelfFields)
                 {
                     idx++;
-                    Console.WriteLine("(" + idx + ") " + GetVariableDeclarationInfo(para));
+                    outputBuilder.AppendLine("(" + idx + ") " + GetVariableDeclarationInfo(para));
                 }
 
-                Console.WriteLine("\n6. Property Fields: ");
+                outputBuilder.AppendLine("6. Property Fields: ");
                 idx = 0;
-                foreach (VariableDeclaration para in hibernateMethodAnalyzer.PropertyFields)
+                foreach (VariableDeclaration para in mAnalyzer.PropertyFields)
                 {
                     idx++;
-                    Console.WriteLine("(" + idx + ") " + GetVariableDeclarationInfo(para));
+                    outputBuilder.AppendLine("\t(" + idx + ") " + GetVariableDeclarationInfo(para));
                 }
 
-                Console.WriteLine("\n7. Invoked Local Methods: ");
+                outputBuilder.AppendLine("7. Invoked Local Methods: ");
                 idx = 0;
-                foreach (MethodDefinition m_local in hibernateMethodAnalyzer.InvokedLocalMethods)
+                foreach (MethodDefinition m_local in mAnalyzer.InvokedLocalMethods)
                 {
                     if (m_local != null)
                     {
                         idx++;
-                        Console.WriteLine("(" + idx + ") " + m_local.GetFullName());
+                        outputBuilder.AppendLine("\t(" + idx + ") " + m_local.GetFullName());
                     }
                 }
 
-                Console.WriteLine("\n8. Invoked External Methods: ");
+                outputBuilder.AppendLine("8. Invoked External Methods: ");
                 idx = 0;
-                foreach (MethodDefinition m_external in hibernateMethodAnalyzer.InvokedExternalMethods)
+                foreach (MethodDefinition m_external in mAnalyzer.InvokedExternalMethods)
                 {
                     if (m_external != null)
                     {
                         idx++;
-                        Console.WriteLine("(" + idx + ") " + m_external.GetFullName());
+                        outputBuilder.AppendLine("\t(" + idx + ") " + m_external.GetFullName());
                     }
                 }
 
-                VariableInfo returnedVar = hibernateMethodAnalyzer.ReturnedVariable;
+                VariableInfo returnedVar = mAnalyzer.ReturnedVariable;
                 if (returnedVar != null)
                 {
-                    Console.WriteLine("\n9. Return Type: " + returnedVar.GetName() + "<" + hibernateMethodAnalyzer.ReturnType + ">");
-                    Console.WriteLine("IsReturnNewObj: " + hibernateMethodAnalyzer.IsReturnNewObj);
+                    outputBuilder.AppendLine("9. Return Type: " + returnedVar.GetName() + "<" + mAnalyzer.ReturnType + ">");
+                    outputBuilder.AppendLine("IsReturnNewObj: " + mAnalyzer.IsReturnNewObj);
                 }
-                else if (hibernateMethodAnalyzer.ReturnType != null)
+                else if (mAnalyzer.ReturnType != null)
                 {
-                    Console.WriteLine("\n9. Return Type:  <" + hibernateMethodAnalyzer.ReturnType + ">");
-                    Console.WriteLine("IsReturnNewObj: " + hibernateMethodAnalyzer.IsReturnNewObj);
+                    outputBuilder.AppendLine("9. Return Type:  <" + mAnalyzer.ReturnType + ">");
+                    outputBuilder.AppendLine("IsReturnNewObj: " + mAnalyzer.IsReturnNewObj);
                 }
+                outputBuilder.AppendLine("");
             }
+
+            string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
+            Util.Utility.CreateDirectoryIfNotExist(filePath);
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + "analyze_methods_using_MethodAnalyzer.txt");
+            writetext.Write(outputBuilder.ToString());
+            writetext.Close();
+            Console.WriteLine("Writing to file finished!");
         }
 
         private static string GetVariableDeclarationInfo(VariableDeclaration vd)
         {
             string info = vd.Name + "<" + vd.VariableType + ">";
             return info;
+        }
+
+        public static void TestHowToAnalyzeClasses(IEnumerable<TypeDefinition> classes)
+        {
+            StringBuilder outputBuilder = new StringBuilder();
+            int idx_class = 0;
+            foreach (TypeDefinition curClass in classes)
+            {
+                idx_class += 1;
+                outputBuilder.AppendLine("=== [C-" + idx_class + "] Full Name: " + curClass.GetFullName());
+                
+                IEnumerable<TypeDefinition> parentClasses = MethodUtil.GetParentClasses(curClass);
+                if (parentClasses.Count() == 0)
+                {
+                    outputBuilder.AppendLine("Parent Classes: None");
+                }
+                else
+                {
+                    outputBuilder.Append("Parent Classes: " + curClass.GetFullName());
+                    foreach (TypeDefinition pc in parentClasses)
+                    {
+                        outputBuilder.Append(" --> " + pc.GetFullName());
+                    }
+                    outputBuilder.AppendLine("");
+                }
+
+                outputBuilder.AppendLine("Defined Methods: ");
+                int idx_md = 0;
+                foreach (MethodDefinition md in curClass.GetDescendants<MethodDefinition>())
+                {
+                    idx_md += 1;
+                    outputBuilder.AppendLine("\t[MD-" + idx_md + "] " + md.GetFullName());
+
+                    //outputBuilder.AppendLine("\tMethod Calls: ");
+                    int idx_mc = 0;
+                    var mdCalls = from statments in md.GetDescendantsAndSelf()
+                                    from expression in statments.GetExpressions()
+                                    from call in expression.GetDescendantsAndSelf<MethodCall>()
+                                    select call;
+                    foreach (MethodCall mc in mdCalls)
+                    {
+                        idx_mc += 1;
+                        outputBuilder.Append("\t\t[MC-" + idx_mc + "] " + mc.Name);
+                        MethodDefinition match_md = CallGraphUtil.FindMatchedMd(mc);
+                        if (match_md != null)
+                        {
+                            outputBuilder.AppendLine(" <--> matched MD: " + match_md.GetFullName());
+                        }
+                        else
+                        {
+                            outputBuilder.AppendLine("");
+                        }
+                    }
+                }
+                outputBuilder.AppendLine("");
+            }
+
+            string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
+            Util.Utility.CreateDirectoryIfNotExist(filePath);
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + "analyze_classes_using_srcml.net.txt");
+            writetext.Write(outputBuilder.ToString());
+            writetext.Close();
+            Console.WriteLine("Writing to file finished!");
         }
     }
 }
