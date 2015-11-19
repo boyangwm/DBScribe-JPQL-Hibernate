@@ -101,6 +101,7 @@
     <Compile Include="DBScribeHibernate\Stereotype\MethodAnalyzer.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\MethodUtil.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\VariableInfo.cs" />
+    <Compile Include="DBScribeHibernate\Stereotype\VarInfo.cs" />
     <Compile Include="DBScribeHibernate\Util\Src2XML.cs" />
     <Compile Include="DBScribeHibernate\Util\Utility.cs" />
     <Compile Include="Program.cs" />

@@ -479,5 +479,44 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             writetext.Close();
             Console.WriteLine("Writing to file finished!");
         }
+
+
+        public static void TestPrintNonDBMethods(IEnumerable<MethodDefinition> methods, string LogFileName)
+        {
+            StringBuilder outputBuilder = new StringBuilder();
+            int idx_method = 0;
+            foreach (MethodDefinition md in methods)
+            {
+                idx_method += 1;
+                outputBuilder.AppendLine("=== [M-" + idx_method + "] Full Name: " + md.GetFullName());
+                foreach (var statements in md.GetDescendantsAndSelf())
+                {
+                    outputBuilder.AppendLine(statements + " || " + statements.GetType());
+                    foreach (var expression in statements.GetExpressions())
+                    {
+                        foreach (var exprDesc in expression.GetDescendantsAndSelf())
+                        {
+                            if (exprDesc.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
+                            {
+                                MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)exprDesc);
+                                if (mDef != null)
+                                {
+                                    outputBuilder.AppendLine("\t!Found MethodDefinition: " + mDef.GetFullName());
+                                }
+                            }
+                        }
+                    }
+                }
+                outputBuilder.AppendLine("");
+            }
+            string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
+            Util.Utility.CreateDirectoryIfNotExist(filePath);
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + LogFileName);
+            writetext.Write(outputBuilder.ToString());
+            writetext.Close();
+            Console.WriteLine("Writing to file finished!");
+        }
+    
+    
     }
 }

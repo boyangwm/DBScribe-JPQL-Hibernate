@@ -378,17 +378,33 @@ namespace DBScribeHibernate
             }
 
             outputBuilder.AppendLine("==== Non DB-Related Methods: ");
-            int non_db = 0;
+            List<MethodDefinition> NonDBMethods = new List<MethodDefinition>();
             foreach (MethodDefinition md in bottomUpSortedMethods)
             {
                 if (!_sqlOperatingMethodNames.Contains(md.GetFullName()) && !_localSqlMethodNames.Contains(md.GetFullName())
                     && !_delegatedSqlMethodNames.Contains(md.GetFullName()))
                 {
-                    non_db += 1;
+                    //var stmts = md.GetDescendantsAndSelf();
+                    //if (stmts.Count() < 2)
+                    //{
+                    //    continue;
+                    //}
+                    //MethodUtil.CheckIfCallSessionBuiltInFunction(md);
+                    NonDBMethods.Add(md);
                     outputBuilder.AppendLine(md.GetFullName());
                 }
             }
 
+            foreach (MethodDefinition md in bottomUpSortedMethods)
+            {
+                if (md.GetFullName() == "com.jspdev.biyesheji.Student.deleteStudent")
+                {
+                    MethodUtil.CheckIfCallSessionBuiltInFunction(md);
+                }
+            }
+
+            /*
+            // Step 2.   Testing
             string filePath = Constants.LogPath + "\\" + Utility.GetProjectName(Constants.ProjName);
             Utility.CreateDirectoryIfNotExist(filePath);
             StreamWriter writetext = new StreamWriter(filePath + "\\1_divide_methods_in_3_categories.txt");
@@ -396,18 +412,17 @@ namespace DBScribeHibernate
             writetext.WriteLine("# of sql operating methods = " + SortedSqlOperatingMethods.Count());
             writetext.WriteLine("# of local sql methods = " + SortedLocalSqlMethods.Count());
             writetext.WriteLine("# of delegated sql methods = " + SortedDelegatedSqlMethods.Count());
-            writetext.WriteLine("# of non-database operating methods = " + non_db);
+            writetext.WriteLine("# of non-database operating methods = " + NonDBMethods.Count());
             writetext.WriteLine("");
             writetext.Write(outputBuilder.ToString());
             writetext.Close();
             Console.WriteLine("Writing to file finished!");
-
-
-            // Step 2.   Testing
+            
             InvokeCGManager.TestHowToUseMethodAnalyzer(SortedSqlOperatingMethods, "2_analyze_sql_operating_methods_using_MethodAnalyzer.txt");
             InvokeCGManager.TestHowToUseMethodAnalyzer(SortedLocalSqlMethods, "3_analyze_local_sql_methods_using_MethodAnalyzer.txt");
             InvokeCGManager.TestHowToUseMethodAnalyzer(SortedDelegatedSqlMethods, "4_analyze_delegated_sql_methods_using_MethodAnalyzer.txt");
-
+            InvokeCGManager.TestHowToUseMethodAnalyzer(NonDBMethods, "5_analyze_non_db_methods_using_MethodAnalyzer.txt");
+             */
         }
         
         public void Step3_1_GetBasicGetSetMethods_stale()
