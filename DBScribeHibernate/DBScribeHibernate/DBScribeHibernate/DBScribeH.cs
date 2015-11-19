@@ -35,8 +35,9 @@ namespace DBScribeHibernate
 
 
         /// <summary> Call Graph Related Variables</summary>
-        IEnumerable<MethodDefinition> methods;
-        CGManager cgm;
+        public NamespaceDefinition globalNamespace;
+        public IEnumerable<MethodDefinition> methods;
+        public CGManager cgm;
         public int num_of_methods;
         public List<MethodDefinition> bottomUpSortedMethods;
         //public HashSet<MethodDefinition> methods_LocalSQLMethods;  // methods call transaction and sessions
@@ -45,6 +46,15 @@ namespace DBScribeHibernate
         /// <summary> All classes in the project and their parent classes</summary>
         public Dictionary<string, List<string>> allClassToParentClasses;
 
+        /// <summary>
+        /// There are three kinds of methods:
+        /// (1) SQL Operating methods: defined in POJO classes
+        /// (2) Local SQL methods: call (1) SQL operating methods and Hibernate session built-in functions(i.e. save/update/delete)
+        /// (3) Delegated SQL methods: call (2)
+        /// </summary>
+        public List<MethodDefinition> SortedSqlOperatingMethods;
+        public List<MethodDefinition> SortedLocalSqlMethods;
+        public List<MethodDefinition> SortedDelegatedSqlMethods;
 
         public Dictionary<string, BasicGetSetMethod> basicGetSetMethods;
 
@@ -65,12 +75,7 @@ namespace DBScribeHibernate
 
             Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
 
-            Step3_1_GetBasicGetSetMethods();
-            Console.WriteLine("\nGet and Set Methods: ");
-            foreach (KeyValuePair<string, BasicGetSetMethod> item in basicGetSetMethods)
-            {
-                Console.WriteLine(item.Key + " <--> " + item.Value);
-            }
+            Step3_1_DivideAllMethodsIntoThreeCategories();
         }
 
 
@@ -142,7 +147,6 @@ namespace DBScribeHibernate
                 }
                 end = DateTime.Now;
 
-                NamespaceDefinition globalNamespace;
                 project.WorkingSet.TryObtainReadLock(5000, out globalNamespace);
                 try
                 {
@@ -187,10 +191,10 @@ namespace DBScribeHibernate
 
                     // Step 2.   Testing
                     //Console.WriteLine("\nAnalyze methods:");
-                    //InvokeCGManager.TestHowToAnalyzeMethods(bottomUpSortedMethods);
-                    //InvokeCGManager.TestHowToUseMethodAnalyzer(bottomUpSortedMethods);
+                    //InvokeCGManager.TestHowToAnalyzeMethods(bottomUpSortedMethods, "2_analyze_methods_using_srcml.net.txt");
+                    //InvokeCGManager.TestHowToUseMethodAnalyzer(bottomUpSortedMethods, "3_analyze_methods_using_MethodAnalyzer.txt");
                     //IEnumerable<TypeDefinition> classes = globalNamespace.GetDescendants<TypeDefinition>();
-                    //InvokeCGManager.TestHowToAnalyzeClasses(classes);
+                    //InvokeCGManager.TestHowToAnalyzeClasses(classes, "1_analyze_classes_using_srcml.net.txt");
 
                 }
                 finally
@@ -306,7 +310,107 @@ namespace DBScribeHibernate
             }
         }
 
-        public void Step3_1_GetBasicGetSetMethods()
+        public void Step3_1_DivideAllMethodsIntoThreeCategories()
+        {
+            StringBuilder outputBuilder = new StringBuilder();
+
+            HashSet<string> allPojoClasses = new HashSet<string>(allDBClassToTableName.Keys);
+
+            HashSet<string> _sqlOperatingMethodNames = new HashSet<string>();
+            // get all POJO classes and those SQL operating methods
+            foreach (TypeDefinition curClass in globalNamespace.GetDescendants<TypeDefinition>())
+            {
+                if (allPojoClasses.Contains(curClass.GetFullName())) // if this is a POJO class
+                {
+                    //Console.WriteLine(curClass.GetFullName());
+                    foreach (MethodDefinition md in curClass.GetDescendants<MethodDefinition>()) // get current class's locally defined methods
+                    {
+                        _sqlOperatingMethodNames.Add(md.GetFullName());
+                    }
+                }
+            }
+
+            // get sorted sql operating methods
+            outputBuilder.AppendLine("==== SQL Operating Methods: ");
+            SortedSqlOperatingMethods = new List<MethodDefinition>();
+            foreach (MethodDefinition md in bottomUpSortedMethods)
+            {
+                if (_sqlOperatingMethodNames.Contains(md.GetFullName()))
+                {
+                    outputBuilder.AppendLine(md.GetFullName());
+                    SortedSqlOperatingMethods.Add(md);
+                }
+            }
+
+            outputBuilder.AppendLine("==== Local SQL Methods: ");
+            // get sorted local sql methods
+            SortedLocalSqlMethods = new List<MethodDefinition>();
+            HashSet<string> _localSqlMethodNames = new HashSet<string>();
+            foreach (MethodDefinition md in bottomUpSortedMethods)
+            {
+                if (!_sqlOperatingMethodNames.Contains(md.GetFullName()))
+                {
+                    HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(md); // both locally and externally
+                    if (invokedMethodNames.Overlaps(_sqlOperatingMethodNames))
+                    {
+                        outputBuilder.AppendLine(md.GetFullName());
+                        SortedLocalSqlMethods.Add(md);
+                        _localSqlMethodNames.Add(md.GetFullName());
+                    }
+                }
+            }
+
+            outputBuilder.AppendLine("==== Delegated SQL Methods");
+            SortedDelegatedSqlMethods = new List<MethodDefinition>();
+            HashSet<string> _delegatedSqlMethodNames = new HashSet<string>();
+            foreach (MethodDefinition md in bottomUpSortedMethods)
+            {
+                if (!_sqlOperatingMethodNames.Contains(md.GetFullName()) && !_localSqlMethodNames.Contains(md.GetFullName()))
+                {
+                    HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(md); // both locally and externally
+                    if (invokedMethodNames.Overlaps(_sqlOperatingMethodNames) || invokedMethodNames.Overlaps(_localSqlMethodNames))
+                    {
+                        outputBuilder.AppendLine(md.GetFullName());
+                        SortedDelegatedSqlMethods.Add(md);
+                        _delegatedSqlMethodNames.Add(md.GetFullName());
+                    }
+                }
+            }
+
+            outputBuilder.AppendLine("==== Non DB-Related Methods: ");
+            int non_db = 0;
+            foreach (MethodDefinition md in bottomUpSortedMethods)
+            {
+                if (!_sqlOperatingMethodNames.Contains(md.GetFullName()) && !_localSqlMethodNames.Contains(md.GetFullName())
+                    && !_delegatedSqlMethodNames.Contains(md.GetFullName()))
+                {
+                    non_db += 1;
+                    outputBuilder.AppendLine(md.GetFullName());
+                }
+            }
+
+            string filePath = Constants.LogPath + "\\" + Utility.GetProjectName(Constants.ProjName);
+            Utility.CreateDirectoryIfNotExist(filePath);
+            StreamWriter writetext = new StreamWriter(filePath + "\\1_divide_methods_in_3_categories.txt");
+            writetext.WriteLine("# of total methods = " + bottomUpSortedMethods.Count());
+            writetext.WriteLine("# of sql operating methods = " + SortedSqlOperatingMethods.Count());
+            writetext.WriteLine("# of local sql methods = " + SortedLocalSqlMethods.Count());
+            writetext.WriteLine("# of delegated sql methods = " + SortedDelegatedSqlMethods.Count());
+            writetext.WriteLine("# of non-database operating methods = " + non_db);
+            writetext.WriteLine("");
+            writetext.Write(outputBuilder.ToString());
+            writetext.Close();
+            Console.WriteLine("Writing to file finished!");
+
+
+            // Step 2.   Testing
+            InvokeCGManager.TestHowToUseMethodAnalyzer(SortedSqlOperatingMethods, "2_analyze_sql_operating_methods_using_MethodAnalyzer.txt");
+            InvokeCGManager.TestHowToUseMethodAnalyzer(SortedLocalSqlMethods, "3_analyze_local_sql_methods_using_MethodAnalyzer.txt");
+            InvokeCGManager.TestHowToUseMethodAnalyzer(SortedDelegatedSqlMethods, "4_analyze_delegated_sql_methods_using_MethodAnalyzer.txt");
+
+        }
+        
+        public void Step3_1_GetBasicGetSetMethods_stale()
         {
             basicGetSetMethods = new Dictionary<string, BasicGetSetMethod>();
             foreach (MethodDefinition method in bottomUpSortedMethods)

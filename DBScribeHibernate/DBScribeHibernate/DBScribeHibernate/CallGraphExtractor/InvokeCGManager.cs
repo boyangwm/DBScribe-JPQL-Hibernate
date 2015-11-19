@@ -186,7 +186,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             }
         }
 
-        public static void TestHowToAnalyzeMethods(IEnumerable<MethodDefinition> methods)
+        public static void TestHowToAnalyzeMethods(IEnumerable<MethodDefinition> methods, string LogFileName)
         {
             StringBuilder outputBuilder = new StringBuilder();
             outputBuilder.AppendLine(Util.Utility.GetProjectName(Constants.ProjName) + ": Analyze Methods Using Srcml.Net");
@@ -262,13 +262,13 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
             string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
             Util.Utility.CreateDirectoryIfNotExist(filePath);
-            StreamWriter writetext = new StreamWriter(filePath + "\\" +"2_analyze_methods_using_srcml.net.txt");
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + LogFileName);
             writetext.Write(outputBuilder.ToString());
             writetext.Close();
             Console.WriteLine("Writing to file finished!");
         }
 
-        public static void TestHowToUseMethodAnalyzer(IEnumerable<MethodDefinition> methods)
+        public static void TestHowToUseMethodAnalyzer(IEnumerable<MethodDefinition> methods, string LogFileName)
         {
             StringBuilder outputBuilder = new StringBuilder();
             outputBuilder.AppendLine(Util.Utility.GetProjectName(Constants.ProjName) + ": Analyze Methods Using MethodAnalyzer");
@@ -366,12 +366,43 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                     outputBuilder.AppendLine("9. Return Type:  <" + mAnalyzer.ReturnType + ">");
                     outputBuilder.AppendLine("IsReturnNewObj: " + mAnalyzer.IsReturnNewObj);
                 }
+
+                outputBuilder.AppendLine("10. Analyze each statement: ");
+                int idx_stmt = 0;
+                foreach (var statements in m.GetDescendantsAndSelf())
+                {
+                    idx_stmt += 1;
+                    outputBuilder.AppendLine("[Stmt-" + idx_stmt + "] " + statements + " || " + statements.GetType());
+
+                    int idx_expr = 0;
+                    foreach (var expression in statements.GetExpressions())
+                    {
+                        idx_expr += 1;
+                        outputBuilder.AppendLine("\t[Expr-" + idx_expr + "] " + expression + " || " + expression.GetType());
+
+                        int idx_exprDesc = 0;
+                        foreach (var exprDesc in expression.GetDescendantsAndSelf())
+                        {
+                            idx_exprDesc += 1;
+                            outputBuilder.AppendLine("\t\t [D-" + idx_exprDesc + "] " + exprDesc + " || " + exprDesc.GetType());
+                            if (exprDesc.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
+                            {
+                                MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)exprDesc);
+                                if (mDef != null)
+                                {
+                                    outputBuilder.AppendLine("\t\t\t*Found MethodDefinition: " + mDef.GetFullName());
+                                }
+                            }
+                        }
+                    }
+                }
+
                 outputBuilder.AppendLine("");
             }
 
             string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
             Util.Utility.CreateDirectoryIfNotExist(filePath);
-            StreamWriter writetext = new StreamWriter(filePath + "\\" + "3_analyze_methods_using_MethodAnalyzer.txt");
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + LogFileName);
             writetext.Write(outputBuilder.ToString());
             writetext.Close();
             Console.WriteLine("Writing to file finished!");
@@ -383,7 +414,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             return info;
         }
 
-        public static void TestHowToAnalyzeClasses(IEnumerable<TypeDefinition> classes)
+        public static void TestHowToAnalyzeClasses(IEnumerable<TypeDefinition> classes, string LogFileName)
         {
             StringBuilder outputBuilder = new StringBuilder();
             outputBuilder.AppendLine(Util.Utility.GetProjectName(Constants.ProjName) + ": Analyze Classes Using Srcml.Net");
@@ -443,7 +474,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
             string filePath = Constants.LogPath + "\\" + Util.Utility.GetProjectName(Constants.ProjName);
             Util.Utility.CreateDirectoryIfNotExist(filePath);
-            StreamWriter writetext = new StreamWriter(filePath + "\\" + "1_analyze_classes_using_srcml.net.txt");
+            StreamWriter writetext = new StreamWriter(filePath + "\\" + LogFileName);
             writetext.Write(outputBuilder.ToString());
             writetext.Close();
             Console.WriteLine("Writing to file finished!");

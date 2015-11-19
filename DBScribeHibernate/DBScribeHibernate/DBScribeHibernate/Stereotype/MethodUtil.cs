@@ -9,6 +9,34 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
     class MethodUtil
     {
+
+        /// <summary>
+        /// // Get all the methods invoked by this methods: both locally or externally
+        /// </summary>
+        /// <param name="md"></param>
+        /// <returns></returns>
+        public static HashSet<string> GetInvokedMethodNameInTheMethod(MethodDefinition md)
+        {
+            HashSet<string> invokedMethodNames = new HashSet<string>();
+            
+            HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(md);
+            foreach (MethodDefinition invmd in mAnalyzer.InvokedLocalMethods)
+            {
+                if (invmd != null)
+                {
+                    invokedMethodNames.Add(invmd.GetFullName());
+                }
+            }
+            foreach (MethodDefinition invmd in mAnalyzer.InvokedExternalMethods)
+            {
+                if (invmd != null)
+                {
+                    invokedMethodNames.Add(invmd.GetFullName());
+                }
+            }
+            return invokedMethodNames;
+        }
+
         public static TypeDefinition GetDeclaringClass(MethodDefinition method)
         {
             TypeDefinition declaringClass = method.GetAncestors<TypeDefinition>().FirstOrDefault();

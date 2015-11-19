@@ -48,6 +48,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// </summary>
         public enum MappingFileType { XMLMapping, AnnotationMapping, OtherMapping, BaseMapping };
         public enum BasicMethodType { Get, Set };
+        public enum MethodOperationType { Insert, Delete, Update, Query };
 
 
         public static string getMainMethodFullName()

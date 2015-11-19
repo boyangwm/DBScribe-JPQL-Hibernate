@@ -73,7 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBScribeHibernate\CallGraphExtractor\BasicGetSetMethod.cs" />
+    <Compile Include="DBScribeHibernate\DescriptionTemplates\BasicGetSetMethod.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\ClassProperty.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\CompositePK.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\SinglePK.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="DBScribeHibernate\CallGraphExtractor\TopoSortCallGraph.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\AnnotationMappingParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\ConfigParser.cs" />
+    <Compile Include="DBScribeHibernate\DescriptionTemplates\MethodDescription.cs" />
     <Compile Include="DBScribeHibernate\StaleClasses\ConfigParserOld.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\MappingParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\XMLMappingParser.cs" />
