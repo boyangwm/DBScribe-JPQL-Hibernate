@@ -21,6 +21,10 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             foreach (Expression expr in expressions)
             {
                 Console.WriteLine(expr);
+                foreach (var xxx in expr.GetDescendantsAndSelf())
+                {
+                    Console.WriteLine("\t" + xxx + " || " + xxx.GetType());
+                }
             }
             
         }
