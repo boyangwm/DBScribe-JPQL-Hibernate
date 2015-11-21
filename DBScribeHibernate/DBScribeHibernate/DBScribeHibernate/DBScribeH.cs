@@ -397,9 +397,18 @@ namespace DBScribeHibernate
 
             foreach (MethodDefinition md in bottomUpSortedMethods)
             {
-                if (md.GetFullName() == "com.jspdev.biyesheji.Student.deleteStudent")
+                //var dc = MethodUtil.GetDeclaringClass(md);
+                //if (dc != null && dc.GetFullName() == "com.jspdev.biyesheji.Student")
+                //if (md.GetFullName() == "com.jspdev.biyesheji.Student.queryOperator")
+                if (true)
                 {
-                    MethodUtil.CheckIfCallSessionBuiltInFunction(md, allDBClassToTableName);
+                    List<SessionBuiltInFunction> sessionFunctionList = MethodUtil.CheckIfCallSessionBuiltInFunction(md, allDBClassToTableName);
+                    Console.WriteLine("=== " + md.GetFullName());
+                    for (int i = 0; i < sessionFunctionList.Count(); i++)
+                    {
+                        var item = sessionFunctionList[i];
+                        Console.WriteLine("\tsession." + item.FunctionName + "(" + item.TargetClassName + ")");
+                    }
                 }
             }
 

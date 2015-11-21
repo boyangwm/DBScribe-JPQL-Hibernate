@@ -11,22 +11,24 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
     class MethodUtil
     {
 
-        public static void CheckIfCallSessionBuiltInFunction(MethodDefinition md, Dictionary<string, string> allDBClassToTableName)
+        public static List<SessionBuiltInFunction> CheckIfCallSessionBuiltInFunction(MethodDefinition md, Dictionary<string, string> allDBClassToTableName)
         {
+            List<SessionBuiltInFunction> sessionFunctionList = new List<SessionBuiltInFunction>();
+
             HashSet<string> PojoClassNames = GetPOJOClassName(allDBClassToTableName);
             Dictionary<string, string> varList = GetVariableListForMethod(md);
-            foreach (KeyValuePair<string, string> item in varList)
-            {
-                Console.WriteLine(item.Key + " <--> " + item.Value);
-            }
-            Console.WriteLine("");
+            //foreach (KeyValuePair<string, string> item in varList)
+            //{
+            //    Console.WriteLine(item.Key + " <--> " + item.Value);
+            //}
+            //Console.WriteLine("");
 
             IEnumerable<Expression> expressions = from statements in md.GetDescendantsAndSelf()
                               from expression in statements.GetExpressions()
                               select expression;
             foreach (Expression expr in expressions)
             {
-                Console.WriteLine(expr);
+                //Console.WriteLine(expr);
                 List<NameUse> itemsInSameLevel = new List<NameUse>(expr.GetDescendantsAndSelf<NameUse>());
                 int len = itemsInSameLevel.Count();
                 for(int i = 0; i < len; i++)
@@ -45,26 +47,72 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                             }
                             if (nextSibling != null && nextSibling.GetType().ToString() == Constants.SrcML_MethodCall)
                             {
-                                MethodCall sessionFunction = (MethodCall)nextSibling;
+                                string sessionFunctionName = ((MethodCall)nextSibling).Name;
+
+                                // Next, find the target POJO class for normal session functions
+                                // And find query string for query session functions
                                 string targetClassName = "";
-                                if(sessionFunction.Name == Constants.SessionBuiltInFunctions.delete.ToString() ||
-                                    sessionFunction.Name == Constants.SessionBuiltInFunctions.load.ToString())
-                                // When you find one session function, find the first NameUse that is a POJO class
-                                for (int j = i + 1; j < len; j++)
+                                if (SessionBuiltInFunction.NormalFunctions.Contains(sessionFunctionName))
                                 {
-                                    if (itemsInSameLevel[j].GetType().ToString() == Constants.SrcML_NameUse)
+                                    // When you find one session function, find the first NameUse that is a POJO class
+                                    // (1) if use "String entityName" as parameter
+                                    for (int j = i + 1; j < len; j++)
                                     {
-                                        if(PojoClassNames.Contains(itemsInSameLevel[j].Name)){
-                                            targetClassName = itemsInSameLevel[j].Name;
+                                        if (itemsInSameLevel[j].GetType().ToString() == Constants.SrcML_NameUse)
+                                        {
+                                            if (PojoClassNames.Contains(itemsInSameLevel[j].Name))
+                                            {
+                                                targetClassName = itemsInSameLevel[j].Name;
+                                                break;
+                                            }
+
                                         }
                                     }
+                                    // (2) not found in (1) && if use "Object object" as parameter
+                                    if (targetClassName == "")
+                                    {
+                                        for (int j = i + 1; j < len; j++)
+                                        {
+                                            if(varList.ContainsKey(itemsInSameLevel[j].Name) &&
+                                                PojoClassNames.Contains(varList[itemsInSameLevel[j].Name]))
+                                            {
+                                                targetClassName = varList[itemsInSameLevel[j].Name];
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    //Console.WriteLine("\t\t~~~~ " + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
+                                    sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
                                 }
-                                Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunction.Name + "(" + targetClassName + ")");
+                                else if (SessionBuiltInFunction.QueryFunctions.Contains(sessionFunctionName))
+                                {
+                                    // Note that, if it's query function, TargetClassName in fact means hql/sql string.
+                                    for (int j = i + 1; j < len; j++)
+                                    {
+                                        var itemName = itemsInSameLevel[j].Name;
+                                        if (varList.ContainsKey(itemName))
+                                        {
+                                            if (varList[itemName] == "string" || varList[itemName] == "String")
+                                            {
+                                                targetClassName = varList[itemName];
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
+                                    sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                                }
+                                else
+                                {
+                                    //Console.WriteLine("\t\t*** Other types of session function: " + sessionFunctionName);
+                                }
                             }
                         }
                     }
                 }
             }
+            return sessionFunctionList;
         }
 
 
@@ -97,26 +145,42 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(md);
             foreach (VariableDeclaration vi in mAnalyzer.Paras)
             {
-                varList.Add(vi.Name, vi.VariableType.ToString());
+                if (!varList.ContainsKey(vi.Name))
+                {
+                    varList.Add(vi.Name, vi.VariableType.ToString());
+                }
             }
             foreach (VariableInfo vi in mAnalyzer.VariablesInfo)
             {
-                varList.Add(vi.GetName(), vi.GetVariableType().ToString());
+                if (!varList.ContainsKey(vi.GetName()))
+                {
+                    varList.Add(vi.GetName(), vi.GetVariableType().ToString());
+                }
             }
             foreach (VariableDeclaration vi in mAnalyzer.GetSelfFields)
             {
-                varList.Add(vi.Name, vi.VariableType.ToString());
+                if (!varList.ContainsKey(vi.Name))
+                {
+                    varList.Add(vi.Name, vi.VariableType.ToString());
+                }
             }
             foreach (VariableDeclaration vi in mAnalyzer.SetSelfFields)
             {
-                varList.Add(vi.Name, vi.VariableType.ToString());
+                if (!varList.ContainsKey(vi.Name))
+                {
+                    varList.Add(vi.Name, vi.VariableType.ToString());
+                }
             }
             foreach (VariableDeclaration vi in mAnalyzer.PropertyFields)
             {
-                varList.Add(vi.Name, vi.VariableType.ToString());
+                if (!varList.ContainsKey(vi.Name))
+                {
+                    varList.Add(vi.Name, vi.VariableType.ToString());
+                }
             }
             return varList;
         }
+        
 
         /// <summary>
         /// Get all the methods invoked by this methods: both locally or externally
