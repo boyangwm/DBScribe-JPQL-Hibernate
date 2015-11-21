@@ -399,7 +399,7 @@ namespace DBScribeHibernate
             {
                 if (md.GetFullName() == "com.jspdev.biyesheji.Student.deleteStudent")
                 {
-                    MethodUtil.CheckIfCallSessionBuiltInFunction(md);
+                    MethodUtil.CheckIfCallSessionBuiltInFunction(md, allDBClassToTableName);
                 }
             }
 
@@ -422,7 +422,7 @@ namespace DBScribeHibernate
             InvokeCGManager.TestHowToUseMethodAnalyzer(SortedLocalSqlMethods, "3_analyze_local_sql_methods_using_MethodAnalyzer.txt");
             InvokeCGManager.TestHowToUseMethodAnalyzer(SortedDelegatedSqlMethods, "4_analyze_delegated_sql_methods_using_MethodAnalyzer.txt");
             InvokeCGManager.TestHowToUseMethodAnalyzer(NonDBMethods, "5_analyze_non_db_methods_using_MethodAnalyzer.txt");
-             */
+             **/
         }
         
         public void Step3_1_GetBasicGetSetMethods_stale()

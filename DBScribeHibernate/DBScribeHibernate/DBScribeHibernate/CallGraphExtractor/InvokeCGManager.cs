@@ -245,7 +245,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                         {
                             idx_exprDesc += 1;
                             outputBuilder.AppendLine("\t\t [D-" + idx_exprDesc + "] " + exprDesc + " || " + exprDesc.GetType());
-                            if (exprDesc.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
+                            if (exprDesc.GetType().ToString() == Constants.SrcML_MethodCall)
                             {
                                 MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)exprDesc);
                                 if (mDef != null)
@@ -385,7 +385,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                         {
                             idx_exprDesc += 1;
                             outputBuilder.AppendLine("\t\t [D-" + idx_exprDesc + "] " + exprDesc + " || " + exprDesc.GetType());
-                            if (exprDesc.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
+                            if (exprDesc.GetType().ToString() == Constants.SrcML_MethodCall)
                             {
                                 MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)exprDesc);
                                 if (mDef != null)
@@ -496,7 +496,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
                     {
                         foreach (var exprDesc in expression.GetDescendantsAndSelf())
                         {
-                            if (exprDesc.GetType().ToString() == "ABB.SrcML.Data.MethodCall")
+                            if (exprDesc.GetType().ToString() == Constants.SrcML_MethodCall)
                             {
                                 MethodDefinition mDef = CallGraphUtil.FindMatchedMd((MethodCall)exprDesc);
                                 if (mDef != null)

@@ -49,6 +49,21 @@ namespace DBScribeHibernate.DBScribeHibernate
         public enum MappingFileType { XMLMapping, AnnotationMapping, OtherMapping, BaseMapping };
         public enum BasicMethodType { Get, Set };
         public enum MethodOperationType { Insert, Delete, Update, Query };
+        
+
+        /// <summary>
+        /// Hibernate Session built-in functions
+        /// </summary>
+        public static readonly string Session = "Session";
+        public enum SessionBuiltInFunctions { get, load, merge, persist, replicate, save, saveOrUpdate, update, 
+            delete, createCriteria, createQuery, createSQLQuery };
+
+
+        /// <summary>
+        /// SrcML.Net keywords
+        /// </summary>
+        public static readonly string SrcML_NameUse = "ABB.SrcML.Data.NameUse";
+        public static readonly string SrcML_MethodCall = "ABB.SrcML.Data.MethodCall";
 
 
         public static string getMainMethodFullName()

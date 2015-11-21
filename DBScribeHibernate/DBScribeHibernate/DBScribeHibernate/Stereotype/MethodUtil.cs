@@ -11,22 +11,77 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
     class MethodUtil
     {
 
-        public static void CheckIfCallSessionBuiltInFunction(MethodDefinition md)
+        public static void CheckIfCallSessionBuiltInFunction(MethodDefinition md, Dictionary<string, string> allDBClassToTableName)
         {
+            HashSet<string> PojoClassNames = GetPOJOClassName(allDBClassToTableName);
+            Dictionary<string, string> varList = GetVariableListForMethod(md);
+            foreach (KeyValuePair<string, string> item in varList)
+            {
+                Console.WriteLine(item.Key + " <--> " + item.Value);
+            }
+            Console.WriteLine("");
 
-            HashSet<VarInfo> varList = GetVariableListForMethod(md);
             IEnumerable<Expression> expressions = from statements in md.GetDescendantsAndSelf()
                               from expression in statements.GetExpressions()
                               select expression;
             foreach (Expression expr in expressions)
             {
                 Console.WriteLine(expr);
-                foreach (var xxx in expr.GetDescendantsAndSelf())
+                List<NameUse> itemsInSameLevel = new List<NameUse>(expr.GetDescendantsAndSelf<NameUse>());
+                int len = itemsInSameLevel.Count();
+                for(int i = 0; i < len; i++)
                 {
-                    Console.WriteLine("\t" + xxx + " || " + xxx.GetType());
+                    NameUse item = itemsInSameLevel[i];
+                    //Console.WriteLine("\t" + item.Name + " || " + item.GetType());
+                    if (item.GetType().ToString() == Constants.SrcML_NameUse)
+                    {
+                        //Console.WriteLine("\t" + item.Name + " || " + item.GetType());
+                        if (varList.ContainsKey(item.Name) && varList[item.Name] == Constants.Session)
+                        {
+                            NameUse nextSibling = null;
+                            if (i != len - 1)
+                            {
+                                nextSibling = itemsInSameLevel[++i];
+                            }
+                            if (nextSibling != null && nextSibling.GetType().ToString() == Constants.SrcML_MethodCall)
+                            {
+                                MethodCall sessionFunction = (MethodCall)nextSibling;
+                                string targetClassName = "";
+                                if(sessionFunction.Name == Constants.SessionBuiltInFunctions.delete.ToString() ||
+                                    sessionFunction.Name == Constants.SessionBuiltInFunctions.load.ToString())
+                                // When you find one session function, find the first NameUse that is a POJO class
+                                for (int j = i + 1; j < len; j++)
+                                {
+                                    if (itemsInSameLevel[j].GetType().ToString() == Constants.SrcML_NameUse)
+                                    {
+                                        if(PojoClassNames.Contains(itemsInSameLevel[j].Name)){
+                                            targetClassName = itemsInSameLevel[j].Name;
+                                        }
+                                    }
+                                }
+                                Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunction.Name + "(" + targetClassName + ")");
+                            }
+                        }
+                    }
                 }
             }
-            
+        }
+
+
+        /// <summary>
+        /// Get class name from class full name
+        /// </summary>
+        /// <param name="allDBClassToTableName"></param>
+        /// <returns></returns>
+        private static HashSet<string> GetPOJOClassName(Dictionary<string, string> allDBClassToTableName)
+        {
+            HashSet<string> classNames = new HashSet<string>();
+            foreach (string fullName in allDBClassToTableName.Keys)
+            {
+                string[] tmps = fullName.Split('.');
+                classNames.Add(tmps[tmps.Length - 1]);
+            }
+            return classNames;
         }
 
         /// <summary>
@@ -34,31 +89,31 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// paras, local variables, get/set field, property fields
         /// </summary>
         /// <param name="md"></param>
-        /// <returns></returns>
-        public static HashSet<VarInfo> GetVariableListForMethod(MethodDefinition md)
+        /// <returns>Dictionary<string, string>: link variable name to variable type</returns>
+        public static Dictionary<string, string> GetVariableListForMethod(MethodDefinition md)
         {
-            HashSet<VarInfo> varList = new HashSet<VarInfo>();
+            Dictionary<string, string> varList = new Dictionary<string, string>();
 
             HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(md);
             foreach (VariableDeclaration vi in mAnalyzer.Paras)
             {
-                varList.Add(new VarInfo(vi.Name, vi.VariableType));
+                varList.Add(vi.Name, vi.VariableType.ToString());
             }
             foreach (VariableInfo vi in mAnalyzer.VariablesInfo)
             {
-                varList.Add(new VarInfo(vi.GetName(), vi.GetVariableType()));
+                varList.Add(vi.GetName(), vi.GetVariableType().ToString());
             }
             foreach (VariableDeclaration vi in mAnalyzer.GetSelfFields)
             {
-                varList.Add(new VarInfo(vi.Name, vi.VariableType));
+                varList.Add(vi.Name, vi.VariableType.ToString());
             }
             foreach (VariableDeclaration vi in mAnalyzer.SetSelfFields)
             {
-                varList.Add(new VarInfo(vi.Name, vi.VariableType));
+                varList.Add(vi.Name, vi.VariableType.ToString());
             }
             foreach (VariableDeclaration vi in mAnalyzer.PropertyFields)
             {
-                varList.Add(new VarInfo(vi.Name, vi.VariableType));
+                varList.Add(vi.Name, vi.VariableType.ToString());
             }
             return varList;
         }
