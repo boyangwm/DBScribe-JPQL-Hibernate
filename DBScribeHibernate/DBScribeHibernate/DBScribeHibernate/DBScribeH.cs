@@ -403,6 +403,10 @@ namespace DBScribeHibernate
                 if (true)
                 {
                     List<SessionBuiltInFunction> sessionFunctionList = MethodUtil.CheckIfCallSessionBuiltInFunction(md, allDBClassToTableName);
+                    if (sessionFunctionList.Count() == 0)
+                    {
+                        continue;
+                    }
                     Console.WriteLine("=== " + md.GetFullName());
                     for (int i = 0; i < sessionFunctionList.Count(); i++)
                     {
