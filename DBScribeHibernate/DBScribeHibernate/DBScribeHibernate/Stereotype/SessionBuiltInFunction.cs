@@ -25,5 +25,10 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             this.FunctionName = functionName;
             this.TargetClassName = targetClassName;
         }
+
+        public override string ToString()
+        {
+            return "session." + FunctionName + "(" + TargetClassName + ")";
+        }
     }
 }

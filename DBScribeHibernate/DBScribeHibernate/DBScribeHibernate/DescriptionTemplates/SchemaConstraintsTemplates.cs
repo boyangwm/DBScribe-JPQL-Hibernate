@@ -34,13 +34,13 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
         public static string SchemaConstraintsPK(SinglePK singlePK)
         {
             //return "Primary key: " + singlePK.TablePK + " (type = " + singlePK.Type + ", generator class = " + singlePK.GeneratorClass + ")";
-            string onlyTablePK = singlePK.TablePK;
-            string[] segs = onlyTablePK.Split('.');
-            if (segs.Length > 1)
-            {
-                onlyTablePK = segs[segs.Length - 1];
-            }
-            string line = "Primary key: " + onlyTablePK + " (type=" + singlePK.Type;
+            //string onlyTablePK = singlePK.TablePK;
+            //string[] segs = onlyTablePK.Split('.');
+            //if (segs.Length > 1)
+            //{
+            //    onlyTablePK = segs[segs.Length - 1];
+            //}
+            string line = "Primary key: " + singlePK.TablePK + " (type=" + singlePK.Type;
             if (singlePK.ConstraintInfo == "")
             {
                 line += ")";
@@ -57,13 +57,13 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             string line = "Primary key: ";
             foreach (SinglePK pk in compositePK.PKList)
             {
-                string onlyTablePk = pk.TablePK;
-                string[] segs = onlyTablePk.Split('.');
-                if (segs.Length > 1)
-                {
-                    onlyTablePk = segs[segs.Length - 1];
-                }
-                line += onlyTablePk + " (type=" + pk.Type;
+                //string onlyTablePk = pk.TablePK;
+                //string[] segs = onlyTablePk.Split('.');
+                //if (segs.Length > 1)
+                //{
+                //    onlyTablePk = segs[segs.Length - 1];
+                //}
+                line += pk.TablePK + " (type=" + pk.Type;
                 if (pk.ConstraintInfo == "")
                 {
                     line += "), ";
@@ -78,13 +78,12 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 
         public static string SchemaConstraintsClassProp(ClassProperty classProp)
         {
-            string onlyTableAttr = classProp.TableAttr;
-            string[] segs = onlyTableAttr.Split('.');
-            if (segs.Length > 1)
+            if (classProp.ConstraintInfo.Length == 0)
             {
-                onlyTableAttr = segs[segs.Length - 1];
+                return "";
             }
-            string line = onlyTableAttr + " (type=" + classProp.Type;
+
+            string line = classProp.TableAttr + " (type=" + classProp.Type;
             if (classProp.ConstraintInfo == "")
             {
                 line += ")";

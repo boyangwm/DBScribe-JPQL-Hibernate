@@ -39,5 +39,24 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
             return null;
         }
 
+        /// <summary>
+        /// Given the CalleeList returned by FindCalleeList
+        /// Return the Call Chain String
+        /// </summary>
+        /// <param name="paths"></param>
+        /// <returns></returns>
+        public static string GetCalleeListStr(List<List<MethodDefinition>> paths)
+        {
+            StringBuilder outputBuilder = new StringBuilder();
+            foreach (List<MethodDefinition> path in paths)
+            {
+                foreach (MethodDefinition mc in path)
+                {
+                    outputBuilder.Append(mc.GetFullName() + " --> ");
+                }
+                outputBuilder.AppendLine("");
+            }
+            return outputBuilder.ToString();
+        }
     }
 }

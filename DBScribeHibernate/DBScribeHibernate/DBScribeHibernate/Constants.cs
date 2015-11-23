@@ -17,7 +17,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly string TargetProjPath = @"E:\workspace_hibernate";
 
         //// IF using <mapping resource="...xml" /> ---> xml
-        //public static readonly string ProjName = @"MyFirstHibernate";
+        public static readonly string ProjName = @"MyFirstHibernate";
         //public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
         //public static readonly string ProjName = @"HibernateComponentMappingExample";
         //public static readonly string ProjName = @"hibernateSchemaGenerationExample";
@@ -28,7 +28,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         //public static readonly string ProjName = @"HibernateOneToOneAnnotation";
 
         //// Real projects
-        public static readonly string ProjName = @"_RealProjects\biyesheji";    // XML mapping
+        //public static readonly string ProjName = @"_RealProjects\biyesheji";    // XML mapping
         //public static readonly string ProjName = @"_RealProjects\hibernate-spring-struts-bookstore-master";  // XML mapping
         //public static readonly string ProjName = @"_RealProjects\chat-springmvc-hibernate-master";  // Annotation mapping
         //public static readonly string ProjName = @"_RealProjects\TicketsOn-spring-master"; // Annotation mapping
@@ -47,7 +47,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// Self-defined enumerations
         /// </summary>
         public enum MappingFileType { XMLMapping, AnnotationMapping, OtherMapping, BaseMapping };
-        public enum BasicMethodType { Get, Set };
+        public enum BasicMethodType { Get, Set, Construct };
         public enum MethodOperationType { Insert, Delete, Update, Query };
         
 

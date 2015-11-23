@@ -10,7 +10,92 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
     class MethodUtil
     {
+        public static BasicMethod CheckIfGetSetMethodsInPOJOClass(MethodDefinition method, Dictionary<string, string> allDBClassToTableName, Dictionary<string, string> allDBClassPropToTableAttr)
+        {
+            BasicMethod basictMethod = null;
 
+            string methodFullName = method.GetFullName();
+            string curClassName = "";
+            TypeDefinition declaringClass = MethodUtil.GetDeclaringClass(method);
+            if (declaringClass == null)
+            {
+                return basictMethod;
+            }
+            else
+            {
+                curClassName = declaringClass.GetFullName();
+            }
+
+            //Console.WriteLine(curClassName);
+            if (!allDBClassToTableName.ContainsKey(curClassName)) // if not from POJO class return;
+            {
+                return basictMethod;
+            }
+
+            HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(method);
+            if (mAnalyzer.IsSuccess != 0)
+            {
+                //Console.WriteLine(mAnalyzer.GetFailInfo());
+                return basictMethod;
+            }
+
+            string tableName = allDBClassToTableName[curClassName];
+
+            // (1) handle Basic POJO DB Class Constructors
+            if (method.IsConstructor)
+            {
+                HashSet<string> attrList = new HashSet<string>();
+                foreach (VariableDeclaration vd in mAnalyzer.SetSelfFields)
+                {
+                    string fullClassPropName = curClassName + "." + vd.Name;
+                    if (allDBClassPropToTableAttr.ContainsKey(fullClassPropName))
+                    {
+                        string[] temps = allDBClassPropToTableAttr[fullClassPropName].Split('.');
+                        attrList.Add(temps[1]);
+                    }
+                }
+                basictMethod = new BasicMethod(Constants.BasicMethodType.Construct, tableName, attrList);
+            }
+            else // (2) handle Basic POJO DB Class Get/Set methods
+            {
+                HashSet<VariableDeclaration> getSelfFiels = mAnalyzer.GetSelfFields;
+                HashSet<VariableDeclaration> setSelfFiels = mAnalyzer.SetSelfFields;
+                if (getSelfFiels.Count() == 1 && setSelfFiels.Count() == 0)
+                {
+                    VariableDeclaration para = getSelfFiels.SingleOrDefault();
+                    string fullClassPropName = curClassName + "." + para.Name;
+                    if (allDBClassPropToTableAttr.ContainsKey(fullClassPropName))
+                    {
+                        string[] temps = allDBClassPropToTableAttr[fullClassPropName].Split('.');
+                        HashSet<string> attrList = new HashSet<string>();
+                        attrList.Add(temps[1]);
+                        basictMethod = new BasicMethod(Constants.BasicMethodType.Get, tableName, attrList);
+                    }
+                }
+                if (setSelfFiels.Count() == 1 && getSelfFiels.Count() == 0)
+                {
+                    VariableDeclaration para = setSelfFiels.SingleOrDefault();
+                    string fullClassPropName = curClassName + "." + para.Name;
+                    if (allDBClassPropToTableAttr.ContainsKey(fullClassPropName))
+                    {
+                        string[] temps = allDBClassPropToTableAttr[fullClassPropName].Split('.');
+                        HashSet<string> attrList = new HashSet<string>();
+                        attrList.Add(temps[1]);
+                        basictMethod = new BasicMethod(Constants.BasicMethodType.Set, tableName, attrList);
+                    }
+                }
+            }
+            return basictMethod;
+        }
+        
+
+        /// <summary>
+        /// Check if the given method calls Session built-in function!
+        /// Return a list of Session Built-in Functions(in sequency)
+        /// </summary>
+        /// <param name="md"></param>
+        /// <param name="allDBClassToTableName"></param>
+        /// <returns></returns>
         public static List<SessionBuiltInFunction> CheckIfCallSessionBuiltInFunction(MethodDefinition md, Dictionary<string, string> allDBClassToTableName)
         {
             List<SessionBuiltInFunction> sessionFunctionList = new List<SessionBuiltInFunction>();
@@ -29,6 +114,8 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             foreach (Expression expr in expressions)
             {
                 //Console.WriteLine(expr);
+                Stack<SessionBuiltInFunction> fStack = new Stack<SessionBuiltInFunction>();
+
                 List<NameUse> itemsInSameLevel = new List<NameUse>(expr.GetDescendantsAndSelf<NameUse>());
                 int len = itemsInSameLevel.Count();
                 for(int i = 0; i < len; i++)
@@ -83,7 +170,8 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                                     }
 
                                     //Console.WriteLine("\t\t~~~~ " + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
-                                    sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                                    //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
                                 }
                                 else if (SessionBuiltInFunction.QueryFunctions.Contains(sessionFunctionName))
                                 {
@@ -101,7 +189,8 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                                         }
                                     }
                                     //Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
-                                    sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                                    //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
                                 }
                                 else
                                 {
@@ -110,6 +199,10 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                             }
                         }
                     }
+                }
+                while (fStack.Count() != 0)
+                {
+                    sessionFunctionList.Add(fStack.Pop());
                 }
             }
             return sessionFunctionList;

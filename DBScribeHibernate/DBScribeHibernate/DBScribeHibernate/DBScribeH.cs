@@ -11,6 +11,7 @@ using DBScribeHibernate.DBScribeHibernate.Stereotype;
 using DBScribeHibernate.DBScribeHibernate;
 using DBScribeHibernate.DBScribeHibernate.ConfigParser;
 using DBScribeHibernate.DBScribeHibernate.Util;
+using DBScribeHibernate.DBScribeHibernate.DescriptionTemplates;
 
 namespace DBScribeHibernate
 {
@@ -52,11 +53,9 @@ namespace DBScribeHibernate
         /// (2) Local SQL methods: call (1) SQL operating methods and Hibernate session built-in functions(i.e. save/update/delete)
         /// (3) Delegated SQL methods: call (2)
         /// </summary>
-        public List<MethodDefinition> SortedSqlOperatingMethods;
-        public List<MethodDefinition> SortedLocalSqlMethods;
-        public List<MethodDefinition> SortedDelegatedSqlMethods;
-
-        public Dictionary<string, BasicGetSetMethod> basicGetSetMethods;
+        //public List<MethodDefinition> SortedSqlOperatingMethods;
+        //public List<MethodDefinition> SortedLocalSqlMethods;
+        //public List<MethodDefinition> SortedDelegatedSqlMethods;
 
 
         public DBScribeH(string targetProjPath, string projName)
@@ -75,7 +74,7 @@ namespace DBScribeHibernate
 
             Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
 
-            Step3_1_DivideAllMethodsIntoThreeCategories();
+            Step3_1_BottomUpTraverseMethods();
         }
 
 
@@ -310,179 +309,214 @@ namespace DBScribeHibernate
             }
         }
 
-        public void Step3_1_DivideAllMethodsIntoThreeCategories()
+        public void Step3_1_BottomUpTraverseMethods()
         {
             StringBuilder outputBuilder = new StringBuilder();
 
-            HashSet<string> allPojoClasses = new HashSet<string>(allDBClassToTableName.Keys);
-
-            HashSet<string> _sqlOperatingMethodNames = new HashSet<string>();
-            // get all POJO classes and those SQL operating methods
-            foreach (TypeDefinition curClass in globalNamespace.GetDescendants<TypeDefinition>())
-            {
-                if (allPojoClasses.Contains(curClass.GetFullName())) // if this is a POJO class
-                {
-                    //Console.WriteLine(curClass.GetFullName());
-                    foreach (MethodDefinition md in curClass.GetDescendants<MethodDefinition>()) // get current class's locally defined methods
-                    {
-                        _sqlOperatingMethodNames.Add(md.GetFullName());
-                    }
-                }
-            }
-
-            // get sorted sql operating methods
-            outputBuilder.AppendLine("==== SQL Operating Methods: ");
-            SortedSqlOperatingMethods = new List<MethodDefinition>();
-            foreach (MethodDefinition md in bottomUpSortedMethods)
-            {
-                if (_sqlOperatingMethodNames.Contains(md.GetFullName()))
-                {
-                    outputBuilder.AppendLine(md.GetFullName());
-                    SortedSqlOperatingMethods.Add(md);
-                }
-            }
-
-            outputBuilder.AppendLine("==== Local SQL Methods: ");
-            // get sorted local sql methods
-            SortedLocalSqlMethods = new List<MethodDefinition>();
-            HashSet<string> _localSqlMethodNames = new HashSet<string>();
-            foreach (MethodDefinition md in bottomUpSortedMethods)
-            {
-                if (!_sqlOperatingMethodNames.Contains(md.GetFullName()))
-                {
-                    HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(md); // both locally and externally
-                    if (invokedMethodNames.Overlaps(_sqlOperatingMethodNames))
-                    {
-                        outputBuilder.AppendLine(md.GetFullName());
-                        SortedLocalSqlMethods.Add(md);
-                        _localSqlMethodNames.Add(md.GetFullName());
-                    }
-                }
-            }
-
-            outputBuilder.AppendLine("==== Delegated SQL Methods");
-            SortedDelegatedSqlMethods = new List<MethodDefinition>();
-            HashSet<string> _delegatedSqlMethodNames = new HashSet<string>();
-            foreach (MethodDefinition md in bottomUpSortedMethods)
-            {
-                if (!_sqlOperatingMethodNames.Contains(md.GetFullName()) && !_localSqlMethodNames.Contains(md.GetFullName()))
-                {
-                    HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(md); // both locally and externally
-                    if (invokedMethodNames.Overlaps(_sqlOperatingMethodNames) || invokedMethodNames.Overlaps(_localSqlMethodNames))
-                    {
-                        outputBuilder.AppendLine(md.GetFullName());
-                        SortedDelegatedSqlMethods.Add(md);
-                        _delegatedSqlMethodNames.Add(md.GetFullName());
-                    }
-                }
-            }
-
-            outputBuilder.AppendLine("==== Non DB-Related Methods: ");
-            List<MethodDefinition> NonDBMethods = new List<MethodDefinition>();
-            foreach (MethodDefinition md in bottomUpSortedMethods)
-            {
-                if (!_sqlOperatingMethodNames.Contains(md.GetFullName()) && !_localSqlMethodNames.Contains(md.GetFullName())
-                    && !_delegatedSqlMethodNames.Contains(md.GetFullName()))
-                {
-                    //var stmts = md.GetDescendantsAndSelf();
-                    //if (stmts.Count() < 2)
-                    //{
-                    //    continue;
-                    //}
-                    //MethodUtil.CheckIfCallSessionBuiltInFunction(md);
-                    NonDBMethods.Add(md);
-                    outputBuilder.AppendLine(md.GetFullName());
-                }
-            }
-
-            foreach (MethodDefinition md in bottomUpSortedMethods)
-            {
-                //var dc = MethodUtil.GetDeclaringClass(md);
-                //if (dc != null && dc.GetFullName() == "com.jspdev.biyesheji.Student")
-                //if (md.GetFullName() == "com.jspdev.biyesheji.Student.queryOperator")
-                if (true)
-                {
-                    List<SessionBuiltInFunction> sessionFunctionList = MethodUtil.CheckIfCallSessionBuiltInFunction(md, allDBClassToTableName);
-                    if (sessionFunctionList.Count() == 0)
-                    {
-                        continue;
-                    }
-                    Console.WriteLine("=== " + md.GetFullName());
-                    for (int i = 0; i < sessionFunctionList.Count(); i++)
-                    {
-                        var item = sessionFunctionList[i];
-                        Console.WriteLine("\tsession." + item.FunctionName + "(" + item.TargetClassName + ")");
-                    }
-                }
-            }
-
-            /*
-            // Step 2.   Testing
-            string filePath = Constants.LogPath + "\\" + Utility.GetProjectName(Constants.ProjName);
-            Utility.CreateDirectoryIfNotExist(filePath);
-            StreamWriter writetext = new StreamWriter(filePath + "\\1_divide_methods_in_3_categories.txt");
-            writetext.WriteLine("# of total methods = " + bottomUpSortedMethods.Count());
-            writetext.WriteLine("# of sql operating methods = " + SortedSqlOperatingMethods.Count());
-            writetext.WriteLine("# of local sql methods = " + SortedLocalSqlMethods.Count());
-            writetext.WriteLine("# of delegated sql methods = " + SortedDelegatedSqlMethods.Count());
-            writetext.WriteLine("# of non-database operating methods = " + NonDBMethods.Count());
-            writetext.WriteLine("");
-            writetext.Write(outputBuilder.ToString());
-            writetext.Close();
-            Console.WriteLine("Writing to file finished!");
-            
-            InvokeCGManager.TestHowToUseMethodAnalyzer(SortedSqlOperatingMethods, "2_analyze_sql_operating_methods_using_MethodAnalyzer.txt");
-            InvokeCGManager.TestHowToUseMethodAnalyzer(SortedLocalSqlMethods, "3_analyze_local_sql_methods_using_MethodAnalyzer.txt");
-            InvokeCGManager.TestHowToUseMethodAnalyzer(SortedDelegatedSqlMethods, "4_analyze_delegated_sql_methods_using_MethodAnalyzer.txt");
-            InvokeCGManager.TestHowToUseMethodAnalyzer(NonDBMethods, "5_analyze_non_db_methods_using_MethodAnalyzer.txt");
-             **/
-        }
-        
-        public void Step3_1_GetBasicGetSetMethods_stale()
-        {
-            basicGetSetMethods = new Dictionary<string, BasicGetSetMethod>();
+            HashSet<string> DBRelatedMethods = new HashSet<string>();
+            int idx_m = 0;
             foreach (MethodDefinition method in bottomUpSortedMethods)
             {
-                HibernateMethodAnalyzer mAnalyzer = new HibernateMethodAnalyzer(method);
-                if (mAnalyzer.IsSuccess != 0)
-                {
-                    //Console.WriteLine(mAnalyzer.GetFailInfo());
-                    continue;
-                }
-
-                //if (hibernateMethodAnalyzer.DeclaringClass.GetFullName() != "com.jspdev.biyesheji.Course")
+                //var dc = MethodUtil.GetDeclaringClass(method);
+                //if (dc != null)
+                //{
+                //    var name = dc.GetFullName();
+                //    if (name != "com.jspdev.biyesheji.Course")
+                //    {
+                //        continue;
+                //    }
+                //}
+                //else
                 //{
                 //    continue;
                 //}
-                
-                string methodFullName = method.GetFullName();
-                string curClassName = mAnalyzer.DeclaringClass.GetFullName();
 
-                // (1) First, handle Basic POJO DB Class Get/Set methods
-                HashSet<VariableDeclaration> getSelfFiels = mAnalyzer.GetSelfFields;
-                HashSet<VariableDeclaration> setSelfFiels = mAnalyzer.SetSelfFields;
-                if (getSelfFiels.Count() == 1 && setSelfFiels.Count() == 0)
+                idx_m++;
+                //Console.WriteLine("=== " + idx_m + " === " + method.GetFullName());
+
+                // (1) Check if POJO Class's Get/Set Function
+                BasicMethod basicMethod = MethodUtil.CheckIfGetSetMethodsInPOJOClass(method, allDBClassToTableName, allDBClassPropToTableAttr);
+                if (basicMethod != null)
                 {
-                    VariableDeclaration para = getSelfFiels.SingleOrDefault();
-                    string fullClassPropName = curClassName + "." + para.Name;
-                    if (allDBClassPropToTableAttr.ContainsKey(fullClassPropName))
+                    DBRelatedMethods.Add(method.GetFullName());
+                    outputBuilder.Append("[M-" + idx_m + "] " +  MethodDescription.BuildMethodHeader(method));
+                    outputBuilder.AppendLine(MethodDescription.DescribeBasicMethod(basicMethod, tableNameToTableConstraints));
+                }
+                else
+                {
+                    // (2) Check if call session built-in function
+                    List<SessionBuiltInFunction> sessionBuiltInFuncList = MethodUtil.CheckIfCallSessionBuiltInFunction(method, allDBClassToTableName);
+                    if (sessionBuiltInFuncList != null && sessionBuiltInFuncList.Count() != 0)
                     {
-                        basicGetSetMethods.Add(methodFullName, new BasicGetSetMethod(Constants.BasicMethodType.Get, allDBClassPropToTableAttr[fullClassPropName]));
+                        DBRelatedMethods.Add(method.GetFullName());
+                        outputBuilder.Append("[M-" + idx_m + "] " + MethodDescription.BuildMethodHeader(method));
+                        Console.Write("[M-" + idx_m + "] " + MethodDescription.BuildMethodHeader(method));
+
+                        foreach (SessionBuiltInFunction item in sessionBuiltInFuncList)
+                        {
+                            Console.WriteLine(item);
+                        }
+
+                        IEnumerable<string> invokedDBMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(method).Intersect(DBRelatedMethods);
+                        if (invokedDBMethodNames.Count() != 0)
+                        {
+                            string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
+                            Console.WriteLine(callChainStr);
+                        }
+
+                        
+                    }
+                    else
+                    {
+                        // (3) check if call db related functions (POJO get/set/constructor or session built-in functions)
+                        // Otherwise, discard it!
+                        HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(method);
+                        IEnumerable<string> intersectionMethodNames = invokedMethodNames.Intersect(DBRelatedMethods);
+                        if (intersectionMethodNames.Count() != 0)
+                        {
+                            DBRelatedMethods.Add(method.GetFullName());
+                            string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
+                            Console.WriteLine(callChainStr);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\t Not DB-related method!");
+                        }
                     }
                 }
-
-                if (setSelfFiels.Count() == 1 && getSelfFiels.Count() == 0)
-                {
-                    VariableDeclaration para = setSelfFiels.SingleOrDefault();
-                    string fullClassPropName = curClassName + "." + para.Name;
-                    if (allDBClassPropToTableAttr.ContainsKey(fullClassPropName))
-                    {
-                        basicGetSetMethods.Add(methodFullName, new BasicGetSetMethod(Constants.BasicMethodType.Set, allDBClassPropToTableAttr[fullClassPropName]));
-                    }
-                }
-
-                // (2) Then, handle POJO DB class other methods
             }
+
+            Console.WriteLine("\n\n---output description---\n");
+            Console.WriteLine(outputBuilder.ToString());
         }
+
+        //public void Step3_1_DivideAllMethodsIntoThreeCategories_stale()
+        //{
+        //    StringBuilder outputBuilder = new StringBuilder();
+
+        //    HashSet<string> allPojoClasses = new HashSet<string>(allDBClassToTableName.Keys);
+
+        //    HashSet<string> _sqlOperatingMethodNames = new HashSet<string>();
+        //    // get all POJO classes and those SQL operating methods
+        //    foreach (TypeDefinition curClass in globalNamespace.GetDescendants<TypeDefinition>())
+        //    {
+        //        if (allPojoClasses.Contains(curClass.GetFullName())) // if this is a POJO class
+        //        {
+        //            //Console.WriteLine(curClass.GetFullName());
+        //            foreach (MethodDefinition md in curClass.GetDescendants<MethodDefinition>()) // get current class's locally defined methods
+        //            {
+        //                _sqlOperatingMethodNames.Add(md.GetFullName());
+        //            }
+        //        }
+        //    }
+
+        //    // get sorted sql operating methods
+        //    outputBuilder.AppendLine("==== SQL Operating Methods: ");
+        //    SortedSqlOperatingMethods = new List<MethodDefinition>();
+        //    foreach (MethodDefinition md in bottomUpSortedMethods)
+        //    {
+        //        if (_sqlOperatingMethodNames.Contains(md.GetFullName()))
+        //        {
+        //            outputBuilder.AppendLine(md.GetFullName());
+        //            SortedSqlOperatingMethods.Add(md);
+        //        }
+        //    }
+
+        //    outputBuilder.AppendLine("==== Local SQL Methods: ");
+        //    // get sorted local sql methods
+        //    SortedLocalSqlMethods = new List<MethodDefinition>();
+        //    HashSet<string> _localSqlMethodNames = new HashSet<string>();
+        //    foreach (MethodDefinition md in bottomUpSortedMethods)
+        //    {
+        //        if (!_sqlOperatingMethodNames.Contains(md.GetFullName()))
+        //        {
+        //            HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(md); // both locally and externally
+        //            if (invokedMethodNames.Overlaps(_sqlOperatingMethodNames))
+        //            {
+        //                outputBuilder.AppendLine(md.GetFullName());
+        //                SortedLocalSqlMethods.Add(md);
+        //                _localSqlMethodNames.Add(md.GetFullName());
+        //            }
+        //        }
+        //    }
+
+        //    outputBuilder.AppendLine("==== Delegated SQL Methods");
+        //    SortedDelegatedSqlMethods = new List<MethodDefinition>();
+        //    HashSet<string> _delegatedSqlMethodNames = new HashSet<string>();
+        //    foreach (MethodDefinition md in bottomUpSortedMethods)
+        //    {
+        //        if (!_sqlOperatingMethodNames.Contains(md.GetFullName()) && !_localSqlMethodNames.Contains(md.GetFullName()))
+        //        {
+        //            HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(md); // both locally and externally
+        //            if (invokedMethodNames.Overlaps(_sqlOperatingMethodNames) || invokedMethodNames.Overlaps(_localSqlMethodNames))
+        //            {
+        //                outputBuilder.AppendLine(md.GetFullName());
+        //                SortedDelegatedSqlMethods.Add(md);
+        //                _delegatedSqlMethodNames.Add(md.GetFullName());
+        //            }
+        //        }
+        //    }
+
+        //    outputBuilder.AppendLine("==== Non DB-Related Methods: ");
+        //    List<MethodDefinition> NonDBMethods = new List<MethodDefinition>();
+        //    foreach (MethodDefinition md in bottomUpSortedMethods)
+        //    {
+        //        if (!_sqlOperatingMethodNames.Contains(md.GetFullName()) && !_localSqlMethodNames.Contains(md.GetFullName())
+        //            && !_delegatedSqlMethodNames.Contains(md.GetFullName()))
+        //        {
+        //            //var stmts = md.GetDescendantsAndSelf();
+        //            //if (stmts.Count() < 2)
+        //            //{
+        //            //    continue;
+        //            //}
+        //            //MethodUtil.CheckIfCallSessionBuiltInFunction(md);
+        //            NonDBMethods.Add(md);
+        //            outputBuilder.AppendLine(md.GetFullName());
+        //        }
+        //    }
+
+        //    foreach (MethodDefinition md in bottomUpSortedMethods)
+        //    {
+        //        //var dc = MethodUtil.GetDeclaringClass(md);
+        //        //if (dc != null && dc.GetFullName() == "com.jspdev.biyesheji.Student")
+        //        //if (md.GetFullName() == "com.jspdev.biyesheji.Student.deleteStudent")
+        //        if (true)
+        //        {
+        //            List<SessionBuiltInFunction> sessionFunctionList = MethodUtil.CheckIfCallSessionBuiltInFunction(md, allDBClassToTableName);
+        //            if (sessionFunctionList.Count() == 0)
+        //            {
+        //                continue;
+        //            }
+        //            Console.WriteLine("=== " + md.GetFullName());
+        //            for (int i = 0; i < sessionFunctionList.Count(); i++)
+        //            {
+        //                var item = sessionFunctionList[i];
+        //                Console.WriteLine("\tsession." + item.FunctionName + "(" + item.TargetClassName + ")");
+        //            }
+        //        }
+        //    }
+
+        //    /*
+        //    // Step 2.   Testing
+        //    string filePath = Constants.LogPath + "\\" + Utility.GetProjectName(Constants.ProjName);
+        //    Utility.CreateDirectoryIfNotExist(filePath);
+        //    StreamWriter writetext = new StreamWriter(filePath + "\\1_divide_methods_in_3_categories.txt");
+        //    writetext.WriteLine("# of total methods = " + bottomUpSortedMethods.Count());
+        //    writetext.WriteLine("# of sql operating methods = " + SortedSqlOperatingMethods.Count());
+        //    writetext.WriteLine("# of local sql methods = " + SortedLocalSqlMethods.Count());
+        //    writetext.WriteLine("# of delegated sql methods = " + SortedDelegatedSqlMethods.Count());
+        //    writetext.WriteLine("# of non-database operating methods = " + NonDBMethods.Count());
+        //    writetext.WriteLine("");
+        //    writetext.Write(outputBuilder.ToString());
+        //    writetext.Close();
+        //    Console.WriteLine("Writing to file finished!");
+            
+        //    InvokeCGManager.TestHowToUseMethodAnalyzer(SortedSqlOperatingMethods, "2_analyze_sql_operating_methods_using_MethodAnalyzer.txt");
+        //    InvokeCGManager.TestHowToUseMethodAnalyzer(SortedLocalSqlMethods, "3_analyze_local_sql_methods_using_MethodAnalyzer.txt");
+        //    InvokeCGManager.TestHowToUseMethodAnalyzer(SortedDelegatedSqlMethods, "4_analyze_delegated_sql_methods_using_MethodAnalyzer.txt");
+        //    InvokeCGManager.TestHowToUseMethodAnalyzer(NonDBMethods, "5_analyze_non_db_methods_using_MethodAnalyzer.txt");
+        //     **/
+        //}
+
     }
 }
