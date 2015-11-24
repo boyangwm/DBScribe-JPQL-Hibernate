@@ -80,7 +80,7 @@ namespace DBScribeHibernate
 
             Utility.CreateDirectoryIfNotExist(Constants.ResultPath);
             string projName = Utility.GetProjectName(Constants.ProjName);
-            StreamWriter writetext = new StreamWriter(Constants.ResultPath + "DBScrible_" + projName + ".txt");
+            StreamWriter writetext = new StreamWriter(Constants.ResultPath + "DBScribe_" + projName + ".txt");
             writetext.WriteLine("DBScribe Report for Project " + projName);
             writetext.WriteLine("There are " + num_methods + " database-related methods.\n");
             writetext.WriteLine("");

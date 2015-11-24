@@ -11,7 +11,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly Boolean ShowLog = true;
         public static readonly string LogPath = "_TempLog";
 
-        public static readonly string ResultPath = @"..\..\..\..\";
+        public static readonly string ResultPath = @"..\..\..\..\DBScribeReports\";
 
         /// <summary>
         /// Target Project Location and Name
