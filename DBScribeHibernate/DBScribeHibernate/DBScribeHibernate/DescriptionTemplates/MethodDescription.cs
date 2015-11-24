@@ -11,14 +11,14 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
         public string MethodDescriptionStr;
         public List<string> MethodOperationList;
         public List<string> ConstraintList;
-        public List<string> DBTableList;
+        public List<string> DBTableAttrList;
 
-        public MethodDescription(string methodDescriptionStr, List<string> methodOperationList, List<string> constraintList, List<string> dBTableList)
+        public MethodDescription(string methodDescriptionStr, List<string> methodOperationList, List<string> constraintList, List<string> dBTableAttrList)
         {
             this.MethodDescriptionStr = methodDescriptionStr;
             this.MethodOperationList = methodOperationList;
             this.ConstraintList = constraintList;
-            this.DBTableList = dBTableList;
+            this.DBTableAttrList = dBTableAttrList;
         }
     }
 }

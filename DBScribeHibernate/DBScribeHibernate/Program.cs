@@ -19,30 +19,10 @@ namespace DBScribeHibernate.DBScribeHibernate
         {
             Util.Utility.CreateDirectoryIfNotExist(Constants.LogPath);
 
-            //TestingPurpose.MainTestingFunction();
-
             DBScribeH dbScribeH = new DBScribeH(Constants.TargetProjPath, Constants.ProjName);
             dbScribeH.run();
 
-
-            /// step1: run ConfigParser to link POJOs to tables in the database
-
-            /// step2: use call graph generator to generate the call-chains
-
-            /// step3: based on POJO/database links and call-chains, 
-            /// annotate all database access methods (bottom level database accessors)
-
-            /// step4: by analyzing Hibernate keywords, summarize high level descriptions of the db access methods
-            /// in addition, apply Swum.NET to capture both linguistic and structural information
-
-            /// step5: extract database schema constraints
-            /// from XMLMapping or AnnotationMapping
-            //TestUseDatabaseConstraintExtractor();
-
-            /// step6: propagate descriptions and constraints through the call graph (bottom --> top)
-
-            /// step7: generate natural language descriptions using the
-            /// (1) propagated information and (2) local generatd information
+            //TestingPurpose.MainTestingFunction();
 
             Console.WriteLine("\nDone. Press any key to exit...");
             Console.ReadKey();

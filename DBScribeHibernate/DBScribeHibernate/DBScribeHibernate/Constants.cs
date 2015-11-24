@@ -11,6 +11,8 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly Boolean ShowLog = true;
         public static readonly string LogPath = "_TempLog";
 
+        public static readonly string ResultPath = @"..\..\..\..\";
+
         /// <summary>
         /// Target Project Location and Name
         /// </summary>
@@ -20,7 +22,6 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly string ProjName = @"MyFirstHibernate";
         //public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
         //public static readonly string ProjName = @"HibernateComponentMappingExample";
-        //public static readonly string ProjName = @"hibernateSchemaGenerationExample";
 
         //// IF using <mapping class="..."/>  ---> annotation
         //public static readonly string ProjName = @"HibernateManyToManyAnnotation";
@@ -77,5 +78,7 @@ namespace DBScribeHibernate.DBScribeHibernate
             }
             return "";
         }
+
+        public static readonly string Divider = "-----------------------------------------------------------";
     }
 }

@@ -1,0 +1,199 @@
+DBScribe Report for Project MyFirstHibernate
+There are 17 database-related methods.
+
+
+-----------------------------------------------------------
+
+[M-1] Employee.Employee()
+-- This method implements the following db-related operations: 
+- It constructs EMPLOYEE without any initial value
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-2] Employee.Employee(String, int)
+-- This method implements the following db-related operations: 
+- It constructs EMPLOYEE with attributes first_name, last_name, salary
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- EMPLOYEE.first_name (type=string, length=20, not-null=true)
+- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+
+-----------------------------------------------------------
+
+[M-3] Employee.getId()
+-- This method implements the following db-related operations: 
+- It gets attribute id from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-4] Employee.setId(int)
+-- This method implements the following db-related operations: 
+- It sets attribute id from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- Primary key: EMPLOYEE.id (type=int, length=10, not-null=true, unique=true)
+
+-----------------------------------------------------------
+
+[M-5] Employee.getFirstName()
+-- This method implements the following db-related operations: 
+- It gets attribute first_name from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-6] Employee.setFirstName(String)
+-- This method implements the following db-related operations: 
+- It sets attribute first_name from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- EMPLOYEE.first_name (type=string, length=20, not-null=true)
+
+-----------------------------------------------------------
+
+[M-7] Employee.getLastName()
+-- This method implements the following db-related operations: 
+- It gets attribute last_name from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-8] Employee.setLastName(String)
+-- This method implements the following db-related operations: 
+- It sets attribute last_name from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+
+-----------------------------------------------------------
+
+[M-9] Employee.getSalary()
+-- This method implements the following db-related operations: 
+- It gets attribute salary from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-10] Employee.setSalary(int)
+-- This method implements the following db-related operations: 
+- It sets attribute salary from table EMPLOYEE
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-11] Employee.getEmployeeInfo()
+-- This method invokes db-related operations via delegation: 
+Via call-chain: Employee.getEmployeeInfo --> Employee.getFirstName
+- It gets attribute first_name from table EMPLOYEE
+
+Via call-chain: Employee.getEmployeeInfo --> Employee.getLastName
+- It gets attribute last_name from table EMPLOYEE
+
+Via call-chain: Employee.getEmployeeInfo --> Employee.getSalary
+- It gets attribute salary from table EMPLOYEE
+
+-----------------------------------------------------------
+
+[M-12] ManageEmployee.addEmployee(String, int)
+-- This method implements the following db-related operations: 
+- It inserts first_name, last_name, salary into table EMPLOYEE. (session.save(EMPLOYEE))
+
+-- This method invokes db-related operations via delegation: 
+Via call-chain: ManageEmployee.addEmployee --> Employee.Employee
+- It constructs EMPLOYEE with attributes first_name, last_name, salary
+
+
+-- Some constraints that should be taken into account are the following: 
+- EMPLOYEE.first_name (type=string, length=20, not-null=true)
+- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+
+-----------------------------------------------------------
+
+[M-13] ManageEmployee.printEmployeeInfo(Employee)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getFirstName
+- It gets attribute first_name from table EMPLOYEE
+
+Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getLastName
+- It gets attribute last_name from table EMPLOYEE
+
+Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getSalary
+- It gets attribute salary from table EMPLOYEE
+
+-----------------------------------------------------------
+
+[M-14] ManageEmployee.listEmployees()
+-- This method implements the following db-related operations: 
+- It queries the table EMPLOYEE. (session.createQuery())
+
+-- This method invokes db-related operations via delegation: 
+Via call-chain: ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getFirstName
+- It gets attribute first_name from table EMPLOYEE
+
+Via call-chain: ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getLastName
+- It gets attribute last_name from table EMPLOYEE
+
+Via call-chain: ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getSalary
+- It gets attribute salary from table EMPLOYEE
+
+
+-----------------------------------------------------------
+
+[M-15] ManageEmployee.updateEmployee(Integer, int)
+-- This method implements the following db-related operations: 
+- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
+- It updates salary into table EMPLOYEE. (session.update(EMPLOYEE))
+
+-- This method invokes db-related operations via delegation: 
+Via call-chain: ManageEmployee.updateEmployee --> Employee.setSalary
+- It sets attribute salary from table EMPLOYEE
+
+
+-----------------------------------------------------------
+
+[M-16] ManageEmployee.deleteEmployee(Integer)
+-- This method implements the following db-related operations: 
+- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
+- It deletes rows from table EMPLOYEE. (session.delete(EMPLOYEE))
+
+-----------------------------------------------------------
+
+[M-17] ManageEmployee.main(String)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: ManageEmployee.main --> ManageEmployee.addEmployee --> Employee.Employee
+- It constructs EMPLOYEE with attributes first_name, last_name, salary
+- It inserts first_name, last_name, salary into table EMPLOYEE. (session.save(EMPLOYEE))
+
+Via call-chain: ManageEmployee.main --> ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getFirstName
+- It gets attribute first_name from table EMPLOYEE
+- It queries the table EMPLOYEE. (session.createQuery())
+
+Via call-chain: ManageEmployee.main --> ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getLastName
+- It gets attribute last_name from table EMPLOYEE
+- It queries the table EMPLOYEE. (session.createQuery())
+
+Via call-chain: ManageEmployee.main --> ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getSalary
+- It gets attribute salary from table EMPLOYEE
+- It queries the table EMPLOYEE. (session.createQuery())
+
+Via call-chain: ManageEmployee.main --> ManageEmployee.updateEmployee --> Employee.setSalary
+- It sets attribute salary from table EMPLOYEE
+- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
+- It updates salary into table EMPLOYEE. (session.update(EMPLOYEE))
+
+Via call-chain: ManageEmployee.main --> ManageEmployee.deleteEmployee
+- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
+- It deletes rows from table EMPLOYEE. (session.delete(EMPLOYEE))
+
+-- Some constraints that should be taken into account are the following: 
+- EMPLOYEE.first_name (type=string, length=20, not-null=true)
+- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+
+-----------------------------------------------------------
+

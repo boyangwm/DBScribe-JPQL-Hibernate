@@ -26,8 +26,11 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             // Get Description From Call Chain
             StringBuilder deleBuilder = new StringBuilder();
             HashSet<string> prevDBConstraints = new HashSet<string>();
-            foreach (List<MethodDefinition> path in calleeList)
+            //foreach (List<MethodDefinition> path in calleeList)
+            for (int i = 0; i < calleeList.Count(); i++ )
             {
+                List<MethodDefinition> path = calleeList[i];
+
                 List<string> methodAlongCallChain = new List<string>();
                 Stack<MethodDefinition> mStack = new Stack<MethodDefinition>();
                 foreach (MethodDefinition md in path)
@@ -35,15 +38,19 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     methodAlongCallChain.Add(md.GetFullName());
                     mStack.Push(md);
                 }
-                string callChain = string.Join("-->", methodAlongCallChain);
+                string callChain = string.Join(" --> ", methodAlongCallChain);
                 //Console.WriteLine(callChain);
 
                 List<string> curOpList = new List<string>();
-                
+
                 while (mStack.Count() != 0)
                 {
                     string curMethodHeader = BuildMethodHeader(mStack.Pop());
                     if (curMethodHeader == methodHeader)
+                    {
+                        continue;
+                    }
+                    if (!DBMethodToOpList.ContainsKey(curMethodHeader))
                     {
                         continue;
                     }
@@ -56,19 +63,38 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         prevDBConstraints.Add(c);
                     }
                 }
+
+                if (methodAlongCallChain.Count() <= 1 || curOpList.Count() == 0)
+                {
+                    continue;
+                }
+
                 deleBuilder.AppendLine("Via call-chain: " + callChain);
                 foreach (string op in curOpList)
                 {
                     deleBuilder.Append(op);
                 }
-                deleBuilder.AppendLine("");
+
+                if (i < calleeList.Count() - 1)
+                {
+                    deleBuilder.AppendLine("");
+                }
             }
 
             if (deleBuilder.Length != 0)
             {
-                builder.AppendLine("");
                 builder.AppendLine(DelegatedMethodHeader);
                 builder.Append(deleBuilder.ToString());
+            }
+
+            if (prevDBConstraints.Count() != 0)
+            {
+                builder.AppendLine("");
+                builder.AppendLine(ConstraitsHeader);
+                foreach (string pc in prevDBConstraints)
+                {
+                    builder.AppendLine(pc);
+                }
             }
 
             return new MethodDescription(builder.ToString(), opList, constraintList, new List<string>());
@@ -86,8 +112,12 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             StringBuilder deleBuilder = new StringBuilder();
             HashSet<string> prevDBConstraints = new HashSet<string>();
             HashSet<string> prevDBTableNames = new HashSet<string>();
-            foreach (List<MethodDefinition> path in calleeList)
+            HashSet<string> prevDBAttrNames = new HashSet<string>();
+            //foreach (List<MethodDefinition> path in calleeList)
+            for (int i = 0; i < calleeList.Count(); i++)
             {
+                List<MethodDefinition> path = calleeList[i];
+
                 List<string> methodAlongCallChain = new List<string>();
                 Stack<MethodDefinition> mStack = new Stack<MethodDefinition>();
                 foreach (MethodDefinition md in path)
@@ -95,7 +125,8 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     methodAlongCallChain.Add(md.GetFullName());
                     mStack.Push(md);
                 }
-                string callChain = string.Join("-->", methodAlongCallChain);
+
+                string callChain = string.Join(" --> ", methodAlongCallChain);
                 //Console.WriteLine(callChain);
 
                 List<string> curOpList = new List<string>();
@@ -103,6 +134,11 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 {
                     string curMethodHeader = BuildMethodHeader(mStack.Pop());
                     if (curMethodHeader == methodHeader)
+                    {
+                        continue;
+                    }
+
+                    if (!DBMethodToOpList.ContainsKey(curMethodHeader))
                     {
                         continue;
                     }
@@ -116,15 +152,34 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     }
                     foreach (string tname in DBMethodToTableNames[curMethodHeader])
                     {
-                        prevDBTableNames.Add(tname);
+                        string[] tmps = tname.Split(';');
+                        prevDBTableNames.Add(tmps[0]);
+                        string[] tmps2 = tmps[1].Split(',');
+                        foreach (string t in tmps2)
+                        {
+                            if (t != "")
+                            {
+                                prevDBAttrNames.Add(t);
+                            }
+                        }
                     }
                 }
+
+                if (methodAlongCallChain.Count() <= 1 || curOpList.Count() == 0)
+                {
+                    continue;
+                }
+
                 deleBuilder.AppendLine("Via call-chain: " + callChain);
                 foreach (string op in curOpList)
                 {
                     deleBuilder.Append(op);
                 }
-                deleBuilder.AppendLine("");
+
+                if (i < calleeList.Count())
+                {
+                    deleBuilder.AppendLine("");
+                }
             }
 
             // Describe Session Method
@@ -138,23 +193,23 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     {
                         targetTableName = string.Join(", ", prevDBTableNames);
                     }
-                    sessFuncBuilder.AppendLine("- It queries " + targetTableName + ". " + sessFunc);
+                    sessFuncBuilder.AppendLine("- It queries the table " + targetTableName + ". (" + sessFunc + ")");
                 }
                 else if (SessionBuiltInFunction.Inserts.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It inserts " + sessFunc.TargetTableName + ". " + sessFunc);
+                    sessFuncBuilder.AppendLine("- It inserts " + string.Join(", ", prevDBAttrNames) + " into table " + sessFunc.TargetTableName + ". (" + sessFunc + ")");
                 }
                 else if (SessionBuiltInFunction.Deletes.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It deletes " + sessFunc.TargetTableName + ". " + sessFunc);
+                    sessFuncBuilder.AppendLine("- It deletes rows from table " + sessFunc.TargetTableName + ". (" + sessFunc + ")");
                 }
                 else if (SessionBuiltInFunction.Updates.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It updates " + sessFunc.TargetTableName + ". " + sessFunc);
+                    sessFuncBuilder.AppendLine("- It updates " + string.Join(", ", prevDBAttrNames) + " into table " + sessFunc.TargetTableName + ". (" + sessFunc + ")");
                 }
                 else if (SessionBuiltInFunction.SaveOrUpdates.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It saves or updates " + sessFunc.TargetTableName + ". " + sessFunc);
+                    sessFuncBuilder.AppendLine("- It saves or updates " + string.Join(", ", prevDBAttrNames) + " into table " + sessFunc.TargetTableName + ". " + sessFunc);
                 }
             }
 
@@ -168,28 +223,33 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 builder.AppendLine(DelegatedMethodHeader);
                 builder.Append(deleBuilder.ToString());
             }
+
+            if (prevDBConstraints.Count() != 0)
+            {
+                builder.AppendLine("");
+                builder.AppendLine(ConstraitsHeader);
+                foreach (string pc in prevDBConstraints)
+                {
+                    builder.AppendLine(pc);
+                }
+            }
             
             return new MethodDescription(builder.ToString(), opList, constraintList, new List<string>());
         }
 
-        private static string GetTableNameFromOpList()
-        {
-            string tableName = "";
-            return tableName;
-        }
 
         public static MethodDescription DescribeBasicMethod(BasicMethod basicMethod, Dictionary<string, List<string>> tableNameToTableConstraints)
         {
             StringBuilder builder = new StringBuilder();
             List<string> opList = new List<string>();
             List<string> constraintList = new List<string>();
-            List<string> dBTableList = new List<string>();
+            List<string> dBTableAttrList = new List<string>();
 
             builder.AppendLine(LocalMethodHeader);
             Constants.BasicMethodType mType = basicMethod.MethodType;
             string tableName = basicMethod.Table;
-            dBTableList.Add(tableName);
             HashSet<string> attrList = basicMethod.AttrList;
+            dBTableAttrList.Add(tableName + ";" + string.Join(",", attrList));
             if (mType == Constants.BasicMethodType.Construct)
             {
                 StringBuilder opBuilder = new StringBuilder();
@@ -216,7 +276,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 
             if (mType == Constants.BasicMethodType.Get)
             {
-                return new MethodDescription(builder.ToString(), opList, constraintList, dBTableList);
+                return new MethodDescription(builder.ToString(), opList, constraintList, dBTableAttrList);
             }
 
             // Get DB constraints
@@ -229,7 +289,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     if (cons.Contains(attr))
                     {
                         consBuilder.AppendLine("- " + cons);
-                        constraintList.Add(cons);
+                        constraintList.Add("- " + cons);
                         break;
                     }
                 }
@@ -242,7 +302,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 builder.Append(consBuilder.ToString());
             }
 
-            return new MethodDescription(builder.ToString(), opList, constraintList, dBTableList);
+            return new MethodDescription(builder.ToString(), opList, constraintList, dBTableAttrList);
         }
 
         public static string BuildMethodHeader(MethodDefinition method)
