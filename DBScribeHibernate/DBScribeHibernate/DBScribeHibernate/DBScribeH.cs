@@ -313,7 +313,10 @@ namespace DBScribeHibernate
         {
             StringBuilder outputBuilder = new StringBuilder();
 
-            HashSet<string> DBRelatedMethods = new HashSet<string>();
+            Dictionary<string, List<string>> DBMethodToOpList = new Dictionary<string, List<string>>();
+            Dictionary<string, List<string>> DBMethodToConstraitList = new Dictionary<string, List<string>>();
+            Dictionary<string, List<string>> DBMethodToTableNames = new Dictionary<string, List<string>>();
+
             int idx_m = 0;
             foreach (MethodDefinition method in bottomUpSortedMethods)
             {
@@ -332,15 +335,19 @@ namespace DBScribeHibernate
                 //}
 
                 idx_m++;
-                //Console.WriteLine("=== " + idx_m + " === " + method.GetFullName());
 
                 // (1) Check if POJO Class's Get/Set Function
                 BasicMethod basicMethod = MethodUtil.CheckIfGetSetMethodsInPOJOClass(method, allDBClassToTableName, allDBClassPropToTableAttr);
                 if (basicMethod != null)
                 {
-                    DBRelatedMethods.Add(method.GetFullName());
-                    outputBuilder.Append("[M-" + idx_m + "] " +  MethodDescription.BuildMethodHeader(method));
-                    outputBuilder.AppendLine(MethodDescription.DescribeBasicMethod(basicMethod, tableNameToTableConstraints));
+                    
+                    string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
+                    outputBuilder.Append("[M-" + idx_m + "] " + methodHeader);
+                    MethodDescription curMD = MethodDescriptionUtil.DescribeBasicMethod(basicMethod, tableNameToTableConstraints);
+                    outputBuilder.AppendLine(curMD.MethodDescriptionStr);
+                    DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
+                    DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);
+                    DBMethodToTableNames.Add(methodHeader, curMD.DBTableList);
                 }
                 else
                 {
@@ -348,21 +355,31 @@ namespace DBScribeHibernate
                     List<SessionBuiltInFunction> sessionBuiltInFuncList = MethodUtil.CheckIfCallSessionBuiltInFunction(method, allDBClassToTableName);
                     if (sessionBuiltInFuncList != null && sessionBuiltInFuncList.Count() != 0)
                     {
-                        DBRelatedMethods.Add(method.GetFullName());
-                        outputBuilder.Append("[M-" + idx_m + "] " + MethodDescription.BuildMethodHeader(method));
-                        Console.Write("[M-" + idx_m + "] " + MethodDescription.BuildMethodHeader(method));
+                        string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
+                        outputBuilder.Append("[M-" + idx_m + "] " + methodHeader);
+                        outputBuilder.AppendLine("\t(2) call session built-in function");
 
-                        foreach (SessionBuiltInFunction item in sessionBuiltInFuncList)
-                        {
-                            Console.WriteLine(item);
-                        }
+                        HashSet<string> _DBRelatedMethods = new HashSet<string>(DBMethodToOpList.Keys);
+                        IEnumerable<string> invokedDBMethodNameHeaders = MethodUtil.GetInvokedMethodNameHeaderInTheMethod(method).Intersect(_DBRelatedMethods);
+                        List<List<MethodDefinition>> calleeList = cgm.findCalleeList(method);
+                        MethodDescription curMD = MethodDescriptionUtil.DescribeSessionMethod(methodHeader, calleeList, sessionBuiltInFuncList,
+                            DBMethodToOpList, DBMethodToConstraitList, DBMethodToTableNames);
+                        outputBuilder.AppendLine(curMD.MethodDescriptionStr);
+                        DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
+                        DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);
+                        DBMethodToTableNames.Add(methodHeader, curMD.DBTableList);
 
-                        IEnumerable<string> invokedDBMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(method).Intersect(DBRelatedMethods);
-                        if (invokedDBMethodNames.Count() != 0)
-                        {
-                            string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
-                            Console.WriteLine(callChainStr);
-                        }
+                        //foreach (SessionBuiltInFunction item in sessionBuiltInFuncList)
+                        //{
+                        //    Console.WriteLine(item);
+                        //}
+
+                        //IEnumerable<string> invokedDBMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(method).Intersect(DBRelatedMethods);
+                        //if (invokedDBMethodNames.Count() != 0)
+                        //{
+                        //    string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
+                        //    Console.WriteLine(callChainStr);
+                        //}
 
                         
                     }
@@ -370,17 +387,31 @@ namespace DBScribeHibernate
                     {
                         // (3) check if call db related functions (POJO get/set/constructor or session built-in functions)
                         // Otherwise, discard it!
-                        HashSet<string> invokedMethodNames = MethodUtil.GetInvokedMethodNameInTheMethod(method);
-                        IEnumerable<string> intersectionMethodNames = invokedMethodNames.Intersect(DBRelatedMethods);
-                        if (intersectionMethodNames.Count() != 0)
+                        HashSet<string> _DBRelatedMethods = new HashSet<string>(DBMethodToOpList.Keys);
+                        IEnumerable<string> invokedDBMethodNameHeaders = MethodUtil.GetInvokedMethodNameHeaderInTheMethod(method).Intersect(_DBRelatedMethods);
+                        if (invokedDBMethodNameHeaders.Count() != 0)
                         {
-                            DBRelatedMethods.Add(method.GetFullName());
-                            string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
-                            Console.WriteLine(callChainStr);
+                            string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
+                            outputBuilder.Append("[M-" + idx_m + "] " + methodHeader);
+
+                            outputBuilder.AppendLine("\t(3) call db related functions (POJO get/set/constructor or session built-in functions)");
+                            //DBRelatedMethods.Add(method.GetFullName());
+                            //string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
+                            //Console.WriteLine(callChainStr);
+                            List<List<MethodDefinition>> calleeList = cgm.findCalleeList(method);
+                            MethodDescription curMD = MethodDescriptionUtil.DescribeDelegatedMethod(methodHeader, calleeList, 
+                                DBMethodToOpList, DBMethodToConstraitList);
+                            outputBuilder.AppendLine(curMD.MethodDescriptionStr);
+                            DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
+                            DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);
+                            DBMethodToTableNames.Add(methodHeader, curMD.DBTableList);
                         }
                         else
                         {
-                            Console.WriteLine("\t Not DB-related method!");
+                            string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
+                            outputBuilder.Append("[M-" + idx_m + "] " + methodHeader);
+
+                            outputBuilder.AppendLine("\tNot DB-related method!");
                         }
                     }
                 }

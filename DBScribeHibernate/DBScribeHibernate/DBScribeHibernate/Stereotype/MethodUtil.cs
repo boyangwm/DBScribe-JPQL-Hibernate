@@ -1,5 +1,6 @@
 ﻿using ABB.SrcML.Data;
 using DBScribeHibernate.DBScribeHibernate.CallGraphExtractor;
+using DBScribeHibernate.DBScribeHibernate.DescriptionTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -171,7 +172,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
                                     //Console.WriteLine("\t\t~~~~ " + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
                                     //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
-                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, GetTableNameFromClassName(targetClassName, allDBClassToTableName)));
                                 }
                                 else if (SessionBuiltInFunction.QueryFunctions.Contains(sessionFunctionName))
                                 {
@@ -190,7 +191,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                                     }
                                     //Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
                                     //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
-                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, GetTableNameFromClassName(targetClassName, allDBClassToTableName)));
                                 }
                                 else
                                 {
@@ -208,6 +209,19 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             return sessionFunctionList;
         }
 
+        private static string GetTableNameFromClassName(string className, Dictionary<string, string> allDBClassToTableName)
+        {
+            string tableName = "";
+            foreach (KeyValuePair<string, string> item in allDBClassToTableName)
+            {
+                string[] tmps = item.Key.Split('.');
+                if (tmps[tmps.Length - 1] == className)
+                {
+                    return item.Value;
+                }
+            }
+            return tableName;
+        }
 
         /// <summary>
         /// Get class name from class full name
@@ -296,6 +310,25 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                 }
             }
             return invokedMethodNames;
+        }
+
+        public static HashSet<string> GetInvokedMethodNameHeaderInTheMethod(MethodDefinition md)
+        {
+            HashSet<string> invokedMethodNameHeaders = new HashSet<string>();
+            IEnumerable<MethodCall> mdCalls = from statments in md.GetDescendantsAndSelf()
+                                              from expression in statments.GetExpressions()
+                                              from call in expression.GetDescendantsAndSelf<MethodCall>()
+                                              select call;
+            foreach (MethodCall mdc in mdCalls)
+            {
+                MethodDefinition mDef = CallGraphUtil.FindMatchedMd(mdc);
+                if (mDef != null)
+                {
+                    string methodHeader = MethodDescriptionUtil.BuildMethodHeader(mDef);
+                    invokedMethodNameHeaders.Add(methodHeader);
+                }
+            }
+            return invokedMethodNameHeaders;
         }
 
         /// <summary>
