@@ -382,8 +382,8 @@ namespace DBScribeHibernate
                         HashSet<string> _DBRelatedMethods = new HashSet<string>(DBMethodToOpList.Keys);
                         IEnumerable<string> invokedDBMethodNameHeaders = MethodUtil.GetInvokedMethodNameHeaderInTheMethod(method).Intersect(_DBRelatedMethods);
                         List<List<MethodDefinition>> calleeList = cgm.findCalleeList(method);
-                        MethodDescription curMD = MethodDescriptionUtil.DescribeSessionMethod(methodHeader, calleeList, sessionBuiltInFuncList,
-                            DBMethodToOpList, DBMethodToConstraitList, DBMethodToTableAttrNames);
+                        MethodDescription curMD = MethodDescriptionUtil.DescribeSessionMethod(method, methodHeader, calleeList, sessionBuiltInFuncList,
+                            DBMethodToOpList, DBMethodToConstraitList, DBMethodToTableAttrNames, allDBClassToTableName, allDBClassPropToTableAttr);
                         outputBuilder.AppendLine(curMD.MethodDescriptionStr);
                         DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
                         DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);

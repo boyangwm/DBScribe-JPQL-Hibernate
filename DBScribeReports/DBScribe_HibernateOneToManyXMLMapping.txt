@@ -215,8 +215,8 @@ There are 28 database-related methods.
 
 [M-25] com.mkyong.StockManager.addStockDailyRecord(Integer, String, Long, Date)
 -- This method implements the following db-related operations: 
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.StockDailyRecord
@@ -248,7 +248,7 @@ Via call-chain: com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock
 
 [M-26] com.mkyong.StockManager.addStock(String)
 -- This method implements the following db-related operations: 
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
@@ -271,53 +271,53 @@ Via call-chain: com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setS
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
 - It constructs stock without any initial value
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setStockCode
 - It sets attribute STOCK_CODE from table stock
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setStockName
 - It sets attribute STOCK_NAME from table stock
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.StockDailyRecord
 - It constructs stock_daily_record without any initial value
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceOpen
 - It sets attribute PRICE_OPEN from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceClose
 - It sets attribute PRICE_CLOSE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceChange
 - It sets attribute PRICE_CHANGE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setVolume
 - It sets attribute VOLUME from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setDate
 - It sets attribute DATE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setStock
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.Stock.getStockDailyRecords
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 -- Some constraints that should be taken into account are the following: 
 - stock.STOCK_CODE (type=string, length=10, not-null=true, unique=true)
@@ -333,103 +333,103 @@ Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.St
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
 - It constructs stock without any initial value
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setStockCode
 - It sets attribute STOCK_CODE from table stock
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setStockName
 - It sets attribute STOCK_NAME from table stock
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.StockDailyRecord
 - It constructs stock_daily_record without any initial value
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceOpen
 - It sets attribute PRICE_OPEN from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceClose
 - It sets attribute PRICE_CLOSE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceChange
 - It sets attribute PRICE_CHANGE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setVolume
 - It sets attribute VOLUME from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setDate
 - It sets attribute DATE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setStock
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.Stock.getStockDailyRecords
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
 - It constructs stock without any initial value
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setStockCode
 - It sets attribute STOCK_CODE from table stock
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setStockName
 - It sets attribute STOCK_NAME from table stock
-- It inserts STOCK_CODE, STOCK_NAME into table stock. (session.save(stock))
+- It inserts STOCK_CODE, STOCK_NAME into table stock
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.StockDailyRecord
 - It constructs stock_daily_record without any initial value
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceOpen
 - It sets attribute PRICE_OPEN from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceClose
 - It sets attribute PRICE_CLOSE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setPriceChange
 - It sets attribute PRICE_CHANGE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setVolume
 - It sets attribute VOLUME from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setDate
 - It sets attribute DATE from table stock_daily_record
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.StockDailyRecord.setStock
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock.Stock.getStockDailyRecords
-- It queries the table stock. (session.get(stock))
-- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record. (session.save(stock_daily_record))
+- It queries the table stock
+- It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
 
 
 -- Some constraints that should be taken into account are the following: 

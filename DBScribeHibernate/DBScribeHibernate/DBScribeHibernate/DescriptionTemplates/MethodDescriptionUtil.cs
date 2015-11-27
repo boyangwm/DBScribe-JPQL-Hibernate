@@ -100,10 +100,13 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             return new MethodDescription(builder.ToString(), opList, constraintList, new List<string>());
         }
 
-        public static MethodDescription DescribeSessionMethod(string methodHeader, List<List<MethodDefinition>> calleeList,
+
+        public static MethodDescription DescribeSessionMethod(MethodDefinition method, string methodHeader, List<List<MethodDefinition>> calleeList,
             List<SessionBuiltInFunction> sessionBuiltInFuncList, Dictionary<string, List<string>> DBMethodToOpList,
-            Dictionary<string, List<string>> DBMethodToConstraitList, Dictionary<string, List<string>> DBMethodToTableNames)
+            Dictionary<string, List<string>> DBMethodToConstraitList, Dictionary<string, List<string>> DBMethodToTableNames,
+            Dictionary<string, string> allDBClassToTableName, Dictionary<string, string> allDBClassPropToTableAttr)
         {
+
             StringBuilder builder = new StringBuilder();
             List<string> opList = new List<string>(); // only contains local method's operation
             List<string> constraintList = new List<string>(); // only contains local method's constraints (hence, empty)
@@ -188,28 +191,91 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             {
                 if (SessionBuiltInFunction.Querys.Contains(sessFunc.FunctionName))
                 {
+                    bool ifInteractWithRealTable = true;
                     string targetTableName = sessFunc.TargetTableName;
                     if (targetTableName == "")
                     {
-                        targetTableName = string.Join(", ", prevDBTableNames);
+                        targetTableName = GetSessionQueryFuncTragetTableName(method, allDBClassToTableName);
+                        if (targetTableName == "")
+                        {
+                            targetTableName = string.Join(", ", prevDBTableNames);
+                            if (targetTableName == "")
+                            {
+                                ifInteractWithRealTable = false;
+                            }
+                        }
                     }
-                    sessFuncBuilder.AppendLine("- It queries the table " + targetTableName + ". (" + sessFunc + ")");
+
+                    if (ifInteractWithRealTable == true)
+                    {
+                        //sessFuncBuilder.AppendLine("- It queries the table " + targetTableName + ". (" + sessFunc + ")");
+                        sessFuncBuilder.AppendLine("- It queries the table " + targetTableName);
+                    }
+                    else
+                    {
+                        sessFuncBuilder.AppendLine("- It provides query API for upper-level functions.");
+                    }
+                    
                 }
                 else if (SessionBuiltInFunction.Inserts.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It inserts " + string.Join(", ", prevDBAttrNames) + " into table " + sessFunc.TargetTableName + ". (" + sessFunc + ")");
+                    string attrListStr = string.Join(", ", prevDBAttrNames);
+                    if (attrListStr == "")
+                    {
+                        HashSet<string> attrList = new HashSet<string>();
+                        foreach (string attr in allDBClassPropToTableAttr.Values)
+                        {
+                            string[] tmps = attr.Split('.');
+                            if (tmps[0] == sessFunc.TargetTableName)
+                            {
+                                attrList.Add(tmps[1]);
+                            }
+                        }
+                        attrListStr = string.Join(", ", attrList);
+                    }
+                    //Console.WriteLine(attrListStr);
+                    sessFuncBuilder.AppendLine("- It inserts " + attrListStr + " into table " + sessFunc.TargetTableName);
+                    
                 }
                 else if (SessionBuiltInFunction.Deletes.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It deletes rows from table " + sessFunc.TargetTableName + ". (" + sessFunc + ")");
+                    sessFuncBuilder.AppendLine("- It deletes rows from table " + sessFunc.TargetTableName);
                 }
                 else if (SessionBuiltInFunction.Updates.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It updates " + string.Join(", ", prevDBAttrNames) + " into table " + sessFunc.TargetTableName + ". (" + sessFunc + ")");
+                    string attrListStr = string.Join(", ", prevDBAttrNames);
+                    if (attrListStr == "")
+                    {
+                        HashSet<string> attrList = new HashSet<string>();
+                        foreach (string attr in allDBClassPropToTableAttr.Values)
+                        {
+                            string[] tmps = attr.Split('.');
+                            if (tmps[0] == sessFunc.TargetTableName)
+                            {
+                                attrList.Add(tmps[1]);
+                            }
+                        }
+                        attrListStr = string.Join(", ", attrList);
+                    }
+                    sessFuncBuilder.AppendLine("- It updates " + attrListStr + " into table " + sessFunc.TargetTableName);
                 }
                 else if (SessionBuiltInFunction.SaveOrUpdates.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It saves or updates " + string.Join(", ", prevDBAttrNames) + " into table " + sessFunc.TargetTableName + ". " + sessFunc);
+                    string attrListStr = string.Join(", ", prevDBAttrNames);
+                    if (attrListStr == "")
+                    {
+                        HashSet<string> attrList = new HashSet<string>();
+                        foreach (string attr in allDBClassPropToTableAttr.Values)
+                        {
+                            string[] tmps = attr.Split('.');
+                            if (tmps[0] == sessFunc.TargetTableName)
+                            {
+                                attrList.Add(tmps[1]);
+                            }
+                        }
+                        attrListStr = string.Join(", ", attrList);
+                    }
+                    sessFuncBuilder.AppendLine("- It saves or updates " + attrListStr + " into table " + sessFunc.TargetTableName);
                 }
             }
 
@@ -235,6 +301,37 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             }
             
             return new MethodDescription(builder.ToString(), opList, constraintList, new List<string>());
+        }
+
+
+        public static string GetSessionQueryFuncTragetTableName(MethodDefinition method, Dictionary<string, string> allDBClassToTableName)
+        {
+            HashSet<string> targetTableNames = new HashSet<string>();
+            //Console.WriteLine("---" + method.GetFullName());
+
+            foreach (Statement stmt in method.GetDescendants<DeclarationStatement>())
+            {
+                //Console.WriteLine(stmt + " || " + stmt.GetType());
+                foreach (Expression exp in stmt.GetExpressions())
+                {
+                    //Console.WriteLine("\t" + exp +  " || " +  exp.GetType());
+                    foreach (LiteralUse lu in exp.GetDescendants<LiteralUse>())
+                    {
+                        //Console.WriteLine("\t\t" + lu.ToString() + " || " + lu.GetType());
+                        foreach (string classFullName in allDBClassToTableName.Keys)
+                        {
+                            string[] tmps = classFullName.Split('.');
+                            string className = tmps[tmps.Length - 1];
+                            //Console.WriteLine("\t\t" + className);
+                            if (lu.ToString().Contains(className))
+                            {
+                                targetTableNames.Add(allDBClassToTableName[classFullName]);
+                            }
+                        }
+                    }
+                }
+            }
+            return string.Join(", ", targetTableNames);
         }
 
 

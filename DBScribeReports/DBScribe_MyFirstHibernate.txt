@@ -102,7 +102,7 @@ Via call-chain: Employee.getEmployeeInfo --> Employee.getSalary
 
 [M-12] ManageEmployee.addEmployee(String, int)
 -- This method implements the following db-related operations: 
-- It inserts first_name, last_name, salary into table EMPLOYEE. (session.save(EMPLOYEE))
+- It inserts first_name, last_name, salary into table EMPLOYEE
 
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.addEmployee --> Employee.Employee
@@ -130,7 +130,7 @@ Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --
 
 [M-14] ManageEmployee.listEmployees()
 -- This method implements the following db-related operations: 
-- It queries the table EMPLOYEE. (session.createQuery())
+- It queries the table EMPLOYEE
 
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getFirstName
@@ -147,8 +147,8 @@ Via call-chain: ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInf
 
 [M-15] ManageEmployee.updateEmployee(Integer, int)
 -- This method implements the following db-related operations: 
-- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
-- It updates salary into table EMPLOYEE. (session.update(EMPLOYEE))
+- It queries the table EMPLOYEE
+- It updates salary into table EMPLOYEE
 
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.updateEmployee --> Employee.setSalary
@@ -159,8 +159,8 @@ Via call-chain: ManageEmployee.updateEmployee --> Employee.setSalary
 
 [M-16] ManageEmployee.deleteEmployee(Integer)
 -- This method implements the following db-related operations: 
-- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
-- It deletes rows from table EMPLOYEE. (session.delete(EMPLOYEE))
+- It queries the table EMPLOYEE
+- It deletes rows from table EMPLOYEE
 
 -----------------------------------------------------------
 
@@ -168,28 +168,28 @@ Via call-chain: ManageEmployee.updateEmployee --> Employee.setSalary
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.main --> ManageEmployee.addEmployee --> Employee.Employee
 - It constructs EMPLOYEE with attributes first_name, last_name, salary
-- It inserts first_name, last_name, salary into table EMPLOYEE. (session.save(EMPLOYEE))
+- It inserts first_name, last_name, salary into table EMPLOYEE
 
 Via call-chain: ManageEmployee.main --> ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getFirstName
 - It gets attribute first_name from table EMPLOYEE
-- It queries the table EMPLOYEE. (session.createQuery())
+- It queries the table EMPLOYEE
 
 Via call-chain: ManageEmployee.main --> ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getLastName
 - It gets attribute last_name from table EMPLOYEE
-- It queries the table EMPLOYEE. (session.createQuery())
+- It queries the table EMPLOYEE
 
 Via call-chain: ManageEmployee.main --> ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getSalary
 - It gets attribute salary from table EMPLOYEE
-- It queries the table EMPLOYEE. (session.createQuery())
+- It queries the table EMPLOYEE
 
 Via call-chain: ManageEmployee.main --> ManageEmployee.updateEmployee --> Employee.setSalary
 - It sets attribute salary from table EMPLOYEE
-- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
-- It updates salary into table EMPLOYEE. (session.update(EMPLOYEE))
+- It queries the table EMPLOYEE
+- It updates salary into table EMPLOYEE
 
 Via call-chain: ManageEmployee.main --> ManageEmployee.deleteEmployee
-- It queries the table EMPLOYEE. (session.get(EMPLOYEE))
-- It deletes rows from table EMPLOYEE. (session.delete(EMPLOYEE))
+- It queries the table EMPLOYEE
+- It deletes rows from table EMPLOYEE
 
 -- Some constraints that should be taken into account are the following: 
 - EMPLOYEE.first_name (type=string, length=20, not-null=true)
