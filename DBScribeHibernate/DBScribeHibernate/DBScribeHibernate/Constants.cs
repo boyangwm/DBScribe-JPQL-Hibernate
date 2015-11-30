@@ -24,13 +24,14 @@ namespace DBScribeHibernate.DBScribeHibernate
         //public static readonly string ProjName = @"HibernateComponentMappingExample";
 
         //// IF using <mapping class="..."/>  ---> annotation
-        public static readonly string ProjName = @"HibernateOneToOneAnnotation";
+        //public static readonly string ProjName = @"HibernateOneToOneAnnotation";
         //public static readonly string ProjName = @"HibernateManyToManyAnnotation";
 
         //// Real projects
-        //public static readonly string ProjName = @"_RealProjects\biyesheji";    // XML mapping
+        public static readonly string ProjName = @"_RealProjects\biyesheji";    // XML mapping
         //public static readonly string ProjName = @"_RealProjects\hibernate-spring-struts-bookstore-master";  // XML mapping
         //public static readonly string ProjName = @"_RealProjects\chat-springmvc-hibernate-master";  // Annotation mapping
+
 
         /// <summary>
         /// SrcML Location

@@ -4,94 +4,14 @@ There are 22 database-related methods.
 
 -----------------------------------------------------------
 
-[M-1] com.mkyong.stock.Stock.Stock()
--- This method implements the following db-related operations: 
-- It constructs stock without any initial value
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-2] com.mkyong.stock.Stock.Stock(String)
--- This method implements the following db-related operations: 
-- It constructs stock with attributes STOCK_CODE, STOCK_NAME
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
-- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
-
------------------------------------------------------------
-
-[M-3] com.mkyong.stock.Stock.Stock(String, StockDetail)
--- This method implements the following db-related operations: 
-- It constructs stock with attributes STOCK_CODE, STOCK_NAME
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
-- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
-
------------------------------------------------------------
-
-[M-4] com.mkyong.stock.Stock.getStockId()
--- This method implements the following db-related operations: 
-- It gets attribute STOCK_ID from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-5] com.mkyong.stock.Stock.setStockId(Integer)
--- This method implements the following db-related operations: 
-- It sets attribute STOCK_ID from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_ID: (unique = true), (nullable = false)
-
------------------------------------------------------------
-
-[M-6] com.mkyong.stock.Stock.getStockCode()
--- This method implements the following db-related operations: 
-- It gets attribute STOCK_CODE from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-7] com.mkyong.stock.Stock.setStockCode(String)
--- This method implements the following db-related operations: 
-- It sets attribute STOCK_CODE from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
-
------------------------------------------------------------
-
-[M-8] com.mkyong.stock.Stock.getStockName()
--- This method implements the following db-related operations: 
-- It gets attribute STOCK_NAME from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-9] com.mkyong.stock.Stock.setStockName(String)
--- This method implements the following db-related operations: 
-- It sets attribute STOCK_NAME from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
-
------------------------------------------------------------
-
-[M-10] com.mkyong.stock.StockDetail.StockDetail()
+[M-1] com.mkyong.stock.StockDetail.StockDetail()
 -- This method implements the following db-related operations: 
 - It constructs stock_detail without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-11] com.mkyong.stock.StockDetail.StockDetail(Stock, String, Date)
+[M-2] com.mkyong.stock.StockDetail.StockDetail(Stock, String, Date)
 -- This method implements the following db-related operations: 
 - It constructs stock_detail with attributes COMP_NAME, COMP_DESC, REMARK, LISTED_DATE
 *Note: This method will not affect the database util Session built-in function is called
@@ -104,14 +24,14 @@ There are 22 database-related methods.
 
 -----------------------------------------------------------
 
-[M-12] com.mkyong.stock.StockDetail.getStockId()
+[M-3] com.mkyong.stock.StockDetail.getStockId()
 -- This method implements the following db-related operations: 
 - It gets attribute STOCK_ID from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-13] com.mkyong.stock.StockDetail.setStockId(Integer)
+[M-4] com.mkyong.stock.StockDetail.setStockId(Integer)
 -- This method implements the following db-related operations: 
 - It sets attribute STOCK_ID from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
@@ -121,14 +41,14 @@ There are 22 database-related methods.
 
 -----------------------------------------------------------
 
-[M-14] com.mkyong.stock.StockDetail.getCompName()
+[M-5] com.mkyong.stock.StockDetail.getCompName()
 -- This method implements the following db-related operations: 
 - It gets attribute COMP_NAME from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-15] com.mkyong.stock.StockDetail.setCompName(String)
+[M-6] com.mkyong.stock.StockDetail.setCompName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute COMP_NAME from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
@@ -138,14 +58,14 @@ There are 22 database-related methods.
 
 -----------------------------------------------------------
 
-[M-16] com.mkyong.stock.StockDetail.getCompDesc()
+[M-7] com.mkyong.stock.StockDetail.getCompDesc()
 -- This method implements the following db-related operations: 
 - It gets attribute COMP_DESC from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-17] com.mkyong.stock.StockDetail.setCompDesc(String)
+[M-8] com.mkyong.stock.StockDetail.setCompDesc(String)
 -- This method implements the following db-related operations: 
 - It sets attribute COMP_DESC from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
@@ -155,14 +75,14 @@ There are 22 database-related methods.
 
 -----------------------------------------------------------
 
-[M-18] com.mkyong.stock.StockDetail.getRemark()
+[M-9] com.mkyong.stock.StockDetail.getRemark()
 -- This method implements the following db-related operations: 
 - It gets attribute REMARK from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-19] com.mkyong.stock.StockDetail.setRemark(String)
+[M-10] com.mkyong.stock.StockDetail.setRemark(String)
 -- This method implements the following db-related operations: 
 - It sets attribute REMARK from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
@@ -172,20 +92,100 @@ There are 22 database-related methods.
 
 -----------------------------------------------------------
 
-[M-20] com.mkyong.stock.StockDetail.getListedDate()
+[M-11] com.mkyong.stock.StockDetail.getListedDate()
 -- This method implements the following db-related operations: 
 - It gets attribute LISTED_DATE from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-21] com.mkyong.stock.StockDetail.setListedDate(Date)
+[M-12] com.mkyong.stock.StockDetail.setListedDate(Date)
 -- This method implements the following db-related operations: 
 - It sets attribute LISTED_DATE from table stock_detail
 *Note: This method will not affect the database util Session built-in function is called
 
 -- Some constraints that should be taken into account are the following: 
 - stock_detail.LISTED_DATE: (nullable = false), (length = 10)
+
+-----------------------------------------------------------
+
+[M-13] com.mkyong.stock.Stock.Stock()
+-- This method implements the following db-related operations: 
+- It constructs stock without any initial value
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-14] com.mkyong.stock.Stock.Stock(String)
+-- This method implements the following db-related operations: 
+- It constructs stock with attributes STOCK_CODE, STOCK_NAME
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
+- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
+
+-----------------------------------------------------------
+
+[M-15] com.mkyong.stock.Stock.Stock(String, StockDetail)
+-- This method implements the following db-related operations: 
+- It constructs stock with attributes STOCK_CODE, STOCK_NAME
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
+- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
+
+-----------------------------------------------------------
+
+[M-16] com.mkyong.stock.Stock.getStockId()
+-- This method implements the following db-related operations: 
+- It gets attribute STOCK_ID from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-17] com.mkyong.stock.Stock.setStockId(Integer)
+-- This method implements the following db-related operations: 
+- It sets attribute STOCK_ID from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_ID: (unique = true), (nullable = false)
+
+-----------------------------------------------------------
+
+[M-18] com.mkyong.stock.Stock.getStockCode()
+-- This method implements the following db-related operations: 
+- It gets attribute STOCK_CODE from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-19] com.mkyong.stock.Stock.setStockCode(String)
+-- This method implements the following db-related operations: 
+- It sets attribute STOCK_CODE from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
+
+-----------------------------------------------------------
+
+[M-20] com.mkyong.stock.Stock.getStockName()
+-- This method implements the following db-related operations: 
+- It gets attribute STOCK_NAME from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-21] com.mkyong.stock.Stock.setStockName(String)
+-- This method implements the following db-related operations: 
+- It sets attribute STOCK_NAME from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
 
 -----------------------------------------------------------
 

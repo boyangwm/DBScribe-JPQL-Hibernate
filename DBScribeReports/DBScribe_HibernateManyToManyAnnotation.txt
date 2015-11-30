@@ -4,14 +4,7 @@ There are 19 database-related methods.
 
 -----------------------------------------------------------
 
-[M-1] com.mkyong.stock.Category.Category()
--- This method implements the following db-related operations: 
-- It constructs category without any initial value
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-2] com.mkyong.stock.Category.Category(String)
+[M-1] com.mkyong.stock.Category.Category(String)
 -- This method implements the following db-related operations: 
 - It constructs category with attributes NAME, [DESC]
 *Note: This method will not affect the database util Session built-in function is called
@@ -22,122 +15,14 @@ There are 19 database-related methods.
 
 -----------------------------------------------------------
 
-[M-3] com.mkyong.stock.Category.Category(String, Set<Stock>)
--- This method implements the following db-related operations: 
-- It constructs category with attributes NAME, [DESC]
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- category.NAME: (nullable = false), (length = 10)
-- category.[DESC]: (nullable = false)
-
------------------------------------------------------------
-
-[M-4] com.mkyong.stock.Category.getCategoryId()
--- This method implements the following db-related operations: 
-- It gets attribute CATEGORY_ID from table category
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-5] com.mkyong.stock.Category.setCategoryId(Integer)
--- This method implements the following db-related operations: 
-- It sets attribute CATEGORY_ID from table category
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- category.CATEGORY_ID: (unique = true), (nullable = false)
-
------------------------------------------------------------
-
-[M-6] com.mkyong.stock.Category.getName()
--- This method implements the following db-related operations: 
-- It gets attribute NAME from table category
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-7] com.mkyong.stock.Category.setName(String)
--- This method implements the following db-related operations: 
-- It sets attribute NAME from table category
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- category.NAME: (nullable = false), (length = 10)
-
------------------------------------------------------------
-
-[M-8] com.mkyong.stock.Category.getDesc()
--- This method implements the following db-related operations: 
-- It gets attribute [DESC] from table category
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-9] com.mkyong.stock.Category.setDesc(String)
--- This method implements the following db-related operations: 
-- It sets attribute [DESC] from table category
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- category.[DESC]: (nullable = false)
-
------------------------------------------------------------
-
-[M-10] com.mkyong.stock.Stock.Stock()
+[M-2] com.mkyong.stock.Stock.Stock()
 -- This method implements the following db-related operations: 
 - It constructs stock without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-11] com.mkyong.stock.Stock.Stock(String)
--- This method implements the following db-related operations: 
-- It constructs stock with attributes STOCK_CODE, STOCK_NAME
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
-- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
-
------------------------------------------------------------
-
-[M-12] com.mkyong.stock.Stock.Stock(String, Set<Category>)
--- This method implements the following db-related operations: 
-- It constructs stock with attributes STOCK_CODE, STOCK_NAME
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
-- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
-
------------------------------------------------------------
-
-[M-13] com.mkyong.stock.Stock.getStockId()
--- This method implements the following db-related operations: 
-- It gets attribute STOCK_ID from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-14] com.mkyong.stock.Stock.setStockId(Integer)
--- This method implements the following db-related operations: 
-- It sets attribute STOCK_ID from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- stock.STOCK_ID: (unique = true), (nullable = false)
-
------------------------------------------------------------
-
-[M-15] com.mkyong.stock.Stock.getStockCode()
--- This method implements the following db-related operations: 
-- It gets attribute STOCK_CODE from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-16] com.mkyong.stock.Stock.setStockCode(String)
+[M-3] com.mkyong.stock.Stock.setStockCode(String)
 -- This method implements the following db-related operations: 
 - It sets attribute STOCK_CODE from table stock
 *Note: This method will not affect the database util Session built-in function is called
@@ -147,14 +32,7 @@ There are 19 database-related methods.
 
 -----------------------------------------------------------
 
-[M-17] com.mkyong.stock.Stock.getStockName()
--- This method implements the following db-related operations: 
-- It gets attribute STOCK_NAME from table stock
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-18] com.mkyong.stock.Stock.setStockName(String)
+[M-4] com.mkyong.stock.Stock.setStockName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute STOCK_NAME from table stock
 *Note: This method will not affect the database util Session built-in function is called
@@ -164,7 +42,7 @@ There are 19 database-related methods.
 
 -----------------------------------------------------------
 
-[M-19] com.mkyong.App.main(String)
+[M-5] com.mkyong.App.main(String)
 -- This method implements the following db-related operations: 
 - It inserts STOCK_CODE, STOCK_NAME, NAME, [DESC] into table stock
 
@@ -187,6 +65,128 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 - stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
 - category.NAME: (nullable = false), (length = 10)
 - category.[DESC]: (nullable = false)
+
+-----------------------------------------------------------
+
+[M-6] com.mkyong.stock.Category.Category()
+-- This method implements the following db-related operations: 
+- It constructs category without any initial value
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-7] com.mkyong.stock.Category.Category(String, Set<Stock>)
+-- This method implements the following db-related operations: 
+- It constructs category with attributes NAME, [DESC]
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- category.NAME: (nullable = false), (length = 10)
+- category.[DESC]: (nullable = false)
+
+-----------------------------------------------------------
+
+[M-8] com.mkyong.stock.Category.getCategoryId()
+-- This method implements the following db-related operations: 
+- It gets attribute CATEGORY_ID from table category
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-9] com.mkyong.stock.Category.setCategoryId(Integer)
+-- This method implements the following db-related operations: 
+- It sets attribute CATEGORY_ID from table category
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- category.CATEGORY_ID: (unique = true), (nullable = false)
+
+-----------------------------------------------------------
+
+[M-10] com.mkyong.stock.Category.getName()
+-- This method implements the following db-related operations: 
+- It gets attribute NAME from table category
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-11] com.mkyong.stock.Category.setName(String)
+-- This method implements the following db-related operations: 
+- It sets attribute NAME from table category
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- category.NAME: (nullable = false), (length = 10)
+
+-----------------------------------------------------------
+
+[M-12] com.mkyong.stock.Category.getDesc()
+-- This method implements the following db-related operations: 
+- It gets attribute [DESC] from table category
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-13] com.mkyong.stock.Category.setDesc(String)
+-- This method implements the following db-related operations: 
+- It sets attribute [DESC] from table category
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- category.[DESC]: (nullable = false)
+
+-----------------------------------------------------------
+
+[M-14] com.mkyong.stock.Stock.Stock(String)
+-- This method implements the following db-related operations: 
+- It constructs stock with attributes STOCK_CODE, STOCK_NAME
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
+- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
+
+-----------------------------------------------------------
+
+[M-15] com.mkyong.stock.Stock.Stock(String, Set<Category>)
+-- This method implements the following db-related operations: 
+- It constructs stock with attributes STOCK_CODE, STOCK_NAME
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)
+- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)
+
+-----------------------------------------------------------
+
+[M-16] com.mkyong.stock.Stock.getStockId()
+-- This method implements the following db-related operations: 
+- It gets attribute STOCK_ID from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-17] com.mkyong.stock.Stock.setStockId(Integer)
+-- This method implements the following db-related operations: 
+- It sets attribute STOCK_ID from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- stock.STOCK_ID: (unique = true), (nullable = false)
+
+-----------------------------------------------------------
+
+[M-18] com.mkyong.stock.Stock.getStockCode()
+-- This method implements the following db-related operations: 
+- It gets attribute STOCK_CODE from table stock
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-19] com.mkyong.stock.Stock.getStockName()
+-- This method implements the following db-related operations: 
+- It gets attribute STOCK_NAME from table stock
+*Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 

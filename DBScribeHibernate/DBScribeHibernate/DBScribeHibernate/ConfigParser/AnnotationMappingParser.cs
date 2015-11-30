@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using DBScribeHibernate.DBScribeHibernate.Util;
 using DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor;
+using System.Threading;
 
 namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
@@ -124,6 +125,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         {
             string TableName = classFullNameToTableName[mappingClass];
             string ClassFullName = mappingClass;
+            Console.WriteLine("~~~ " + ClassFullName + " <--> " + TableName);
 
             string srcml_output_path = Constants.SrcmlOutput + mappingClass + ".xml";
             if (!File.Exists(srcml_output_path))
@@ -131,18 +133,51 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                 Src2XML.SourceFileToXml(mappingFilePath, srcml_output_path, Constants.SrcmlLoc);
             }
             XElement rootEle = XElement.Load(srcml_output_path);
-            IEnumerable<XElement> funcEleList = rootEle.Descendants(prefix + "function");
-            foreach (XElement funcEle in funcEleList)
+            IEnumerable<XElement> annotationEleList = rootEle.Descendants(prefix + "annotation");
+            foreach (XElement annotationEle in annotationEleList)
             {
-                string colmunName = _GetTableColumn(funcEle);
-                if (colmunName != "")
+                String annotationType = _GetAnnotationEleType(annotationEle);
+                if (annotationType == "Column")
                 {
-                    string classPropName = _GetClassPropName(funcEle);
-                    string fullClassPropName = ClassFullName + "." + classPropName;
+                    String columnName = "";
+                    String classPropName = "";
 
-                    if (!classPropertyToTableColumn.ContainsKey(fullClassPropName))
+                    XElement grandParentEle = annotationEle.Parent.Parent;
+                    if (grandParentEle.Name == (prefix + "function"))
                     {
-                        classPropertyToTableColumn.Add(fullClassPropName, TableName + "." + colmunName);
+                        columnName = _GetTableColumn(grandParentEle);
+                        classPropName = _GetClassPropName(grandParentEle);
+                        string fullClassPropName = ClassFullName + "." + classPropName;
+                        if (!classPropertyToTableColumn.ContainsKey(fullClassPropName))
+                        {
+                            classPropertyToTableColumn.Add(fullClassPropName, TableName + "." + columnName);
+                        }
+                    }
+                    else if (grandParentEle.Name == (prefix + "decl"))
+                    {
+                        // Get class property name
+                        XElement parentEle = annotationEle.Parent;
+                        XElement nameEle = parentEle.ElementsAfterSelf(prefix + "name").FirstOrDefault();
+                        classPropName = nameEle.Value.ToString();
+                        string fullClassPropName = ClassFullName + "." + classPropName;
+
+                        // Get column name
+                        XElement argumentListEle = annotationEle.Descendants(prefix + "argument_list").FirstOrDefault();
+                        foreach (XElement argumentEle in argumentListEle.Descendants(prefix + "argument"))
+                        {
+                            XElement exprEle = argumentListEle.Descendants(prefix + "expr").FirstOrDefault();
+                            XElement exprNameEle = exprEle.Descendants(prefix + "name").FirstOrDefault();
+                            if (exprNameEle.Value == "name")
+                            {
+                                string[] tokens = exprEle.Value.ToString().Split('"');
+                                columnName = tokens[tokens.Length - 2];
+                                break;
+                            }
+                        }
+                        if (!classPropertyToTableColumn.ContainsKey(fullClassPropName))
+                        {
+                            classPropertyToTableColumn.Add(fullClassPropName, TableName + "." + columnName);
+                        }
                     }
                 }
             }
@@ -203,7 +238,17 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             if (!File.Exists(srcml_output_path))
             {
                 Src2XML.SourceFileToXml(mappingFilePath, srcml_output_path, Constants.SrcmlLoc);
+
+                bool ifExists = false;
+                while (ifExists == false)
+                {
+                    Thread.Sleep(50);
+                    ifExists = File.Exists(srcml_output_path);
+                    Console.WriteLine(ifExists);
+                }
+                Thread.Sleep(1000);
             }
+            
             XElement rootEle = XElement.Load(srcml_output_path);
             XElement classEle = rootEle.Descendants(prefix + "class").FirstOrDefault();
             foreach (XElement annotationEle in classEle.Descendants(prefix + "annotation"))
@@ -348,6 +393,15 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         public override Dictionary<string, List<string>> GetTableNameToTableConstraints()
         {
             return tableNameToTableConstraints;
+        }
+
+        private void _WaitCounter()
+        {
+            int x = 0;
+            for (int i = 0; i < 1000; i++)
+            {
+                x = i;
+            }
         }
     }
 }
