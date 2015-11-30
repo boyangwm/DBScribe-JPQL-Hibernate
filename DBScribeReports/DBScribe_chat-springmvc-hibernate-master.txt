@@ -1,0 +1,330 @@
+DBScribe Report for Project chat-springmvc-hibernate-master
+There are 30 database-related methods.
+
+
+-----------------------------------------------------------
+
+[M-1] com.mpakhomov.chat.domain.User.getNick()
+-- This method implements the following db-related operations: 
+- It gets attribute nick from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-2] com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory(int)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-3] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User, boolean)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.service.UserServiceImpl.saveUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-4] com.mpakhomov.chat.service.UserServiceImpl.addUser(User)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.service.UserServiceImpl.addUser --> com.mpakhomov.chat.service.UserServiceImpl.saveUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-5] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.service.UserServiceImpl.saveUser --> com.mpakhomov.chat.service.UserServiceImpl.saveUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-6] com.mpakhomov.chat.domain.User.User()
+-- This method implements the following db-related operations: 
+- It constructs user without any initial value
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-7] com.mpakhomov.chat.controller.AdminController.createUser(Model)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.createUser --> com.mpakhomov.chat.domain.User.User
+- It constructs user without any initial value
+
+-----------------------------------------------------------
+
+[M-8] com.mpakhomov.chat.controller.AdminController.createOrUpdateUser(User, BindingResult, Boolean)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-9] com.mpakhomov.chat.controller.AdminController.addUserFromForm(User, BindingResult)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.addUserFromForm --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-10] com.mpakhomov.chat.controller.AdminController.saveUserProfile(User, BindingResult)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.saveUserProfile --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-11] com.mpakhomov.chat.controller.ProfileController.showRegistrationForm(Map<String,Object>)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.showRegistrationForm --> com.mpakhomov.chat.domain.User.User
+- It constructs user without any initial value
+
+-----------------------------------------------------------
+
+[M-12] com.mpakhomov.chat.domain.User.setNick(String)
+-- This method implements the following db-related operations: 
+- It sets attribute nick from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- user.nick: (min=3, max=15, message=
+            "Nick must be between 3 and 15 characters long"), (regexp="^[a-zA-Z0-9]+$",
+            message="Nick must be alphanumeric with no spaces"), (unique=true), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-13] com.mpakhomov.chat.domain.User.getPassword()
+-- This method implements the following db-related operations: 
+- It gets attribute password from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-14] com.mpakhomov.chat.domain.User.setPassword(String)
+-- This method implements the following db-related operations: 
+- It sets attribute password from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- user.password: (min=5, max=20,
+            message="The password must be at least 5 characters long"), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-15] com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser(User, BindingResult, Boolean)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.setNick
+- It sets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.setPassword
+- It sets attribute password from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getPassword
+- It gets attribute password from table user
+
+
+-- Some constraints that should be taken into account are the following: 
+- user.nick: (min=3, max=15, message=
+            "Nick must be between 3 and 15 characters long"), (regexp="^[a-zA-Z0-9]+$",
+            message="Nick must be alphanumeric with no spaces"), (unique=true), (nullable=false)
+- user.password: (min=5, max=20,
+            message="The password must be at least 5 characters long"), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-16] com.mpakhomov.chat.controller.ProfileController.addUserFromForm(User, BindingResult)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.addUserFromForm --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.setNick
+- It sets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.addUserFromForm --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.addUserFromForm --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.setPassword
+- It sets attribute password from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.addUserFromForm --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getPassword
+- It gets attribute password from table user
+
+
+-- Some constraints that should be taken into account are the following: 
+- user.nick: (min=3, max=15, message=
+            "Nick must be between 3 and 15 characters long"), (regexp="^[a-zA-Z0-9]+$",
+            message="Nick must be alphanumeric with no spaces"), (unique=true), (nullable=false)
+- user.password: (min=5, max=20,
+            message="The password must be at least 5 characters long"), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-17] com.mpakhomov.chat.controller.ProfileController.saveUserProfile(User, BindingResult)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.saveUserProfile --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.setNick
+- It sets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.saveUserProfile --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.saveUserProfile --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.setPassword
+- It sets attribute password from table user
+
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.saveUserProfile --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getPassword
+- It gets attribute password from table user
+
+
+-- Some constraints that should be taken into account are the following: 
+- user.nick: (min=3, max=15, message=
+            "Nick must be between 3 and 15 characters long"), (regexp="^[a-zA-Z0-9]+$",
+            message="Nick must be alphanumeric with no spaces"), (unique=true), (nullable=false)
+- user.password: (min=5, max=20,
+            message="The password must be at least 5 characters long"), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-18] com.mpakhomov.chat.controller.HomeController.createTestData()
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.HomeController.createTestData --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-19] com.mpakhomov.chat.controller.HomeController.index(Map<String,Object>)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.HomeController.index --> com.mpakhomov.chat.controller.HomeController.createTestData --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+
+-----------------------------------------------------------
+
+[M-20] com.mpakhomov.chat.controller.HomeController.register(Model)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.HomeController.register --> com.mpakhomov.chat.domain.User.User
+- It constructs user without any initial value
+
+-----------------------------------------------------------
+
+[M-21] com.mpakhomov.chat.domain.User.getMiddleName()
+-- This method implements the following db-related operations: 
+- It gets attribute middleName from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-22] com.mpakhomov.chat.domain.User.setMiddleName(String)
+-- This method implements the following db-related operations: 
+- It sets attribute middleName from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- user.middleName: (max=15, message=
+            "Middle name must be less than 15 characters long"), (regexp="^([a-zA-Z \\.])*$",
+            message="Invalid characters"), (nullable=true)
+
+-----------------------------------------------------------
+
+[M-23] com.mpakhomov.chat.dao.UserDaoImpl.save(User)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.save --> com.mpakhomov.chat.domain.User.getMiddleName
+- It gets attribute middleName from table user
+
+Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.save --> com.mpakhomov.chat.domain.User.setMiddleName
+- It sets attribute middleName from table user
+
+-- Some constraints that should be taken into account are the following: 
+- user.middleName: (max=15, message=
+            "Middle name must be less than 15 characters long"), (regexp="^([a-zA-Z \\.])*$",
+            message="Invalid characters"), (nullable=true)
+
+-----------------------------------------------------------
+
+[M-24] com.mpakhomov.chat.domain.User.User(String)
+-- This method implements the following db-related operations: 
+- It constructs user with attributes firstName, middleName, lastName, nick, email, password
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- user.firstName: (min=2, max=15, message=
+            "First name must be between 2 and 15 characters long"), (regexp="^[a-zA-Z]+$",
+            message="Invalid characters"), (nullable=false)
+- user.middleName: (max=15, message=
+            "Middle name must be less than 15 characters long"), (regexp="^([a-zA-Z \\.])*$",
+            message="Invalid characters"), (nullable=true)
+- user.lastName: (max=15, message=
+            "Last name must be between 2 and 15 characters long"), (regexp="^[a-zA-Z]+$",
+            message="Invalid characters"), (nullable=false)
+- user.nick: (min=3, max=15, message=
+            "Nick must be between 3 and 15 characters long"), (regexp="^[a-zA-Z0-9]+$",
+            message="Nick must be alphanumeric with no spaces"), (unique=true), (nullable=false)
+- user.password: (min=5, max=20,
+            message="The password must be at least 5 characters long"), (nullable=false)
+- user.email: (regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
+            message="Invalid email address"), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-25] com.mpakhomov.chat.domain.User.getFirstName()
+-- This method implements the following db-related operations: 
+- It gets attribute firstName from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-26] com.mpakhomov.chat.domain.User.setFirstName(String)
+-- This method implements the following db-related operations: 
+- It sets attribute firstName from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- user.firstName: (min=2, max=15, message=
+            "First name must be between 2 and 15 characters long"), (regexp="^[a-zA-Z]+$",
+            message="Invalid characters"), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-27] com.mpakhomov.chat.domain.User.getLastName()
+-- This method implements the following db-related operations: 
+- It gets attribute lastName from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-28] com.mpakhomov.chat.domain.User.setLastName(String)
+-- This method implements the following db-related operations: 
+- It sets attribute lastName from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- user.lastName: (max=15, message=
+            "Last name must be between 2 and 15 characters long"), (regexp="^[a-zA-Z]+$",
+            message="Invalid characters"), (nullable=false)
+
+-----------------------------------------------------------
+
+[M-29] com.mpakhomov.chat.domain.User.getEmail()
+-- This method implements the following db-related operations: 
+- It gets attribute email from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-30] com.mpakhomov.chat.domain.User.setEmail(String)
+-- This method implements the following db-related operations: 
+- It sets attribute email from table user
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- user.email: (regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
+            message="Invalid email address"), (nullable=false)
+
+-----------------------------------------------------------
+

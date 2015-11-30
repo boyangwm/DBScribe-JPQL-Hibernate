@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using DBScribeHibernate.DBScribeHibernate.Util;
+using DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor;
 
 namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
@@ -23,6 +24,9 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         /// </summary>
         private Dictionary<string, string> classPropertyToTableColumn;
         private Dictionary<string, List<string>> tableNameToTableConstraints;
+
+        public static readonly HashSet<string> DBConstraintType_Annotation = DBConstraintExtractorAnnotation.AnnontationSet;
+            
 
         public AnnotationMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
         {
@@ -58,6 +62,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         {
             string TableName = classFullNameToTableName[mappingClass];
             string ClassFullName = mappingClass;
+            Dictionary<string, List<string>> constraintList = new Dictionary<string, List<string>>();
 
             string srcml_output_path = Constants.SrcmlOutput + mappingClass + ".xml";
             if (!File.Exists(srcml_output_path))
@@ -65,20 +70,53 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                 Src2XML.SourceFileToXml(mappingFilePath, srcml_output_path, Constants.SrcmlLoc);
             }
             XElement rootEle = XElement.Load(srcml_output_path);
-            IEnumerable<XElement> funcEleList = rootEle.Descendants(prefix + "function");
-            foreach (XElement funcEle in funcEleList)
+            XElement classEle = rootEle.Descendants(prefix + "class").FirstOrDefault();
+            foreach (XElement annotationEle in classEle.Descendants(prefix + "annotation"))
             {
-                string colmunName = _GetTableColumn(funcEle);
-                if (colmunName != "")
+                string annotationType = _GetAnnotationEleType(annotationEle);
+                if (annotationType == "Column")
                 {
-                    string classPropName = _GetClassPropName(funcEle);
-                    string fullClassPropName = ClassFullName + "." + classPropName;
-
-                    if (!classPropertyToTableColumn.ContainsKey(fullClassPropName))
+                    Tuple<string, string> conTuple = 
+                        DBConstraintExtractorAnnotation.GetConstraintInfoFromColumnAnnotation(TableName, annotationEle);
+                    string columnName = conTuple.Item1;
+                    string cInfo = conTuple.Item2;
+                    if (cInfo != "")
                     {
-                        classPropertyToTableColumn.Add(fullClassPropName, TableName + "." + colmunName);
+                        if (!constraintList.ContainsKey(columnName))
+                        {
+                            constraintList.Add(columnName, new List<string>());
+                        }
+                        constraintList[columnName].Add(cInfo);
                     }
                 }
+                else if (DBConstraintType_Annotation.Contains(annotationType))
+                {
+                    Tuple<string, string> conTuple =
+                        DBConstraintExtractorAnnotation.GetConstraintInfoFromOtherAnnotation(TableName, annotationEle, annotationType);
+                    string columnName = conTuple.Item1;
+                    string cInfo = conTuple.Item2;
+                    if (cInfo != "")
+                    {
+                        if (!constraintList.ContainsKey(columnName))
+                        {
+                            constraintList.Add(columnName, new List<string>());
+                        }
+                        constraintList[columnName].Add(cInfo);
+                    }
+                }
+            }
+
+            if (!tableNameToTableConstraints.ContainsKey(TableName))
+            {
+                List<string> tableConstraintList = new List<string>();
+                foreach (KeyValuePair<string, List<string>> item in constraintList)
+                {
+                    List<string> curConstraintList = item.Value;
+                    string cInfo = TableName + "." + item.Key + ": " + string.Join(", ", curConstraintList);
+                    tableConstraintList.Add(cInfo);
+                    
+                }
+                tableNameToTableConstraints.Add(TableName, tableConstraintList);
             }
         }
 
@@ -143,8 +181,8 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                         {
                             string[] tokens = exprEle.Value.ToString().Split('"');
                             columnName = tokens[tokens.Length - 2];
+                            break;
                         }
-                        break;
                     }
                 }
                 if (columnName != "")

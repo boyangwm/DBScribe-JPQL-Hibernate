@@ -141,18 +141,15 @@ namespace DBScribeHibernate
 
                 Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
                 registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-                Utility.PrintDictionary(registeredClassFullNameToTableName);
+                //Utility.PrintDictionary(registeredClassFullNameToTableName);
 
                 Console.WriteLine("\n<2> Class Property <--> Table Attribute");
                 classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
-                Utility.PrintDictionary(classPropertyToTableColumn);
+                //Utility.PrintDictionary(classPropertyToTableColumn);
 
                 Console.WriteLine("\n<3> Table Name --> Table Constraints");
                 tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-                Utility.PrintTableConstraints(tableNameToTableConstraints);
-
-                Console.ReadKey();
-                System.Environment.Exit(1);
+                //Utility.PrintTableConstraints(tableNameToTableConstraints);
             }
             else
             {
