@@ -134,7 +134,23 @@ namespace DBScribeHibernate
             else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
             {
                 mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
-                Console.WriteLine("[Later] Will handle " + configParser.MappingFileType + " later!!!");
+                if (Constants.ShowLog)
+                {
+                    Console.WriteLine("Mapping Parser Type: " + mappingParser.GetMappingParserType());
+                }
+
+                Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
+                registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
+                Utility.PrintDictionary(registeredClassFullNameToTableName);
+
+                Console.WriteLine("\n<2> Class Property <--> Table Attribute");
+                classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
+                Utility.PrintDictionary(classPropertyToTableColumn);
+
+                Console.WriteLine("\n<3> Table Name --> Table Constraints");
+                tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
+                Utility.PrintTableConstraints(tableNameToTableConstraints);
+
                 Console.ReadKey();
                 System.Environment.Exit(1);
             }
