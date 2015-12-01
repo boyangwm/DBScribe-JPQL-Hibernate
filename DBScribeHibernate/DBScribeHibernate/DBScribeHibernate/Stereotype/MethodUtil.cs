@@ -97,7 +97,8 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// <param name="md"></param>
         /// <param name="allDBClassToTableName"></param>
         /// <returns></returns>
-        public static List<SessionBuiltInFunction> CheckIfCallSessionBuiltInFunction(MethodDefinition md, Dictionary<string, string> allDBClassToTableName)
+        public static List<SessionBuiltInFunction> CheckIfCallSessionBuiltInFunction(MethodDefinition md, 
+            Dictionary<string, string> allDBClassToTableName)
         {
             List<SessionBuiltInFunction> sessionFunctionList = new List<SessionBuiltInFunction>();
 
@@ -114,7 +115,6 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                               select expression;
             foreach (Expression expr in expressions)
             {
-                //Console.WriteLine(expr);
                 Stack<SessionBuiltInFunction> fStack = new Stack<SessionBuiltInFunction>();
 
                 List<NameUse> itemsInSameLevel = new List<NameUse>(expr.GetDescendantsAndSelf<NameUse>());
@@ -123,10 +123,12 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                 {
                     NameUse item = itemsInSameLevel[i];
                     //Console.WriteLine("\t" + item.Name + " || " + item.GetType());
+
+                    // If use Session variable to call Session built-in functions
                     if (item.GetType().ToString() == Constants.SrcML_NameUse)
                     {
                         //Console.WriteLine("\t" + item.Name + " || " + item.GetType());
-                        if (varList.ContainsKey(item.Name) && varList[item.Name] == Constants.Session)
+                        if ((varList.ContainsKey(item.Name) && varList[item.Name] == Constants.Session))
                         {
                             NameUse nextSibling = null;
                             if (i != len - 1)
@@ -139,65 +141,26 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
                                 // Next, find the target POJO class for normal session functions
                                 // And find query string for query session functions
-                                string targetClassName = "";
-                                if (SessionBuiltInFunction.NormalFunctions.Contains(sessionFunctionName))
-                                {
-                                    // When you find one session function, find the first NameUse that is a POJO class
-                                    // (1) if use "String entityName" as parameter
-                                    for (int j = i + 1; j < len; j++)
-                                    {
-                                        if (itemsInSameLevel[j].GetType().ToString() == Constants.SrcML_NameUse)
-                                        {
-                                            if (PojoClassNames.Contains(itemsInSameLevel[j].Name))
-                                            {
-                                                targetClassName = itemsInSameLevel[j].Name;
-                                                break;
-                                            }
-
-                                        }
-                                    }
-                                    // (2) not found in (1) && if use "Object object" as parameter
-                                    if (targetClassName == "")
-                                    {
-                                        for (int j = i + 1; j < len; j++)
-                                        {
-                                            if(varList.ContainsKey(itemsInSameLevel[j].Name) &&
-                                                PojoClassNames.Contains(varList[itemsInSameLevel[j].Name]))
-                                            {
-                                                targetClassName = varList[itemsInSameLevel[j].Name];
-                                                break;
-                                            }
-                                        }
-                                    }
-
-                                    //Console.WriteLine("\t\t~~~~ " + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
-                                    //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
-                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, GetTableNameFromClassName(targetClassName, allDBClassToTableName)));
-                                }
-                                else if (SessionBuiltInFunction.QueryFunctions.Contains(sessionFunctionName))
-                                {
-                                    // Note that, if it's query function, TargetClassName in fact means hql/sql string.
-                                    for (int j = i + 1; j < len; j++)
-                                    {
-                                        var itemName = itemsInSameLevel[j].Name;
-                                        if (varList.ContainsKey(itemName))
-                                        {
-                                            if (varList[itemName] == "string" || varList[itemName] == "String")
-                                            {
-                                                targetClassName = varList[itemName];
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    //Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
-                                    //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
-                                    fStack.Push(new SessionBuiltInFunction(sessionFunctionName, GetTableNameFromClassName(targetClassName, allDBClassToTableName)));
-                                }
-                                else
-                                {
-                                    //Console.WriteLine("\t\t*** Other types of session function: " + sessionFunctionName);
-                                }
+                                _FindSessionFunctionInfo(sessionFunctionName, i, len, itemsInSameLevel, PojoClassNames, varList, fStack, allDBClassToTableName);
                             }
+                        }
+                    }
+
+                    // If use getCurrentSession() or openSession() to call Session built-in functions
+                    else if ((item.GetType().ToString() == Constants.SrcML_MethodCall) && (SessionBuiltInFunction.GetSessionFunctions.Contains(item.Name)))
+                    {
+                        NameUse nextSibling = null;
+                        if (i != len - 1)
+                        {
+                            nextSibling = itemsInSameLevel[++i];
+                        }
+                        if (nextSibling != null && nextSibling.GetType().ToString() == Constants.SrcML_MethodCall)
+                        {
+                            string sessionFunctionName = ((MethodCall)nextSibling).Name;
+
+                            // Next, find the target POJO class for normal session functions
+                            // And find query string for query session functions
+                            _FindSessionFunctionInfo(sessionFunctionName, i, len, itemsInSameLevel, PojoClassNames, varList, fStack, allDBClassToTableName);
                         }
                     }
                 }
@@ -207,6 +170,73 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                 }
             }
             return sessionFunctionList;
+        }
+
+
+        // Next, find the target POJO class for normal session functions
+        // And find query string for query session functions
+        private static void _FindSessionFunctionInfo(string sessionFunctionName, int i, int len, List<NameUse> itemsInSameLevel,
+            HashSet<string> PojoClassNames, Dictionary<string, string> varList, Stack<SessionBuiltInFunction> fStack, 
+            Dictionary<string, string> allDBClassToTableName)
+        {
+            string targetClassName = "";
+            if (SessionBuiltInFunction.NormalFunctions.Contains(sessionFunctionName))
+            {
+                // When you find one session function, find the first NameUse that is a POJO class
+                // (1) if use "String entityName" as parameter
+                for (int j = i + 1; j < len; j++)
+                {
+                    if (itemsInSameLevel[j].GetType().ToString() == Constants.SrcML_NameUse)
+                    {
+                        if (PojoClassNames.Contains(itemsInSameLevel[j].Name))
+                        {
+                            targetClassName = itemsInSameLevel[j].Name;
+                            break;
+                        }
+
+                    }
+                }
+                // (2) not found in (1) && if use "Object object" as parameter
+                if (targetClassName == "")
+                {
+                    for (int j = i + 1; j < len; j++)
+                    {
+                        if (varList.ContainsKey(itemsInSameLevel[j].Name) &&
+                            PojoClassNames.Contains(varList[itemsInSameLevel[j].Name]))
+                        {
+                            targetClassName = varList[itemsInSameLevel[j].Name];
+                            break;
+                        }
+                    }
+                }
+
+                //Console.WriteLine("\t\t~~~~ " + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
+                //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                fStack.Push(new SessionBuiltInFunction(sessionFunctionName, GetTableNameFromClassName(targetClassName, allDBClassToTableName)));
+            }
+            else if (SessionBuiltInFunction.QueryFunctions.Contains(sessionFunctionName))
+            {
+                // Note that, if it's query function, TargetClassName in fact means hql/sql string.
+                for (int j = i + 1; j < len; j++)
+                {
+                    var itemName = itemsInSameLevel[j].Name;
+                    if (varList.ContainsKey(itemName))
+                    {
+                        if (varList[itemName] == "string" || varList[itemName] == "String")
+                        {
+                            targetClassName = varList[itemName];
+                            break;
+                        }
+                    }
+                }
+                //Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
+                //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
+                fStack.Push(new SessionBuiltInFunction(sessionFunctionName, GetTableNameFromClassName(targetClassName, allDBClassToTableName)));
+            }
+            else
+            {
+                //Console.WriteLine("\t\t*** Other types of session function: " + sessionFunctionName);
+            }
         }
 
         private static string GetTableNameFromClassName(string className, Dictionary<string, string> allDBClassToTableName)

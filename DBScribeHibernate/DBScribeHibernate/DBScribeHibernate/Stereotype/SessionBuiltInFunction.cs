@@ -14,6 +14,9 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// </summary>
         public string TargetTableName;
 
+        public static readonly HashSet<string> GetSessionFunctions =
+            new HashSet<string>(new string[] { "getCurrentSession", "openSession" });
+
         public static readonly HashSet<string> NormalFunctions =
             new HashSet<string>(new string[] {"get", "load", "merge", "persist", "replicate", "save", "saveOrUpdate", "update",
             "delete", "createCriteria"});

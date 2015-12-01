@@ -1,17 +1,17 @@
 DBScribe Report for Project HibernateOneToManyXMLMapping
-There are 28 database-related methods.
+There are 30 database-related methods.
 
 
 -----------------------------------------------------------
 
-[M-1] com.mkyong.stock.StockDailyRecord.StockDailyRecord()
+[M-1, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.StockDailyRecord()
 -- This method implements the following db-related operations: 
 - It constructs stock_daily_record without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-2] com.mkyong.stock.StockDailyRecord.StockDailyRecord(Stock, Date)
+[M-2, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.StockDailyRecord(Stock, Date)
 -- This method implements the following db-related operations: 
 - It constructs stock_daily_record with attributes DATE
 *Note: This method will not affect the database util Session built-in function is called
@@ -21,7 +21,7 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-3] com.mkyong.stock.StockDailyRecord.StockDailyRecord(Stock, Float, Long, Date)
+[M-3, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.StockDailyRecord(Stock, Float, Long, Date)
 -- This method implements the following db-related operations: 
 - It constructs stock_daily_record with attributes PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE
 *Note: This method will not affect the database util Session built-in function is called
@@ -34,14 +34,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-4] com.mkyong.stock.StockDailyRecord.getRecordId()
+[M-4, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.getRecordId()
 -- This method implements the following db-related operations: 
 - It gets attribute RECORD_ID from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-5] com.mkyong.stock.StockDailyRecord.setRecordId(Integer)
+[M-5, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.setRecordId(Integer)
 -- This method implements the following db-related operations: 
 - It sets attribute RECORD_ID from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
@@ -51,14 +51,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-6] com.mkyong.stock.StockDailyRecord.getPriceOpen()
+[M-6, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.getPriceOpen()
 -- This method implements the following db-related operations: 
 - It gets attribute PRICE_OPEN from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-7] com.mkyong.stock.StockDailyRecord.setPriceOpen(Float)
+[M-7, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.setPriceOpen(Float)
 -- This method implements the following db-related operations: 
 - It sets attribute PRICE_OPEN from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
@@ -68,14 +68,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-8] com.mkyong.stock.StockDailyRecord.getPriceClose()
+[M-8, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.getPriceClose()
 -- This method implements the following db-related operations: 
 - It gets attribute PRICE_CLOSE from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-9] com.mkyong.stock.StockDailyRecord.setPriceClose(Float)
+[M-9, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.setPriceClose(Float)
 -- This method implements the following db-related operations: 
 - It sets attribute PRICE_CLOSE from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
@@ -85,14 +85,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-10] com.mkyong.stock.StockDailyRecord.getPriceChange()
+[M-10, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.getPriceChange()
 -- This method implements the following db-related operations: 
 - It gets attribute PRICE_CHANGE from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-11] com.mkyong.stock.StockDailyRecord.setPriceChange(Float)
+[M-11, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.setPriceChange(Float)
 -- This method implements the following db-related operations: 
 - It sets attribute PRICE_CHANGE from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
@@ -102,28 +102,28 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-12] com.mkyong.stock.StockDailyRecord.getVolume()
+[M-12, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.getVolume()
 -- This method implements the following db-related operations: 
 - It gets attribute VOLUME from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-13] com.mkyong.stock.StockDailyRecord.setVolume(Long)
+[M-13, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.setVolume(Long)
 -- This method implements the following db-related operations: 
 - It sets attribute VOLUME from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-14] com.mkyong.stock.StockDailyRecord.getDate()
+[M-14, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.getDate()
 -- This method implements the following db-related operations: 
 - It gets attribute DATE from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-15] com.mkyong.stock.StockDailyRecord.setDate(Date)
+[M-15, SQLOperatingMethod] com.mkyong.stock.StockDailyRecord.setDate(Date)
 -- This method implements the following db-related operations: 
 - It sets attribute DATE from table stock_daily_record
 *Note: This method will not affect the database util Session built-in function is called
@@ -133,14 +133,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-16] com.mkyong.stock.Stock.Stock()
+[M-16, SQLOperatingMethod] com.mkyong.stock.Stock.Stock()
 -- This method implements the following db-related operations: 
 - It constructs stock without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-17] com.mkyong.stock.Stock.Stock(String)
+[M-17, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String)
 -- This method implements the following db-related operations: 
 - It constructs stock with attributes STOCK_CODE, STOCK_NAME
 *Note: This method will not affect the database util Session built-in function is called
@@ -151,7 +151,7 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-18] com.mkyong.stock.Stock.Stock(String, Set<StockDailyRecord>)
+[M-18, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String, Set<StockDailyRecord>)
 -- This method implements the following db-related operations: 
 - It constructs stock with attributes STOCK_CODE, STOCK_NAME
 *Note: This method will not affect the database util Session built-in function is called
@@ -162,14 +162,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-19] com.mkyong.stock.Stock.getStockId()
+[M-19, SQLOperatingMethod] com.mkyong.stock.Stock.getStockId()
 -- This method implements the following db-related operations: 
 - It gets attribute STOCK_ID from table stock
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-20] com.mkyong.stock.Stock.setStockId(Integer)
+[M-20, SQLOperatingMethod] com.mkyong.stock.Stock.setStockId(Integer)
 -- This method implements the following db-related operations: 
 - It sets attribute STOCK_ID from table stock
 *Note: This method will not affect the database util Session built-in function is called
@@ -179,14 +179,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-21] com.mkyong.stock.Stock.getStockCode()
+[M-21, SQLOperatingMethod] com.mkyong.stock.Stock.getStockCode()
 -- This method implements the following db-related operations: 
 - It gets attribute STOCK_CODE from table stock
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-22] com.mkyong.stock.Stock.setStockCode(String)
+[M-22, SQLOperatingMethod] com.mkyong.stock.Stock.setStockCode(String)
 -- This method implements the following db-related operations: 
 - It sets attribute STOCK_CODE from table stock
 *Note: This method will not affect the database util Session built-in function is called
@@ -196,14 +196,14 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-23] com.mkyong.stock.Stock.getStockName()
+[M-23, SQLOperatingMethod] com.mkyong.stock.Stock.getStockName()
 -- This method implements the following db-related operations: 
 - It gets attribute STOCK_NAME from table stock
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-24] com.mkyong.stock.Stock.setStockName(String)
+[M-24, SQLOperatingMethod] com.mkyong.stock.Stock.setStockName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute STOCK_NAME from table stock
 *Note: This method will not affect the database util Session built-in function is called
@@ -213,7 +213,7 @@ There are 28 database-related methods.
 
 -----------------------------------------------------------
 
-[M-25] com.mkyong.StockManager.addStockDailyRecord(Integer, String, Long, Date)
+[M-25, LocalSQLMethod] com.mkyong.StockManager.addStockDailyRecord(Integer, String, Long, Date)
 -- This method implements the following db-related operations: 
 - It queries the table stock
 - It inserts PRICE_OPEN, PRICE_CLOSE, PRICE_CHANGE, VOLUME, DATE into table stock_daily_record
@@ -246,7 +246,7 @@ Via call-chain: com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock
 
 -----------------------------------------------------------
 
-[M-26] com.mkyong.StockManager.addStock(String)
+[M-27, LocalSQLMethod] com.mkyong.StockManager.addStock(String)
 -- This method implements the following db-related operations: 
 - It inserts STOCK_CODE, STOCK_NAME into table stock
 
@@ -267,7 +267,7 @@ Via call-chain: com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setS
 
 -----------------------------------------------------------
 
-[M-27] com.mkyong.StockManager.addStockAndDailyRecord()
+[M-29, DelegatedSQLMethod] com.mkyong.StockManager.addStockAndDailyRecord()
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
 - It constructs stock without any initial value
@@ -329,7 +329,7 @@ Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.St
 
 -----------------------------------------------------------
 
-[M-28] com.mkyong.StockManager.main(String)
+[M-30, DelegatedSQLMethod] com.mkyong.StockManager.main(String)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
 - It constructs stock without any initial value

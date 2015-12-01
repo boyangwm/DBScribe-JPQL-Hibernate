@@ -13,7 +13,9 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
     class AnnotationMappingParser : MappingParser
     {
-        string prefix = "{http://www.sdml.info/srcML/src}";
+        private bool IfFoundHibernateCfgXml;
+
+        private string prefix = "{http://www.sdml.info/srcML/src}";
 
         private List<string> mappingPOJOClasses;
         private Dictionary<string, string> mappingFileList;
@@ -27,14 +29,31 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         private Dictionary<string, List<string>> tableNameToTableConstraints;
 
         public static readonly HashSet<string> DBConstraintType_Annotation = DBConstraintExtractorAnnotation.AnnontationSet;
-            
 
-        public AnnotationMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
+
+        public AnnotationMappingParser(string targetProjPath, string cfgFileName, bool ifFoundHibernateCfgXml)
+            : base(targetProjPath, cfgFileName)
         {
             Util.Utility.CreateDirectoryIfNotExist(Constants.SrcmlOutput);
+            this.IfFoundHibernateCfgXml = ifFoundHibernateCfgXml;
 
-            _GetMappingClasses();
-            _GetMappingClassFilePath();
+            mappingPOJOClasses = new List<string>();
+            mappingFileList = new Dictionary<string, string>();
+
+            if (this.IfFoundHibernateCfgXml == true)
+            {
+                _GetMappingClasses();
+                _GetMappingClassFilePath();
+
+                // some POJO classes might not be included in the mapping file,
+                // but annotated using @Entity --> need manually add them!
+                _FindAllPojoClassesWithEntityAnnotation();
+            }
+            else
+            {
+                Console.WriteLine("Need manually find all POJO class list!");
+                _FindAllPojoClassesWithEntityAnnotation();
+            }
 
             // Get classFullNameToTableName
             classFullNameToTableName = new Dictionary<string, string>();
@@ -57,7 +76,65 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             {
                 _GetTableNameToTableConstraintsnOneByOne(item.Key, item.Value);
             }
+            
         }
+
+
+        private void _FindAllPojoClassesWithEntityAnnotation()
+        {
+            string[] pathList = Directory.GetFiles(_targetProjPath, "*.java", SearchOption.AllDirectories);
+            if (pathList.Length == 0)
+            {
+                Console.Error.WriteLine("[Error] No Java files found!");
+                Console.ReadKey();
+                System.Environment.Exit(1);
+            }
+            foreach (string path in pathList)
+            {
+                string className = "";
+                string packageName = "";
+                bool ifPojoClass = false;
+
+                // Read the file and display it line by line.
+                StreamReader fdata = new StreamReader(path);
+                string line;
+                while ((line = fdata.ReadLine()) != null)
+                {
+                    if (line.Contains("package")) // Get Java File Package Name
+                    {
+                        string[] tokens = line.Split(new char[] { ' ', ';' });
+                        packageName = tokens[1];
+
+                    }
+                    else if (line.Contains("@Entity")) // This means this is an POJO class for Hibernate
+                    {
+                        ifPojoClass = true;
+                        break;
+                    }
+                }
+                fdata.Close();
+                if (ifPojoClass)
+                {
+                    string[] tokens = path.Split(new char[] { '.', '\\' });
+                    className = tokens[tokens.Length - 2];
+                    string fullClassName = className;
+                    if (packageName != "")
+                    {
+                        fullClassName = packageName + "." + className;
+                    }
+
+                    if (!mappingPOJOClasses.Contains(fullClassName))
+                    {
+                        mappingPOJOClasses.Add(fullClassName);
+                    }
+                    if (!mappingFileList.ContainsKey(fullClassName))
+                    {
+                        mappingFileList.Add(fullClassName, path);
+                    }
+                }
+            }
+        }
+
 
         private void _GetTableNameToTableConstraintsnOneByOne(string mappingClass, string mappingFilePath)
         {
@@ -125,7 +202,6 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         {
             string TableName = classFullNameToTableName[mappingClass];
             string ClassFullName = mappingClass;
-            Console.WriteLine("~~~ " + ClassFullName + " <--> " + TableName);
 
             string srcml_output_path = Constants.SrcmlOutput + mappingClass + ".xml";
             if (!File.Exists(srcml_output_path))
@@ -297,7 +373,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         /// <returns></returns>
         private void _GetMappingClasses()
         {
-            mappingPOJOClasses = new List<string>();
+            
             XElement rootEle = XElement.Load(this._cfgFilePath);
             //Console.WriteLine("Root:" + rootEle.Name);
 
@@ -312,7 +388,6 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 
         private void _GetMappingClassFilePath()
         {
-            mappingFileList = new Dictionary<string, string>();
             foreach (string mappingClass in mappingPOJOClasses)
             {
                 string[] tokens = mappingClass.Split('.');
@@ -377,7 +452,6 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         {
             return Constants.MappingFileType.AnnotationMapping;
         }
-
 
 
         public override Dictionary<string, string> GetClassFullNameToTableName()

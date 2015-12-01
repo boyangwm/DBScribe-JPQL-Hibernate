@@ -1,24 +1,24 @@
 DBScribe Report for Project HibernateComponentMappingExample
-There are 12 database-related methods.
+There are 13 database-related methods.
 
 
 -----------------------------------------------------------
 
-[M-1] com.mkyong.customer.Customer.Customer()
+[M-1, SQLOperatingMethod] com.mkyong.customer.Customer.Customer()
 -- This method implements the following db-related operations: 
 - It constructs customer without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-2] com.mkyong.customer.Customer.getCustId()
+[M-2, SQLOperatingMethod] com.mkyong.customer.Customer.getCustId()
 -- This method implements the following db-related operations: 
 - It gets attribute CUST_ID from table customer
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-3] com.mkyong.customer.Customer.setCustId(Integer)
+[M-3, SQLOperatingMethod] com.mkyong.customer.Customer.setCustId(Integer)
 -- This method implements the following db-related operations: 
 - It sets attribute CUST_ID from table customer
 *Note: This method will not affect the database util Session built-in function is called
@@ -28,14 +28,14 @@ There are 12 database-related methods.
 
 -----------------------------------------------------------
 
-[M-4] com.mkyong.customer.Customer.getCustName()
+[M-4, SQLOperatingMethod] com.mkyong.customer.Customer.getCustName()
 -- This method implements the following db-related operations: 
 - It gets attribute CUST_NAME from table customer
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-5] com.mkyong.customer.Customer.setCustName(String)
+[M-5, SQLOperatingMethod] com.mkyong.customer.Customer.setCustName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute CUST_NAME from table customer
 *Note: This method will not affect the database util Session built-in function is called
@@ -45,14 +45,14 @@ There are 12 database-related methods.
 
 -----------------------------------------------------------
 
-[M-6] com.mkyong.customer.Customer.getAge()
+[M-6, SQLOperatingMethod] com.mkyong.customer.Customer.getAge()
 -- This method implements the following db-related operations: 
 - It gets attribute AGE from table customer
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-7] com.mkyong.customer.Customer.setAge(int)
+[M-7, SQLOperatingMethod] com.mkyong.customer.Customer.setAge(int)
 -- This method implements the following db-related operations: 
 - It sets attribute AGE from table customer
 *Note: This method will not affect the database util Session built-in function is called
@@ -62,14 +62,14 @@ There are 12 database-related methods.
 
 -----------------------------------------------------------
 
-[M-8] com.mkyong.customer.Customer.getCreatedDate()
+[M-8, SQLOperatingMethod] com.mkyong.customer.Customer.getCreatedDate()
 -- This method implements the following db-related operations: 
 - It gets attribute CREATED_DATE from table customer
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-9] com.mkyong.customer.Customer.setCreatedDate(Date)
+[M-9, SQLOperatingMethod] com.mkyong.customer.Customer.setCreatedDate(Date)
 -- This method implements the following db-related operations: 
 - It sets attribute CREATED_DATE from table customer
 *Note: This method will not affect the database util Session built-in function is called
@@ -79,14 +79,14 @@ There are 12 database-related methods.
 
 -----------------------------------------------------------
 
-[M-10] com.mkyong.customer.Customer.getCreatedBy()
+[M-10, SQLOperatingMethod] com.mkyong.customer.Customer.getCreatedBy()
 -- This method implements the following db-related operations: 
 - It gets attribute CREATED_BY from table customer
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-11] com.mkyong.customer.Customer.setCreatedBy(String)
+[M-11, SQLOperatingMethod] com.mkyong.customer.Customer.setCreatedBy(String)
 -- This method implements the following db-related operations: 
 - It sets attribute CREATED_BY from table customer
 *Note: This method will not affect the database util Session built-in function is called
@@ -96,9 +96,9 @@ There are 12 database-related methods.
 
 -----------------------------------------------------------
 
-[M-12] com.mkyong.App.main(String)
+[M-12, LocalSQLMethod] com.mkyong.App.main(String)
 -- This method implements the following db-related operations: 
-- It inserts CUST_NAME, AGE, CREATED_DATE, CREATED_BY into table customer. (session.save(customer))
+- It inserts CUST_NAME, AGE, CREATED_DATE, CREATED_BY into table customer
 
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.App.main --> com.mkyong.customer.Customer.Customer

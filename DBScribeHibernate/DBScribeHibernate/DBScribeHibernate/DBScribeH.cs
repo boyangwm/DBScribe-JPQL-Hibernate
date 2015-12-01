@@ -90,7 +90,7 @@ namespace DBScribeHibernate
             writetext.Write(output);
             writetext.Close();
 
-            Console.Write(output);
+            //Console.Write(output);
 
         }
 
@@ -101,65 +101,52 @@ namespace DBScribeHibernate
             ConfigParser configParser = new ConfigParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
             if (configParser.configFilePath == null)
             {
-                Console.Error.WriteLine("[Error] Hibernate configuration file " + Constants.CfgFileName + " not found!");
-                Console.ReadKey();
-                System.Environment.Exit(-1);
+                Console.WriteLine("Hibernate configuration file " + Constants.CfgFileName + " not found!");
+                Console.WriteLine("Assume using Annotation mapping.");
+                mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName, false);
             }
-
-            Console.WriteLine("Hibernate DTD: " + configParser.HibernateDTD);
-            Console.WriteLine("Mapping File Type: " + configParser.MappingFileType);
-            Console.WriteLine("");
-
-            if (configParser.MappingFileType == Constants.MappingFileType.XMLMapping)
+            else if (configParser.ifHasMappingList == false)
             {
-                mappingParser = new XMLMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
-                if (Constants.ShowLog)
-                {
-                    Console.WriteLine("Mapping Parser Type: " + mappingParser.GetMappingParserType());
-                }
-
-                Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
-                registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-                //Utility.PrintDictionary(registeredClassFullNameToTableName);
-
-                Console.WriteLine("\n<2> Class Property <--> Table Attribute");
-                classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
-                //Utility.PrintDictionary(classPropertyToTableColumn);
-
-                Console.WriteLine("\n<3> Table Name --> Table Constraints");
-                tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-                //Utility.PrintTableConstraints(tableNameToTableConstraints);
-
-            }
-            else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
-            {
-                mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
-                if (Constants.ShowLog)
-                {
-                    Console.WriteLine("Mapping Parser Type: " + mappingParser.GetMappingParserType());
-                }
-
-                Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
-                registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-                Utility.PrintDictionary(registeredClassFullNameToTableName);
-
-                Console.WriteLine("\n<2> Class Property <--> Table Attribute");
-                classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
-                Utility.PrintDictionary(classPropertyToTableColumn);
-
-                Console.WriteLine("\n<3> Table Name --> Table Constraints");
-                tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-                Utility.PrintTableConstraints(tableNameToTableConstraints);
-
-                //Console.ReadKey();
-                //Environment.Exit(0);
+                Console.WriteLine("Hibernate configuration file doesn't contain mapping info!");
+                Console.WriteLine("Assume using Annotation mapping.");
+                mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName, false);
             }
             else
             {
-                Console.WriteLine("Unkonw mapping type.");
-                Console.ReadKey();
-                System.Environment.Exit(1);
+                Console.WriteLine("Hibernate DTD: " + configParser.HibernateDTD);
+                Console.WriteLine("Mapping File Type: " + configParser.MappingFileType);
+
+                if (configParser.MappingFileType == Constants.MappingFileType.XMLMapping)
+                {
+                    mappingParser = new XMLMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
+                }
+                else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
+                {
+                    mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName, true);
+                }
+                else
+                {
+                    Console.Error.WriteLine("[Error]Unkonw mapping type.");
+                    Console.ReadKey();
+                    System.Environment.Exit(1);
+                }
             }
+
+            Console.WriteLine("");
+            Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
+            registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
+            Utility.PrintDictionary(registeredClassFullNameToTableName);
+
+            Console.WriteLine("\n<2> Class Property <--> Table Attribute");
+            classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
+            Utility.PrintDictionary(classPropertyToTableColumn);
+
+            Console.WriteLine("\n<3> Table Name --> Table Constraints");
+            tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
+            //Utility.PrintTableConstraints(tableNameToTableConstraints);
+
+            //Console.ReadKey();
+            //Environment.Exit(0);
         }
 
         public void Step2_1_GenerateCallGraph()
@@ -356,27 +343,14 @@ namespace DBScribeHibernate
             {
                 isDBMethod = true;
 
-                //var dc = MethodUtil.GetDeclaringClass(method);
-                //if (dc != null)
-                //{
-                //    var name = dc.GetFullName();
-                //    if (name != "com.jspdev.biyesheji.Course")
-                //    {
-                //        continue;
-                //    }
-                //}
-                //else
-                //{
-                //    continue;
-                //}
-
                 // (1) Check if POJO Class's Get/Set Function
                 BasicMethod basicMethod = MethodUtil.CheckIfGetSetMethodsInPOJOClass(method, allDBClassToTableName, allDBClassPropToTableAttr);
                 if (basicMethod != null)
                 {
                     
                     string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
-                    outputBuilder.Append("[M-" + ++idx_m + "] " + methodHeader);
+                    string curMethodType = Constants.SQLMethodCategory.SQLOperatingMethod.ToString();
+                    outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
                     MethodDescription curMD = MethodDescriptionUtil.DescribeBasicMethod(basicMethod, tableNameToTableConstraints);
                     outputBuilder.AppendLine(curMD.MethodDescriptionStr);
                     if (!DBMethodToOpList.ContainsKey(methodHeader))
@@ -393,7 +367,8 @@ namespace DBScribeHibernate
                     if (sessionBuiltInFuncList != null && sessionBuiltInFuncList.Count() != 0)
                     {
                         string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
-                        outputBuilder.Append("[M-" + ++idx_m + "] " + methodHeader);
+                        string curMethodType = Constants.SQLMethodCategory.LocalSQLMethod.ToString();
+                        outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
 
                         HashSet<string> _DBRelatedMethods = new HashSet<string>(DBMethodToOpList.Keys);
                         IEnumerable<string> invokedDBMethodNameHeaders = MethodUtil.GetInvokedMethodNameHeaderInTheMethod(method).Intersect(_DBRelatedMethods);
@@ -404,6 +379,10 @@ namespace DBScribeHibernate
                         DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
                         DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);
                         DBMethodToTableAttrNames.Add(methodHeader, curMD.DBTableAttrList);
+
+                        Console.WriteLine("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
+                        Console.WriteLine(curMD.MethodDescriptionStr);
+                        Console.WriteLine("--------------------------------------------------------------");
 
                         //foreach (SessionBuiltInFunction item in sessionBuiltInFuncList)
                         //{
@@ -428,7 +407,8 @@ namespace DBScribeHibernate
                         if (invokedDBMethodNameHeaders.Count() != 0)
                         {
                             string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
-                            outputBuilder.Append("[M-" + ++idx_m + "] " + methodHeader);
+                            string curMethodType = Constants.SQLMethodCategory.DelegatedSQLMethod.ToString();
+                            outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
 
                             //DBRelatedMethods.Add(method.GetFullName());
                             //string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));

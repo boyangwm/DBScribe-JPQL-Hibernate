@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -68,7 +69,22 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
             }
 
             XElement argumetListEle = annotationEle.Descendants(srcml_prefix + "argument_list").FirstOrDefault();
-            cInfo = argumetListEle.Value.ToString();
+            //cInfo = argumetListEle.Value.ToString();
+
+            if (argumetListEle != null)
+            {
+                cInfo = argumetListEle.Value.ToString();
+
+                // replace many spaces with only one space!
+                RegexOptions options = RegexOptions.None;
+                Regex regex = new Regex(@"[ ]{2,}", options);
+                cInfo = regex.Replace(cInfo, @" ");
+            }
+            else
+            {
+                cInfo = "(" + annotationType + " = true)";
+            }
+
             return Tuple.Create(columnName, cInfo);
         }
 

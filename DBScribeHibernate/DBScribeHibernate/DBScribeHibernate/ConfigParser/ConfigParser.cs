@@ -13,6 +13,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         public readonly string configFilePath;
         public readonly Constants.MappingFileType MappingFileType;
         public readonly string HibernateDTD;
+        public readonly bool ifHasMappingList;
         
 
         /// <summary>
@@ -21,6 +22,8 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         /// <param name="cfgFileName"></param>
         public ConfigParser(string targetProjPath, string cfgFileName)
         {
+            this.ifHasMappingList = true;
+
             // get config file (hibernate.cfg.xm) path
             this.configFilePath = Directory.GetFiles(targetProjPath, cfgFileName, SearchOption.AllDirectories).FirstOrDefault();
             if (this.configFilePath == null)
@@ -44,21 +47,28 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 
             // get mapping file type
             XElement mappingEleSample = doc.Descendants("mapping").FirstOrDefault();
-            var attr = mappingEleSample.Attributes("resource").SingleOrDefault();
-            if (attr != null)
+            if (mappingEleSample == null)
             {
-                this.MappingFileType = Constants.MappingFileType.XMLMapping;
+                this.ifHasMappingList = false;
             }
             else
             {
-                var attr2 = mappingEleSample.Attributes("class").SingleOrDefault();
-                if (attr2 != null)
+                var attr = mappingEleSample.Attributes("resource").SingleOrDefault();
+                if (attr != null)
                 {
-                    this.MappingFileType = Constants.MappingFileType.AnnotationMapping;
+                    this.MappingFileType = Constants.MappingFileType.XMLMapping;
                 }
                 else
                 {
-                    this.MappingFileType = Constants.MappingFileType.OtherMapping;
+                    var attr2 = mappingEleSample.Attributes("class").SingleOrDefault();
+                    if (attr2 != null)
+                    {
+                        this.MappingFileType = Constants.MappingFileType.AnnotationMapping;
+                    }
+                    else
+                    {
+                        this.MappingFileType = Constants.MappingFileType.OtherMapping;
+                    }
                 }
             }
         }

@@ -4,35 +4,80 @@ There are 29 database-related methods.
 
 -----------------------------------------------------------
 
-[M-1] org.integrallis.bookstore.domain.Book.Book(String, Date, Double)
+[M-1, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.Book(String, Date, Double)
 -- This method implements the following db-related operations: 
 - It constructs Book with attributes isbn, title, publishedOn, Price
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-2] org.integrallis.bookstore.domain.ElectronicBook.ElectronicBook(String, Date, Double)
+[M-2, DelegatedSQLMethod] org.integrallis.bookstore.domain.ElectronicBook.ElectronicBook(String, Date, Double)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: org.integrallis.bookstore.domain.ElectronicBook.ElectronicBook --> org.integrallis.bookstore.domain.Book.Book
 - It constructs Book with attributes isbn, title, publishedOn, Price
 
 -----------------------------------------------------------
 
-[M-3] org.integrallis.bookstore.domain.Store.Store()
+[M-3, SQLOperatingMethod] org.integrallis.bookstore.domain.Inventory.Inventory()
+-- This method implements the following db-related operations: 
+- It constructs Inventory without any initial value
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-4, SQLOperatingMethod] org.integrallis.bookstore.domain.Inventory.setQuantity(Integer)
+-- This method implements the following db-related operations: 
+- It sets attribute quantity from table Inventory
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-5, SQLOperatingMethod] org.integrallis.bookstore.domain.Inventory.Inventory(Store, int)
+-- This method implements the following db-related operations: 
+- It constructs Inventory without any initial value
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-6, SQLOperatingMethod] org.integrallis.bookstore.domain.Inventory.getId()
+-- This method implements the following db-related operations: 
+- It gets attribute INVENTORY_ID from table Inventory
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-7, SQLOperatingMethod] org.integrallis.bookstore.domain.Inventory.setId(Long)
+-- This method implements the following db-related operations: 
+- It sets attribute INVENTORY_ID from table Inventory
+*Note: This method will not affect the database util Session built-in function is called
+
+-- Some constraints that should be taken into account are the following: 
+- Primary key: Inventory.INVENTORY_ID (type=)
+
+-----------------------------------------------------------
+
+[M-8, SQLOperatingMethod] org.integrallis.bookstore.domain.Inventory.getQuantity()
+-- This method implements the following db-related operations: 
+- It gets attribute quantity from table Inventory
+*Note: This method will not affect the database util Session built-in function is called
+
+-----------------------------------------------------------
+
+[M-9, SQLOperatingMethod] org.integrallis.bookstore.domain.Store.Store()
 -- This method implements the following db-related operations: 
 - It constructs Store without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-4] org.integrallis.bookstore.domain.Store.Store(String)
+[M-10, SQLOperatingMethod] org.integrallis.bookstore.domain.Store.Store(String)
 -- This method implements the following db-related operations: 
 - It constructs Store with attributes nickName
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-5] org.integrallis.bookstore.domain.Store.setId(Long)
+[M-11, SQLOperatingMethod] org.integrallis.bookstore.domain.Store.setId(Long)
 -- This method implements the following db-related operations: 
 - It sets attribute STORE_ID from table Store
 *Note: This method will not affect the database util Session built-in function is called
@@ -42,49 +87,49 @@ Via call-chain: org.integrallis.bookstore.domain.ElectronicBook.ElectronicBook -
 
 -----------------------------------------------------------
 
-[M-6] org.integrallis.bookstore.domain.Store.getId()
+[M-12, SQLOperatingMethod] org.integrallis.bookstore.domain.Store.getId()
 -- This method implements the following db-related operations: 
 - It gets attribute STORE_ID from table Store
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-7] org.integrallis.bookstore.domain.Store.setNickName(String)
+[M-13, SQLOperatingMethod] org.integrallis.bookstore.domain.Store.setNickName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute nickName from table Store
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-8] org.integrallis.bookstore.domain.Store.getNickName()
+[M-14, SQLOperatingMethod] org.integrallis.bookstore.domain.Store.getNickName()
 -- This method implements the following db-related operations: 
 - It gets attribute nickName from table Store
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-9] org.integrallis.bookstore.domain.Store.equals(Object)
+[M-15, DelegatedSQLMethod] org.integrallis.bookstore.domain.Store.equals(Object)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: org.integrallis.bookstore.domain.Store.equals --> org.integrallis.bookstore.domain.Store.getNickName
 - It gets attribute nickName from table Store
 
 -----------------------------------------------------------
 
-[M-10] org.integrallis.bookstore.domain.Book.Book()
+[M-16, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.Book()
 -- This method implements the following db-related operations: 
 - It constructs Book without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-11] org.integrallis.bookstore.domain.Book.getId()
+[M-17, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.getId()
 -- This method implements the following db-related operations: 
 - It gets attribute BOOK_ID from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-12] org.integrallis.bookstore.domain.Book.setId(Long)
+[M-18, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.setId(Long)
 -- This method implements the following db-related operations: 
 - It sets attribute BOOK_ID from table Book
 *Note: This method will not affect the database util Session built-in function is called
@@ -94,77 +139,63 @@ Via call-chain: org.integrallis.bookstore.domain.Store.equals --> org.integralli
 
 -----------------------------------------------------------
 
-[M-13] org.integrallis.bookstore.domain.Book.getIsbn()
+[M-19, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.getIsbn()
 -- This method implements the following db-related operations: 
 - It gets attribute isbn from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-14] org.integrallis.bookstore.domain.Book.setIsbn(String)
+[M-20, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.setIsbn(String)
 -- This method implements the following db-related operations: 
 - It sets attribute isbn from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-15] org.integrallis.bookstore.domain.Book.getTitle()
+[M-21, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.getTitle()
 -- This method implements the following db-related operations: 
 - It gets attribute title from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-16] org.integrallis.bookstore.domain.Book.setTitle(String)
+[M-22, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.setTitle(String)
 -- This method implements the following db-related operations: 
 - It sets attribute title from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-17] org.integrallis.bookstore.domain.Book.getPublishedOn()
+[M-23, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.getPublishedOn()
 -- This method implements the following db-related operations: 
 - It gets attribute publishedOn from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-18] org.integrallis.bookstore.domain.Book.setPublishedOn(Date)
+[M-24, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.setPublishedOn(Date)
 -- This method implements the following db-related operations: 
 - It sets attribute publishedOn from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-19] org.integrallis.bookstore.domain.Book.getPrice()
+[M-25, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.getPrice()
 -- This method implements the following db-related operations: 
 - It gets attribute Price from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-20] org.integrallis.bookstore.domain.Book.setPrice(Double)
+[M-26, SQLOperatingMethod] org.integrallis.bookstore.domain.Book.setPrice(Double)
 -- This method implements the following db-related operations: 
 - It sets attribute Price from table Book
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-21] org.integrallis.bookstore.domain.Inventory.setQuantity(Integer)
--- This method implements the following db-related operations: 
-- It sets attribute quantity from table Inventory
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-22] org.integrallis.bookstore.domain.Inventory.Inventory(Store, int)
--- This method implements the following db-related operations: 
-- It constructs Inventory without any initial value
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-23] org.integrallis.bookstore.domain.Book.addInventoryRecord(Store, int)
+[M-27, DelegatedSQLMethod] org.integrallis.bookstore.domain.Book.addInventoryRecord(Store, int)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: org.integrallis.bookstore.domain.Book.addInventoryRecord --> org.integrallis.bookstore.domain.Inventory.Inventory --> org.integrallis.bookstore.domain.Inventory.setStore
 - It constructs Inventory without any initial value
@@ -176,45 +207,14 @@ Via call-chain: org.integrallis.bookstore.domain.Book.addInventoryRecord --> org
 
 -----------------------------------------------------------
 
-[M-24] org.integrallis.bookstore.domain.Book.equals(Object)
+[M-28, DelegatedSQLMethod] org.integrallis.bookstore.domain.Book.equals(Object)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: org.integrallis.bookstore.domain.Book.equals --> org.integrallis.bookstore.domain.Book.getIsbn
 - It gets attribute isbn from table Book
 
 -----------------------------------------------------------
 
-[M-25] org.integrallis.bookstore.domain.Inventory.Inventory()
--- This method implements the following db-related operations: 
-- It constructs Inventory without any initial value
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-26] org.integrallis.bookstore.domain.Inventory.getId()
--- This method implements the following db-related operations: 
-- It gets attribute INVENTORY_ID from table Inventory
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-27] org.integrallis.bookstore.domain.Inventory.setId(Long)
--- This method implements the following db-related operations: 
-- It sets attribute INVENTORY_ID from table Inventory
-*Note: This method will not affect the database util Session built-in function is called
-
--- Some constraints that should be taken into account are the following: 
-- Primary key: Inventory.INVENTORY_ID (type=)
-
------------------------------------------------------------
-
-[M-28] org.integrallis.bookstore.domain.Inventory.getQuantity()
--- This method implements the following db-related operations: 
-- It gets attribute quantity from table Inventory
-*Note: This method will not affect the database util Session built-in function is called
-
------------------------------------------------------------
-
-[M-29] org.integrallis.bookstore.dao.BookDAOTest.testGetAllBooksLike()
+[M-29, DelegatedSQLMethod] org.integrallis.bookstore.dao.BookDAOTest.testGetAllBooksLike()
 -- This method invokes db-related operations via delegation: 
 Via call-chain: org.integrallis.bookstore.dao.BookDAOTest.testGetAllBooksLike --> org.integrallis.bookstore.domain.Book.getTitle
 - It gets attribute title from table Book

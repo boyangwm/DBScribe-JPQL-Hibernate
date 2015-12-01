@@ -1,17 +1,17 @@
 DBScribe Report for Project MyFirstHibernate
-There are 17 database-related methods.
+There are 21 database-related methods.
 
 
 -----------------------------------------------------------
 
-[M-1] Employee.Employee()
+[M-1, SQLOperatingMethod] Employee.Employee()
 -- This method implements the following db-related operations: 
 - It constructs EMPLOYEE without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-2] Employee.Employee(String, int)
+[M-2, SQLOperatingMethod] Employee.Employee(String, int)
 -- This method implements the following db-related operations: 
 - It constructs EMPLOYEE with attributes first_name, last_name, salary
 *Note: This method will not affect the database util Session built-in function is called
@@ -22,14 +22,14 @@ There are 17 database-related methods.
 
 -----------------------------------------------------------
 
-[M-3] Employee.getId()
+[M-3, SQLOperatingMethod] Employee.getId()
 -- This method implements the following db-related operations: 
 - It gets attribute id from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-4] Employee.setId(int)
+[M-4, SQLOperatingMethod] Employee.setId(int)
 -- This method implements the following db-related operations: 
 - It sets attribute id from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
@@ -39,14 +39,14 @@ There are 17 database-related methods.
 
 -----------------------------------------------------------
 
-[M-5] Employee.getFirstName()
+[M-5, SQLOperatingMethod] Employee.getFirstName()
 -- This method implements the following db-related operations: 
 - It gets attribute first_name from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-6] Employee.setFirstName(String)
+[M-6, SQLOperatingMethod] Employee.setFirstName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute first_name from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
@@ -56,14 +56,14 @@ There are 17 database-related methods.
 
 -----------------------------------------------------------
 
-[M-7] Employee.getLastName()
+[M-7, SQLOperatingMethod] Employee.getLastName()
 -- This method implements the following db-related operations: 
 - It gets attribute last_name from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-8] Employee.setLastName(String)
+[M-8, SQLOperatingMethod] Employee.setLastName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute last_name from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
@@ -73,21 +73,21 @@ There are 17 database-related methods.
 
 -----------------------------------------------------------
 
-[M-9] Employee.getSalary()
+[M-9, SQLOperatingMethod] Employee.getSalary()
 -- This method implements the following db-related operations: 
 - It gets attribute salary from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-10] Employee.setSalary(int)
+[M-10, SQLOperatingMethod] Employee.setSalary(int)
 -- This method implements the following db-related operations: 
 - It sets attribute salary from table EMPLOYEE
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-11] Employee.getEmployeeInfo()
+[M-11, DelegatedSQLMethod] Employee.getEmployeeInfo()
 -- This method invokes db-related operations via delegation: 
 Via call-chain: Employee.getEmployeeInfo --> Employee.getFirstName
 - It gets attribute first_name from table EMPLOYEE
@@ -100,7 +100,7 @@ Via call-chain: Employee.getEmployeeInfo --> Employee.getSalary
 
 -----------------------------------------------------------
 
-[M-12] ManageEmployee.addEmployee(String, int)
+[M-12, LocalSQLMethod] ManageEmployee.addEmployee(String, int)
 -- This method implements the following db-related operations: 
 - It inserts first_name, last_name, salary into table EMPLOYEE
 
@@ -115,7 +115,7 @@ Via call-chain: ManageEmployee.addEmployee --> Employee.Employee
 
 -----------------------------------------------------------
 
-[M-13] ManageEmployee.printEmployeeInfo(Employee)
+[M-14, DelegatedSQLMethod] ManageEmployee.printEmployeeInfo(Employee)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getFirstName
 - It gets attribute first_name from table EMPLOYEE
@@ -128,7 +128,7 @@ Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --
 
 -----------------------------------------------------------
 
-[M-14] ManageEmployee.listEmployees()
+[M-15, LocalSQLMethod] ManageEmployee.listEmployees()
 -- This method implements the following db-related operations: 
 - It queries the table EMPLOYEE
 
@@ -145,7 +145,7 @@ Via call-chain: ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInf
 
 -----------------------------------------------------------
 
-[M-15] ManageEmployee.updateEmployee(Integer, int)
+[M-17, LocalSQLMethod] ManageEmployee.updateEmployee(Integer, int)
 -- This method implements the following db-related operations: 
 - It queries the table EMPLOYEE
 - It updates salary into table EMPLOYEE
@@ -157,14 +157,14 @@ Via call-chain: ManageEmployee.updateEmployee --> Employee.setSalary
 
 -----------------------------------------------------------
 
-[M-16] ManageEmployee.deleteEmployee(Integer)
+[M-19, LocalSQLMethod] ManageEmployee.deleteEmployee(Integer)
 -- This method implements the following db-related operations: 
 - It queries the table EMPLOYEE
 - It deletes rows from table EMPLOYEE
 
 -----------------------------------------------------------
 
-[M-17] ManageEmployee.main(String)
+[M-21, DelegatedSQLMethod] ManageEmployee.main(String)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.main --> ManageEmployee.addEmployee --> Employee.Employee
 - It constructs EMPLOYEE with attributes first_name, last_name, salary
