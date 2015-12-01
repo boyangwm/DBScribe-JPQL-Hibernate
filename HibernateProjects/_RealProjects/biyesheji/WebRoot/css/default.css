@@ -1,0 +1,23 @@
+body, table {
+	FONT-SIZE: 9pt; WORD-SPACING: 2pt; COLOR: #333333; LINE-HEIGHT: 17pt; FONT-FAMILY: "ËÎ»Ã"; LETTER-SPACING: 0.5pt
+}
+A:link {
+	COLOR: #000000; FONT-STYLE: normal; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; FONT-STYLE: normal; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #f77d08; FONT-STYLE: normal; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #0066cc; FONT-STYLE: normal; TEXT-DECORATION: none
+}
+.en {
+	FONT-SIZE: 12px; FONT-FAMILY: "Arial", "Helvetica", "sans-serif"
+}
+BODY {
+	SCROLLBAR-FACE-COLOR: #eeeeee; FONT-SIZE: 9pt; SCROLLBAR-HIGHLIGHT-COLOR: #b5b5b5; SCROLLBAR-SHADOW-COLOR: #b5b5b5; COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #eeeeee; LINE-HEIGHT: 12pt; SCROLLBAR-ARROW-COLOR: #b5b5b5; FONT-FAMILY: "ËÎÌå"; SCROLLBAR-DARKSHADOW-COLOR: #eeeeee
+}
+.3dfont {
+	FILTER: glow(color=ffffff,strength=0) shadow(color=aaaaaa,direction:75); POSITION: relative; WIDTH: 100%

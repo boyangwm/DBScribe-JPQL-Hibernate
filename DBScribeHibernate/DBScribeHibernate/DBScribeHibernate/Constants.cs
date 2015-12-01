@@ -16,7 +16,8 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// <summary>
         /// Target Project Location and Name
         /// </summary>
-        public static readonly string TargetProjPath = @"E:\workspace_hibernate";
+        //public static readonly string TargetProjPath = @"E:\workspace_hibernate";
+        public static readonly string TargetProjPath = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\HibernateProjects";
 
         //// IF using <mapping resource="...xml" /> ---> xml
         //public static readonly string ProjName = @"MyFirstHibernate";
@@ -35,7 +36,8 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// <summary>
         /// SrcML Location
         /// </summary>
-        public static readonly string SrcmlLoc = @"E:\Research\SrcML\";
+        //public static readonly string SrcmlLoc = @"E:\Research\SrcML\";
+        public static readonly string SrcmlLoc = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\SrcML\";
         public static readonly string SrcmlOutput = @"_SrcmlOutput\" + Util.Utility.GetProjectName(ProjName) + @"\";
 
         /// <summary>

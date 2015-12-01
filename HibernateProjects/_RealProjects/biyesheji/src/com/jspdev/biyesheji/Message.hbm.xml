@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jspdev.biyesheji">
+	<class
+		name="Message"
+		table="message"
+	>
+		<meta attribute="sync-DAO">true</meta>
+		<id
+			name="id"
+			column="id"
+			type="java.lang.Long"
+			unsaved-value="null"
+		>
+			<generator class="increment"/>
+		</id>
+
+		<property
+			name="title"
+			column="title"
+			type="string"
+			not-null="true"
+			length="100"
+		/>
+		<property
+			name="name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="email"
+			column="email"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="time"
+			column="time"
+			type="string"
+			not-null="true"
+			length="50"
+		/>
+		<property
+			name="content"
+			column="content"
+			type="string"
+			not-null="true"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

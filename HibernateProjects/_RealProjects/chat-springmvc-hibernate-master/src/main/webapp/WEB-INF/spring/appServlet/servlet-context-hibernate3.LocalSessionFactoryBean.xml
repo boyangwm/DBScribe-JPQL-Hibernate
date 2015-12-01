@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <context:property-placeholder location="classpath:jdbc.properties" />
+
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+
+    <!-- Scans within the base package of the application for @Components to configure as beans -->
+    <!-- @Controller, @Service, @Configuration, etc. -->
+    <context:component-scan base-package="com.mpakhomov.chat" />
+    <context:component-scan base-package="com.mpakhomov.chat.dao" />
+    <context:annotation-config />
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven />
+
+    <!-- Resolve logical view names to .jsp resources in the /WEB-INF/views directory -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${database.driver}" />
+        <property name="url" value="${database.url}" />
+        <property name="username" value="${database.user}" />
+        <property name="password" value="${database.password}" />
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation">
+            <value>classpath:hibernate.cfg.xml</value>
+        </property>
+        <property name="configurationClass">
+            <value>org.hibernate.cfg.AnnotationConfiguration</value>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <tx:annotation-driven />
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+</beans>

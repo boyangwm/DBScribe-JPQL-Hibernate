@@ -1,6 +1,7 @@
 DBScribe Report for Project MyFirstHibernate
-There are 21 database-related methods.
+There are 17 database-related methods (out of 17 methods).
 
+Among them, there are 10 SQL Operating Methods, 4 Local SQL Methods, 3 Delegated SQL Methods.
 
 -----------------------------------------------------------
 
@@ -115,7 +116,7 @@ Via call-chain: ManageEmployee.addEmployee --> Employee.Employee
 
 -----------------------------------------------------------
 
-[M-14, DelegatedSQLMethod] ManageEmployee.printEmployeeInfo(Employee)
+[M-13, DelegatedSQLMethod] ManageEmployee.printEmployeeInfo(Employee)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --> Employee.getFirstName
 - It gets attribute first_name from table EMPLOYEE
@@ -128,7 +129,7 @@ Via call-chain: ManageEmployee.printEmployeeInfo --> Employee.getEmployeeInfo --
 
 -----------------------------------------------------------
 
-[M-15, LocalSQLMethod] ManageEmployee.listEmployees()
+[M-14, LocalSQLMethod] ManageEmployee.listEmployees()
 -- This method implements the following db-related operations: 
 - It queries the table EMPLOYEE
 
@@ -145,7 +146,7 @@ Via call-chain: ManageEmployee.listEmployees --> ManageEmployee.printEmployeeInf
 
 -----------------------------------------------------------
 
-[M-17, LocalSQLMethod] ManageEmployee.updateEmployee(Integer, int)
+[M-15, LocalSQLMethod] ManageEmployee.updateEmployee(Integer, int)
 -- This method implements the following db-related operations: 
 - It queries the table EMPLOYEE
 - It updates salary into table EMPLOYEE
@@ -157,14 +158,14 @@ Via call-chain: ManageEmployee.updateEmployee --> Employee.setSalary
 
 -----------------------------------------------------------
 
-[M-19, LocalSQLMethod] ManageEmployee.deleteEmployee(Integer)
+[M-16, LocalSQLMethod] ManageEmployee.deleteEmployee(Integer)
 -- This method implements the following db-related operations: 
 - It queries the table EMPLOYEE
 - It deletes rows from table EMPLOYEE
 
 -----------------------------------------------------------
 
-[M-21, DelegatedSQLMethod] ManageEmployee.main(String)
+[M-17, DelegatedSQLMethod] ManageEmployee.main(String)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: ManageEmployee.main --> ManageEmployee.addEmployee --> Employee.Employee
 - It constructs EMPLOYEE with attributes first_name, last_name, salary

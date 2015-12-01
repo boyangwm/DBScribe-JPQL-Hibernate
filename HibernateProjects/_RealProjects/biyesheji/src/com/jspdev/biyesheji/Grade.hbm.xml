@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jspdev.biyesheji">
+	<class
+		name="Grade"
+		table="grade"
+	>
+		<meta attribute="sync-DAO">true</meta>
+		<composite-id name="id" class="GradePK">
+			<key-many-to-one
+				name="snumber"
+				class="Student"
+				column="snumber"
+			/>
+			<key-many-to-one
+				name="cnumber"
+				class="Course"
+				column="cnumber"
+			/>
+		</composite-id>
+
+		<property
+			name="year"
+			column="year"
+			type="string"
+			not-null="true"
+			length="50"
+		/>
+		<property
+			name="term"
+			column="term"
+			type="java.lang.Long"
+			not-null="true"
+			length="19"
+		/>
+		<property
+			name="grade"
+			column="grade"
+			type="java.lang.Float"
+			not-null="true"
+			length="53"
+		/>
+		<property
+			name="chongXiu"
+			column="chongXiu"
+			type="string"
+			not-null="true"
+			length="10"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

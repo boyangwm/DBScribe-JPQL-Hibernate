@@ -1,6 +1,7 @@
 DBScribe Report for Project chat-springmvc-hibernate-master
-There are 53 database-related methods.
+There are 47 database-related methods (out of 105 methods).
 
+Among them, there are 24 SQL Operating Methods, 6 Local SQL Methods, 17 Delegated SQL Methods.
 
 -----------------------------------------------------------
 
@@ -11,9 +12,9 @@ There are 53 database-related methods.
 
 -----------------------------------------------------------
 
-[M-2, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.createUser(Model)
+[M-2, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.showRegistrationForm(Map<String,Object>)
 -- This method invokes db-related operations via delegation: 
-Via call-chain: com.mpakhomov.chat.controller.AdminController.createUser --> com.mpakhomov.chat.domain.User.User
+Via call-chain: com.mpakhomov.chat.controller.ProfileController.showRegistrationForm --> com.mpakhomov.chat.domain.User.User
 - It constructs user without any initial value
 
 -----------------------------------------------------------
@@ -32,44 +33,7 @@ Via call-chain: com.mpakhomov.chat.controller.AdminController.createUser --> com
 
 -----------------------------------------------------------
 
-[M-5, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.createOrUpdateUser(User, BindingResult, Boolean)
--- This method invokes db-related operations via delegation: 
-Via call-chain: com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
-- It gets attribute nick from table user
-
-Via call-chain: com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
-- It gets attribute id from table user
-
------------------------------------------------------------
-
-[M-6, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.addUserFromForm(User, BindingResult)
--- This method invokes db-related operations via delegation: 
-Via call-chain: com.mpakhomov.chat.controller.AdminController.addUserFromForm --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
-- It gets attribute nick from table user
-
-Via call-chain: com.mpakhomov.chat.controller.AdminController.addUserFromForm --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
-- It gets attribute id from table user
-
------------------------------------------------------------
-
-[M-7, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.saveUserProfile(User, BindingResult)
--- This method invokes db-related operations via delegation: 
-Via call-chain: com.mpakhomov.chat.controller.AdminController.saveUserProfile --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
-- It gets attribute nick from table user
-
-Via call-chain: com.mpakhomov.chat.controller.AdminController.saveUserProfile --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
-- It gets attribute id from table user
-
------------------------------------------------------------
-
-[M-8, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.showRegistrationForm(Map<String,Object>)
--- This method invokes db-related operations via delegation: 
-Via call-chain: com.mpakhomov.chat.controller.ProfileController.showRegistrationForm --> com.mpakhomov.chat.domain.User.User
-- It constructs user without any initial value
-
------------------------------------------------------------
-
-[M-9, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setNick(String)
+[M-5, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setNick(String)
 -- This method implements the following db-related operations: 
 - It sets attribute nick from table user
 *Note: This method will not affect the database util Session built-in function is called
@@ -81,14 +45,14 @@ Via call-chain: com.mpakhomov.chat.controller.ProfileController.showRegistration
 
 -----------------------------------------------------------
 
-[M-10, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getPassword()
+[M-6, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getPassword()
 -- This method implements the following db-related operations: 
 - It gets attribute password from table user
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-11, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setPassword(String)
+[M-7, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setPassword(String)
 -- This method implements the following db-related operations: 
 - It sets attribute password from table user
 *Note: This method will not affect the database util Session built-in function is called
@@ -99,7 +63,7 @@ Via call-chain: com.mpakhomov.chat.controller.ProfileController.showRegistration
 
 -----------------------------------------------------------
 
-[M-12, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser(User, BindingResult, Boolean)
+[M-8, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser(User, BindingResult, Boolean)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
 - It gets attribute id from table user
@@ -126,7 +90,7 @@ Via call-chain: com.mpakhomov.chat.controller.ProfileController.createOrUpdateUs
 
 -----------------------------------------------------------
 
-[M-13, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.addUserFromForm(User, BindingResult)
+[M-9, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.addUserFromForm(User, BindingResult)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mpakhomov.chat.controller.ProfileController.addUserFromForm --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
 - It gets attribute id from table user
@@ -153,7 +117,7 @@ Via call-chain: com.mpakhomov.chat.controller.ProfileController.addUserFromForm 
 
 -----------------------------------------------------------
 
-[M-14, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.saveUserProfile(User, BindingResult)
+[M-10, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.saveUserProfile(User, BindingResult)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mpakhomov.chat.controller.ProfileController.saveUserProfile --> com.mpakhomov.chat.controller.ProfileController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
 - It gets attribute id from table user
@@ -180,9 +144,46 @@ Via call-chain: com.mpakhomov.chat.controller.ProfileController.saveUserProfile 
 
 -----------------------------------------------------------
 
-[M-15, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.editUserProfile(long, ModelMap)
+[M-11, DelegatedSQLMethod] com.mpakhomov.chat.controller.ProfileController.editUserProfile(long, ModelMap)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mpakhomov.chat.controller.ProfileController.editUserProfile --> com.mpakhomov.chat.domain.User.getId
+- It gets attribute id from table user
+
+-----------------------------------------------------------
+
+[M-12, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.createUser(Model)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.createUser --> com.mpakhomov.chat.domain.User.User
+- It constructs user without any initial value
+
+-----------------------------------------------------------
+
+[M-13, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.createOrUpdateUser(User, BindingResult, Boolean)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
+- It gets attribute id from table user
+
+-----------------------------------------------------------
+
+[M-14, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.addUserFromForm(User, BindingResult)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.addUserFromForm --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.AdminController.addUserFromForm --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
+- It gets attribute id from table user
+
+-----------------------------------------------------------
+
+[M-15, DelegatedSQLMethod] com.mpakhomov.chat.controller.AdminController.saveUserProfile(User, BindingResult)
+-- This method invokes db-related operations via delegation: 
+Via call-chain: com.mpakhomov.chat.controller.AdminController.saveUserProfile --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getNick
+- It gets attribute nick from table user
+
+Via call-chain: com.mpakhomov.chat.controller.AdminController.saveUserProfile --> com.mpakhomov.chat.controller.AdminController.createOrUpdateUser --> com.mpakhomov.chat.domain.User.getId
 - It gets attribute id from table user
 
 -----------------------------------------------------------
@@ -313,26 +314,26 @@ Via call-chain: com.mpakhomov.chat.service.UserServiceImpl.saveUser --> com.mpak
 
 -----------------------------------------------------------
 
-[M-29, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.addMessage(ChatMessage)
+[M-28, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.addMessage(ChatMessage)
 -- This method implements the following db-related operations: 
 - It inserts id, message, timestamp into table messages
 
 -----------------------------------------------------------
 
-[M-31, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getUser(Long)
+[M-29, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getUser(Long)
 -- This method implements the following db-related operations: 
 - It queries the table user
 
 -----------------------------------------------------------
 
-[M-33, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getMiddleName()
+[M-30, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getMiddleName()
 -- This method implements the following db-related operations: 
 - It gets attribute middleName from table user
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-34, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setMiddleName(String)
+[M-31, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setMiddleName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute middleName from table user
 *Note: This method will not affect the database util Session built-in function is called
@@ -344,7 +345,7 @@ Via call-chain: com.mpakhomov.chat.service.UserServiceImpl.saveUser --> com.mpak
 
 -----------------------------------------------------------
 
-[M-35, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.save(User)
+[M-32, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.save(User)
 -- This method implements the following db-related operations: 
 - It inserts middleName into table user
 - It saves or updates middleName into table user
@@ -364,13 +365,13 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.save --> com.mpakhomov.chat.d
 
 -----------------------------------------------------------
 
-[M-37, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getAllUsers()
+[M-33, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getAllUsers()
 -- This method implements the following db-related operations: 
 - It queries the table user
 
 -----------------------------------------------------------
 
-[M-39, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.delete(Long)
+[M-34, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.delete(Long)
 -- This method implements the following db-related operations: 
 - It deletes rows from table user
 
@@ -381,7 +382,7 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.delete --> com.mpakhomov.chat
 
 -----------------------------------------------------------
 
-[M-41, SQLOperatingMethod] com.mpakhomov.chat.domain.User.User(String)
+[M-35, SQLOperatingMethod] com.mpakhomov.chat.domain.User.User(String)
 -- This method implements the following db-related operations: 
 - It constructs user with attributes id, firstName, middleName, lastName, nick, email, password
 *Note: This method will not affect the database util Session built-in function is called
@@ -406,7 +407,7 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.delete --> com.mpakhomov.chat
 
 -----------------------------------------------------------
 
-[M-42, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setId(Long)
+[M-36, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setId(Long)
 -- This method implements the following db-related operations: 
 - It sets attribute id from table user
 *Note: This method will not affect the database util Session built-in function is called
@@ -426,14 +427,14 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.delete --> com.mpakhomov.chat
 
 -----------------------------------------------------------
 
-[M-43, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getFirstName()
+[M-37, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getFirstName()
 -- This method implements the following db-related operations: 
 - It gets attribute firstName from table user
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-44, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setFirstName(String)
+[M-38, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setFirstName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute firstName from table user
 *Note: This method will not affect the database util Session built-in function is called
@@ -445,14 +446,14 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.delete --> com.mpakhomov.chat
 
 -----------------------------------------------------------
 
-[M-45, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getLastName()
+[M-39, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getLastName()
 -- This method implements the following db-related operations: 
 - It gets attribute lastName from table user
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-46, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setLastName(String)
+[M-40, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setLastName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute lastName from table user
 *Note: This method will not affect the database util Session built-in function is called
@@ -464,14 +465,14 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.delete --> com.mpakhomov.chat
 
 -----------------------------------------------------------
 
-[M-47, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getEmail()
+[M-41, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getEmail()
 -- This method implements the following db-related operations: 
 - It gets attribute email from table user
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-48, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setEmail(String)
+[M-42, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setEmail(String)
 -- This method implements the following db-related operations: 
 - It sets attribute email from table user
 *Note: This method will not affect the database util Session built-in function is called
@@ -482,28 +483,28 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.delete --> com.mpakhomov.chat
 
 -----------------------------------------------------------
 
-[M-49, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.ChatMessage()
+[M-43, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.ChatMessage()
 -- This method implements the following db-related operations: 
 - It constructs messages without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-50, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getId()
+[M-44, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getId()
 -- This method implements the following db-related operations: 
 - It gets attribute id from table messages
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-51, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.setId(Long)
+[M-45, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.setId(Long)
 -- This method implements the following db-related operations: 
 - It sets attribute id from table messages
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-52, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.setMessage(String)
+[M-46, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.setMessage(String)
 -- This method implements the following db-related operations: 
 - It sets attribute message from table messages
 *Note: This method will not affect the database util Session built-in function is called
@@ -514,7 +515,7 @@ Via call-chain: com.mpakhomov.chat.dao.UserDaoImpl.delete --> com.mpakhomov.chat
 
 -----------------------------------------------------------
 
-[M-53, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.setTimestamp(Date)
+[M-47, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.setTimestamp(Date)
 -- This method implements the following db-related operations: 
 - It sets attribute timestamp from table messages
 *Note: This method will not affect the database util Session built-in function is called

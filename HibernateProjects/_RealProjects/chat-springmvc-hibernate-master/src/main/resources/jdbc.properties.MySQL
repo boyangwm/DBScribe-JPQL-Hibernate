@@ -1,0 +1,7 @@
+database.driver=com.mysql.jdbc.Driver
+database.url=jdbc:mysql://localhost:3306/chat
+database.user=mike
+database.password=1qazxsw@
+hibernate.connection.pool_size=10
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+hibernate.show_sql=true

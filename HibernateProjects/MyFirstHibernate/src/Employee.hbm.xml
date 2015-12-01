@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="Employee" table="EMPLOYEE">
+		<meta attribute="class-description">
+			This class contains the employee detail.
+		</meta>
+        <id name="id" type="int" column="id" not-null="true" unique="true" length="10">
+            <generator />
+        </id>
+        <property name="firstName" column="first_name" type="string" not-null="true" length="20"/>
+		<property name="lastName" column="last_name" type="string" not-null="true" length="22"/>
+        <property name="salary" column="salary" type="int"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jspdev.biyesheji">
+	<class
+		name="Note"
+		table="note"
+	>
+		<meta attribute="sync-DAO">true</meta>
+		<id
+			name="id"
+			type="string"
+			column="id"
+		>
+			<generator class="assigned"/>
+		</id>
+
+		<property
+			name="content"
+			column="content"
+			type="string"
+			not-null="true"
+		/>
+		<property
+			name="time"
+			column="time"
+			type="string"
+			not-null="true"
+			length="50"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

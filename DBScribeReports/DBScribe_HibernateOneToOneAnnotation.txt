@@ -1,6 +1,7 @@
 DBScribe Report for Project HibernateOneToOneAnnotation
-There are 23 database-related methods.
+There are 22 database-related methods (out of 32 methods).
 
+Among them, there are 21 SQL Operating Methods, 1 Local SQL Methods, 0 Delegated SQL Methods.
 
 -----------------------------------------------------------
 

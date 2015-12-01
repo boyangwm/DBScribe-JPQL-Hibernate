@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <filter>
+	   <filter-name>EncodingFilter</filter-name>
+	   <filter-class>com.jspdev.biyesheji.EncodingFilter</filter-class>
+	   <init-param>
+	       <param-name>encoding</param-name>
+	       <param-value>gb2312</param-value>
+	   </init-param>
+  </filter>
+	<filter-mapping>
+	   <filter-name>EncodingFilter</filter-name>
+	   <url-pattern>/*</url-pattern>
+	</filter-mapping>
+ 
+  <filter>
+	   <filter-name>SignonFilter</filter-name>
+	   <filter-class>com.jspdev.biyesheji.SignonFilter</filter-class>
+  </filter>
+	<filter-mapping>
+	   <filter-name>SignonFilter</filter-name>
+	   <url-pattern>/form/*</url-pattern>
+	</filter-mapping>
+  
+  
+
+	
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>3</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>3</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>PageControlServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.PageControlServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>f_tScServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.f_tScServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>t_fScServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.t_fScServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>addStudentServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.addStudentServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>changeGradeServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.changeGradeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>addTeacherServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.addTeacherServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>deleteTeacherServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.deleteTeacherServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>deleteCourseServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.deleteCourseServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>courseInfoServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.courseInfoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>deleteMessageServlet</servlet-name>
+    <servlet-class>com.jspdev.biyesheji.deleteMessageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PageControlServlet</servlet-name>
+    <url-pattern>/servlet/PageControlServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>f_tScServlet</servlet-name>
+    <url-pattern>/servlet/f_tScServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>t_fScServlet</servlet-name>
+    <url-pattern>/servlet/t_fScServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>addStudentServlet</servlet-name>
+    <url-pattern>/servlet/addStudentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>changeGradeServlet</servlet-name>
+    <url-pattern>/servlet/changeGradeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>addTeacherServlet</servlet-name>
+    <url-pattern>/servlet/addTeacherServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>deleteTeacherServlet</servlet-name>
+    <url-pattern>/servlet/deleteTeacherServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>deleteCourseServlet</servlet-name>
+    <url-pattern>/servlet/deleteCourseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>courseInfoServlet</servlet-name>
+    <url-pattern>/servlet/courseInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>deleteMessageServlet</servlet-name>
+    <url-pattern>/servlet/deleteMessageServlet</url-pattern>
+  </servlet-mapping>
+ 
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  	
+</web-app>
+

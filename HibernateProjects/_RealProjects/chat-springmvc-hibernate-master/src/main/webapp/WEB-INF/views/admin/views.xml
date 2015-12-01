@@ -1,0 +1,20 @@
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+      "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+   <definition name="admin/listUsers" extends="template">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/admin/listUsers.jsp" />
+   </definition>
+
+   <definition name="admin/viewUser" extends="template">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/admin/viewUser.jsp" />
+   </definition>
+
+    <definition name="admin/editUser" extends="template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/admin/editUser.jsp" />
+    </definition>
+</tiles-definitions>

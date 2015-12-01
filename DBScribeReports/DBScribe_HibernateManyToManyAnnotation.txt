@@ -1,6 +1,7 @@
 DBScribe Report for Project HibernateManyToManyAnnotation
-There are 20 database-related methods.
+There are 19 database-related methods (out of 29 methods).
 
+Among them, there are 18 SQL Operating Methods, 1 Local SQL Methods, 0 Delegated SQL Methods.
 
 -----------------------------------------------------------
 
@@ -68,14 +69,14 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-7, SQLOperatingMethod] com.mkyong.stock.Category.Category()
+[M-6, SQLOperatingMethod] com.mkyong.stock.Category.Category()
 -- This method implements the following db-related operations: 
 - It constructs category without any initial value
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-8, SQLOperatingMethod] com.mkyong.stock.Category.Category(String, Set<Stock>)
+[M-7, SQLOperatingMethod] com.mkyong.stock.Category.Category(String, Set<Stock>)
 -- This method implements the following db-related operations: 
 - It constructs category with attributes NAME, [DESC]
 *Note: This method will not affect the database util Session built-in function is called
@@ -86,14 +87,14 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-9, SQLOperatingMethod] com.mkyong.stock.Category.getCategoryId()
+[M-8, SQLOperatingMethod] com.mkyong.stock.Category.getCategoryId()
 -- This method implements the following db-related operations: 
 - It gets attribute CATEGORY_ID from table category
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-10, SQLOperatingMethod] com.mkyong.stock.Category.setCategoryId(Integer)
+[M-9, SQLOperatingMethod] com.mkyong.stock.Category.setCategoryId(Integer)
 -- This method implements the following db-related operations: 
 - It sets attribute CATEGORY_ID from table category
 *Note: This method will not affect the database util Session built-in function is called
@@ -103,14 +104,14 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-11, SQLOperatingMethod] com.mkyong.stock.Category.getName()
+[M-10, SQLOperatingMethod] com.mkyong.stock.Category.getName()
 -- This method implements the following db-related operations: 
 - It gets attribute NAME from table category
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-12, SQLOperatingMethod] com.mkyong.stock.Category.setName(String)
+[M-11, SQLOperatingMethod] com.mkyong.stock.Category.setName(String)
 -- This method implements the following db-related operations: 
 - It sets attribute NAME from table category
 *Note: This method will not affect the database util Session built-in function is called
@@ -120,14 +121,14 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-13, SQLOperatingMethod] com.mkyong.stock.Category.getDesc()
+[M-12, SQLOperatingMethod] com.mkyong.stock.Category.getDesc()
 -- This method implements the following db-related operations: 
 - It gets attribute [DESC] from table category
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-14, SQLOperatingMethod] com.mkyong.stock.Category.setDesc(String)
+[M-13, SQLOperatingMethod] com.mkyong.stock.Category.setDesc(String)
 -- This method implements the following db-related operations: 
 - It sets attribute [DESC] from table category
 *Note: This method will not affect the database util Session built-in function is called
@@ -137,7 +138,7 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-15, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String)
+[M-14, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String)
 -- This method implements the following db-related operations: 
 - It constructs stock with attributes STOCK_CODE, STOCK_NAME
 *Note: This method will not affect the database util Session built-in function is called
@@ -148,7 +149,7 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-16, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String, Set<Category>)
+[M-15, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String, Set<Category>)
 -- This method implements the following db-related operations: 
 - It constructs stock with attributes STOCK_CODE, STOCK_NAME
 *Note: This method will not affect the database util Session built-in function is called
@@ -159,14 +160,14 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-17, SQLOperatingMethod] com.mkyong.stock.Stock.getStockId()
+[M-16, SQLOperatingMethod] com.mkyong.stock.Stock.getStockId()
 -- This method implements the following db-related operations: 
 - It gets attribute STOCK_ID from table stock
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-18, SQLOperatingMethod] com.mkyong.stock.Stock.setStockId(Integer)
+[M-17, SQLOperatingMethod] com.mkyong.stock.Stock.setStockId(Integer)
 -- This method implements the following db-related operations: 
 - It sets attribute STOCK_ID from table stock
 *Note: This method will not affect the database util Session built-in function is called
@@ -176,14 +177,14 @@ Via call-chain: com.mkyong.App.main --> com.mkyong.stock.Category.Category
 
 -----------------------------------------------------------
 
-[M-19, SQLOperatingMethod] com.mkyong.stock.Stock.getStockCode()
+[M-18, SQLOperatingMethod] com.mkyong.stock.Stock.getStockCode()
 -- This method implements the following db-related operations: 
 - It gets attribute STOCK_CODE from table stock
 *Note: This method will not affect the database util Session built-in function is called
 
 -----------------------------------------------------------
 
-[M-20, SQLOperatingMethod] com.mkyong.stock.Stock.getStockName()
+[M-19, SQLOperatingMethod] com.mkyong.stock.Stock.getStockName()
 -- This method implements the following db-related operations: 
 - It gets attribute STOCK_NAME from table stock
 *Note: This method will not affect the database util Session built-in function is called

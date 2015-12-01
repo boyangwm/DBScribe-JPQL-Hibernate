@@ -1,6 +1,7 @@
 DBScribe Report for Project HibernateOneToManyXMLMapping
-There are 30 database-related methods.
+There are 28 database-related methods (out of 36 methods).
 
+Among them, there are 24 SQL Operating Methods, 2 Local SQL Methods, 2 Delegated SQL Methods.
 
 -----------------------------------------------------------
 
@@ -246,7 +247,7 @@ Via call-chain: com.mkyong.StockManager.addStockDailyRecord --> com.mkyong.stock
 
 -----------------------------------------------------------
 
-[M-27, LocalSQLMethod] com.mkyong.StockManager.addStock(String)
+[M-26, LocalSQLMethod] com.mkyong.StockManager.addStock(String)
 -- This method implements the following db-related operations: 
 - It inserts STOCK_CODE, STOCK_NAME into table stock
 
@@ -267,7 +268,7 @@ Via call-chain: com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.setS
 
 -----------------------------------------------------------
 
-[M-29, DelegatedSQLMethod] com.mkyong.StockManager.addStockAndDailyRecord()
+[M-27, DelegatedSQLMethod] com.mkyong.StockManager.addStockAndDailyRecord()
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
 - It constructs stock without any initial value
@@ -329,7 +330,7 @@ Via call-chain: com.mkyong.StockManager.addStockAndDailyRecord --> com.mkyong.St
 
 -----------------------------------------------------------
 
-[M-30, DelegatedSQLMethod] com.mkyong.StockManager.main(String)
+[M-28, DelegatedSQLMethod] com.mkyong.StockManager.main(String)
 -- This method invokes db-related operations via delegation: 
 Via call-chain: com.mkyong.StockManager.main --> com.mkyong.StockManager.addStock --> com.mkyong.stock.Stock.Stock
 - It constructs stock without any initial value

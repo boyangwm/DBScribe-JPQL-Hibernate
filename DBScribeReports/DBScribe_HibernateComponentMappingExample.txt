@@ -1,6 +1,7 @@
 DBScribe Report for Project HibernateComponentMappingExample
-There are 13 database-related methods.
+There are 12 database-related methods (out of 28 methods).
 
+Among them, there are 11 SQL Operating Methods, 1 Local SQL Methods, 0 Delegated SQL Methods.
 
 -----------------------------------------------------------
 

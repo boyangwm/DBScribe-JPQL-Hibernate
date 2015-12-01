@@ -1,0 +1,23 @@
+#
+#Mon Mar 03 17:56:01 CST 2008
+genBasicCompId=false
+sessionFactoryName=com.jspdev.biyesheji.HibernateSessionFactory
+profile=
+daoSFId=
+version=3.1
+jndiPath=
+detectM2M=false
+reStrategyClass=
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=WebRoot/WEB-INF/lib
+addLibs2Project=false
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+reSettingsFile=
+configFile=/biyesheji/src/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=false
+baseDaoClass=

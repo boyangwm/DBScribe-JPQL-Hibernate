@@ -1,0 +1,27 @@
+/* CSS Document */
+.FixMenu {
+	background-image: url(../pic/dash.gif);
+	border: 2px groove #888888;
+	width: 220px;
+}
+.OutMenu {
+	background-color: #EEEEEE;
+	color: #000000;
+	font-size: 12px;
+	cursor: hand;
+	border: 0px;
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-bottom: 0px;
+}
+.OverMenu {
+	background-color: #88EEFF;
+	color: #000000;
+	border: 0px;
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-size: 12px;
+	cursor: hand;
+}

@@ -39,7 +39,8 @@ namespace DBScribeHibernate
         public NamespaceDefinition globalNamespace;
         public IEnumerable<MethodDefinition> methods;
         public CGManager cgm;
-        public int num_of_methods;
+        public int num_of_methods; // total method number
+        public Dictionary<string, int> method_count; // each type of DB method count
         public List<MethodDefinition> bottomUpSortedMethods;
         //public HashSet<MethodDefinition> methods_LocalSQLMethods;  // methods call transaction and sessions
         //public HashSet<MethodDefinition> methods_SQLOperatingMethods;
@@ -82,7 +83,11 @@ namespace DBScribeHibernate
             string projName = Utility.GetProjectName(Constants.ProjName);
             StreamWriter writetext = new StreamWriter(Constants.ResultPath + "DBScribe_" + projName + ".txt");
             writetext.WriteLine("DBScribe Report for Project " + projName);
-            writetext.WriteLine("There are " + num_methods + " database-related methods.\n");
+            writetext.WriteLine("There are " + num_methods + " database-related methods (out of " + num_of_methods + " methods).\n");
+            writetext.WriteLine("Among them, there are "
+                + method_count[Constants.SQLMethodCategory.SQLOperatingMethod.ToString()] + " SQL Operating Methods, "
+                + method_count[Constants.SQLMethodCategory.LocalSQLMethod.ToString()] + " Local SQL Methods, "
+                + method_count[Constants.SQLMethodCategory.DelegatedSQLMethod.ToString()] + " Delegated SQL Methods.");
             writetext.WriteLine("");
             writetext.WriteLine(Constants.Divider);
             writetext.WriteLine("");
@@ -135,11 +140,11 @@ namespace DBScribeHibernate
             Console.WriteLine("");
             Console.WriteLine("\n<1> Class Full Name <--> Table Name(s)");
             registeredClassFullNameToTableName = mappingParser.GetClassFullNameToTableName();
-            Utility.PrintDictionary(registeredClassFullNameToTableName);
+            //Utility.PrintDictionary(registeredClassFullNameToTableName);
 
             Console.WriteLine("\n<2> Class Property <--> Table Attribute");
             classPropertyToTableColumn = mappingParser.GetClassPropertyToTableColumn();
-            Utility.PrintDictionary(classPropertyToTableColumn);
+            //Utility.PrintDictionary(classPropertyToTableColumn);
 
             Console.WriteLine("\n<3> Table Name --> Table Constraints");
             tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
@@ -338,6 +343,11 @@ namespace DBScribeHibernate
             Dictionary<string, List<string>> DBMethodToTableAttrNames = new Dictionary<string, List<string>>();
 
             int idx_m = 0;
+            method_count = new Dictionary<string, int>();
+            method_count.Add(Constants.SQLMethodCategory.SQLOperatingMethod.ToString(), 0);
+            method_count.Add(Constants.SQLMethodCategory.LocalSQLMethod.ToString(), 0);
+            method_count.Add(Constants.SQLMethodCategory.DelegatedSQLMethod.ToString(), 0);
+
             bool isDBMethod = true;
             foreach (MethodDefinition method in bottomUpSortedMethods)
             {
@@ -351,6 +361,8 @@ namespace DBScribeHibernate
                     string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                     string curMethodType = Constants.SQLMethodCategory.SQLOperatingMethod.ToString();
                     outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
+                    method_count[curMethodType] += 1;
+
                     MethodDescription curMD = MethodDescriptionUtil.DescribeBasicMethod(basicMethod, tableNameToTableConstraints);
                     outputBuilder.AppendLine(curMD.MethodDescriptionStr);
                     if (!DBMethodToOpList.ContainsKey(methodHeader))
@@ -369,6 +381,7 @@ namespace DBScribeHibernate
                         string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                         string curMethodType = Constants.SQLMethodCategory.LocalSQLMethod.ToString();
                         outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
+                        method_count[curMethodType] += 1;
 
                         HashSet<string> _DBRelatedMethods = new HashSet<string>(DBMethodToOpList.Keys);
                         IEnumerable<string> invokedDBMethodNameHeaders = MethodUtil.GetInvokedMethodNameHeaderInTheMethod(method).Intersect(_DBRelatedMethods);
@@ -379,10 +392,6 @@ namespace DBScribeHibernate
                         DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
                         DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);
                         DBMethodToTableAttrNames.Add(methodHeader, curMD.DBTableAttrList);
-
-                        Console.WriteLine("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
-                        Console.WriteLine(curMD.MethodDescriptionStr);
-                        Console.WriteLine("--------------------------------------------------------------");
 
                         //foreach (SessionBuiltInFunction item in sessionBuiltInFuncList)
                         //{
@@ -395,7 +404,6 @@ namespace DBScribeHibernate
                         //    string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
                         //    Console.WriteLine(callChainStr);
                         //}
-
                         
                     }
                     else
@@ -409,6 +417,7 @@ namespace DBScribeHibernate
                             string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                             string curMethodType = Constants.SQLMethodCategory.DelegatedSQLMethod.ToString();
                             outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
+                            method_count[curMethodType] += 1;
 
                             //DBRelatedMethods.Add(method.GetFullName());
                             //string callChainStr = CallGraphUtil.GetCalleeListStr(cgm.findCalleeList(method));
