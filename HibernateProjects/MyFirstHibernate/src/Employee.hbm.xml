@@ -5,14 +5,11 @@
 
 <hibernate-mapping>
     <class name="Employee" table="EMPLOYEE">
-		<meta attribute="class-description">
-			This class contains the employee detail.
-		</meta>
-        <id name="id" type="int" column="id" not-null="true" unique="true" length="10">
+        <id name="id" type="int" column="id" not-null="true">
             <generator />
         </id>
-        <property name="firstName" column="first_name" type="string" not-null="true" length="20"/>
-		<property name="lastName" column="last_name" type="string" not-null="true" length="22"/>
+        <property name="firstName" column="first_name" type="string" length="20"/>
+		<property name="lastName" column="last_name" type="string" length="22"/>
         <property name="salary" column="salary" type="int"/>
     </class>
 </hibernate-mapping>

@@ -18,8 +18,8 @@ Among them, there are 10 SQL Operating Methods, 4 Local SQL Methods, 3 Delegated
 *Note: This method will not affect the database util Session built-in function is called
 
 -- Some constraints that should be taken into account are the following: 
-- EMPLOYEE.first_name (type=string, length=20, not-null=true)
-- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+- EMPLOYEE.first_name (type=string, length=20)
+- EMPLOYEE.last_name (type=string, length=22)
 
 -----------------------------------------------------------
 
@@ -36,7 +36,7 @@ Among them, there are 10 SQL Operating Methods, 4 Local SQL Methods, 3 Delegated
 *Note: This method will not affect the database util Session built-in function is called
 
 -- Some constraints that should be taken into account are the following: 
-- Primary key: EMPLOYEE.id (type=int, length=10, not-null=true, unique=true)
+- Primary key: EMPLOYEE.id (type=int, not-null=true)
 
 -----------------------------------------------------------
 
@@ -53,7 +53,7 @@ Among them, there are 10 SQL Operating Methods, 4 Local SQL Methods, 3 Delegated
 *Note: This method will not affect the database util Session built-in function is called
 
 -- Some constraints that should be taken into account are the following: 
-- EMPLOYEE.first_name (type=string, length=20, not-null=true)
+- EMPLOYEE.first_name (type=string, length=20)
 
 -----------------------------------------------------------
 
@@ -70,7 +70,7 @@ Among them, there are 10 SQL Operating Methods, 4 Local SQL Methods, 3 Delegated
 *Note: This method will not affect the database util Session built-in function is called
 
 -- Some constraints that should be taken into account are the following: 
-- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+- EMPLOYEE.last_name (type=string, length=22)
 
 -----------------------------------------------------------
 
@@ -109,10 +109,9 @@ Via call-chain: Employee.getEmployeeInfo --> Employee.getSalary
 Via call-chain: ManageEmployee.addEmployee --> Employee.Employee
 - It constructs EMPLOYEE with attributes first_name, last_name, salary
 
-
 -- Some constraints that should be taken into account are the following: 
-- EMPLOYEE.first_name (type=string, length=20, not-null=true)
-- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+- EMPLOYEE.first_name (type=string, length=20)
+- EMPLOYEE.last_name (type=string, length=22)
 
 -----------------------------------------------------------
 
@@ -193,8 +192,8 @@ Via call-chain: ManageEmployee.main --> ManageEmployee.deleteEmployee
 - It deletes rows from table EMPLOYEE
 
 -- Some constraints that should be taken into account are the following: 
-- EMPLOYEE.first_name (type=string, length=20, not-null=true)
-- EMPLOYEE.last_name (type=string, length=22, not-null=true)
+- EMPLOYEE.first_name (type=string, length=20)
+- EMPLOYEE.last_name (type=string, length=22)
 
 -----------------------------------------------------------
 

@@ -148,7 +148,7 @@ namespace DBScribeHibernate
 
             Console.WriteLine("\n<3> Table Name --> Table Constraints");
             tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-            //Utility.PrintTableConstraints(tableNameToTableConstraints);
+            Utility.PrintTableConstraints(tableNameToTableConstraints);
 
             //Console.ReadKey();
             //Environment.Exit(0);
