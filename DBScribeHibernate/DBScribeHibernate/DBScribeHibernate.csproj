@@ -58,6 +58,9 @@
     <Reference Include="ABB.SrcML.Data">
       <HintPath>..\packages\ABB.SrcML.Data.4.1.15.50\lib\net40\ABB.SrcML.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Antlr3.StringTemplate">
+      <HintPath>..\packages\Antlr3.StringTemplate.3.4.1.9005\lib\net35\Antlr3.StringTemplate.dll</HintPath>
+    </Reference>
     <Reference Include="CommandLine">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
     </Reference>
@@ -74,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBScribeHibernate\DescriptionTemplates\MethodDescription.cs" />
+    <Compile Include="DBScribeHibernate\ReportGenerator\HomeGenerator.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\BasicMethod.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\ClassProperty.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\CompositePK.cs" />
@@ -111,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DBScribeHibernate\Templates\Home.st" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

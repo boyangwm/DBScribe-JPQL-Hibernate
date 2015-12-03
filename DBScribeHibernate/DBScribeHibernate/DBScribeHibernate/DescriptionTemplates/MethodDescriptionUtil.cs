@@ -12,7 +12,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
     class MethodDescriptionUtil
     {
         private static string LocalMethodHeader = "-- This method implements the following db-related operations: ";
-        private static string POJOClassMethodNote = "*Note: This method will not affect the database util Session built-in function is called";
+        private static string POJOClassMethodNote = "*<b>Note</b>: This method will not affect the database util Session built-in function is called";
         private static string ConstraitsHeader = "-- Some constraints that should be taken into account are the following: ";
         private static string DelegatedMethodHeader = "-- This method invokes db-related operations via delegation: ";
 
@@ -69,7 +69,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     continue;
                 }
 
-                deleBuilder.AppendLine("Via call-chain: " + callChain);
+                deleBuilder.AppendLine("Via call-chain: <i>" + callChain + "</i><br/>");
                 foreach (string op in curOpList)
                 {
                     deleBuilder.Append(op);
@@ -77,23 +77,23 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 
                 if (i < calleeList.Count() - 1)
                 {
-                    deleBuilder.AppendLine("");
+                    deleBuilder.AppendLine("<br/>");
                 }
             }
 
             if (deleBuilder.Length != 0)
             {
-                builder.AppendLine(DelegatedMethodHeader);
+                builder.AppendLine("<b>" + DelegatedMethodHeader + "</b><br/>");
                 builder.Append(deleBuilder.ToString());
             }
 
             if (prevDBConstraints.Count() != 0)
             {
-                builder.AppendLine("");
-                builder.AppendLine(ConstraitsHeader);
+                builder.AppendLine("<br/>");
+                builder.AppendLine("<b>" + ConstraitsHeader + "</b><br/>");
                 foreach (string pc in prevDBConstraints)
                 {
-                    builder.AppendLine(pc);
+                    builder.AppendLine(pc + "<br/>");
                 }
             }
 
@@ -173,7 +173,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     continue;
                 }
 
-                deleBuilder.AppendLine("Via call-chain: " + callChain);
+                deleBuilder.AppendLine("Via call-chain: <i>" + callChain + "</i><br/>");
                 foreach (string op in curOpList)
                 {
                     deleBuilder.Append(op);
@@ -181,7 +181,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 
                 if (i < calleeList.Count())
                 {
-                    deleBuilder.AppendLine("");
+                    deleBuilder.AppendLine("<br/>");
                 }
             }
 
@@ -209,11 +209,11 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     if (ifInteractWithRealTable == true)
                     {
                         //sessFuncBuilder.AppendLine("- It queries the table " + targetTableName + ". (" + sessFunc + ")");
-                        sessFuncBuilder.AppendLine("- It queries the table " + targetTableName);
+                        sessFuncBuilder.AppendLine("- It queries the table <i>" + targetTableName + "</i><br/>");
                     }
                     else
                     {
-                        sessFuncBuilder.AppendLine("- It provides query API for upper-level functions.");
+                        sessFuncBuilder.AppendLine("- It provides query API for upper-level functions.<br/>");
                     }
                     
                 }
@@ -234,12 +234,12 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         attrListStr = string.Join(", ", attrList);
                     }
                     //Console.WriteLine(attrListStr);
-                    sessFuncBuilder.AppendLine("- It inserts " + attrListStr + " into table " + sessFunc.TargetTableName);
+                    sessFuncBuilder.AppendLine("- It inserts <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
                     
                 }
                 else if (SessionBuiltInFunction.Deletes.Contains(sessFunc.FunctionName))
                 {
-                    sessFuncBuilder.AppendLine("- It deletes rows from table " + sessFunc.TargetTableName);
+                    sessFuncBuilder.AppendLine("- It deletes rows from table <i>" + sessFunc.TargetTableName + "</i><br/>");
                 }
                 else if (SessionBuiltInFunction.Updates.Contains(sessFunc.FunctionName))
                 {
@@ -257,7 +257,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         }
                         attrListStr = string.Join(", ", attrList);
                     }
-                    sessFuncBuilder.AppendLine("- It updates " + attrListStr + " into table " + sessFunc.TargetTableName);
+                    sessFuncBuilder.AppendLine("- It updates <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
                 }
                 else if (SessionBuiltInFunction.SaveOrUpdates.Contains(sessFunc.FunctionName))
                 {
@@ -275,28 +275,28 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         }
                         attrListStr = string.Join(", ", attrList);
                     }
-                    sessFuncBuilder.AppendLine("- It saves or updates " + attrListStr + " into table " + sessFunc.TargetTableName);
+                    sessFuncBuilder.AppendLine("- It saves or updates <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
                 }
             }
 
-            builder.AppendLine(LocalMethodHeader);
+            builder.AppendLine("<b>" + LocalMethodHeader + "</b><br/>");
             builder.Append(sessFuncBuilder.ToString());
             opList.Add(sessFuncBuilder.ToString());
 
             if (deleBuilder.Length != 0)
             {
-                builder.AppendLine("");
-                builder.AppendLine(DelegatedMethodHeader);
+                builder.AppendLine("<br/>");
+                builder.AppendLine("<b>" + DelegatedMethodHeader + "</b><br/>");
                 builder.Append(deleBuilder.ToString());
             }
 
             if (prevDBConstraints.Count() != 0)
             {
-                builder.AppendLine("");
-                builder.AppendLine(ConstraitsHeader);
+                builder.AppendLine("<br/>");
+                builder.AppendLine("<b>" + ConstraitsHeader + "</b><br/>");
                 foreach (string pc in prevDBConstraints)
                 {
-                    builder.AppendLine(pc);
+                    builder.AppendLine(pc + "<br/>");
                 }
             }
             
@@ -342,7 +342,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             List<string> constraintList = new List<string>();
             List<string> dBTableAttrList = new List<string>();
 
-            builder.AppendLine(LocalMethodHeader);
+            builder.AppendLine("<b>" + LocalMethodHeader + "</b><br/>");
             Constants.BasicMethodType mType = basicMethod.MethodType;
             string tableName = basicMethod.Table;
             HashSet<string> attrList = basicMethod.AttrList;
@@ -350,14 +350,14 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             if (mType == Constants.BasicMethodType.Construct)
             {
                 StringBuilder opBuilder = new StringBuilder();
-                opBuilder.Append("- It constructs " + tableName);
+                opBuilder.Append("- It constructs <i>" + tableName + "</i>");
                 if (attrList.Count() == 0)
                 {
-                    opBuilder.AppendLine(" without any initial value");
+                    opBuilder.AppendLine(" without any initial value<br/>");
                 }
                 else
                 {
-                    opBuilder.AppendLine(" with attributes " + string.Join(", ", attrList));
+                    opBuilder.Append(" with attributes <i>" + string.Join(", ", attrList) + "</i><br/>");
                 }
                 builder.Append(opBuilder.ToString());
                 opList.Add(opBuilder.ToString());
@@ -365,11 +365,11 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             else
             {
                 StringBuilder opBuilder = new StringBuilder();
-                opBuilder.AppendLine("- It " + mType.ToString().ToLower() + "s attribute " + string.Join(", ", attrList) + " from table " + tableName);
+                opBuilder.AppendLine("- It " + mType.ToString().ToLower() + "s attribute <i>" + string.Join(", ", attrList) + "</i> from table <i>" + tableName + "</i><br/>");
                 builder.Append(opBuilder.ToString());
                 opList.Add(opBuilder.ToString());
             }
-            builder.AppendLine(POJOClassMethodNote);
+            builder.AppendLine(POJOClassMethodNote + "<br/>");
 
             if (mType == Constants.BasicMethodType.Get)
             {
@@ -385,7 +385,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 {
                     if (cons.Contains(attr))
                     {
-                        consBuilder.AppendLine("- " + cons);
+                        consBuilder.AppendLine("- " + cons + "<br/>");
                         constraintList.Add("- " + cons);
                         break;
                     }
@@ -393,8 +393,8 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             }
             if (consBuilder.Length != 0)
             {
-                builder.AppendLine("");
-                builder.AppendLine(ConstraitsHeader);
+                builder.AppendLine("<br/>");
+                builder.AppendLine("<b>" + ConstraitsHeader + "</b><br/>");
                 //builder.AppendLine("In table " + tableName + ": ");
                 builder.Append(consBuilder.ToString());
             }

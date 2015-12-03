@@ -141,7 +141,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
                                 // Next, find the target POJO class for normal session functions
                                 // And find query string for query session functions
-                                _FindSessionFunctionInfo(sessionFunctionName, i, len, itemsInSameLevel, PojoClassNames, varList, fStack, allDBClassToTableName);
+                                _FindSessionFunctionInfo(md, sessionFunctionName, i, len, itemsInSameLevel, PojoClassNames, varList, fStack, allDBClassToTableName);
                             }
                         }
                     }
@@ -160,7 +160,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
                             // Next, find the target POJO class for normal session functions
                             // And find query string for query session functions
-                            _FindSessionFunctionInfo(sessionFunctionName, i, len, itemsInSameLevel, PojoClassNames, varList, fStack, allDBClassToTableName);
+                            _FindSessionFunctionInfo(md, sessionFunctionName, i, len, itemsInSameLevel, PojoClassNames, varList, fStack, allDBClassToTableName);
                         }
                     }
                 }
@@ -175,7 +175,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
         // Next, find the target POJO class for normal session functions
         // And find query string for query session functions
-        private static void _FindSessionFunctionInfo(string sessionFunctionName, int i, int len, List<NameUse> itemsInSameLevel,
+        private static void _FindSessionFunctionInfo(MethodDefinition md, string sessionFunctionName, int i, int len, List<NameUse> itemsInSameLevel,
             HashSet<string> PojoClassNames, Dictionary<string, string> varList, Stack<SessionBuiltInFunction> fStack, 
             Dictionary<string, string> allDBClassToTableName)
         {
@@ -229,6 +229,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
                         }
                     }
                 }
+
                 //Console.WriteLine("\t\t" + varList[item.Name] + "." + sessionFunctionName + "(" + targetClassName + ")");
                 //sessionFunctionList.Add(new SessionBuiltInFunction(sessionFunctionName, targetClassName));
                 fStack.Push(new SessionBuiltInFunction(sessionFunctionName, GetTableNameFromClassName(targetClassName, allDBClassToTableName)));

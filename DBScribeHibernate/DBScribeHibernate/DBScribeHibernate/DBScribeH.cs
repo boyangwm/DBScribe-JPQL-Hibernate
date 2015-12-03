@@ -12,6 +12,7 @@ using DBScribeHibernate.DBScribeHibernate;
 using DBScribeHibernate.DBScribeHibernate.ConfigParser;
 using DBScribeHibernate.DBScribeHibernate.Util;
 using DBScribeHibernate.DBScribeHibernate.DescriptionTemplates;
+using DBScribeHibernate.DBScribeHibernate.ReportGenerator;
 
 namespace DBScribeHibernate
 {
@@ -58,6 +59,9 @@ namespace DBScribeHibernate
         //public List<MethodDefinition> SortedLocalSqlMethods;
         //public List<MethodDefinition> SortedDelegatedSqlMethods;
 
+        public List<string> AllMethodHeaders;
+        public Dictionary<string, string> AllMethodFullDescriptions;
+
 
         public DBScribeH(string targetProjPath, string projName)
         {
@@ -81,21 +85,28 @@ namespace DBScribeHibernate
 
             Utility.CreateDirectoryIfNotExist(Constants.ResultPath);
             string projName = Utility.GetProjectName(Constants.ProjName);
-            StreamWriter writetext = new StreamWriter(Constants.ResultPath + "DBScribe_" + projName + ".txt");
-            writetext.WriteLine("DBScribe Report for Project " + projName);
-            writetext.WriteLine("There are " + num_methods + " database-related methods (out of " + num_of_methods + " methods).\n");
-            writetext.WriteLine("Among them, there are "
-                + method_count[Constants.SQLMethodCategory.SQLOperatingMethod.ToString()] + " SQL Operating Methods, "
-                + method_count[Constants.SQLMethodCategory.LocalSQLMethod.ToString()] + " Local SQL Methods, "
-                + method_count[Constants.SQLMethodCategory.DelegatedSQLMethod.ToString()] + " Delegated SQL Methods.");
-            writetext.WriteLine("");
-            writetext.WriteLine(Constants.Divider);
-            writetext.WriteLine("");
+            //StreamWriter writetext = new StreamWriter(Constants.ResultPath + "DBScribe_" + projName + ".txt");
+            //writetext.WriteLine("DBScribe Report for Project " + projName);
+            //writetext.WriteLine("There are " + num_methods + " database-related methods (out of " + num_of_methods + " methods).\n");
+            //writetext.WriteLine("Among them, there are "
+            //    + method_count[Constants.SQLMethodCategory.SQLOperatingMethod.ToString()] + " SQL Operating Methods, "
+            //    + method_count[Constants.SQLMethodCategory.LocalSQLMethod.ToString()] + " Local SQL Methods, "
+            //    + method_count[Constants.SQLMethodCategory.DelegatedSQLMethod.ToString()] + " Delegated SQL Methods.");
+            //writetext.WriteLine("");
+            //writetext.WriteLine(Constants.Divider);
+            //writetext.WriteLine("");
 
-            writetext.Write(output);
-            writetext.Close();
+            //writetext.Write(output);
+            //writetext.Close();
 
             //Console.Write(output);
+
+            HomeGenerator homeGenerator = new HomeGenerator(projName, num_methods, num_of_methods, 
+                method_count[Constants.SQLMethodCategory.SQLOperatingMethod.ToString()],
+                method_count[Constants.SQLMethodCategory.LocalSQLMethod.ToString()],
+                method_count[Constants.SQLMethodCategory.DelegatedSQLMethod.ToString()],
+                AllMethodHeaders, AllMethodFullDescriptions);
+            homeGenerator.Generate(Constants.ResultPath + "DBScribe_" + projName + ".html");
 
         }
 
@@ -148,7 +159,7 @@ namespace DBScribeHibernate
 
             Console.WriteLine("\n<3> Table Name --> Table Constraints");
             tableNameToTableConstraints = mappingParser.GetTableNameToTableConstraints();
-            Utility.PrintTableConstraints(tableNameToTableConstraints);
+            //Utility.PrintTableConstraints(tableNameToTableConstraints);
 
             //Console.ReadKey();
             //Environment.Exit(0);
@@ -336,6 +347,9 @@ namespace DBScribeHibernate
 
         public Tuple<int, string> Step3_1_BottomUpTraverseMethods()
         {
+            AllMethodHeaders = new List<string>();
+            AllMethodFullDescriptions = new Dictionary<string, string>();
+
             StringBuilder outputBuilder = new StringBuilder();
 
             Dictionary<string, List<string>> DBMethodToOpList = new Dictionary<string, List<string>>();
@@ -351,6 +365,7 @@ namespace DBScribeHibernate
             bool isDBMethod = true;
             foreach (MethodDefinition method in bottomUpSortedMethods)
             {
+
                 isDBMethod = true;
 
                 // (1) Check if POJO Class's Get/Set Function
@@ -360,11 +375,15 @@ namespace DBScribeHibernate
                     
                     string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                     string curMethodType = Constants.SQLMethodCategory.SQLOperatingMethod.ToString();
-                    outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
+                    string curMethodTitle = "[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader;
+                    outputBuilder.Append(curMethodTitle);
+                    AllMethodHeaders.Add(curMethodTitle);
                     method_count[curMethodType] += 1;
 
                     MethodDescription curMD = MethodDescriptionUtil.DescribeBasicMethod(basicMethod, tableNameToTableConstraints);
                     outputBuilder.AppendLine(curMD.MethodDescriptionStr);
+                    AllMethodFullDescriptions.Add(curMethodTitle, curMD.MethodDescriptionStr);
+
                     if (!DBMethodToOpList.ContainsKey(methodHeader))
                     {
                         DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
@@ -380,7 +399,9 @@ namespace DBScribeHibernate
                     {
                         string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                         string curMethodType = Constants.SQLMethodCategory.LocalSQLMethod.ToString();
-                        outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
+                        string curMethodTitle = "[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader;
+                        outputBuilder.Append(curMethodTitle);
+                        AllMethodHeaders.Add(curMethodTitle);
                         method_count[curMethodType] += 1;
 
                         HashSet<string> _DBRelatedMethods = new HashSet<string>(DBMethodToOpList.Keys);
@@ -389,6 +410,7 @@ namespace DBScribeHibernate
                         MethodDescription curMD = MethodDescriptionUtil.DescribeSessionMethod(method, methodHeader, calleeList, sessionBuiltInFuncList,
                             DBMethodToOpList, DBMethodToConstraitList, DBMethodToTableAttrNames, allDBClassToTableName, allDBClassPropToTableAttr);
                         outputBuilder.AppendLine(curMD.MethodDescriptionStr);
+                        AllMethodFullDescriptions.Add(curMethodTitle, curMD.MethodDescriptionStr);
                         DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
                         DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);
                         DBMethodToTableAttrNames.Add(methodHeader, curMD.DBTableAttrList);
@@ -416,7 +438,9 @@ namespace DBScribeHibernate
                         {
                             string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                             string curMethodType = Constants.SQLMethodCategory.DelegatedSQLMethod.ToString();
-                            outputBuilder.Append("[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader);
+                            string curMethodTitle = "[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader;
+                            outputBuilder.Append(curMethodTitle);
+                            AllMethodHeaders.Add(curMethodTitle);
                             method_count[curMethodType] += 1;
 
                             //DBRelatedMethods.Add(method.GetFullName());
@@ -426,12 +450,14 @@ namespace DBScribeHibernate
                             MethodDescription curMD = MethodDescriptionUtil.DescribeDelegatedMethod(methodHeader, calleeList, 
                                 DBMethodToOpList, DBMethodToConstraitList);
                             outputBuilder.AppendLine(curMD.MethodDescriptionStr);
+                            AllMethodFullDescriptions.Add(curMethodTitle, curMD.MethodDescriptionStr);
                             if (!DBMethodToOpList.ContainsKey(methodHeader))
                             {
                                 DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
                                 DBMethodToConstraitList.Add(methodHeader, curMD.ConstraintList);
                                 DBMethodToTableAttrNames.Add(methodHeader, curMD.DBTableAttrList);
                             }
+
                         }
                         else
                         {

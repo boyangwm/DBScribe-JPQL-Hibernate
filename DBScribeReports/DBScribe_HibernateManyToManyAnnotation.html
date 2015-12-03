@@ -1,0 +1,439 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>DBScribe Report</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=desert"> </script>
+ <style>
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+p {word-wrap: break-word; }
+</style>
+<script>
+$(".modal-wide").on("show.bs.modal", function() {
+  var height = $(window).height() - 200;
+  $(this).find(".modal-body").css("max-height", height);
+});
+</script>
+<style>
+div.tooltip-inner {
+    max-width: 1500px;
+}
+</style>
+<script>
+$(document).ready(function () {
+  $("a").tooltip({
+    'selector': '',
+    'placement': 'bottom',
+    'container':'body'
+  });
+});
+</script>
+ </head>
+ <body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3" style="position:fixed;float:left;left:0px">
+			<div>
+			<h2> DBScribe Report for HibernateManyToManyAnnotation</h2> <br/>
+			There are 19 database-related methods (out of 29 methods). 
+			Among them, there are 18 SQL Operating Methods,
+			1 Local SQL Methods, and 0 Delegated SQL Methods.
+			</div>
+			<br/>
+
+			<div class="panel panel-default">
+			<div class="panel-heading">Methods</div><div class="panel-body" style="max-height:600px;overflow-x: scroll;overflow-y: scroll">
+
+						<a href="#1">[M-1, SQLOperatingMethod] com.mkyong.stock.Category.Category(String)
+			()</a><br>
+						
+						<a href="#2">[M-2, SQLOperatingMethod] com.mkyong.stock.Stock.Stock()
+			()</a><br>
+						
+						<a href="#3">[M-3, SQLOperatingMethod] com.mkyong.stock.Stock.setStockCode(String)
+			()</a><br>
+						
+						<a href="#4">[M-4, SQLOperatingMethod] com.mkyong.stock.Stock.setStockName(String)
+			()</a><br>
+						
+						<a href="#5">[M-5, LocalSQLMethod] com.mkyong.App.main(String)
+			()</a><br>
+						
+						<a href="#6">[M-6, SQLOperatingMethod] com.mkyong.stock.Category.Category()
+			()</a><br>
+						
+						<a href="#7">[M-7, SQLOperatingMethod] com.mkyong.stock.Category.Category(String, Set<Stock>)
+			()</a><br>
+						
+						<a href="#8">[M-8, SQLOperatingMethod] com.mkyong.stock.Category.getCategoryId()
+			()</a><br>
+						
+						<a href="#9">[M-9, SQLOperatingMethod] com.mkyong.stock.Category.setCategoryId(Integer)
+			()</a><br>
+						
+						<a href="#10">[M-10, SQLOperatingMethod] com.mkyong.stock.Category.getName()
+			()</a><br>
+						
+						<a href="#11">[M-11, SQLOperatingMethod] com.mkyong.stock.Category.setName(String)
+			()</a><br>
+						
+						<a href="#12">[M-12, SQLOperatingMethod] com.mkyong.stock.Category.getDesc()
+			()</a><br>
+						
+						<a href="#13">[M-13, SQLOperatingMethod] com.mkyong.stock.Category.setDesc(String)
+			()</a><br>
+						
+						<a href="#14">[M-14, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String)
+			()</a><br>
+						
+						<a href="#15">[M-15, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String, Set<Category>)
+			()</a><br>
+						
+						<a href="#16">[M-16, SQLOperatingMethod] com.mkyong.stock.Stock.getStockId()
+			()</a><br>
+						
+						<a href="#17">[M-17, SQLOperatingMethod] com.mkyong.stock.Stock.setStockId(Integer)
+			()</a><br>
+						
+						<a href="#18">[M-18, SQLOperatingMethod] com.mkyong.stock.Stock.getStockCode()
+			()</a><br>
+						
+						<a href="#19">[M-19, SQLOperatingMethod] com.mkyong.stock.Stock.getStockName()
+			()</a><br>
+						
+			
+			</div>
+			</div>
+		</div>
+		<div class="col-xs-9" style="float:right;right:0px">
+		
+
+						<div class="panel panel-primary"><a id="1"></a>
+							<div class="panel-heading"><b>[M-1, SQLOperatingMethod] com.mkyong.stock.Category.Category(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>category</i> with attributes <i>NAME, [DESC]</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- category.NAME: (nullable = false), (length = 10)<br/>
+							- category.[DESC]: (nullable = false)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="2"></a>
+							<div class="panel-heading"><b>[M-2, SQLOperatingMethod] com.mkyong.stock.Stock.Stock()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>stock</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="3"></a>
+							<div class="panel-heading"><b>[M-3, SQLOperatingMethod] com.mkyong.stock.Stock.setStockCode(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>STOCK_CODE</i> from table <i>stock</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="4"></a>
+							<div class="panel-heading"><b>[M-4, SQLOperatingMethod] com.mkyong.stock.Stock.setStockName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>STOCK_NAME</i> from table <i>stock</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="5"></a>
+							<div class="panel-heading"><b>[M-5, LocalSQLMethod] com.mkyong.App.main(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>STOCK_CODE, STOCK_NAME, NAME, [DESC]</i> into table <i>stock</i><br/>
+							<br/>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.stock.Stock.Stock</i><br/>
+							- It constructs <i>stock</i> without any initial value<br/>
+							<br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.stock.Stock.setStockCode</i><br/>
+							- It sets attribute <i>STOCK_CODE</i> from table <i>stock</i><br/>
+							<br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.stock.Stock.setStockName</i><br/>
+							- It sets attribute <i>STOCK_NAME</i> from table <i>stock</i><br/>
+							<br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.stock.Category.Category</i><br/>
+							- It constructs <i>category</i> with attributes <i>NAME, [DESC]</i><br/><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)<br/>
+							- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)<br/>
+							- category.NAME: (nullable = false), (length = 10)<br/>
+							- category.[DESC]: (nullable = false)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="6"></a>
+							<div class="panel-heading"><b>[M-6, SQLOperatingMethod] com.mkyong.stock.Category.Category()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>category</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="7"></a>
+							<div class="panel-heading"><b>[M-7, SQLOperatingMethod] com.mkyong.stock.Category.Category(String, Set<Stock>)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>category</i> with attributes <i>NAME, [DESC]</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- category.NAME: (nullable = false), (length = 10)<br/>
+							- category.[DESC]: (nullable = false)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="8"></a>
+							<div class="panel-heading"><b>[M-8, SQLOperatingMethod] com.mkyong.stock.Category.getCategoryId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>CATEGORY_ID</i> from table <i>category</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="9"></a>
+							<div class="panel-heading"><b>[M-9, SQLOperatingMethod] com.mkyong.stock.Category.setCategoryId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>CATEGORY_ID</i> from table <i>category</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- category.CATEGORY_ID: (unique = true), (nullable = false)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="10"></a>
+							<div class="panel-heading"><b>[M-10, SQLOperatingMethod] com.mkyong.stock.Category.getName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>NAME</i> from table <i>category</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="11"></a>
+							<div class="panel-heading"><b>[M-11, SQLOperatingMethod] com.mkyong.stock.Category.setName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>NAME</i> from table <i>category</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- category.NAME: (nullable = false), (length = 10)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="12"></a>
+							<div class="panel-heading"><b>[M-12, SQLOperatingMethod] com.mkyong.stock.Category.getDesc()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>[DESC]</i> from table <i>category</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="13"></a>
+							<div class="panel-heading"><b>[M-13, SQLOperatingMethod] com.mkyong.stock.Category.setDesc(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>[DESC]</i> from table <i>category</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- category.[DESC]: (nullable = false)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="14"></a>
+							<div class="panel-heading"><b>[M-14, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>stock</i> with attributes <i>STOCK_CODE, STOCK_NAME</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)<br/>
+							- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="15"></a>
+							<div class="panel-heading"><b>[M-15, SQLOperatingMethod] com.mkyong.stock.Stock.Stock(String, Set<Category>)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>stock</i> with attributes <i>STOCK_CODE, STOCK_NAME</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- stock.STOCK_CODE: (unique = true), (nullable = false), (length = 10)<br/>
+							- stock.STOCK_NAME: (unique = true), (nullable = false), (length = 20)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="16"></a>
+							<div class="panel-heading"><b>[M-16, SQLOperatingMethod] com.mkyong.stock.Stock.getStockId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>STOCK_ID</i> from table <i>stock</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="17"></a>
+							<div class="panel-heading"><b>[M-17, SQLOperatingMethod] com.mkyong.stock.Stock.setStockId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>STOCK_ID</i> from table <i>stock</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- stock.STOCK_ID: (unique = true), (nullable = false)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="18"></a>
+							<div class="panel-heading"><b>[M-18, SQLOperatingMethod] com.mkyong.stock.Stock.getStockCode()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>STOCK_CODE</i> from table <i>stock</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="19"></a>
+							<div class="panel-heading"><b>[M-19, SQLOperatingMethod] com.mkyong.stock.Stock.getStockName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>STOCK_NAME</i> from table <i>stock</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>DBScribe Report</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=desert"> </script>
+ <style>
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+p {word-wrap: break-word; }
+</style>
+<script>
+$(".modal-wide").on("show.bs.modal", function() {
+  var height = $(window).height() - 200;
+  $(this).find(".modal-body").css("max-height", height);
+});
+</script>
+<style>
+div.tooltip-inner {
+    max-width: 1500px;
+}
+</style>
+<script>
+$(document).ready(function () {
+  $("a").tooltip({
+    'selector': '',
+    'placement': 'bottom',
+    'container':'body'
+  });
+});
+</script>
+ </head>
+ <body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3" style="position:fixed;float:left;left:0px">
+			<div>
+			<h2> DBScribe Report for HibernateComponentMappingExample</h2> <br/>
+			There are 12 database-related methods (out of 28 methods). 
+			Among them, there are 11 SQL Operating Methods,
+			1 Local SQL Methods, and 0 Delegated SQL Methods.
+			</div>
+			<br/>
+
+			<div class="panel panel-default">
+			<div class="panel-heading">Methods</div><div class="panel-body" style="max-height:600px;overflow-x: scroll;overflow-y: scroll">
+
+						<a href="#1">[M-1, SQLOperatingMethod] com.mkyong.customer.Customer.Customer()
+			()</a><br>
+						
+						<a href="#2">[M-2, SQLOperatingMethod] com.mkyong.customer.Customer.getCustId()
+			()</a><br>
+						
+						<a href="#3">[M-3, SQLOperatingMethod] com.mkyong.customer.Customer.setCustId(Integer)
+			()</a><br>
+						
+						<a href="#4">[M-4, SQLOperatingMethod] com.mkyong.customer.Customer.getCustName()
+			()</a><br>
+						
+						<a href="#5">[M-5, SQLOperatingMethod] com.mkyong.customer.Customer.setCustName(String)
+			()</a><br>
+						
+						<a href="#6">[M-6, SQLOperatingMethod] com.mkyong.customer.Customer.getAge()
+			()</a><br>
+						
+						<a href="#7">[M-7, SQLOperatingMethod] com.mkyong.customer.Customer.setAge(int)
+			()</a><br>
+						
+						<a href="#8">[M-8, SQLOperatingMethod] com.mkyong.customer.Customer.getCreatedDate()
+			()</a><br>
+						
+						<a href="#9">[M-9, SQLOperatingMethod] com.mkyong.customer.Customer.setCreatedDate(Date)
+			()</a><br>
+						
+						<a href="#10">[M-10, SQLOperatingMethod] com.mkyong.customer.Customer.getCreatedBy()
+			()</a><br>
+						
+						<a href="#11">[M-11, SQLOperatingMethod] com.mkyong.customer.Customer.setCreatedBy(String)
+			()</a><br>
+						
+						<a href="#12">[M-12, LocalSQLMethod] com.mkyong.App.main(String)
+			()</a><br>
+						
+			
+			</div>
+			</div>
+		</div>
+		<div class="col-xs-9" style="float:right;right:0px">
+		
+
+						<div class="panel panel-primary"><a id="1"></a>
+							<div class="panel-heading"><b>[M-1, SQLOperatingMethod] com.mkyong.customer.Customer.Customer()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>customer</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="2"></a>
+							<div class="panel-heading"><b>[M-2, SQLOperatingMethod] com.mkyong.customer.Customer.getCustId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>CUST_ID</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="3"></a>
+							<div class="panel-heading"><b>[M-3, SQLOperatingMethod] com.mkyong.customer.Customer.setCustId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>CUST_ID</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- Primary key: customer.CUST_ID (type=java.lang.Integer)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="4"></a>
+							<div class="panel-heading"><b>[M-4, SQLOperatingMethod] com.mkyong.customer.Customer.getCustName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>CUST_NAME</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="5"></a>
+							<div class="panel-heading"><b>[M-5, SQLOperatingMethod] com.mkyong.customer.Customer.setCustName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>CUST_NAME</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- customer.CUST_NAME (type=string, length=10, not-null=true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="6"></a>
+							<div class="panel-heading"><b>[M-6, SQLOperatingMethod] com.mkyong.customer.Customer.getAge()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>AGE</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="7"></a>
+							<div class="panel-heading"><b>[M-7, SQLOperatingMethod] com.mkyong.customer.Customer.setAge(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>AGE</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- customer.AGE (type=int, not-null=true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="8"></a>
+							<div class="panel-heading"><b>[M-8, SQLOperatingMethod] com.mkyong.customer.Customer.getCreatedDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>CREATED_DATE</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="9"></a>
+							<div class="panel-heading"><b>[M-9, SQLOperatingMethod] com.mkyong.customer.Customer.setCreatedDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>CREATED_DATE</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- customer.CREATED_DATE (type=date, length=10, not-null=true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="10"></a>
+							<div class="panel-heading"><b>[M-10, SQLOperatingMethod] com.mkyong.customer.Customer.getCreatedBy()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>CREATED_BY</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="11"></a>
+							<div class="panel-heading"><b>[M-11, SQLOperatingMethod] com.mkyong.customer.Customer.setCreatedBy(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>CREATED_BY</i> from table <i>customer</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- customer.CREATED_BY (type=string, length=10, not-null=true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="12"></a>
+							<div class="panel-heading"><b>[M-12, LocalSQLMethod] com.mkyong.App.main(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>CUST_NAME, AGE, CREATED_DATE, CREATED_BY</i> into table <i>customer</i><br/>
+							<br/>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.customer.Customer.Customer</i><br/>
+							- It constructs <i>customer</i> without any initial value<br/>
+							<br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.customer.Customer.setCustName</i><br/>
+							- It sets attribute <i>CUST_NAME</i> from table <i>customer</i><br/>
+							<br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.customer.Customer.setAge</i><br/>
+							- It sets attribute <i>AGE</i> from table <i>customer</i><br/>
+							<br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.customer.Customer.setCreatedDate</i><br/>
+							- It sets attribute <i>CREATED_DATE</i> from table <i>customer</i><br/>
+							<br/>
+							Via call-chain: <i>com.mkyong.App.main --> com.mkyong.customer.Customer.setCreatedBy</i><br/>
+							- It sets attribute <i>CREATED_BY</i> from table <i>customer</i><br/>
+							<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- customer.CUST_NAME (type=string, length=10, not-null=true)<br/>
+							- customer.AGE (type=int, not-null=true)<br/>
+							- customer.CREATED_DATE (type=date, length=10, not-null=true)<br/>
+							- customer.CREATED_BY (type=string, length=10, not-null=true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+</body>
+</html>

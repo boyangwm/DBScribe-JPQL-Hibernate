@@ -11,16 +11,19 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly Boolean ShowLog = true;
         public static readonly string LogPath = "_TempLog";
 
-        public static readonly string ResultPath = @"..\..\..\..\DBScribeReports\";
+        public static readonly string CurWorkspace = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\";
+
+        public static readonly string ResultPath = CurWorkspace + @"DBScribeReports\";
+
 
         /// <summary>
         /// Target Project Location and Name
         /// </summary>
         //public static readonly string TargetProjPath = @"E:\workspace_hibernate";
-        public static readonly string TargetProjPath = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\HibernateProjects";
+        public static readonly string TargetProjPath = CurWorkspace + @"HibernateProjects";
 
         //// IF using <mapping resource="...xml" /> ---> xml
-        public static readonly string ProjName = @"MyFirstHibernate";
+        //public static readonly string ProjName = @"MyFirstHibernate";
         //public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
         //public static readonly string ProjName = @"HibernateComponentMappingExample";
 
@@ -29,16 +32,18 @@ namespace DBScribeHibernate.DBScribeHibernate
         //public static readonly string ProjName = @"HibernateManyToManyAnnotation";
 
         //// Real projects
-        //public static readonly string ProjName = @"_RealProjects\biyesheji";    // XML mapping
-        //public static readonly string ProjName = @"_RealProjects\chat-springmvc-hibernate-master";  // Annotation mapping
-        //public static readonly string ProjName = @"_RealProjects\UMAC-UserManagementAccessControl-master";  // Annotation mapping
+        //public static readonly string ProjName = @"_RealProjects\EducationManagementSystem";    // XML mapping
+        //public static readonly string ProjName = @"_RealProjects\chat";  // Annotation mapping
+        public static readonly string ProjName = @"_RealProjects\UserManagementAccessControl";  // Annotation mapping
 
         /// <summary>
         /// SrcML Location
         /// </summary>
         //public static readonly string SrcmlLoc = @"E:\Research\SrcML\";
-        public static readonly string SrcmlLoc = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\SrcML\";
+        public static readonly string SrcmlLoc = CurWorkspace + @"SrcML\";
         public static readonly string SrcmlOutput = @"_SrcmlOutput\" + Util.Utility.GetProjectName(ProjName) + @"\";
+
+        public static readonly string TemplatesLoc = CurWorkspace + @"DBScribeHibernate\DBScribeHibernate\DBScribeHibernate\Templates";
 
         /// <summary>
         /// Hibernate default config file name
