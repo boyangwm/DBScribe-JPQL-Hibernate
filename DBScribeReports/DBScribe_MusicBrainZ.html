@@ -1,0 +1,832 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>DBScribe Report</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=desert"> </script>
+ <style>
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+p {word-wrap: break-word; }
+</style>
+<script>
+$(".modal-wide").on("show.bs.modal", function() {
+  var height = $(window).height() - 200;
+  $(this).find(".modal-body").css("max-height", height);
+});
+</script>
+<style>
+div.tooltip-inner {
+    max-width: 1500px;
+}
+</style>
+<script>
+$(document).ready(function () {
+  $("a").tooltip({
+    'selector': '',
+    'placement': 'bottom',
+    'container':'body'
+  });
+});
+</script>
+ </head>
+ <body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3" style="position:fixed;float:left;left:0px">
+			<div>
+			<h2> DBScribe Report for MusicBrainZ</h2> <br/>
+			There are 42 database-related methods (out of 290 methods). 
+			Among them, there are 25 SQL Operating Methods,
+			0 Local SQL Methods, and 17 Delegated SQL Methods.
+			</div>
+			<br/>
+
+			<div class="panel panel-default">
+			<div class="panel-heading">Methods</div><div class="panel-body" style="max-height:600px;overflow-x: scroll;overflow-y: scroll">
+
+						<a href="#1">[M-1, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getId()
+			()</a><br>
+						
+						<a href="#2">[M-2, DelegatedSQLMethod] fm.last.musicbrainz.data.dao.impl.TrackDaoImplIT.getByExistingArtistReturnsThreeTracks()
+			()</a><br>
+						
+						<a href="#3">[M-3, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase()
+			()</a><br>
+						
+						<a href="#4">[M-4, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistCredit.getFullName()
+			()</a><br>
+						
+						<a href="#5">[M-5, SQLOperatingMethod] fm.last.musicbrainz.data.model.Recording.getLength()
+			()</a><br>
+						
+						<a href="#6">[M-6, DelegatedSQLMethod] fm.last.musicbrainz.data.model.RecordingIT.allFieldsArePopulated()
+			()</a><br>
+						
+						<a href="#7">[M-7, SQLOperatingMethod] fm.last.musicbrainz.data.model.Artist.getType()
+			()</a><br>
+						
+						<a href="#8">[M-8, SQLOperatingMethod] fm.last.musicbrainz.data.model.Artist.getGender()
+			()</a><br>
+						
+						<a href="#9">[M-9, SQLOperatingMethod] fm.last.musicbrainz.data.model.Artist.hasEnded()
+			()</a><br>
+						
+						<a href="#10">[M-10, SQLOperatingMethod] fm.last.musicbrainz.data.model.Release.getStatus()
+			()</a><br>
+						
+						<a href="#11">[M-11, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getId()
+			()</a><br>
+						
+						<a href="#12">[M-12, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getPosition()
+			()</a><br>
+						
+						<a href="#13">[M-13, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getName()
+			()</a><br>
+						
+						<a href="#14">[M-14, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getLastUpdated()
+			()</a><br>
+						
+						<a href="#15">[M-15, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCredit.getId()
+			()</a><br>
+						
+						<a href="#16">[M-16, SQLOperatingMethod] fm.last.musicbrainz.data.model.ReleaseCountry.ReleaseCountry()
+			()</a><br>
+						
+						<a href="#17">[M-17, SQLOperatingMethod] fm.last.musicbrainz.data.model.ReleaseCountry.ReleaseCountry(int, PartialDate)
+			()</a><br>
+						
+						<a href="#18">[M-18, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistCreditIT.fullNameIsOrderedByPosition()
+			()</a><br>
+						
+						<a href="#19">[M-19, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistCreditIT.singleArtistArtistCreditHasSameFullNameAsArtist()
+			()</a><br>
+						
+						<a href="#20">[M-20, DelegatedSQLMethod] fm.last.musicbrainz.data.model.MediumIT.allFieldsArePopulated()
+			()</a><br>
+						
+						<a href="#21">[M-21, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCreditName.getArtistCreditId()
+			()</a><br>
+						
+						<a href="#22">[M-22, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCreditName.getPosition()
+			()</a><br>
+						
+						<a href="#23">[M-23, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.getId()
+			()</a><br>
+						
+						<a href="#24">[M-24, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.getType()
+			()</a><br>
+						
+						<a href="#25">[M-25, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.getLastUpdated()
+			()</a><br>
+						
+						<a href="#26">[M-26, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.hasEnded()
+			()</a><br>
+						
+						<a href="#27">[M-27, SQLOperatingMethod] fm.last.musicbrainz.data.model.ReleaseGroup.getType()
+			()</a><br>
+						
+						<a href="#28">[M-28, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistIT.allFieldsArePopulated()
+			()</a><br>
+						
+						<a href="#29">[M-29, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistIT.genderIsNotUndefinedWhenSpecified()
+			()</a><br>
+						
+						<a href="#30">[M-30, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistIT.artistTypeIsNotUndefinedWhenSpecified()
+			()</a><br>
+						
+						<a href="#31">[M-31, DelegatedSQLMethod] fm.last.musicbrainz.data.model.AreaIT.allFieldsArePopulated()
+			()</a><br>
+						
+						<a href="#32">[M-32, DelegatedSQLMethod] fm.last.musicbrainz.data.model.AreaIT.areaTypeIsUndefinedWhenNotSpecified()
+			()</a><br>
+						
+						<a href="#33">[M-33, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseGroupIT.allFieldsArePopulated()
+			()</a><br>
+						
+						<a href="#34">[M-34, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseGroupIT.releaseGroupPrimaryTypeIsNotUndefined()
+			()</a><br>
+						
+						<a href="#35">[M-35, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getPosition()
+			()</a><br>
+						
+						<a href="#36">[M-36, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getNumber()
+			()</a><br>
+						
+						<a href="#37">[M-37, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getLength()
+			()</a><br>
+						
+						<a href="#38">[M-38, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getLastUpdated()
+			()</a><br>
+						
+						<a href="#39">[M-39, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseIT.allFieldsArePopulated()
+			()</a><br>
+						
+						<a href="#40">[M-40, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseIT.releaseCountriesAreMappedWhenSpecified()
+			()</a><br>
+						
+						<a href="#41">[M-41, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseIT.releaseStatusIsNotUndefined()
+			()</a><br>
+						
+						<a href="#42">[M-42, DelegatedSQLMethod] fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated()
+			()</a><br>
+						
+			
+			</div>
+			</div>
+		</div>
+		<div class="col-xs-9" style="float:right;right:0px">
+		
+
+						<div class="panel panel-primary"><a id="1"></a>
+							<div class="panel-heading"><b>[M-1, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>id</i> from table <i>track</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="2"></a>
+							<div class="panel-heading"><b>[M-2, DelegatedSQLMethod] fm.last.musicbrainz.data.dao.impl.TrackDaoImplIT.getByExistingArtistReturnsThreeTracks()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.dao.impl.TrackDaoImplIT.getByExistingArtistReturnsThreeTracks --> fm.last.musicbrainz.data.model.Track.getId</i><br/>
+							- It gets attribute <i>id</i> from table <i>track</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="3"></a>
+							<div class="panel-heading"><b>[M-3, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="4"></a>
+							<div class="panel-heading"><b>[M-4, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistCredit.getFullName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ArtistCredit.getFullName --> fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase</i><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="5"></a>
+							<div class="panel-heading"><b>[M-5, SQLOperatingMethod] fm.last.musicbrainz.data.model.Recording.getLength()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>length</i> from table <i>recording</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="6"></a>
+							<div class="panel-heading"><b>[M-6, DelegatedSQLMethod] fm.last.musicbrainz.data.model.RecordingIT.allFieldsArePopulated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.RecordingIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.ArtistCredit.getFullName --> fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase</i><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.RecordingIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Recording.getLength</i><br/>
+							- It gets attribute <i>length</i> from table <i>recording</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="7"></a>
+							<div class="panel-heading"><b>[M-7, SQLOperatingMethod] fm.last.musicbrainz.data.model.Artist.getType()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>type</i> from table <i>artist</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="8"></a>
+							<div class="panel-heading"><b>[M-8, SQLOperatingMethod] fm.last.musicbrainz.data.model.Artist.getGender()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>gender</i> from table <i>artist</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="9"></a>
+							<div class="panel-heading"><b>[M-9, SQLOperatingMethod] fm.last.musicbrainz.data.model.Artist.hasEnded()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>ended</i> from table <i>artist</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="10"></a>
+							<div class="panel-heading"><b>[M-10, SQLOperatingMethod] fm.last.musicbrainz.data.model.Release.getStatus()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>status</i> from table <i>release</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="11"></a>
+							<div class="panel-heading"><b>[M-11, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>id</i> from table <i>medium</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="12"></a>
+							<div class="panel-heading"><b>[M-12, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getPosition()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>position</i> from table <i>medium</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="13"></a>
+							<div class="panel-heading"><b>[M-13, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>name</i> from table <i>medium</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="14"></a>
+							<div class="panel-heading"><b>[M-14, SQLOperatingMethod] fm.last.musicbrainz.data.model.Medium.getLastUpdated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>last_updated</i> from table <i>medium</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="15"></a>
+							<div class="panel-heading"><b>[M-15, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCredit.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>id</i> from table <i>artist_credit</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="16"></a>
+							<div class="panel-heading"><b>[M-16, SQLOperatingMethod] fm.last.musicbrainz.data.model.ReleaseCountry.ReleaseCountry()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>release_country</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="17"></a>
+							<div class="panel-heading"><b>[M-17, SQLOperatingMethod] fm.last.musicbrainz.data.model.ReleaseCountry.ReleaseCountry(int, PartialDate)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>release_country</i> with attributes <i>release, country</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="18"></a>
+							<div class="panel-heading"><b>[M-18, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistCreditIT.fullNameIsOrderedByPosition()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ArtistCreditIT.fullNameIsOrderedByPosition --> fm.last.musicbrainz.data.model.ArtistCredit.getFullName --> fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase</i><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="19"></a>
+							<div class="panel-heading"><b>[M-19, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistCreditIT.singleArtistArtistCreditHasSameFullNameAsArtist()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ArtistCreditIT.singleArtistArtistCreditHasSameFullNameAsArtist --> fm.last.musicbrainz.data.model.ArtistCredit.getFullName --> fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase</i><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="20"></a>
+							<div class="panel-heading"><b>[M-20, DelegatedSQLMethod] fm.last.musicbrainz.data.model.MediumIT.allFieldsArePopulated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.MediumIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Medium.getId</i><br/>
+							- It gets attribute <i>id</i> from table <i>medium</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.MediumIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Medium.getLastUpdated</i><br/>
+							- It gets attribute <i>last_updated</i> from table <i>medium</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.MediumIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Medium.getName</i><br/>
+							- It gets attribute <i>name</i> from table <i>medium</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.MediumIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Medium.getPosition</i><br/>
+							- It gets attribute <i>position</i> from table <i>medium</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.MediumIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Track.getId</i><br/>
+							- It gets attribute <i>id</i> from table <i>track</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="21"></a>
+							<div class="panel-heading"><b>[M-21, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCreditName.getArtistCreditId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>artist_credit</i> from table <i>artist_credit_name</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="22"></a>
+							<div class="panel-heading"><b>[M-22, SQLOperatingMethod] fm.last.musicbrainz.data.model.ArtistCreditName.getPosition()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>position</i> from table <i>artist_credit_name</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="23"></a>
+							<div class="panel-heading"><b>[M-23, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>id</i> from table <i>area</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="24"></a>
+							<div class="panel-heading"><b>[M-24, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.getType()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>type</i> from table <i>area</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="25"></a>
+							<div class="panel-heading"><b>[M-25, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.getLastUpdated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>last_updated</i> from table <i>area</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="26"></a>
+							<div class="panel-heading"><b>[M-26, SQLOperatingMethod] fm.last.musicbrainz.data.model.Area.hasEnded()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>ended</i> from table <i>area</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="27"></a>
+							<div class="panel-heading"><b>[M-27, SQLOperatingMethod] fm.last.musicbrainz.data.model.ReleaseGroup.getType()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>type</i> from table <i>release_group</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="28"></a>
+							<div class="panel-heading"><b>[M-28, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistIT.allFieldsArePopulated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ArtistIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Artist.getType</i><br/>
+							- It gets attribute <i>type</i> from table <i>artist</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ArtistIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Artist.getGender</i><br/>
+							- It gets attribute <i>gender</i> from table <i>artist</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="29"></a>
+							<div class="panel-heading"><b>[M-29, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistIT.genderIsNotUndefinedWhenSpecified()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ArtistIT.genderIsNotUndefinedWhenSpecified --> fm.last.musicbrainz.data.model.Artist.getGender</i><br/>
+							- It gets attribute <i>gender</i> from table <i>artist</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="30"></a>
+							<div class="panel-heading"><b>[M-30, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ArtistIT.artistTypeIsNotUndefinedWhenSpecified()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ArtistIT.artistTypeIsNotUndefinedWhenSpecified --> fm.last.musicbrainz.data.model.Artist.getType</i><br/>
+							- It gets attribute <i>type</i> from table <i>artist</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="31"></a>
+							<div class="panel-heading"><b>[M-31, DelegatedSQLMethod] fm.last.musicbrainz.data.model.AreaIT.allFieldsArePopulated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.AreaIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Area.getId</i><br/>
+							- It gets attribute <i>id</i> from table <i>area</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.AreaIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Area.getType</i><br/>
+							- It gets attribute <i>type</i> from table <i>area</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.AreaIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Area.getLastUpdated</i><br/>
+							- It gets attribute <i>last_updated</i> from table <i>area</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.AreaIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Area.hasEnded</i><br/>
+							- It gets attribute <i>ended</i> from table <i>area</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="32"></a>
+							<div class="panel-heading"><b>[M-32, DelegatedSQLMethod] fm.last.musicbrainz.data.model.AreaIT.areaTypeIsUndefinedWhenNotSpecified()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.AreaIT.areaTypeIsUndefinedWhenNotSpecified --> fm.last.musicbrainz.data.model.Area.getType</i><br/>
+							- It gets attribute <i>type</i> from table <i>area</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="33"></a>
+							<div class="panel-heading"><b>[M-33, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseGroupIT.allFieldsArePopulated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ReleaseGroupIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.ArtistCredit.getFullName --> fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase</i><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ReleaseGroupIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.ReleaseGroup.getType</i><br/>
+							- It gets attribute <i>type</i> from table <i>release_group</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="34"></a>
+							<div class="panel-heading"><b>[M-34, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseGroupIT.releaseGroupPrimaryTypeIsNotUndefined()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ReleaseGroupIT.releaseGroupPrimaryTypeIsNotUndefined --> fm.last.musicbrainz.data.model.ReleaseGroup.getType</i><br/>
+							- It gets attribute <i>type</i> from table <i>release_group</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="35"></a>
+							<div class="panel-heading"><b>[M-35, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getPosition()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>position</i> from table <i>track</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="36"></a>
+							<div class="panel-heading"><b>[M-36, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getNumber()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>number</i> from table <i>track</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="37"></a>
+							<div class="panel-heading"><b>[M-37, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getLength()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>length</i> from table <i>track</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="38"></a>
+							<div class="panel-heading"><b>[M-38, SQLOperatingMethod] fm.last.musicbrainz.data.model.Track.getLastUpdated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>last_updated</i> from table <i>track</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="39"></a>
+							<div class="panel-heading"><b>[M-39, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseIT.allFieldsArePopulated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ReleaseIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.ArtistCredit.getFullName --> fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase</i><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ReleaseIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Release.getStatus</i><br/>
+							- It gets attribute <i>status</i> from table <i>release</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="40"></a>
+							<div class="panel-heading"><b>[M-40, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseIT.releaseCountriesAreMappedWhenSpecified()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ReleaseIT.releaseCountriesAreMappedWhenSpecified --> fm.last.musicbrainz.data.model.ReleaseCountry.ReleaseCountry</i><br/>
+							- It constructs <i>release_country</i> with attributes <i>release, country</i><br/><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="41"></a>
+							<div class="panel-heading"><b>[M-41, DelegatedSQLMethod] fm.last.musicbrainz.data.model.ReleaseIT.releaseStatusIsNotUndefined()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.ReleaseIT.releaseStatusIsNotUndefined --> fm.last.musicbrainz.data.model.Release.getStatus</i><br/>
+							- It gets attribute <i>status</i> from table <i>release</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="42"></a>
+							<div class="panel-heading"><b>[M-42, DelegatedSQLMethod] fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Track.getId</i><br/>
+							- It gets attribute <i>id</i> from table <i>track</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.ArtistCredit.getFullName --> fm.last.musicbrainz.data.model.ArtistCreditName.getJoinPhrase</i><br/>
+							- It gets attribute <i>join_phrase</i> from table <i>artist_credit_name</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Track.getPosition</i><br/>
+							- It gets attribute <i>position</i> from table <i>track</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Track.getNumber</i><br/>
+							- It gets attribute <i>number</i> from table <i>track</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Track.getLength</i><br/>
+							- It gets attribute <i>length</i> from table <i>track</i><br/>
+							<br/>
+							Via call-chain: <i>fm.last.musicbrainz.data.model.TrackIT.allFieldsArePopulated --> fm.last.musicbrainz.data.model.Track.getLastUpdated</i><br/>
+							- It gets attribute <i>last_updated</i> from table <i>track</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+</body>
+</html>

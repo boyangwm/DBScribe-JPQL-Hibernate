@@ -18,6 +18,8 @@ import javax.persistence.UniqueConstraint;
 public class Stock implements java.io.Serializable {
 
 	private Integer stockId;
+	@Column(name = "STOCK_CODE")
+	@Max(value=128)
 	private String stockCode;
 	private String stockName;
 	private StockDetail stockDetail;
@@ -47,7 +49,7 @@ public class Stock implements java.io.Serializable {
 		this.stockId = stockId;
 	}
 
-	@Column(name = "STOCK_CODE", unique = true, nullable = false, length = 10)
+	@NotNull
 	public String getStockCode() {
 		return this.stockCode;
 	}

@@ -331,22 +331,22 @@ $(document).ready(function () {
 						<a href="#94">[M-94, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendEditedProfileMail(User)
 			()</a><br>
 						
-						<a href="#95">[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
+						<a href="#95">[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
 			()</a><br>
 						
 						<a href="#96">[M-96, DelegatedSQLMethod] com.marciani.sample.util.form.UserForm.toUser()
 			()</a><br>
 						
-						<a href="#97">[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
+						<a href="#97">[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
 			()</a><br>
 						
-						<a href="#98">[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
+						<a href="#98">[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
 			()</a><br>
 						
-						<a href="#99">[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
+						<a href="#99">[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
 			()</a><br>
 						
-						<a href="#100">[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
+						<a href="#100">[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
 			()</a><br>
 						
 			
@@ -419,7 +419,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- persistent_logins.series: Make sure it is no null, Make sure the lenght is not more than  64<br/>
+							- persistent_logins.series: Make sure it is not null, Make sure the length is not more than  64<br/>
 
 							</p>
 							</div>
@@ -436,7 +436,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- persistent_logins.username: Make sure it is no null, Make sure the lenght is not more than  64<br/>
+							- persistent_logins.username: Make sure it is not null, Make sure the length is not more than  64<br/>
 
 							</p>
 							</div>
@@ -453,7 +453,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- persistent_logins.token: Make sure it is no null, Make sure the lenght is not more than  64<br/>
+							- persistent_logins.token: Make sure it is not null, Make sure the length is not more than  64<br/>
 
 							</p>
 							</div>
@@ -470,7 +470,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- persistent_logins.last_used: Make sure it is no null<br/>
+							- persistent_logins.last_used: Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -515,10 +515,10 @@ $(document).ready(function () {
 							<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- persistent_logins.username: Make sure it is no null, Make sure the lenght is not more than  64<br/>
-							- persistent_logins.series: Make sure it is no null, Make sure the lenght is not more than  64<br/>
-							- persistent_logins.last_used: Make sure it is no null<br/>
-							- persistent_logins.token: Make sure it is no null, Make sure the lenght is not more than  64<br/>
+							- persistent_logins.username: Make sure it is not null, Make sure the length is not more than  64<br/>
+							- persistent_logins.series: Make sure it is not null, Make sure the length is not more than  64<br/>
+							- persistent_logins.last_used: Make sure it is not null<br/>
+							- persistent_logins.token: Make sure it is not null, Make sure the length is not more than  64<br/>
 
 							</p>
 							</div>
@@ -542,9 +542,9 @@ $(document).ready(function () {
 							<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- persistent_logins.series: Make sure it is no null, Make sure the lenght is not more than  64<br/>
-							- persistent_logins.token: Make sure it is no null, Make sure the lenght is not more than  64<br/>
-							- persistent_logins.last_used: Make sure it is no null<br/>
+							- persistent_logins.series: Make sure it is not null, Make sure the length is not more than  64<br/>
+							- persistent_logins.token: Make sure it is not null, Make sure the length is not more than  64<br/>
+							- persistent_logins.last_used: Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -859,7 +859,7 @@ $(document).ready(function () {
 							- It constructs <i>roles</i> with attributes <i>role_name</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- roles.role_name: Make sure it is no null, Make sure it is unique, Make sure the lenght is not more than  45<br/>
+							- roles.role_name: Make sure it is not null, Make sure it is unique, Make sure the length is not more than  45<br/>
 
 							</p>
 							</div>
@@ -904,7 +904,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- roles.role_id: Make sure it is no null, Make sure it is unique<br/>
+							- roles.role_id: Make sure it is not null, Make sure it is unique<br/>
 
 							</p>
 							</div>
@@ -935,7 +935,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- roles.role_name: Make sure it is no null, Make sure it is unique, Make sure the lenght is not more than  45<br/>
+							- roles.role_name: Make sure it is not null, Make sure it is unique, Make sure the length is not more than  45<br/>
 
 							</p>
 							</div>
@@ -979,10 +979,10 @@ $(document).ready(function () {
 							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
+							- users_profile.birth: Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1027,7 +1027,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.profile_id: Make sure it is unique<br/>
+							- users_profile.profile_id: Make sure it is unique, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1044,7 +1044,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1061,7 +1061,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1078,7 +1078,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1109,7 +1109,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
+							- users_profile.birth: Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1153,9 +1153,9 @@ $(document).ready(function () {
 							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
+							- users.username: Make sure it is unique, Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.password: Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.role: Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -1171,9 +1171,9 @@ $(document).ready(function () {
 							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
+							- users.username: Make sure it is unique, Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.password: Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.role: Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -1218,7 +1218,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.user_id: Make sure it is unique<br/>
+							- users.user_id: Make sure it is unique, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1235,7 +1235,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.username: Make sure it is unique, Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1252,7 +1252,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.password: Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1269,7 +1269,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.role: Make sure it is no null<br/>
+							- users.role: Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -1313,9 +1313,9 @@ $(document).ready(function () {
 							- It constructs <i>users_info</i> with attributes <i>firstname, lastname, email</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.firstname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
-							- users_info.lastname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
-							- users_info.email: Make sure it is no null, Make sure the lenght is not more than  50<br/>
+							- users_info.firstname: Make sure it is not null, Make sure the length is not more than  25<br/>
+							- users_info.lastname: Make sure it is not null, Make sure the length is not more than  25<br/>
+							- users_info.email: Make sure it is not null, Make sure the length is not more than  50<br/>
 
 							</p>
 							</div>
@@ -1360,7 +1360,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.firstname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
+							- users_info.firstname: Make sure it is not null, Make sure the length is not more than  25<br/>
 
 							</p>
 							</div>
@@ -1391,7 +1391,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.lastname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
+							- users_info.lastname: Make sure it is not null, Make sure the length is not more than  25<br/>
 
 							</p>
 							</div>
@@ -1422,7 +1422,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.email: Make sure it is no null, Make sure the lenght is not more than  50<br/>
+							- users_info.email: Make sure it is not null, Make sure the length is not more than  50<br/>
 
 							</p>
 							</div>
@@ -1438,9 +1438,9 @@ $(document).ready(function () {
 							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1485,7 +1485,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.profile_id: Make sure it is unique<br/>
+							- users_profile.profile_id: Make sure it is unique, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1516,7 +1516,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1547,7 +1547,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1578,7 +1578,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
 
 							</p>
 							</div>
@@ -1816,13 +1816,13 @@ $(document).ready(function () {
 						</div>
 						
 						<div class="panel panel-primary"><a id="95"></a>
-							<div class="panel-heading"><b>[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
+							<div class="panel-heading"><b>[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
 			</b></div>
 							<div class="panel-body">				
 							<p>
 							<span class="glyphicon glyphicon-comment"></span>
 							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
 							- It constructs <i>users</i> without any initial value<br/>
 
 							</p>
@@ -1841,84 +1841,20 @@ $(document).ready(function () {
 							Via call-chain: <i>com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
 							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
+							- users_profile.birth: Make sure the value is not empty<br/>
+							- users.username: Make sure it is unique, Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.password: Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.role: Make sure it is not null<br/>
 
 							</p>
 							</div>
 						</div>
 						
 						<div class="panel panel-primary"><a id="97"></a>
-							<div class="panel-heading"><b>[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.Profile.Profile</i><br/>
-							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
-							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="98"></a>
-							<div class="panel-heading"><b>[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveEditedUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.Profile.Profile</i><br/>
-							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveEditedUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
-							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="99"></a>
-							<div class="panel-heading"><b>[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
-							- It constructs <i>users</i> without any initial value<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="100"></a>
-							<div class="panel-heading"><b>[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
+							<div class="panel-heading"><b>[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1939,13 +1875,77 @@ $(document).ready(function () {
 							<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
+							- users_profile.birth: Make sure the value is not empty<br/>
+							- users.username: Make sure it is unique, Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.password: Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.role: Make sure it is not null<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="98"></a>
+							<div class="panel-heading"><b>[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
+							- It constructs <i>users</i> without any initial value<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="99"></a>
+							<div class="panel-heading"><b>[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.Profile.Profile</i><br/>
+							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
+							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
+							- users_profile.birth: Make sure the value is not empty<br/>
+							- users.username: Make sure it is unique, Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.password: Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.role: Make sure it is not null<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="100"></a>
+							<div class="panel-heading"><b>[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveEditedUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.Profile.Profile</i><br/>
+							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveEditedUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
+							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.firstname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.lastname: Make sure the length is no less than 2, no more than 30, Make sure the value is not empty<br/>
+							- users_profile.email: Make sure the string is conform to the email address specification, Make sure the value is not empty<br/>
+							- users_profile.birth: Make sure the value is not empty<br/>
+							- users.username: Make sure it is unique, Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.password: Make sure the length is no less than 3, no more than 20, Make sure the value is not empty<br/>
+							- users.role: Make sure it is not null<br/>
 
 							</p>
 							</div>

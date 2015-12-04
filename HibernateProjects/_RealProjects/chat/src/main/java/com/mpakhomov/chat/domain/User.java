@@ -112,8 +112,8 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    @Column(name="password", nullable=false)
+	
+	@Column(name="password", nullable=false)
     public String getPassword() {
         return this.password;
     }
@@ -121,7 +121,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     @Column(name="email", nullable=false)
     public String getEmail() {
@@ -137,4 +136,14 @@ public class User {
         return String.format("id:%d nick:%s firstName:%s middleName:%s lastName:%s email:%s password:%s",
                     id, nick, firstName, middleName, lastName, email, password);
     }
+	
+	public String getFullName() {
+		return getFirstName() + " " + getMiddleName() + " " + getLastName();
+	}
+	
+	public void setFullName(String firstName, String middleName, String lastName) {
+		setFirstName(firstName);
+		setMiddleName(middleName);
+		setLastName(lastName);
+	}
 }

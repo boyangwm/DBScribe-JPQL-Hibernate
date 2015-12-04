@@ -77,4 +77,8 @@ public class ChatMessage {
         return String.format("id:%d message:%s timestamp:%s author:%s",
                 id, message, timestamp, author);
     }
+	
+	public String getAuthorFullName() {
+		return getAuthor().getFullName();
+	}
 }

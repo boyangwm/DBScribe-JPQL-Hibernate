@@ -170,7 +170,8 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                 else if (DBConstraintType_Annotation.Contains(annotationType))
                 {
                     Tuple<string, string> conTuple =
-                        DBConstraintExtractorAnnotation.GetConstraintInfoFromOtherAnnotation(TableName, annotationEle, annotationType);
+                        DBConstraintExtractorAnnotation.GetConstraintInfoFromOtherAnnotation(TableName,
+                                        annotationEle, annotationType, mappingClass, classPropertyToTableColumn);
                     string columnName = conTuple.Item1;
                     string cInfo = conTuple.Item2;
                     if (cInfo != "")
@@ -192,7 +193,6 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
                     List<string> curConstraintList = item.Value;
                     string cInfo = TableName + "." + item.Key + ": " + string.Join(", ", curConstraintList);
                     tableConstraintList.Add(cInfo);
-                    
                 }
                 tableNameToTableConstraints.Add(TableName, tableConstraintList);
             }

@@ -90,12 +90,20 @@ namespace DBScribeHibernate
             ConfigParser configParser = new ConfigParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName);
             if (configParser.configFilePath == null)
             {
+                Console.WriteLine("1");
+                Console.ReadKey();
+                Environment.Exit(1);
+
                 Console.WriteLine("Hibernate configuration file " + Constants.CfgFileName + " not found!");
                 Console.WriteLine("Assume using Annotation mapping.");
                 mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName, false);
             }
             else if (configParser.ifHasMappingList == false)
             {
+                Console.WriteLine("2");
+                Console.ReadKey();
+                Environment.Exit(1);
+
                 Console.WriteLine("Hibernate configuration file doesn't contain mapping info!");
                 Console.WriteLine("Assume using Annotation mapping.");
                 mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName, false);
@@ -111,6 +119,10 @@ namespace DBScribeHibernate
                 }
                 else if (configParser.MappingFileType == Constants.MappingFileType.AnnotationMapping)
                 {
+                    Console.WriteLine("3");
+                    Console.ReadKey();
+                    Environment.Exit(1);
+
                     mappingParser = new AnnotationMappingParser(TargetProjPath + "\\" + ProjName, Constants.CfgFileName, true);
                 }
                 else
@@ -220,7 +232,10 @@ namespace DBScribeHibernate
                         foreach (TypeDefinition pc in MethodUtil.GetParentClasses(curClass))
                         {
                             string pcFullName = pc.GetFullName();
-                            allDBClassToTableName.Add(pcFullName, curTableName);
+                            if (!allDBClassToTableName.ContainsKey(pcFullName))
+                            {
+                                allDBClassToTableName.Add(pcFullName, curTableName);
+                            }
                         }
                     }
                 }
@@ -276,7 +291,10 @@ namespace DBScribeHibernate
                 List<string> parentClasses = allClassToParentClasses[curClass];
                 foreach (string pc in parentClasses)
                 {
-                    allDBClassPropToTableAttr.Add(pc + "." + prop, tableAttr);
+                    if (!allDBClassPropToTableAttr.ContainsKey(pc + "." + prop))
+                    {
+                        allDBClassPropToTableAttr.Add(pc + "." + prop, tableAttr);
+                    }
                 }
             }
         }

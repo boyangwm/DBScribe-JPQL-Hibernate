@@ -13,7 +13,8 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
         public static string srcml_prefix = "{http://www.sdml.info/srcML/src}";
 
         public static readonly string[] AnnotationList
-            = { "Length", "Max", "Min", "NotNull", "NotEmpty", "Pattern", "Patterns", "Range", "Size", "Email", "CreditCardNumber", "Digits", "EAN" };
+            = { "Length", "Max", "Min", "NotNull", "NotEmpty", "Pattern", "Patterns", "Range", "Size", 
+                  "Email", "CreditCardNumber", "Digits", "EAN" };
         public static readonly HashSet<string> AnnontationSet =
             new HashSet<string>(AnnotationList);
         public static readonly string[] ColumnConstraints
@@ -44,12 +45,12 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
                     }
                     else if (exprEle.Value.Contains("nullable") && exprEle.Value.ToLower().Contains("false"))
                     {
-                        constraintList.Add("Make sure it is no null");
+                        constraintList.Add("Make sure it is not null");
                     }
                     else if (exprEle.Value.Contains("length"))
                     {
                         string[] tokens = exprEle.Value.Split('=');
-                        constraintList.Add("Make sure the lenght is not more than " + tokens[1]);
+                        constraintList.Add("Make sure the length is not more than " + tokens[1]);
                     }
                 }
             }
@@ -66,68 +67,139 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
         }
 
 
-        public static Tuple<string, string> GetConstraintInfoFromOtherAnnotation(string TableName, XElement annotationEle, string annotationType)
+        public static Tuple<string, string> GetConstraintInfoFromOtherAnnotation(string TableName,
+            XElement annotationEle, string annotationType, string mappingClass, Dictionary<string, string> classPropertyToTableColumn)
         {
             string columnName = "";
             string cInfo = "";
-            XElement parentEle = annotationEle.Parent;
-            if (parentEle.Name == (srcml_prefix + "type"))
+            string classPropName = "";
+            XElement parentEle = annotationEle.Parent.Parent;
+            if (parentEle.Name == (srcml_prefix + "decl"))
             {
-                XElement nextEle = parentEle.ElementsAfterSelf(srcml_prefix + "name").FirstOrDefault();
-                columnName = nextEle.Value.ToString();
+                XElement typeEle = parentEle.Descendants(srcml_prefix + "type").FirstOrDefault();
+                XElement nextEle = typeEle.ElementsAfterSelf(srcml_prefix + "name").FirstOrDefault();
+                classPropName = nextEle.Value.ToString();
+                
             }
             else if (parentEle.Name == (srcml_prefix + "function"))
             {
-                columnName = _GetTableColumn(parentEle, annotationType);
+                classPropName = _GetClassPropName(parentEle);
             }
+            string fullColName = classPropertyToTableColumn[mappingClass + "." + classPropName];
+            columnName = (fullColName.Split('.'))[1];
+
 
             XElement argumetListEle = annotationEle.Descendants(srcml_prefix + "argument_list").FirstOrDefault();
-            //cInfo = argumetListEle.Value.ToString();
 
-            if (argumetListEle != null)
+            if (annotationType == "Length" || annotationType == "Range" || annotationType == "Size")
             {
-                cInfo = argumetListEle.Value.ToString();
-
-                // replace many spaces with only one space!
-                RegexOptions options = RegexOptions.None;
-                Regex regex = new Regex(@"[ ]{2,}", options);
-                cInfo = regex.Replace(cInfo, @" ");
+                if (annotationType == "Length")
+                {
+                    cInfo = "Make sure the length is ";
+                }
+                else if (annotationType == "Range")
+                {
+                    cInfo = "Make sure the value is ";
+                }
+                else if (annotationType == "Size")
+                {
+                    cInfo = "Make sure the element size is ";
+                }
+                foreach (XElement argumentEle in argumetListEle.Descendants(srcml_prefix + "argument"))
+                {
+                    string no_space = Regex.Replace(argumentEle.Value, @"\s+", "");
+                    string[] tokens = no_space.Split('=');
+                    if (tokens[0].ToLower() == "min")
+                    {
+                        cInfo += "no less than " + tokens[1] + ", ";
+                    }else if(tokens[0].ToLower() == "max"){
+                        cInfo += "no more than " + tokens[1] + ", ";
+                    }
+                }
+                cInfo = cInfo.Substring(0, cInfo.Length - 2);
             }
-            else
+            else if (annotationType == "Max" || annotationType == "Min")
             {
-                cInfo = "(" + annotationType + " = true)";
+                cInfo = "Make sure the value is no ";
+                if (annotationType == "Max")
+                {
+                    cInfo += "more";
+                }
+                else if (annotationType == "Min")
+                {
+                    cInfo += "less";
+                }
+                cInfo += " than ";
+                foreach (XElement argumentEle in argumetListEle.Descendants(srcml_prefix + "argument"))
+                {
+                    string no_space = Regex.Replace(argumentEle.Value, @"\s+", "");
+                    string[] tokens = no_space.Split('=');
+                    if (tokens[0].ToLower() == "value")
+                    {
+                        cInfo += tokens[1];
+                    }
+                }
+            }
+            else if (annotationType == "NotNull")
+            {
+                cInfo = "Make sure the value is not null";
+            }
+            else if (annotationType == "NotEmpty")
+            {
+                cInfo = "Make sure the value is not empty";
+            }
+            else if (annotationType == "Patterns")
+            {
+                cInfo = "Make sure the property match the regular expression: ";
+                cInfo += argumetListEle.Value.ToString();
+            }
+            else if (annotationType == "Pattern")
+            {
+                cInfo = "Make sure the property match the regular expresion: ";
+                foreach (XElement argumentEle in argumetListEle.Descendants(srcml_prefix + "argument"))
+                {
+                    XElement nameEle = argumentEle.Descendants(srcml_prefix + "expr").FirstOrDefault()
+                        .Descendants(srcml_prefix + "name").FirstOrDefault();
+                    if (nameEle.Value == "regexp")
+                    {
+                        string[] tokens = argumentEle.Value.Split('=');
+                        cInfo += tokens[1];
+                    }
+                }
+            }
+            else if (annotationType == "Email")
+            {
+                cInfo = "Make sure the string is conform to the email address specification";
+            }
+            else if (annotationType == "CreditCardNumber")
+            {
+                cInfo = "Make sure the string is a well formated credit card number";
+            }
+            else if (annotationType == "Digits")
+            {
+                cInfo = "Make sure the property is a number having up to integerDigits integer digits and fractionalDigits fractional digists";
+            }
+            else if (annotationType == "EAN")
+            {
+                cInfo = "Make sure the string is a properly formated EAN or UPC-A code";
             }
 
             return Tuple.Create(columnName, cInfo);
         }
 
-        private static string _GetTableColumn(XElement funcEle, string annotationType)
+        private static string _GetClassPropName(XElement funcEle)
         {
-            string columnName = "";
-
-            foreach (XElement annotationEle in funcEle.Descendants(srcml_prefix + "annotation"))
+            string classPropName = "";
+            XElement returnEle = funcEle.Descendants(srcml_prefix + "return").LastOrDefault();
+            XElement outerNameEle = returnEle.Descendants(srcml_prefix + "expr").FirstOrDefault()
+                .Descendants(srcml_prefix + "name").FirstOrDefault();
+            classPropName = outerNameEle.Value.ToString();
+            if (classPropName.Contains('.'))
             {
-                if (annotationType == "Column")
-                {
-                    XElement argumentListEle = annotationEle.Descendants(srcml_prefix + "argument_list").FirstOrDefault();
-                    foreach (XElement argumentEle in argumentListEle.Descendants(srcml_prefix + "argument"))
-                    {
-                        XElement exprEle = argumentEle.Descendants(srcml_prefix + "expr").FirstOrDefault();
-                        XElement nameEle = exprEle.Descendants(srcml_prefix + "name").FirstOrDefault();
-                        if (nameEle.Value == "name")
-                        {
-                            string[] tokens = exprEle.Value.ToString().Split('"');
-                            columnName = tokens[tokens.Length - 2];
-                            break;
-                        }
-                    }
-                }
-                if (columnName != "")
-                {
-                    break;
-                }
+                string[] tokens = outerNameEle.Value.ToString().Split('.');
+                classPropName = tokens[tokens.Length - 1];
             }
-            return columnName;
+            return classPropName;
         }
     }
 }

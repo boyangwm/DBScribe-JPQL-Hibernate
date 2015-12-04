@@ -146,8 +146,8 @@ $(document).ready(function () {
 							- It constructs <i>stock</i> with attributes <i>STOCK_CODE, STOCK_NAME</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock.STOCK_CODE: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  10<br/>
-							- stock.STOCK_NAME: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  20<br/>
+							- stock.STOCK_CODE: Make sure the value is no more than 128, Make sure the value is not null<br/>
+							- stock.STOCK_NAME: Make sure it is unique, Make sure it is not null, Make sure the length is not more than  20<br/>
 
 							</p>
 							</div>
@@ -163,8 +163,8 @@ $(document).ready(function () {
 							- It constructs <i>stock</i> with attributes <i>STOCK_CODE, STOCK_NAME</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock.STOCK_CODE: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  10<br/>
-							- stock.STOCK_NAME: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  20<br/>
+							- stock.STOCK_CODE: Make sure the value is no more than 128, Make sure the value is not null<br/>
+							- stock.STOCK_NAME: Make sure it is unique, Make sure it is not null, Make sure the length is not more than  20<br/>
 
 							</p>
 							</div>
@@ -195,7 +195,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock.STOCK_ID: Make sure it is unique, Make sure it is no null<br/>
+							- stock.STOCK_ID: Make sure it is unique, Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -226,7 +226,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock.STOCK_CODE: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  10<br/>
+							- stock.STOCK_CODE: Make sure the value is no more than 128, Make sure the value is not null<br/>
 
 							</p>
 							</div>
@@ -257,7 +257,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock.STOCK_NAME: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  20<br/>
+							- stock.STOCK_NAME: Make sure it is unique, Make sure it is not null, Make sure the length is not more than  20<br/>
 
 							</p>
 							</div>
@@ -287,10 +287,10 @@ $(document).ready(function () {
 							- It constructs <i>stock_detail</i> with attributes <i>COMP_NAME, COMP_DESC, REMARK, LISTED_DATE</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock_detail.COMP_NAME: Make sure it is no null, Make sure the lenght is not more than  100<br/>
-							- stock_detail.COMP_DESC: Make sure it is no null<br/>
-							- stock_detail.REMARK: Make sure it is no null<br/>
-							- stock_detail.LISTED_DATE: Make sure it is no null, Make sure the lenght is not more than  10<br/>
+							- stock_detail.COMP_NAME: Make sure it is not null, Make sure the length is not more than  100<br/>
+							- stock_detail.COMP_DESC: Make sure it is not null<br/>
+							- stock_detail.REMARK: Make sure it is not null<br/>
+							- stock_detail.LISTED_DATE: Make sure it is not null, Make sure the length is not more than  10<br/>
 
 							</p>
 							</div>
@@ -321,7 +321,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock_detail.STOCK_ID: Make sure it is unique, Make sure it is no null<br/>
+							- stock_detail.STOCK_ID: Make sure it is unique, Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -352,7 +352,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock_detail.COMP_NAME: Make sure it is no null, Make sure the lenght is not more than  100<br/>
+							- stock_detail.COMP_NAME: Make sure it is not null, Make sure the length is not more than  100<br/>
 
 							</p>
 							</div>
@@ -383,7 +383,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock_detail.COMP_DESC: Make sure it is no null<br/>
+							- stock_detail.COMP_DESC: Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -414,7 +414,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock_detail.REMARK: Make sure it is no null<br/>
+							- stock_detail.REMARK: Make sure it is not null<br/>
 
 							</p>
 							</div>
@@ -445,7 +445,7 @@ $(document).ready(function () {
 							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock_detail.LISTED_DATE: Make sure it is no null, Make sure the lenght is not more than  10<br/>
+							- stock_detail.LISTED_DATE: Make sure it is not null, Make sure the length is not more than  10<br/>
 
 							</p>
 							</div>
@@ -487,12 +487,12 @@ $(document).ready(function () {
 							<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- stock.STOCK_CODE: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  10<br/>
-							- stock.STOCK_NAME: Make sure it is unique, Make sure it is no null, Make sure the lenght is not more than  20<br/>
-							- stock_detail.COMP_NAME: Make sure it is no null, Make sure the lenght is not more than  100<br/>
-							- stock_detail.COMP_DESC: Make sure it is no null<br/>
-							- stock_detail.REMARK: Make sure it is no null<br/>
-							- stock_detail.LISTED_DATE: Make sure it is no null, Make sure the lenght is not more than  10<br/>
+							- stock.STOCK_CODE: Make sure the value is no more than 128, Make sure the value is not null<br/>
+							- stock.STOCK_NAME: Make sure it is unique, Make sure it is not null, Make sure the length is not more than  20<br/>
+							- stock_detail.COMP_NAME: Make sure it is not null, Make sure the length is not more than  100<br/>
+							- stock_detail.COMP_DESC: Make sure it is not null<br/>
+							- stock_detail.REMARK: Make sure it is not null<br/>
+							- stock_detail.LISTED_DATE: Make sure it is not null, Make sure the length is not more than  10<br/>
 
 							</p>
 							</div>

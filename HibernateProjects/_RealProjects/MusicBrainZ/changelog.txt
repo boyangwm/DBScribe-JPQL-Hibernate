@@ -1,0 +1,22 @@
+TBA
+
+3.1.0 (2013-05-29)
+- Changed visibility of AbstractCoreEntity to public to allow mocking of entities (e.g., Artist, Track) 
+  (Mockito has problems when the parent of the mocked class is not public).
+
+3.0.0 (2013-05-25)
+- Implemented changes from 2013-05-15 schema upgrade (API changes in TrackDao, Artist, Release, and Track).
+- Migrated project to lastfm-oss-parent.
+- Upgraded dependencies (Spring to 3.2.2.RELEASE, Guava to 14.0.1, slf4j to 1.7.5, joda-time to 2.2).
+
+2.0.0 (2012-10-29)
+- Added support for artist gender, artist type, and artist begin and end dates (Thanks @murdos).
+- Improved representation of partial dates (Thanks @murdos).
+- Simplified implementation of ArtistCredit#getFullName() as artist_credit_name.join_phrase cannot be null 
+  after 2012-10-15 schema change.
+
+1.3 (2012-08-06)
+- Replaced Spring dependency with latest release version 3.1.2.RELEASE.
+
+1.2 (2012-07-26)
+- Initial release. DAOs and model objects to access artists, releases, tracks and recordings and their related entities.
