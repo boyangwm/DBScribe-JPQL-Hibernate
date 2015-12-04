@@ -92,7 +92,6 @@
     <Compile Include="DBScribeHibernate\ConfigParser\AnnotationMappingParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\ConfigParser.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\MethodDescriptionUtil.cs" />
-    <Compile Include="DBScribeHibernate\StaleClasses\ConfigParserOld.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\MappingParser.cs" />
     <Compile Include="DBScribeHibernate\ConfigParser\XMLMappingParser.cs" />
     <Compile Include="DBScribeHibernate\Constants.cs" />
@@ -101,7 +100,6 @@
     <Compile Include="DBScribeHibernate\DescriptionTemplates\LocalSqlTemplates.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\SchemaConstraintsTemplates.cs" />
     <Compile Include="DBScribeHibernate\HibernateKeywords.cs" />
-    <Compile Include="DBScribeHibernate\StaleClasses\InvokeCallGraphGenerator.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\HibernateMethodAnalyzer.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\MethodAnalyzer.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\MethodUtil.cs" />
@@ -111,7 +109,6 @@
     <Compile Include="DBScribeHibernate\Util\Utility.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestingPurpose.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

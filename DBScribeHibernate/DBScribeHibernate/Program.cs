@@ -22,8 +22,6 @@ namespace DBScribeHibernate.DBScribeHibernate
             DBScribeH dbScribeH = new DBScribeH(Constants.TargetProjPath, Constants.ProjName);
             dbScribeH.run();
 
-            //TestingPurpose.MainTestingFunction();
-
             Console.WriteLine("\nDone. Press any key to exit...");
             Console.ReadKey();
         }
