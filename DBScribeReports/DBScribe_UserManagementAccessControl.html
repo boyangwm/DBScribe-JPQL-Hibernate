@@ -49,304 +49,304 @@ $(document).ready(function () {
 			<div class="panel panel-default">
 			<div class="panel-heading">Methods</div><div class="panel-body" style="max-height:600px;overflow-x: scroll;overflow-y: scroll">
 
-						<a href="#1">[M-1, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.saveRole(Role)
+						<a href="#1">[M-1, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.createToken(Token)
 			()</a><br>
 						
-						<a href="#2">[M-2, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.deleteRole(Role)
+						<a href="#2">[M-2, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.updateToken(Token)
 			()</a><br>
 						
-						<a href="#3">[M-3, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.find(Criterion)
+						<a href="#3">[M-3, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.deleteToken(Token)
 			()</a><br>
 						
-						<a href="#4">[M-4, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.findAll()
+						<a href="#4">[M-4, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.find(Criterion)
 			()</a><br>
 						
-						<a href="#5">[M-5, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role(String)
+						<a href="#5">[M-5, SQLOperatingMethod] com.marciani.sample.security.model.Token.setSeries(String)
 			()</a><br>
 						
-						<a href="#6">[M-6, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role()
+						<a href="#6">[M-6, SQLOperatingMethod] com.marciani.sample.security.model.Token.setUsername(String)
 			()</a><br>
 						
-						<a href="#7">[M-7, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getId()
+						<a href="#7">[M-7, SQLOperatingMethod] com.marciani.sample.security.model.Token.setTokenValue(String)
 			()</a><br>
 						
-						<a href="#8">[M-8, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setId(Integer)
+						<a href="#8">[M-8, SQLOperatingMethod] com.marciani.sample.security.model.Token.setLastUsed(Date)
 			()</a><br>
 						
-						<a href="#9">[M-9, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getRoleName()
+						<a href="#9">[M-9, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token(PersistentRememberMeToken)
 			()</a><br>
 						
-						<a href="#10">[M-10, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setRoleName(String)
+						<a href="#10">[M-10, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.createNewToken(PersistentRememberMeToken)
 			()</a><br>
 						
-						<a href="#11">[M-11, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.equals(Object)
+						<a href="#11">[M-11, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.updateToken(String, Date)
 			()</a><br>
 						
-						<a href="#12">[M-12, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.hashCode()
+						<a href="#12">[M-12, SQLOperatingMethod] com.marciani.sample.security.model.Token.getSeries()
 			()</a><br>
 						
-						<a href="#13">[M-13, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile(String, Date)
+						<a href="#13">[M-13, SQLOperatingMethod] com.marciani.sample.security.model.Token.getUsername()
 			()</a><br>
 						
-						<a href="#14">[M-14, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile()
+						<a href="#14">[M-14, SQLOperatingMethod] com.marciani.sample.security.model.Token.getTokenValue()
 			()</a><br>
 						
-						<a href="#15">[M-15, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getId()
+						<a href="#15">[M-15, SQLOperatingMethod] com.marciani.sample.security.model.Token.getLastUsed()
 			()</a><br>
 						
-						<a href="#16">[M-16, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setId(Integer)
+						<a href="#16">[M-16, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.getTokenForSeries(String)
 			()</a><br>
 						
-						<a href="#17">[M-17, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getFirstname()
+						<a href="#17">[M-17, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getUsername()
 			()</a><br>
 						
-						<a href="#18">[M-18, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setFirstname(String)
+						<a href="#18">[M-18, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getPassword()
 			()</a><br>
 						
-						<a href="#19">[M-19, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getLastname()
+						<a href="#19">[M-19, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getRole()
 			()</a><br>
 						
-						<a href="#20">[M-20, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setLastname(String)
+						<a href="#20">[M-20, DelegatedSQLMethod] com.marciani.sample.security.service.CustomUserDetailsService.loadUserByUsername(String)
 			()</a><br>
 						
-						<a href="#21">[M-21, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getEmail()
+						<a href="#21">[M-21, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token()
 			()</a><br>
 						
-						<a href="#22">[M-22, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setEmail(String)
+						<a href="#22">[M-22, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getFirstname()
 			()</a><br>
 						
-						<a href="#23">[M-23, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getBirth()
+						<a href="#23">[M-23, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getLastname()
 			()</a><br>
 						
-						<a href="#24">[M-24, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setBirth(Date)
+						<a href="#24">[M-24, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getEmail()
 			()</a><br>
 						
-						<a href="#25">[M-25, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.equals(Object)
+						<a href="#25">[M-25, DelegatedSQLMethod] com.marciani.sample.entity.user.model.User.toString()
 			()</a><br>
 						
-						<a href="#26">[M-26, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.hashCode()
+						<a href="#26">[M-26, DelegatedSQLMethod] com.marciani.sample.security.CustomUserDetailsService.loadUserByUsername(String)
 			()</a><br>
 						
-						<a href="#27">[M-27, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role, Profile)
+						<a href="#27">[M-27, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.saveRole(Role)
 			()</a><br>
 						
-						<a href="#28">[M-28, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role)
+						<a href="#28">[M-28, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.deleteRole(Role)
 			()</a><br>
 						
-						<a href="#29">[M-29, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User()
+						<a href="#29">[M-29, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.find(Criterion)
 			()</a><br>
 						
-						<a href="#30">[M-30, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getId()
+						<a href="#30">[M-30, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.findAll()
 			()</a><br>
 						
-						<a href="#31">[M-31, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setId(Integer)
+						<a href="#31">[M-31, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role(String)
 			()</a><br>
 						
-						<a href="#32">[M-32, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getUsername()
+						<a href="#32">[M-32, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role()
 			()</a><br>
 						
-						<a href="#33">[M-33, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setUsername(String)
+						<a href="#33">[M-33, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getId()
 			()</a><br>
 						
-						<a href="#34">[M-34, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getPassword()
+						<a href="#34">[M-34, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setId(Integer)
 			()</a><br>
 						
-						<a href="#35">[M-35, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setPassword(String)
+						<a href="#35">[M-35, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getRoleName()
 			()</a><br>
 						
-						<a href="#36">[M-36, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getRole()
+						<a href="#36">[M-36, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setRoleName(String)
 			()</a><br>
 						
-						<a href="#37">[M-37, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setRole(Role)
+						<a href="#37">[M-37, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.equals(Object)
 			()</a><br>
 						
-						<a href="#38">[M-38, DelegatedSQLMethod] com.marciani.sample.entity.user.model.User.toString()
+						<a href="#38">[M-38, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.hashCode()
 			()</a><br>
 						
-						<a href="#39">[M-39, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.equals(Object)
+						<a href="#39">[M-39, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile(String, Date)
 			()</a><br>
 						
-						<a href="#40">[M-40, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.hashCode()
+						<a href="#40">[M-40, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile()
 			()</a><br>
 						
-						<a href="#41">[M-41, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile(String)
+						<a href="#41">[M-41, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getId()
 			()</a><br>
 						
-						<a href="#42">[M-42, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile()
+						<a href="#42">[M-42, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setId(Integer)
 			()</a><br>
 						
-						<a href="#43">[M-43, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getId()
+						<a href="#43">[M-43, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setFirstname(String)
 			()</a><br>
 						
-						<a href="#44">[M-44, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setId(Integer)
+						<a href="#44">[M-44, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setLastname(String)
 			()</a><br>
 						
-						<a href="#45">[M-45, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getFirstname()
+						<a href="#45">[M-45, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setEmail(String)
 			()</a><br>
 						
-						<a href="#46">[M-46, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setFirstname(String)
+						<a href="#46">[M-46, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getBirth()
 			()</a><br>
 						
-						<a href="#47">[M-47, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getLastname()
+						<a href="#47">[M-47, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setBirth(Date)
 			()</a><br>
 						
-						<a href="#48">[M-48, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setLastname(String)
+						<a href="#48">[M-48, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.equals(Object)
 			()</a><br>
 						
-						<a href="#49">[M-49, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getEmail()
+						<a href="#49">[M-49, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.hashCode()
 			()</a><br>
 						
-						<a href="#50">[M-50, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setEmail(String)
+						<a href="#50">[M-50, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role, Profile)
 			()</a><br>
 						
-						<a href="#51">[M-51, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.equals(Object)
+						<a href="#51">[M-51, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role)
 			()</a><br>
 						
-						<a href="#52">[M-52, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.hashCode()
+						<a href="#52">[M-52, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User()
 			()</a><br>
 						
-						<a href="#53">[M-53, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo(String)
+						<a href="#53">[M-53, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getId()
 			()</a><br>
 						
-						<a href="#54">[M-54, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo()
+						<a href="#54">[M-54, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setId(Integer)
 			()</a><br>
 						
-						<a href="#55">[M-55, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getFirstname()
+						<a href="#55">[M-55, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setUsername(String)
 			()</a><br>
 						
-						<a href="#56">[M-56, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setFirstname(String)
+						<a href="#56">[M-56, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setPassword(String)
 			()</a><br>
 						
-						<a href="#57">[M-57, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getLastname()
+						<a href="#57">[M-57, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setRole(Role)
 			()</a><br>
 						
-						<a href="#58">[M-58, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setLastname(String)
+						<a href="#58">[M-58, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.equals(Object)
 			()</a><br>
 						
-						<a href="#59">[M-59, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getEmail()
+						<a href="#59">[M-59, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.hashCode()
 			()</a><br>
 						
-						<a href="#60">[M-60, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setEmail(String)
+						<a href="#60">[M-60, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo(String)
 			()</a><br>
 						
-						<a href="#61">[M-61, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.saveUser(User)
+						<a href="#61">[M-61, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo()
 			()</a><br>
 						
-						<a href="#62">[M-62, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.deleteUser(User)
+						<a href="#62">[M-62, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getFirstname()
 			()</a><br>
 						
-						<a href="#63">[M-63, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.find(Criterion)
+						<a href="#63">[M-63, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setFirstname(String)
 			()</a><br>
 						
-						<a href="#64">[M-64, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.findAll()
+						<a href="#64">[M-64, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getLastname()
 			()</a><br>
 						
-						<a href="#65">[M-65, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.saveUserInfo(UserInfo)
+						<a href="#65">[M-65, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setLastname(String)
 			()</a><br>
 						
-						<a href="#66">[M-66, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.deleteUserInfo(UserInfo)
+						<a href="#66">[M-66, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getEmail()
 			()</a><br>
 						
-						<a href="#67">[M-67, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.find(Criterion)
+						<a href="#67">[M-67, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setEmail(String)
 			()</a><br>
 						
-						<a href="#68">[M-68, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.saveUserProfile(Profile)
+						<a href="#68">[M-68, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile(String)
 			()</a><br>
 						
-						<a href="#69">[M-69, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.deleteUserProfile(Profile)
+						<a href="#69">[M-69, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile()
 			()</a><br>
 						
-						<a href="#70">[M-70, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.find(Criterion)
+						<a href="#70">[M-70, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getId()
 			()</a><br>
 						
-						<a href="#71">[M-71, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.findAll()
+						<a href="#71">[M-71, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setId(Integer)
 			()</a><br>
 						
-						<a href="#72">[M-72, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRegistrationMail(User)
+						<a href="#72">[M-72, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getFirstname()
 			()</a><br>
 						
-						<a href="#73">[M-73, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRemovalMail(User)
+						<a href="#73">[M-73, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setFirstname(String)
 			()</a><br>
 						
-						<a href="#74">[M-74, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendPasswordRecoveryMail(User)
+						<a href="#74">[M-74, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getLastname()
 			()</a><br>
 						
-						<a href="#75">[M-75, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendEditedProfileMail(User)
+						<a href="#75">[M-75, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setLastname(String)
 			()</a><br>
 						
-						<a href="#76">[M-76, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.createToken(Token)
+						<a href="#76">[M-76, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getEmail()
 			()</a><br>
 						
-						<a href="#77">[M-77, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.updateToken(Token)
+						<a href="#77">[M-77, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setEmail(String)
 			()</a><br>
 						
-						<a href="#78">[M-78, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.deleteToken(Token)
+						<a href="#78">[M-78, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.equals(Object)
 			()</a><br>
 						
-						<a href="#79">[M-79, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.find(Criterion)
+						<a href="#79">[M-79, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.hashCode()
 			()</a><br>
 						
-						<a href="#80">[M-80, SQLOperatingMethod] com.marciani.sample.security.model.Token.setSeries(String)
+						<a href="#80">[M-80, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.saveUser(User)
 			()</a><br>
 						
-						<a href="#81">[M-81, SQLOperatingMethod] com.marciani.sample.security.model.Token.setUsername(String)
+						<a href="#81">[M-81, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.deleteUser(User)
 			()</a><br>
 						
-						<a href="#82">[M-82, SQLOperatingMethod] com.marciani.sample.security.model.Token.setTokenValue(String)
+						<a href="#82">[M-82, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.find(Criterion)
 			()</a><br>
 						
-						<a href="#83">[M-83, SQLOperatingMethod] com.marciani.sample.security.model.Token.setLastUsed(Date)
+						<a href="#83">[M-83, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.findAll()
 			()</a><br>
 						
-						<a href="#84">[M-84, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token(PersistentRememberMeToken)
+						<a href="#84">[M-84, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.saveUserInfo(UserInfo)
 			()</a><br>
 						
-						<a href="#85">[M-85, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.createNewToken(PersistentRememberMeToken)
+						<a href="#85">[M-85, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.deleteUserInfo(UserInfo)
 			()</a><br>
 						
-						<a href="#86">[M-86, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.updateToken(String, Date)
+						<a href="#86">[M-86, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.find(Criterion)
 			()</a><br>
 						
-						<a href="#87">[M-87, SQLOperatingMethod] com.marciani.sample.security.model.Token.getSeries()
+						<a href="#87">[M-87, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.saveUserProfile(Profile)
 			()</a><br>
 						
-						<a href="#88">[M-88, SQLOperatingMethod] com.marciani.sample.security.model.Token.getUsername()
+						<a href="#88">[M-88, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.deleteUserProfile(Profile)
 			()</a><br>
 						
-						<a href="#89">[M-89, SQLOperatingMethod] com.marciani.sample.security.model.Token.getTokenValue()
+						<a href="#89">[M-89, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.find(Criterion)
 			()</a><br>
 						
-						<a href="#90">[M-90, SQLOperatingMethod] com.marciani.sample.security.model.Token.getLastUsed()
+						<a href="#90">[M-90, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.findAll()
 			()</a><br>
 						
-						<a href="#91">[M-91, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.getTokenForSeries(String)
+						<a href="#91">[M-91, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRegistrationMail(User)
 			()</a><br>
 						
-						<a href="#92">[M-92, DelegatedSQLMethod] com.marciani.sample.security.service.CustomUserDetailsService.loadUserByUsername(String)
+						<a href="#92">[M-92, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRemovalMail(User)
 			()</a><br>
 						
-						<a href="#93">[M-93, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token()
+						<a href="#93">[M-93, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendPasswordRecoveryMail(User)
 			()</a><br>
 						
-						<a href="#94">[M-94, DelegatedSQLMethod] com.marciani.sample.security.CustomUserDetailsService.loadUserByUsername(String)
+						<a href="#94">[M-94, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendEditedProfileMail(User)
 			()</a><br>
 						
-						<a href="#95">[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
+						<a href="#95">[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
 			()</a><br>
 						
 						<a href="#96">[M-96, DelegatedSQLMethod] com.marciani.sample.util.form.UserForm.toUser()
 			()</a><br>
 						
-						<a href="#97">[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
+						<a href="#97">[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
 			()</a><br>
 						
-						<a href="#98">[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
+						<a href="#98">[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
 			()</a><br>
 						
-						<a href="#99">[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
+						<a href="#99">[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
 			()</a><br>
 						
-						<a href="#100">[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
+						<a href="#100">[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
 			()</a><br>
 						
 			
@@ -357,1129 +357,7 @@ $(document).ready(function () {
 		
 
 						<div class="panel panel-primary"><a id="1"></a>
-							<div class="panel-heading"><b>[M-1, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.saveRole(Role)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It saves or updates <i>role_id, role_name</i> into table <i>roles</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="2"></a>
-							<div class="panel-heading"><b>[M-2, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.deleteRole(Role)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It deletes rows from table <i>roles</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="3"></a>
-							<div class="panel-heading"><b>[M-3, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.find(Criterion)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It queries the table <i>roles</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="4"></a>
-							<div class="panel-heading"><b>[M-4, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.findAll()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It queries the table <i>roles</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="5"></a>
-							<div class="panel-heading"><b>[M-5, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>roles</i> with attributes <i>role_name</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- roles.role_name: Make sure it is no null, Make sure it is unique, Make sure the lenght is not more than  45<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="6"></a>
-							<div class="panel-heading"><b>[M-6, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>roles</i> without any initial value<br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="7"></a>
-							<div class="panel-heading"><b>[M-7, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getId()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>role_id</i> from table <i>roles</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="8"></a>
-							<div class="panel-heading"><b>[M-8, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setId(Integer)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>role_id</i> from table <i>roles</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- roles.role_id: Make sure it is no null, Make sure it is unique<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="9"></a>
-							<div class="panel-heading"><b>[M-9, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getRoleName()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>role_name</i> from table <i>roles</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="10"></a>
-							<div class="panel-heading"><b>[M-10, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setRoleName(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>role_name</i> from table <i>roles</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- roles.role_name: Make sure it is no null, Make sure it is unique, Make sure the lenght is not more than  45<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="11"></a>
-							<div class="panel-heading"><b>[M-11, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.equals(Object)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>role_name</i> from table <i>roles</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="12"></a>
-							<div class="panel-heading"><b>[M-12, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.hashCode()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>role_name</i> from table <i>roles</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="13"></a>
-							<div class="panel-heading"><b>[M-13, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile(String, Date)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="14"></a>
-							<div class="panel-heading"><b>[M-14, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users_profile</i> without any initial value<br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="15"></a>
-							<div class="panel-heading"><b>[M-15, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getId()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="16"></a>
-							<div class="panel-heading"><b>[M-16, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setId(Integer)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.profile_id: Make sure it is unique<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="17"></a>
-							<div class="panel-heading"><b>[M-17, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getFirstname()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="18"></a>
-							<div class="panel-heading"><b>[M-18, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setFirstname(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>firstname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="19"></a>
-							<div class="panel-heading"><b>[M-19, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getLastname()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="20"></a>
-							<div class="panel-heading"><b>[M-20, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setLastname(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>lastname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="21"></a>
-							<div class="panel-heading"><b>[M-21, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getEmail()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="22"></a>
-							<div class="panel-heading"><b>[M-22, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setEmail(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>email</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="23"></a>
-							<div class="panel-heading"><b>[M-23, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getBirth()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>birth</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="24"></a>
-							<div class="panel-heading"><b>[M-24, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setBirth(Date)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>birth</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="25"></a>
-							<div class="panel-heading"><b>[M-25, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.equals(Object)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="26"></a>
-							<div class="panel-heading"><b>[M-26, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.hashCode()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="27"></a>
-							<div class="panel-heading"><b>[M-27, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role, Profile)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="28"></a>
-							<div class="panel-heading"><b>[M-28, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="29"></a>
-							<div class="panel-heading"><b>[M-29, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users</i> without any initial value<br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="30"></a>
-							<div class="panel-heading"><b>[M-30, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getId()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>user_id</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="31"></a>
-							<div class="panel-heading"><b>[M-31, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setId(Integer)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>user_id</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.user_id: Make sure it is unique<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="32"></a>
-							<div class="panel-heading"><b>[M-32, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getUsername()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>username</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="33"></a>
-							<div class="panel-heading"><b>[M-33, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setUsername(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>username</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="34"></a>
-							<div class="panel-heading"><b>[M-34, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getPassword()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>password</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="35"></a>
-							<div class="panel-heading"><b>[M-35, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setPassword(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>password</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="36"></a>
-							<div class="panel-heading"><b>[M-36, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getRole()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>role</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="37"></a>
-							<div class="panel-heading"><b>[M-37, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setRole(Role)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>role</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users.role: Make sure it is no null<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="38"></a>
-							<div class="panel-heading"><b>[M-38, DelegatedSQLMethod] com.marciani.sample.entity.user.model.User.toString()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getFirstname</i><br/>
-							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
-							<br/>
-							Via call-chain: <i>com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getLastname</i><br/>
-							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
-							<br/>
-							Via call-chain: <i>com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="39"></a>
-							<div class="panel-heading"><b>[M-39, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.equals(Object)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>username</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="40"></a>
-							<div class="panel-heading"><b>[M-40, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.hashCode()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>username</i> from table <i>users</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="41"></a>
-							<div class="panel-heading"><b>[M-41, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="42"></a>
-							<div class="panel-heading"><b>[M-42, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users_profile</i> without any initial value<br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="43"></a>
-							<div class="panel-heading"><b>[M-43, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getId()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="44"></a>
-							<div class="panel-heading"><b>[M-44, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setId(Integer)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.profile_id: Make sure it is unique<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="45"></a>
-							<div class="panel-heading"><b>[M-45, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getFirstname()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="46"></a>
-							<div class="panel-heading"><b>[M-46, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setFirstname(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>firstname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="47"></a>
-							<div class="panel-heading"><b>[M-47, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getLastname()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="48"></a>
-							<div class="panel-heading"><b>[M-48, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setLastname(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>lastname</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="49"></a>
-							<div class="panel-heading"><b>[M-49, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getEmail()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="50"></a>
-							<div class="panel-heading"><b>[M-50, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setEmail(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>email</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="51"></a>
-							<div class="panel-heading"><b>[M-51, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.equals(Object)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="52"></a>
-							<div class="panel-heading"><b>[M-52, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.hashCode()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="53"></a>
-							<div class="panel-heading"><b>[M-53, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users_info</i> with attributes <i>firstname, lastname, email</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.firstname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
-							- users_info.lastname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
-							- users_info.email: Make sure it is no null, Make sure the lenght is not more than  50<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="54"></a>
-							<div class="panel-heading"><b>[M-54, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It constructs <i>users_info</i> without any initial value<br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="55"></a>
-							<div class="panel-heading"><b>[M-55, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getFirstname()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>firstname</i> from table <i>users_info</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="56"></a>
-							<div class="panel-heading"><b>[M-56, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setFirstname(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>firstname</i> from table <i>users_info</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.firstname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="57"></a>
-							<div class="panel-heading"><b>[M-57, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getLastname()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>lastname</i> from table <i>users_info</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="58"></a>
-							<div class="panel-heading"><b>[M-58, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setLastname(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>lastname</i> from table <i>users_info</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.lastname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="59"></a>
-							<div class="panel-heading"><b>[M-59, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getEmail()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>email</i> from table <i>users_info</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="60"></a>
-							<div class="panel-heading"><b>[M-60, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setEmail(String)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It sets attribute <i>email</i> from table <i>users_info</i><br/>
-							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_info.email: Make sure it is no null, Make sure the lenght is not more than  50<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="61"></a>
-							<div class="panel-heading"><b>[M-61, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.saveUser(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It saves or updates <i>user_id, username, password, role</i> into table <i>users</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="62"></a>
-							<div class="panel-heading"><b>[M-62, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.deleteUser(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It deletes rows from table <i>users</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="63"></a>
-							<div class="panel-heading"><b>[M-63, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.find(Criterion)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It queries the table <i>users</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="64"></a>
-							<div class="panel-heading"><b>[M-64, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.findAll()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It queries the table <i>users</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="65"></a>
-							<div class="panel-heading"><b>[M-65, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.saveUserInfo(UserInfo)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It saves or updates <i>firstname, lastname, email</i> into table <i>users_info</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="66"></a>
-							<div class="panel-heading"><b>[M-66, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.deleteUserInfo(UserInfo)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It deletes rows from table <i>users_info</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="67"></a>
-							<div class="panel-heading"><b>[M-67, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.find(Criterion)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It queries the table <i>users</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="68"></a>
-							<div class="panel-heading"><b>[M-68, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.saveUserProfile(Profile)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It saves or updates <i>profile_id, firstname, lastname, email, birth</i> into table <i>users_profile</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="69"></a>
-							<div class="panel-heading"><b>[M-69, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.deleteUserProfile(Profile)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It deletes rows from table <i>users_profile</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="70"></a>
-							<div class="panel-heading"><b>[M-70, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.find(Criterion)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It queries the table <i>users</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="71"></a>
-							<div class="panel-heading"><b>[M-71, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.findAll()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It queries the table <i>users</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="72"></a>
-							<div class="panel-heading"><b>[M-72, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRegistrationMail(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRegistrationMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-							<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="73"></a>
-							<div class="panel-heading"><b>[M-73, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRemovalMail(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRemovalMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-							<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="74"></a>
-							<div class="panel-heading"><b>[M-74, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendPasswordRecoveryMail(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendPasswordRecoveryMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-							<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="75"></a>
-							<div class="panel-heading"><b>[M-75, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendEditedProfileMail(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendEditedProfileMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-							<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="76"></a>
-							<div class="panel-heading"><b>[M-76, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.createToken(Token)
+							<div class="panel-heading"><b>[M-1, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.createToken(Token)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1491,8 +369,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="77"></a>
-							<div class="panel-heading"><b>[M-77, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.updateToken(Token)
+						<div class="panel panel-primary"><a id="2"></a>
+							<div class="panel-heading"><b>[M-2, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.updateToken(Token)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1504,8 +382,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="78"></a>
-							<div class="panel-heading"><b>[M-78, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.deleteToken(Token)
+						<div class="panel panel-primary"><a id="3"></a>
+							<div class="panel-heading"><b>[M-3, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.deleteToken(Token)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1517,8 +395,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="79"></a>
-							<div class="panel-heading"><b>[M-79, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.find(Criterion)
+						<div class="panel panel-primary"><a id="4"></a>
+							<div class="panel-heading"><b>[M-4, LocalSQLMethod] com.marciani.sample.security.dao.TokenDAOImpl.find(Criterion)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1530,8 +408,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="80"></a>
-							<div class="panel-heading"><b>[M-80, SQLOperatingMethod] com.marciani.sample.security.model.Token.setSeries(String)
+						<div class="panel panel-primary"><a id="5"></a>
+							<div class="panel-heading"><b>[M-5, SQLOperatingMethod] com.marciani.sample.security.model.Token.setSeries(String)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1547,8 +425,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="81"></a>
-							<div class="panel-heading"><b>[M-81, SQLOperatingMethod] com.marciani.sample.security.model.Token.setUsername(String)
+						<div class="panel panel-primary"><a id="6"></a>
+							<div class="panel-heading"><b>[M-6, SQLOperatingMethod] com.marciani.sample.security.model.Token.setUsername(String)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1564,8 +442,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="82"></a>
-							<div class="panel-heading"><b>[M-82, SQLOperatingMethod] com.marciani.sample.security.model.Token.setTokenValue(String)
+						<div class="panel panel-primary"><a id="7"></a>
+							<div class="panel-heading"><b>[M-7, SQLOperatingMethod] com.marciani.sample.security.model.Token.setTokenValue(String)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1581,8 +459,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="83"></a>
-							<div class="panel-heading"><b>[M-83, SQLOperatingMethod] com.marciani.sample.security.model.Token.setLastUsed(Date)
+						<div class="panel panel-primary"><a id="8"></a>
+							<div class="panel-heading"><b>[M-8, SQLOperatingMethod] com.marciani.sample.security.model.Token.setLastUsed(Date)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1598,8 +476,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="84"></a>
-							<div class="panel-heading"><b>[M-84, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token(PersistentRememberMeToken)
+						<div class="panel panel-primary"><a id="9"></a>
+							<div class="panel-heading"><b>[M-9, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token(PersistentRememberMeToken)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1612,8 +490,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="85"></a>
-							<div class="panel-heading"><b>[M-85, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.createNewToken(PersistentRememberMeToken)
+						<div class="panel panel-primary"><a id="10"></a>
+							<div class="panel-heading"><b>[M-10, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.createNewToken(PersistentRememberMeToken)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1646,8 +524,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="86"></a>
-							<div class="panel-heading"><b>[M-86, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.updateToken(String, Date)
+						<div class="panel panel-primary"><a id="11"></a>
+							<div class="panel-heading"><b>[M-11, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.updateToken(String, Date)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1672,8 +550,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="87"></a>
-							<div class="panel-heading"><b>[M-87, SQLOperatingMethod] com.marciani.sample.security.model.Token.getSeries()
+						<div class="panel panel-primary"><a id="12"></a>
+							<div class="panel-heading"><b>[M-12, SQLOperatingMethod] com.marciani.sample.security.model.Token.getSeries()
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1686,8 +564,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="88"></a>
-							<div class="panel-heading"><b>[M-88, SQLOperatingMethod] com.marciani.sample.security.model.Token.getUsername()
+						<div class="panel panel-primary"><a id="13"></a>
+							<div class="panel-heading"><b>[M-13, SQLOperatingMethod] com.marciani.sample.security.model.Token.getUsername()
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1700,8 +578,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="89"></a>
-							<div class="panel-heading"><b>[M-89, SQLOperatingMethod] com.marciani.sample.security.model.Token.getTokenValue()
+						<div class="panel panel-primary"><a id="14"></a>
+							<div class="panel-heading"><b>[M-14, SQLOperatingMethod] com.marciani.sample.security.model.Token.getTokenValue()
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1714,8 +592,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="90"></a>
-							<div class="panel-heading"><b>[M-90, SQLOperatingMethod] com.marciani.sample.security.model.Token.getLastUsed()
+						<div class="panel panel-primary"><a id="15"></a>
+							<div class="panel-heading"><b>[M-15, SQLOperatingMethod] com.marciani.sample.security.model.Token.getLastUsed()
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1728,8 +606,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="91"></a>
-							<div class="panel-heading"><b>[M-91, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.getTokenForSeries(String)
+						<div class="panel panel-primary"><a id="16"></a>
+							<div class="panel-heading"><b>[M-16, DelegatedSQLMethod] com.marciani.sample.security.service.TokenService.getTokenForSeries(String)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1751,8 +629,50 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="92"></a>
-							<div class="panel-heading"><b>[M-92, DelegatedSQLMethod] com.marciani.sample.security.service.CustomUserDetailsService.loadUserByUsername(String)
+						<div class="panel panel-primary"><a id="17"></a>
+							<div class="panel-heading"><b>[M-17, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getUsername()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>username</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="18"></a>
+							<div class="panel-heading"><b>[M-18, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getPassword()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>password</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="19"></a>
+							<div class="panel-heading"><b>[M-19, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getRole()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>role</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="20"></a>
+							<div class="panel-heading"><b>[M-20, DelegatedSQLMethod] com.marciani.sample.security.service.CustomUserDetailsService.loadUserByUsername(String)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1772,8 +692,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="93"></a>
-							<div class="panel-heading"><b>[M-93, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token()
+						<div class="panel panel-primary"><a id="21"></a>
+							<div class="panel-heading"><b>[M-21, SQLOperatingMethod] com.marciani.sample.security.model.Token.Token()
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1786,8 +706,70 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="94"></a>
-							<div class="panel-heading"><b>[M-94, DelegatedSQLMethod] com.marciani.sample.security.CustomUserDetailsService.loadUserByUsername(String)
+						<div class="panel panel-primary"><a id="22"></a>
+							<div class="panel-heading"><b>[M-22, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getFirstname()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="23"></a>
+							<div class="panel-heading"><b>[M-23, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getLastname()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="24"></a>
+							<div class="panel-heading"><b>[M-24, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getEmail()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="25"></a>
+							<div class="panel-heading"><b>[M-25, DelegatedSQLMethod] com.marciani.sample.entity.user.model.User.toString()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getFirstname</i><br/>
+							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
+							<br/>
+							Via call-chain: <i>com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getLastname</i><br/>
+							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
+							<br/>
+							Via call-chain: <i>com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="26"></a>
+							<div class="panel-heading"><b>[M-26, DelegatedSQLMethod] com.marciani.sample.security.CustomUserDetailsService.loadUserByUsername(String)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1815,14 +797,1032 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="95"></a>
-							<div class="panel-heading"><b>[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
+						<div class="panel panel-primary"><a id="27"></a>
+							<div class="panel-heading"><b>[M-27, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.saveRole(Role)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It saves or updates <i>role_id, role_name</i> into table <i>roles</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="28"></a>
+							<div class="panel-heading"><b>[M-28, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.deleteRole(Role)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>roles</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="29"></a>
+							<div class="panel-heading"><b>[M-29, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.find(Criterion)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>roles</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="30"></a>
+							<div class="panel-heading"><b>[M-30, LocalSQLMethod] com.marciani.sample.entity.role.dao.RoleDAOImpl.findAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>roles</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="31"></a>
+							<div class="panel-heading"><b>[M-31, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>roles</i> with attributes <i>role_name</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- roles.role_name: Make sure it is no null, Make sure it is unique, Make sure the lenght is not more than  45<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="32"></a>
+							<div class="panel-heading"><b>[M-32, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.Role()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>roles</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="33"></a>
+							<div class="panel-heading"><b>[M-33, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>role_id</i> from table <i>roles</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="34"></a>
+							<div class="panel-heading"><b>[M-34, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>role_id</i> from table <i>roles</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- roles.role_id: Make sure it is no null, Make sure it is unique<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="35"></a>
+							<div class="panel-heading"><b>[M-35, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.getRoleName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>role_name</i> from table <i>roles</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="36"></a>
+							<div class="panel-heading"><b>[M-36, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.setRoleName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>role_name</i> from table <i>roles</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- roles.role_name: Make sure it is no null, Make sure it is unique, Make sure the lenght is not more than  45<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="37"></a>
+							<div class="panel-heading"><b>[M-37, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.equals(Object)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>role_name</i> from table <i>roles</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="38"></a>
+							<div class="panel-heading"><b>[M-38, SQLOperatingMethod] com.marciani.sample.entity.role.model.Role.hashCode()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>role_name</i> from table <i>roles</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="39"></a>
+							<div class="panel-heading"><b>[M-39, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile(String, Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+							- users_profile.birth: (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="40"></a>
+							<div class="panel-heading"><b>[M-40, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.Profile()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users_profile</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="41"></a>
+							<div class="panel-heading"><b>[M-41, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="42"></a>
+							<div class="panel-heading"><b>[M-42, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.profile_id: Make sure it is unique<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="43"></a>
+							<div class="panel-heading"><b>[M-43, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setFirstname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>firstname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="44"></a>
+							<div class="panel-heading"><b>[M-44, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setLastname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>lastname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="45"></a>
+							<div class="panel-heading"><b>[M-45, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setEmail(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>email</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="46"></a>
+							<div class="panel-heading"><b>[M-46, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.getBirth()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>birth</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="47"></a>
+							<div class="panel-heading"><b>[M-47, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.setBirth(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>birth</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.birth: (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="48"></a>
+							<div class="panel-heading"><b>[M-48, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.equals(Object)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="49"></a>
+							<div class="panel-heading"><b>[M-49, SQLOperatingMethod] com.marciani.sample.entity.user.model.Profile.hashCode()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="50"></a>
+							<div class="panel-heading"><b>[M-50, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role, Profile)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.role: Make sure it is no null<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="51"></a>
+							<div class="panel-heading"><b>[M-51, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User(String, Role)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.role: Make sure it is no null<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="52"></a>
+							<div class="panel-heading"><b>[M-52, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.User()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="53"></a>
+							<div class="panel-heading"><b>[M-53, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>user_id</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="54"></a>
+							<div class="panel-heading"><b>[M-54, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>user_id</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users.user_id: Make sure it is unique<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="55"></a>
+							<div class="panel-heading"><b>[M-55, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setUsername(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>username</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="56"></a>
+							<div class="panel-heading"><b>[M-56, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setPassword(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>password</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="57"></a>
+							<div class="panel-heading"><b>[M-57, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.setRole(Role)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>role</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users.role: Make sure it is no null<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="58"></a>
+							<div class="panel-heading"><b>[M-58, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.equals(Object)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>username</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="59"></a>
+							<div class="panel-heading"><b>[M-59, SQLOperatingMethod] com.marciani.sample.entity.user.model.User.hashCode()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>username</i> from table <i>users</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="60"></a>
+							<div class="panel-heading"><b>[M-60, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users_info</i> with attributes <i>firstname, lastname, email</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_info.firstname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
+							- users_info.lastname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
+							- users_info.email: Make sure it is no null, Make sure the lenght is not more than  50<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="61"></a>
+							<div class="panel-heading"><b>[M-61, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.UserInfo()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users_info</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="62"></a>
+							<div class="panel-heading"><b>[M-62, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getFirstname()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>firstname</i> from table <i>users_info</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="63"></a>
+							<div class="panel-heading"><b>[M-63, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setFirstname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>firstname</i> from table <i>users_info</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_info.firstname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="64"></a>
+							<div class="panel-heading"><b>[M-64, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getLastname()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>lastname</i> from table <i>users_info</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="65"></a>
+							<div class="panel-heading"><b>[M-65, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setLastname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>lastname</i> from table <i>users_info</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_info.lastname: Make sure it is no null, Make sure the lenght is not more than  25<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="66"></a>
+							<div class="panel-heading"><b>[M-66, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.getEmail()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>email</i> from table <i>users_info</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="67"></a>
+							<div class="panel-heading"><b>[M-67, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserInfo.setEmail(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>email</i> from table <i>users_info</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_info.email: Make sure it is no null, Make sure the lenght is not more than  50<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="68"></a>
+							<div class="panel-heading"><b>[M-68, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="69"></a>
+							<div class="panel-heading"><b>[M-69, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.UserProfile()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>users_profile</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="70"></a>
+							<div class="panel-heading"><b>[M-70, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="71"></a>
+							<div class="panel-heading"><b>[M-71, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.profile_id: Make sure it is unique<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="72"></a>
+							<div class="panel-heading"><b>[M-72, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getFirstname()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="73"></a>
+							<div class="panel-heading"><b>[M-73, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setFirstname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>firstname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="74"></a>
+							<div class="panel-heading"><b>[M-74, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getLastname()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="75"></a>
+							<div class="panel-heading"><b>[M-75, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setLastname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>lastname</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="76"></a>
+							<div class="panel-heading"><b>[M-76, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.getEmail()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="77"></a>
+							<div class="panel-heading"><b>[M-77, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.setEmail(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>email</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="78"></a>
+							<div class="panel-heading"><b>[M-78, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.equals(Object)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="79"></a>
+							<div class="panel-heading"><b>[M-79, SQLOperatingMethod] com.marciani.sample.entity.user.model.UserProfile.hashCode()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>profile_id</i> from table <i>users_profile</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="80"></a>
+							<div class="panel-heading"><b>[M-80, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.saveUser(User)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It saves or updates <i>user_id, username, password, role</i> into table <i>users</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="81"></a>
+							<div class="panel-heading"><b>[M-81, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.deleteUser(User)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>users</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="82"></a>
+							<div class="panel-heading"><b>[M-82, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.find(Criterion)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>users</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="83"></a>
+							<div class="panel-heading"><b>[M-83, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserDAOImpl.findAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>users</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="84"></a>
+							<div class="panel-heading"><b>[M-84, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.saveUserInfo(UserInfo)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It saves or updates <i>firstname, lastname, email</i> into table <i>users_info</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="85"></a>
+							<div class="panel-heading"><b>[M-85, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.deleteUserInfo(UserInfo)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>users_info</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="86"></a>
+							<div class="panel-heading"><b>[M-86, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserInfoDAOImpl.find(Criterion)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>users</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="87"></a>
+							<div class="panel-heading"><b>[M-87, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.saveUserProfile(Profile)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It saves or updates <i>profile_id, firstname, lastname, email, birth</i> into table <i>users_profile</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="88"></a>
+							<div class="panel-heading"><b>[M-88, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.deleteUserProfile(Profile)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>users_profile</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="89"></a>
+							<div class="panel-heading"><b>[M-89, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.find(Criterion)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>users</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="90"></a>
+							<div class="panel-heading"><b>[M-90, LocalSQLMethod] com.marciani.sample.entity.user.dao.UserProfileDAOImpl.findAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>users</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="91"></a>
+							<div class="panel-heading"><b>[M-91, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRegistrationMail(User)
 			</b></div>
 							<div class="panel-body">				
 							<p>
 							<span class="glyphicon glyphicon-comment"></span>
 							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
+							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRegistrationMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="92"></a>
+							<div class="panel-heading"><b>[M-92, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRemovalMail(User)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendRemovalMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="93"></a>
+							<div class="panel-heading"><b>[M-93, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendPasswordRecoveryMail(User)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendPasswordRecoveryMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="94"></a>
+							<div class="panel-heading"><b>[M-94, DelegatedSQLMethod] com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendEditedProfileMail(User)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.entity.mail.service.BusinessMailServiceImpl.sendEditedProfileMail --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="95"></a>
+							<div class="panel-heading"><b>[M-95, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
 							- It constructs <i>users</i> without any initial value<br/>
 
 							</p>
@@ -1854,55 +1854,7 @@ $(document).ready(function () {
 						</div>
 						
 						<div class="panel panel-primary"><a id="97"></a>
-							<div class="panel-heading"><b>[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.Profile.Profile</i><br/>
-							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
-							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getFirstname</i><br/>
-							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
-							<br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getLastname</i><br/>
-							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
-							<br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
-							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
-							<br/>
-							<br/>
-							<b>-- Some constraints that should be taken into account are the following: </b><br/>
-							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
-							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
-							- users_profile.birth: (NotEmpty = true)<br/>
-							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
-							- users.role: Make sure it is no null<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="98"></a>
-							<div class="panel-heading"><b>[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.manageUsers(ModelMap)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<span class="glyphicon glyphicon-comment"></span>
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
-							- It constructs <i>users</i> without any initial value<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="99"></a>
-							<div class="panel-heading"><b>[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
+							<div class="panel-heading"><b>[M-97, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveUser(UserForm, BindingResult, ModelMap)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1926,8 +1878,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="100"></a>
-							<div class="panel-heading"><b>[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
+						<div class="panel panel-primary"><a id="98"></a>
+							<div class="panel-heading"><b>[M-98, DelegatedSQLMethod] com.marciani.sample.controller.UserManagementController.saveEditedUser(UserForm, ModelMap)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -1937,6 +1889,54 @@ $(document).ready(function () {
 							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/><br/>
 							Via call-chain: <i>com.marciani.sample.controller.UserManagementController.saveEditedUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
 							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.lastname: (min = 2, max = 30), (NotEmpty = true)<br/>
+							- users_profile.email: (Email = true), (NotEmpty = true)<br/>
+							- users_profile.birth: (NotEmpty = true)<br/>
+							- users.username: Make sure it is unique, (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.password: (min = 3, max = 20), (NotEmpty = true)<br/>
+							- users.role: Make sure it is no null<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="99"></a>
+							<div class="panel-heading"><b>[M-99, DelegatedSQLMethod] com.marciani.sample.controller.UserController.manageUsers(ModelMap)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserController.manageUsers --> com.marciani.sample.entity.user.model.User.User</i><br/>
+							- It constructs <i>users</i> without any initial value<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="100"></a>
+							<div class="panel-heading"><b>[M-100, DelegatedSQLMethod] com.marciani.sample.controller.UserController.saveUser(UserForm, BindingResult)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.Profile.Profile</i><br/>
+							- It constructs <i>users_profile</i> with attributes <i>firstname, lastname, email, birth</i><br/><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.util.form.UserForm.toUser --> com.marciani.sample.entity.user.model.User.User</i><br/>
+							- It constructs <i>users</i> with attributes <i>username, password, role</i><br/><br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getFirstname</i><br/>
+							- It gets attribute <i>firstname</i> from table <i>users_profile</i><br/>
+							<br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getLastname</i><br/>
+							- It gets attribute <i>lastname</i> from table <i>users_profile</i><br/>
+							<br/>
+							Via call-chain: <i>com.marciani.sample.controller.UserController.saveUser --> com.marciani.sample.entity.user.model.User.toString --> com.marciani.sample.entity.user.model.Profile.getEmail</i><br/>
+							- It gets attribute <i>email</i> from table <i>users_profile</i><br/>
+							<br/>
 							<br/>
 							<b>-- Some constraints that should be taken into account are the following: </b><br/>
 							- users_profile.firstname: (min = 2, max = 30), (NotEmpty = true)<br/>

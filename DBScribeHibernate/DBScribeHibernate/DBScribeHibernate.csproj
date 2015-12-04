@@ -97,7 +97,6 @@
     <Compile Include="DBScribeHibernate\Constants.cs" />
     <Compile Include="DBScribeHibernate\DBConstraintExtractor\DBConstraintExtractorXML.cs" />
     <Compile Include="DBScribeHibernate\DescriptionTemplates\SchemaConstraintsTemplates.cs" />
-    <Compile Include="DBScribeHibernate\HibernateKeywords.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\HibernateMethodAnalyzer.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\MethodAnalyzer.cs" />
     <Compile Include="DBScribeHibernate\Stereotype\MethodUtil.cs" />
