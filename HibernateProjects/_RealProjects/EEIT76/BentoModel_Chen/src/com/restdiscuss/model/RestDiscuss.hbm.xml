@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.restdiscuss.model.RestDiscussVO" table="RestDiscuss">
+
+		<id name="RestDiscussID" column="RestDiscussID">
+			<generator class="identity" />
+		</id>
+
+		<property name="Judge" column="Judge" />
+		<property name="JudgeDate" column="JudgeDate" />
+		<property name="Discussion" column="Discussion" />
+		<property name="Response" column="Response" />
+		<property name="RestID" column="RestID" />
+		<property name="OrderSumID" column="OrderSumID" />
+		<property name="MemberAcc" column="MemberAcc" />
+		<many-to-one name="MemberVO" class="com.member.model.MemberVO"
+			lazy="false" insert="false" update="false">
+			<column name="MemberAcc" />
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

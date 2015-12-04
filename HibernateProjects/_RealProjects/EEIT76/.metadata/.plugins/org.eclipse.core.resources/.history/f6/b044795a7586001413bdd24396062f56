@@ -1,0 +1,73 @@
+package com.ordersum.model;
+
+import java.sql.Date;
+
+public class OrderSumVO {
+	private Integer OrderSumID   ;
+	private Integer RestID		;
+	private String MemberAcc	;
+	private String MemberPhone	;
+	private String City		;
+	private String Area		;
+	private String Addr		;
+	private Double Addr		;
+	private Double Addr		;
+	private Integer TotalPrice	 ;
+	private Date OrderTime	;
+	private Date ExpectTime	;
+	private String Memo		;
+	private Integer OrderCondID	 ;
+	
+	public Integer getOrderSumID() {
+		return OrderSumID;	}
+	public String getCity() {
+		return City;
+	}
+	public void setCity(String city) {
+		City = city;
+	}
+	public String getArea() {
+		return Area;
+	}
+	public void setArea(String area) {
+		Area = area;
+	}
+	public void setOrderSumID(Integer orderSumID) {
+		OrderSumID = orderSumID;	}
+	public Integer getRestID() {
+		return RestID;	}
+	public void setRestID(Integer restID) {
+		RestID = restID;	}
+	public String getMemberAcc() {
+		return MemberAcc;	}
+	public void setMemberAcc(String memberAcc) {
+		MemberAcc = memberAcc;	}
+	public String getMemberPhone() {
+		return MemberPhone;	}
+	public void setMemberPhone(String memberPhone) {
+		MemberPhone = memberPhone;	}
+	public String getAddr() {
+		return Addr;	}
+	public void setAddr(String addr) {
+		Addr = addr;	}
+	public Integer getTotalPrice() {
+		return TotalPrice;	}
+	public void setTotalPrice(Integer totalPrice) {
+		TotalPrice = totalPrice;	}
+	public Date getOrderTime() {
+		return OrderTime;	}
+	public void setOrderTime(Date orderTime) {
+		OrderTime = orderTime;	}
+	public Date getExpectTime() {
+		return ExpectTime;	}
+	public void setExpectTime(Date expectTime) {
+		ExpectTime = expectTime;	}
+	public String getMemo() {
+		return Memo;	}
+	public void setMemo(String memo) {
+		Memo = memo;	}
+	public Integer getOrderCondID() {
+		return OrderCondID;	}
+	public void setOrderCondID(Integer orderCondID) {
+		OrderCondID = orderCondID;	}
+}

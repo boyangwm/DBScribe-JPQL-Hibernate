@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2015 10:49:37 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="pe.edu.unmsm.veterinaria.clinica.entities.Paciente" table="paciente" catalog="eleganti_siscliv">
+        <id name="idPaciente" type="java.lang.Integer">
+            <column name="idPaciente" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="pe.edu.unmsm.veterinaria.clinica.entities.Cliente" fetch="select">
+            <column name="Cliente_idCliente" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="200" />
+        </property>
+        <property name="especie" type="string">
+            <column name="especie" length="100" />
+        </property>
+        <property name="raza" type="string">
+            <column name="raza" length="100" />
+        </property>
+        <property name="fechaNac" type="timestamp">
+            <column name="fecha_nac" length="19" />
+        </property>
+        <property name="sexo" type="java.lang.Integer">
+            <column name="sexo">
+                <comment>1: Macho, 2: Hembra</comment>
+            </column>
+        </property>
+        <property name="intacto" type="java.lang.Integer">
+            <column name="intacto" />
+        </property>
+        <property name="castrado" type="java.lang.Integer">
+            <column name="castrado" />
+        </property>
+        <property name="cuandoCastrado" type="timestamp">
+            <column name="cuando_castrado" length="19" />
+        </property>
+        <property name="colorSennas" type="string">
+            <column name="color_sennas" length="500" />
+        </property>
+        <set name="pagoservicios" table="pagoservicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Paciente_idPaciente" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Pagoservicio" />
+        </set>
+        <set name="historials" table="historial" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Paciente_idPaciente" not-null="true" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Historial" />
+        </set>
+    </class>
+</hibernate-mapping>

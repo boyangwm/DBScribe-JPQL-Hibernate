@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-16 1:29:29 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cfg.hibernate.Beansystemuser" table="beansystemuser" catalog="booklib">
+        <id name="userid" type="string">
+            <column name="userid" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="pwd" type="string">
+            <column name="pwd" length="32" not-null="true" />
+        </property>
+        <property name="usertype" type="string">
+            <column name="usertype" length="20" not-null="true" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="createDate" length="19" not-null="true" />
+        </property>
+        <property name="removeDate" type="timestamp">
+            <column name="removeDate" length="19" />
+        </property>
+        <set name="beanbooklendrecordsForLendOperUserid" table="beanbooklendrecord" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="lendOperUserid" length="20" not-null="true" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanbooklendrecord" />
+        </set>
+        <set name="beanreadersForRemoverUserId" table="beanreader" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="removerUserId" length="20" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanreader" />
+        </set>
+        <set name="beanreadersForCreatorUserId" table="beanreader" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="creatorUserId" length="20" not-null="true" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanreader" />
+        </set>
+        <set name="beanbooklendrecordsForReturnOperUserid" table="beanbooklendrecord" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="returnOperUserid" length="20" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanbooklendrecord" />
+        </set>
+        <set name="beanreadersForStopUserId" table="beanreader" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="stopUserId" length="20" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanreader" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="eleganti_siscliv" match-name="analisismedico"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="atencionmedica"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="cliente"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="clinicoveterinario"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="historial"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="medicoveterinario"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="opcion"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="paciente"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="pagoservicio"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="perfil"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="receta"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="servicio"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="tipoanalisis"/>
+  <table-filter match-catalog="eleganti_siscliv" match-name="usuario"/>
+</hibernate-reverse-engineering>

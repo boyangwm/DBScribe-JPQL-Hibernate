@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+<constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
+ <package name="struts2" extends="struts-default" >  
+ 
+      <action name="user" class="action.UserAction">  
+            <result name="login">/main.jsp</result> 
+            <result name="loginreader">/readermain.jsp</result>
+            <result name="loginfaliure">/login.jsp</result>
+            <result name="loadall">/usermanager.jsp</result>
+            <result name="register">/login.jsp</result> 
+            <result name="registerfailure">/register.jsp</result>
+            <result name="delete">/usermanager.jsp</result>
+            <result name="resetpwd">/usermanager.jsp</result>
+            <result name="addsuccess">/usermanager.jsp</result>
+            <result name="addfailure">/adduser.jsp</result>
+        </action>  
+        <action name="publisher" class="action.PublisherAction">  
+	        <result name="loadall">/publishermanager.jsp</result> 
+	        <result name="addsuccess">/publishermanager.jsp</result> 
+	        <result name="addfailure">/addpublisher.jsp</result> 
+	        <result name="delete">/publishermanager.jsp</result> 
+	        <result name="send">/editpublisher.jsp</result> 
+	        <result name="editsuccess">/publishermanager.jsp</result> 
+	        <result name="editfailure">/editpublisher.jsp</result>
+        </action>
+        <action name="readertype" class="action.ReaderTypeAction">  
+       	 	<result name="loadall">/readertypemanager.jsp</result> 
+       	 	<result name="addfailure">/addtype.jsp</result> 
+       	 	<result name="addsuccess">/readertypemanager.jsp</result> 
+       	 	<result name="delete">/readertypemanager.jsp</result> 
+       	 	<result name="editfailure">/edittype.jsp</result> 
+       	 	<result name="editsuccess">/readertypemanager.jsp</result> 
+       	 	<result name="send">/edittype.jsp</result> 
+        </action>
+        <action name="reader" class="action.ReaderAction">  
+       	 	<result name="loadall">/readermanager.jsp</result> 
+       	 	<result name="addfailure">/addreader.jsp</result> 
+       	 	<result name="addsuccess">/readermanager.jsp</result>
+       	 	<result name="delete">/readermanager.jsp</result>
+       	 	<result name="send">/editreader.jsp</result> 
+       	 	<result name="editsuccess">/readermanager.jsp</result> 
+       	 	<result name="lose">/readermanager.jsp</result> 
+       	 	<result name="removelose">/readermanager.jsp</result> 
+       	 	<result name="loadByReader">/readerstatistics.jsp</result>
+        </action>
+        <action name="book" class="action.BookAction">
+        	<result name="loadall">/bookmanager.jsp</result> 
+        	<result name="addfailure">/addbook.jsp</result> 
+       	 	<result name="addsuccess">/bookmanager.jsp</result>
+       	 	<result name="delete">/bookmanager.jsp</result>
+       	 	<result name="send">/editbook.jsp</result> 
+       	 	<result name="editsuccess">/bookmanager.jsp</result> 
+       	 	<result name="loadByBook">/bookstatistics.jsp</result>
+        </action>
+         <action name="lend" class="action.LendAction">
+        	<result name="loadall">/lendmanager.jsp</result> 
+        	<result name="loadbyreader">/lendmanager.jsp</result>
+        	<result name="loadbyreaderid">/readercondition.jsp</result>
+        	<result name="loadbybook">/returnmanager.jsp</result>
+        	<result name="loadbybookid">/bookcondition.jsp</result>  
+        	<result name="return">/returnmanager.jsp</result>  
+        	<result name="addsuccess">/lendmanager.jsp</result>	
+        	<result name="listMyLend">/mylendinfo.jsp</result>
+        </action>
+        
+        <action name="reserve" class="action.ReserveAction">
+        	<result name="addsuccess">/reservemanager.jsp</result>   
+        	<result name="loadbybook">/reservemanager.jsp</result>
+        	<result name="loadbyreader">/myreserve.jsp</result> 
+        	<result name="cancel">/myreserve.jsp</result> 
+        </action>
+        
+    </package>  
+</struts>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2015 10:49:37 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="pe.edu.unmsm.veterinaria.clinica.entities.Perfil" table="perfil" catalog="eleganti_siscliv">
+        <id name="idPerfil" type="java.lang.Integer">
+            <column name="idPerfil" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" />
+        </property>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Perfil_idPerfil" not-null="true" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Usuario" />
+        </set>
+        <set name="opcions" table="opcion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Perfil_idPerfil" not-null="true" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Opcion" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2015 10:49:37 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="pe.edu.unmsm.veterinaria.clinica.entities.Historial" table="historial" catalog="eleganti_siscliv">
+        <id name="idHistorial" type="java.lang.Integer">
+            <column name="idHistorial" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="paciente" class="pe.edu.unmsm.veterinaria.clinica.entities.Paciente" fetch="select">
+            <column name="Paciente_idPaciente" not-null="true" />
+        </many-to-one>
+        <set name="atencionmedicas" table="atencionmedica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Historial_idHistorial" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Atencionmedica" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="MySQL">
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">eleganti_tp2</property>
+        <property name="hibernate.connection.url">jdbc:mysql://elegantisimos.com/eleganti_siscliv</property>
+        <property name="hibernate.connection.username">eleganti_tp2</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+  		<property name="hibernate.current_session_context_class">thread</property>
+  		<mapping resource="entitiesCfg/hibernate/Analisismedico.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Cliente.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Historial.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Opcion.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Paciente.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Perfil.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Usuario.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Atencionmedica.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Clinicoveterinario.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Medicoveterinario.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Pagoservicio.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Receta.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Servicio.hbm.xml"/>
+  <mapping resource="entitiesCfg/hibernate/Tipoanalisis.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

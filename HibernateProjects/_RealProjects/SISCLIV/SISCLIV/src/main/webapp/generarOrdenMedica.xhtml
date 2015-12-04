@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Bienvenidos a SISCLIV!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <link href="resources/css/fondo.css" rel="stylesheet" media="screen" />
+        <link rel="shortcut icon" href="resources/images/favicon.jpg" type="image/x-icon" />
+    </h:head>
+    <h:body>
+        <section class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title"><b>Generar Orden Médica</b></h3></div>
+                <div class="panel-body">
+                    <h:form id="pacientesForm" styleClass="form-horizontal">
+                        <p:dataTable var="pac" value="#{generarOrdenMedicaBean.pacientes}" emptyMessage="No hay pacientes registrados"
+                                 paginator="true" rows="10" paginatorPosition="top"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10"
+                                 style="width: 98%;margin: auto;">
+	                        <p:column headerText="Nombre" style="text-align: center;">
+	                            <h:outputText value="#{pac.nombre}" />
+	                        </p:column>
+	                        <p:column headerText="Castrado" style="text-align: left;">
+	                            <h:outputText value="#{pac.cuandoCastrado != null ? fn:substring(pac.cuandoCastrado,0,11) : 'No'}" />
+	                        </p:column>
+	                        <p:column headerText="Color/Señas" style="text-align: left;">
+	                            <h:outputText value="#{pac.colorSennas}" />
+	                        </p:column>
+	                        <p:column headerText="Especie" style="text-align: left;">
+	                            <h:outputText value="#{pac.especie}" />
+	                        </p:column>
+	                        <p:column headerText="Raza" style="text-align: left;">
+	                            <h:outputText value="#{pac.raza}" />
+	                        </p:column>
+	                        <p:column headerText="Sexo" style="text-align: left;">
+	                            <h:outputText value="#{pac.sexo == 1 ? 'Macho' : 'Hembra'}" />
+	                        </p:column>
+	                        <p:column headerText="Orden médica" style="text-align: center;">
+	                            <p:commandButton value="Generar" oncomplete="PF('dlgOrdenMedica').show();" update=":formOrdenMedica">
+	                                <f:setPropertyActionListener target="#{generarOrdenMedicaBean.paciente}" value="#{pac}" />                 
+	                            </p:commandButton>
+	                        </p:column>
+	                    </p:dataTable>
+                    </h:form>
+                    <p:dialog id="dlg" header="Orden Médica del Paciente" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgOrdenMedica" modal="true" resizable="false">
+	                    <h:form id="formOrdenMedica" class="form-horizontal">
+	                    	<p:growl id="msgModificar" showDetail="true"/>
+	                    	<div class="form-group">
+	                            <label for="direccion" class="col-sm-2 control-label">Nombre del paciente</label>
+	                            <div class="col-sm-4">
+	                                <p:inputText id="paciente" value="#{generarOrdenMedicaBean.paciente.nombre}" disabled="true" label="Paciente" styleClass="form-control"/>
+	                            </div>
+	                            <label for="nombres" class="col-sm-2 control-label">Nombre del dueño</label>
+	                            <div class="col-sm-4">
+	                                <p:inputText id="cliente" value="#{generarOrdenMedicaBean.paciente.cliente.nombres}" disabled="true" label="Cliente" styleClass="form-control"/>
+	                            </div>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="sexo" class="col-sm-2 control-label">Sexo</label>
+	                            <div class="col-sm-4">
+	                                <p:inputText id="sexo" value="#{generarOrdenMedicaBean.paciente.sexo == 1 ? 'Macho' : 'Hembra'}" disabled="true" label="Sexo" styleClass="form-control"/>
+	                            </div>
+	                            <label for="fechaNac" class="col-sm-2 control-label">Fecha de Nac.</label>
+	                            <div class="col-sm-4">
+	                                <p:inputText id="fechaNac" value="#{fn:substring(generarOrdenMedicaBean.paciente.fechaNac,0,11)}" disabled="true" label="Fecha de Nac." styleClass="form-control"/>
+	                            </div>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="especie" class="col-sm-2 control-label">Especie</label>
+	                            <div class="col-sm-4">
+	                                <p:inputText id="especie" value="#{generarOrdenMedicaBean.paciente.especie}" disabled="true" label="Especie" styleClass="form-control"/>
+	                            </div>
+	                            <label for="raza" class="col-sm-2 control-label">Raza</label>
+	                            <div class="col-sm-4">
+	                                <p:inputText id="raza" value="#{generarOrdenMedicaBean.paciente.raza}" disabled="true" label="Raza" styleClass="form-control"/>
+	                            </div>
+	                        </div>
+	                        <p:separator />
+	                        <h3><b>Servicios</b></h3>
+						    <p:selectManyCheckbox id="gridServicios" value="#{generarOrdenMedicaBean.selectedServices}" layout="responsive" columns="3">
+						        <f:selectItems value="#{generarOrdenMedicaBean.servicios}" var="servicio" itemLabel="#{servicio}" itemValue="#{servicio}" />
+						    </p:selectManyCheckbox>
+						    <br/>
+						    <div class="form-group" >
+						    	<div class="col-sm-offset-2 col-sm-4" style="float: right;">
+	                                <p:commandButton  actionListener="#{generarOrdenMedicaBean.generarOrdenMedicaPaciente(actionEvent, generarOrdenMedicaBean.paciente.idPaciente)}"
+	                                                  ajax="false" styleClass="btn btn-primary" value="Aceptar" 
+	                                                  oncomplete="PF('dlgOrdenMedica').hide();"/>
+	                            </div>
+	                        </div>
+	                    </h:form>
+	                </p:dialog>
+                </div>
+            </div>
+        </section>
+    </h:body>
+</html>

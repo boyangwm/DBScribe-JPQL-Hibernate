@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2015 10:49:37 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="pe.edu.unmsm.veterinaria.clinica.entities.Usuario" table="usuario" catalog="eleganti_siscliv">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="perfil" class="pe.edu.unmsm.veterinaria.clinica.entities.Perfil" fetch="select">
+            <column name="Perfil_idPerfil" not-null="true" />
+        </many-to-one>
+        <property name="usuario" type="string">
+            <column name="usuario" length="100" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" />
+        </property>
+        <property name="estado" type="java.lang.Integer">
+            <column name="estado">
+                <comment>1: Activo, 2: Inactivo</comment>
+            </column>
+        </property>
+        <property name="nombrecompleto" type="string">
+            <column name="nombrecompleto" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

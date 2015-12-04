@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-16 1:29:29 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cfg.hibernate.Beanpublisher" table="beanpublisher" catalog="booklib">
+        <id name="pubid" type="string">
+            <column name="pubid" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="publisherName" type="string">
+            <column name="publisherName" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="200" />
+        </property>
+        <set name="beanbooks" table="beanbook" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pubid" length="20" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanbook" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-16 1:29:29 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cfg.hibernate.Beanbooklendrecord" table="beanbooklendrecord" catalog="booklib">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beansystemuserByReturnOperUserid" class="cfg.hibernate.Beansystemuser" fetch="select">
+            <column name="returnOperUserid" length="20" />
+        </many-to-one>
+        <many-to-one name="beanreader" class="cfg.hibernate.Beanreader" fetch="select">
+            <column name="readerid" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="beansystemuserByLendOperUserid" class="cfg.hibernate.Beansystemuser" fetch="select">
+            <column name="lendOperUserid" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="beanbook" class="cfg.hibernate.Beanbook" fetch="select">
+            <column name="bookBarcode" length="20" not-null="true" />
+        </many-to-one>
+        <property name="lendDate" type="timestamp">
+            <column name="lendDate" length="19" not-null="true" />
+        </property>
+        <property name="returnDate" type="timestamp">
+            <column name="returnDate" length="19" />
+        </property>
+        <property name="penalSum" type="java.lang.Double">
+            <column name="penalSum" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

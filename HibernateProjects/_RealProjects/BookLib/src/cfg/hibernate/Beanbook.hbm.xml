@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-16 1:29:29 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cfg.hibernate.Beanbook" table="beanbook" catalog="booklib">
+        <id name="barcode" type="string">
+            <column name="barcode" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="beanpublisher" class="cfg.hibernate.Beanpublisher" fetch="select">
+            <column name="pubid" length="20" />
+        </many-to-one>
+        <property name="bookname" type="string">
+            <column name="bookname" length="200" not-null="true" />
+        </property>
+        <property name="price" type="double">
+            <column name="price" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="20" not-null="true" />
+        </property>
+        <set name="beanbooklendrecords" table="beanbooklendrecord" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bookBarcode" length="20" not-null="true" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanbooklendrecord" />
+        </set>
+        <set name="beanreserves" table="beanreserve" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bookBarcode" length="20" not-null="true" />
+            </key>
+            <one-to-many class="cfg.hibernate.Beanreserve" />
+        </set>
+    </class>
+</hibernate-mapping>

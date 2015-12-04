@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Bienvenidos a SISCLIV!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <link href="resources/css/fondo.css" rel="stylesheet" media="screen" />
+        <link rel="shortcut icon" href="resources/images/favicon.jpg" type="image/x-icon" />
+    </h:head>
+    <h:body>
+        <section class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title"><b>Registrar Cliente</b></h3></div>
+                <div class="panel-body">
+                    <h:form id="clienteForm" styleClass="form-horizontal">
+                        <p:growl id="mensajeGeneral" showDetail="false"/>
+                        <div class="form-group">
+                            <label for="nombres" class="col-sm-2 control-label">Nombres</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="nombres" value="#{clienteBean.cliente.nombres}" required="true" label="Nombres" styleClass="form-control"/>
+                            </div>
+                            <label for="apellidos" class="col-sm-2 control-label">Apellidos</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="apellidos" value="#{clienteBean.cliente.apellidos}" required="true" label="Apellidos" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion" class="col-sm-2 control-label">Dirección</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="direccion" value="#{clienteBean.cliente.direccion}" required="true" label="Dirección" styleClass="form-control"/>
+                            </div>
+                            <label for="distrito" class="col-sm-2 control-label">Distrito</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="distrito" value="#{clienteBean.cliente.distrito}" required="true" styleClass="form-control" label="Distrito"/>
+                            </div>
+                        </div> 
+                        <div class="form-group" >
+                            <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
+                            <div class="col-sm-4">
+                                <p:inputMask id="telefono" value="#{clienteBean.cliente.telefono}" required="true" label="Teléfono" styleClass="form-control" mask="9999999"/>
+                            </div>
+                            <label for="email" class="col-sm-2 control-label">E-mail</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="email" value="#{clienteBean.cliente.email}" required="true"
+                                	label="E-mail" styleClass="form-control" validatorMessage="El formato del correo es inválido">
+                                	<f:validateRegex
+                                		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </p:inputText>	
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label for="dni" class="col-sm-2 control-label">N° de DNI</label>
+                            <div class="col-sm-4">
+                                <p:inputMask id="dni" value="#{clienteBean.cliente.dni}" required="true" label="dni" styleClass="form-control" mask="99999999"/>
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-4" style="padding-left: 75px">
+                                <p:commandButton  value="Guardar" action="#{clienteBean.registrarOperario}"
+                                                  ajax="false" styleClass="btn btn-primary"/>
+                                <p:commandButton  value="Cancelar"
+                                                  ajax="false" styleClass="btn btn-primary"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <h:form id="formMostrar">
+                    <p:dataTable var="cli" value="#{clienteBean.clientes}" emptyMessage="No hay clientes registradas"
+                                 paginator="true" rows="10" paginatorPosition="top"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10"
+                                 style="width: 98%;margin: auto;">
+                        <p:column headerText="Nombres" style="text-align: left; width: 120px">
+                            <h:outputText value="#{cli.nombres}"/>
+                        </p:column>
+                        <p:column headerText="Apellidos" style="text-align: left;">
+                            <h:outputText value="#{cli.apellidos}" />
+                        </p:column>
+                        <p:column headerText="Dirección" style="text-align: left; width: 110px">
+                            <h:outputText value="#{cli.direccion}" />
+                        </p:column>
+                        <p:column headerText="Distrito" style="text-align: left;">
+                            <h:outputText value="#{cli.distrito}" />
+                        </p:column>
+                        <p:column headerText="Teléfono" style="text-align: left;">
+                            <h:outputText value="#{cli.telefono}" />
+                        </p:column>
+                        <p:column headerText="E-mail" style="text-align: left;">
+                            <h:outputText value="#{cli.email}" />
+                        </p:column>
+                        <p:column headerText="N° DNI" style="text-align: left;">
+                            <h:outputText value="#{cli.dni}" />
+                        </p:column>
+                        <p:column headerText="" style="text-align: center; width: 100px">
+                            <p:commandButton value="Editar" oncomplete="PF('dlgmodificar').show();" update=":formModificar">
+                                <f:setPropertyActionListener target="#{clienteBean.cliente}" value="#{cli}" />                 
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <p:dialog id="dlg" header="Modificar Datos de Cliente" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgmodificar" modal="true" resizable="false">
+                    <h:form id="formModificar" class="form-horizontal">
+                    	<p:growl id="msgModificar" showDetail="true"/>
+                    	<div class="form-group">
+                            <label for="nombres" class="col-sm-2 control-label">Nombres</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="nombres" value="#{clienteBean.cliente.nombres}" required="true" label="Nombres" styleClass="form-control"/>
+                            </div>
+                            <label for="direccion" class="col-sm-2 control-label">Dirección</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="direccion" value="#{clienteBean.cliente.direccion}" required="true" label="Dirección" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="distrito" class="col-sm-2 control-label">Distrito</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="distrito" value="#{clienteBean.cliente.distrito}" required="true" styleClass="form-control" label="Distrito"/>
+                            </div>
+                            <label for="telefono" class="col-sm-2 control-label">Teléfono</label>
+                            <div class="col-sm-4">
+                                <p:inputMask id="telefono" value="#{clienteBean.cliente.telefono}" required="true" label="Teléfono" styleClass="form-control"
+                                	mask="9999999"/>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label for="email" class="col-sm-2 control-label">E-mail</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="email" value="#{clienteBean.cliente.email}" required="true"
+                                	label="E-mail" styleClass="form-control" validatorMessage="El formato del correo es inválido">
+                                	<f:validateRegex
+                                		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </p:inputText>	
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-4" style="padding-left: 75px">
+                                <p:commandButton  value="Modificar" action="#{clienteBean.modificarCliente}"
+                                                  ajax="false" styleClass="btn btn-primary"
+                                                  oncomplete="PF('dlgmodificar').hide();"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </p:dialog>
+            </div>
+        </section>
+    </h:body>
+</html>

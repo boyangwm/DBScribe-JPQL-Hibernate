@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Bienvenidos a SISCLIV!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        <link href="resources/css/fondo.css" rel="stylesheet" media="screen" />
+        <link rel="shortcut icon" href="resources/images/favicon.jpg" type="image/x-icon" />
+    </h:head>
+    <h:body>
+        <section class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title"><b>Registrar Atención Médica</b></h3></div>
+                <div class="panel-body">
+                    <h:form id="pacientesForm" styleClass="form-horizontal">
+                        <div class="form-group">
+                            <h4>Datos del Paciente</h4>
+                            <label for="paciente_nombre" class="col-sm-2 control-label">Nombre</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="paciente_nombre" value="#{generarAtencionMedicaBean.atencion.historial.paciente.nombre}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="paciente_raza" class="col-sm-2 control-label">Raza</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="paciente_raza" value="#{generarAtencionMedicaBean.atencion.historial.paciente.raza}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="paciente_fechaNac" class="col-sm-2 control-label">Fecha Nacimiento</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="paciente_fechaNac" value="#{fn:substring(generarAtencionMedicaBean.atencion.historial.paciente.fechaNac,0,11)}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="paciente_sexo" class="col-sm-2 control-label">Sexo</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="paciente_sexo" value="#{generarAtencionMedicaBean.atencion.historial.paciente.sexo}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="paciente_colorSennas" class="col-sm-2 control-label">Color/Señas</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="paciente_colorSennas" value="#{generarAtencionMedicaBean.atencion.historial.paciente.colorSennas}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4>Datos del Dueño</h4>
+                            <label for="duenno_nombre" class="col-sm-2 control-label">Nombre</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="duenno_nombre" value="#{generarAtencionMedicaBean.atencion.historial.paciente.cliente.nombres} #{generarAtencionMedicaBean.atencion.historial.paciente.cliente.apellidos}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="duenno_direccion" class="col-sm-2 control-label">Dirección</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="duenno_direccion" value="#{generarAtencionMedicaBean.atencion.historial.paciente.cliente.direccion} - #{generarAtencionMedicaBean.atencion.historial.paciente.cliente.distrito}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="duenno_dni" class="col-sm-2 control-label">DNI</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="duenno_dni" value="#{generarAtencionMedicaBean.atencion.historial.paciente.cliente.dni}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="duenno_telefono" class="col-sm-2 control-label">Telefono</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="duenno_telefono" value="#{generarAtencionMedicaBean.atencion.historial.paciente.cliente.telefono}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                            <label for="duenno_email" class="col-sm-2 control-label">E-mail</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="duenno_email" value="#{generarAtencionMedicaBean.atencion.historial.paciente.cliente.email}" 
+                                             disabled="true" styleClass="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h4>Atención Medica</h4>
+                            <label for="temperatura" class="col-sm-2 control-label">Temperatura</label>
+                            <div class="col-sm-4">
+                                <p:inputMask id="temperatura" value="#{generarAtencionMedicaBean.atencion.temperatura}" 
+                                             styleClass="form-control" mask="99"/>
+                            </div>
+                            <label for="peso" class="col-sm-2 control-label">Peso</label>
+                            <div class="col-sm-4">
+                                <p:inputMask id="peso" value="#{generarAtencionMedicaBean.atencion.peso}" 
+                                             styleClass="form-control" mask="99" required="true"/>
+                            </div>
+                            <label for="proxima" class="col-sm-2 control-label">Proxima Cita</label>
+                            <div class="col-sm-4">
+                                <p:calendar id="proxima" value="#{generarAtencionMedicaBean.atencion.proximaCita}" locale="de"
+                                            navigator="true" pattern="yyyy-MM-dd" required="true"/>
+                            </div>
+                            <label for="vacunas" class="col-sm-2 control-label">Vacunas</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="vacunas" value="#{generarAtencionMedicaBean.atencion.vacunas}" 
+                                             styleClass="form-control" required="true"/>
+                            </div>
+                            <label for="diagnostico" class="col-sm-2 control-label">Diagnostico</label>
+                            <div class="col-sm-4">
+                                <p:inputTextarea id="diagnostico" value="#{generarAtencionMedicaBean.atencion.diagnostico}" 
+                                                 rows="6" cols="33" required="true"/>
+                            </div>
+                            <label for="tratamiento" class="col-sm-2 control-label">Tratamiento</label>
+                            <div class="col-sm-4">
+                                <p:inputTextarea id="tratamiento" value="#{generarAtencionMedicaBean.atencion.tratamiento}" 
+                                                 rows="6" cols="33" required="true"/>
+                            </div>
+                            <label for="observaciones" class="col-sm-2 control-label">Observaciones</label>
+                            <div class="col-sm-4">
+                                <p:inputTextarea id="observaciones" value="#{generarAtencionMedicaBean.atencion.observacionesReceta}" 
+                                                 rows="3" cols="33" />
+                            </div>
+                            <p:commandButton value="Atender" action="#{generarAtencionMedicaBean.finalizarAtencion}"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </section>
+    </h:body>
+</html>

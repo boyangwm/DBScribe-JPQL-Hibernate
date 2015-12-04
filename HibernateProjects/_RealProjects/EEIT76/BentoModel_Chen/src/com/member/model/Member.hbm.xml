@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.member.model.MemberVO" table="Member" >
+        
+        <id name="MemberAcc" column="MemberAcc">
+        </id>
+        
+        <property name="MemberPwd" column="MemberPwd" />
+        <property name="MemberLastName" column="MemberLastName" />
+        <property name="MemberFirstName" column="MemberFirstName" />
+        <property name="MemberPhone" column="MemberPhone" />
+        <property name="MemberCel" column="MemberCel" />
+        <property name="MemberEmail" column="MemberEmail" />
+        <property name="MemberGender" column="MemberGender" />
+        <property name="MemberOpen" column="MemberOpen" />
+        <set name="userAddrs" table="UserAddr" lazy="false" cascade="all"
+			inverse="true" order-by="UserAddrID asc">
+			<key>
+				<column name="MemberAcc" />
+			</key>
+			<one-to-many class="com.useraddr.model.UserAddrVO" />
+		</set>
+       
+    </class>
+</hibernate-mapping>
+

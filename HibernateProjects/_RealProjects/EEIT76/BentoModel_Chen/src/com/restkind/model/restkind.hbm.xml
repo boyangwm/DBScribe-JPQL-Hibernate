@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.restkind.model.RestKindVO" table="RestKind" >  
+         <composite-id>	
+            <key-property name="KindID" column="KindID"/>
+            <key-property name="RestID" column="RestID"/>
+       <!-- <key-many-to-one name="RestID" column="RestID" class="com.restaurant.model.RestaurantVO"/> -->
+        </composite-id>
+<!--   <set name="rests" table="Resturant" lazy="false" cascade="all"  inverse="true"  >			 
+ 			<key>
+				<column name="RestID" />
+			</key>
+			<one-to-many class="restkind.model.RestKindVO" />
+		</set>
+-->		
+		<many-to-one name="RestaurantVO" class="com.restaurant.model.RestaurantVO" lazy="false" insert="false" update="false" >
+            <column name="RestID" />
+        </many-to-one> 
+ 
+      
+        <many-to-one name="KindlistVO" class="com.kindlist.model.KindlistVO" lazy="false" insert="false" update="false">
+            <column name="KindID" />
+        </many-to-one> 
+
+    </class>
+</hibernate-mapping>
+

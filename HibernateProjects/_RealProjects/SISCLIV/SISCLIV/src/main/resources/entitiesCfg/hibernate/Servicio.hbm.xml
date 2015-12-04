@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2015 10:49:37 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="pe.edu.unmsm.veterinaria.clinica.entities.Servicio" table="servicio" catalog="eleganti_siscliv">
+        <id name="idServicio" type="java.lang.Integer">
+            <column name="idServicio" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="400" />
+        </property>
+        <property name="tarifa" type="big_decimal">
+            <column name="tarifa" precision="5" />
+        </property>
+        <property name="tipo" type="java.lang.Integer">
+            <column name="tipo">
+                <comment>1: genera atencion; 2: analisis; 3: otros fijo; 4: otros variable</comment>
+            </column>
+        </property>
+        <property name="descripcionCorta" type="string">
+            <column name="descripcionCorta" length="45" />
+        </property>
+        <property name="detalles" type="string">
+            <column name="detalles" length="45" />
+        </property>
+        <set name="pagoservicios" table="pagoservicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Servicio_idServicio" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Pagoservicio" />
+        </set>
+    </class>
+</hibernate-mapping>

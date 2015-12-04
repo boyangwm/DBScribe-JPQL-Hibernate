@@ -1,0 +1,3873 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>DBScribe Report</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=desert"> </script>
+ <style>
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+p {word-wrap: break-word; }
+</style>
+<script>
+$(".modal-wide").on("show.bs.modal", function() {
+  var height = $(window).height() - 200;
+  $(this).find(".modal-body").css("max-height", height);
+});
+</script>
+<style>
+div.tooltip-inner {
+    max-width: 1500px;
+}
+</style>
+<script>
+$(document).ready(function () {
+  $("a").tooltip({
+    'selector': '',
+    'placement': 'bottom',
+    'container':'body'
+  });
+});
+</script>
+ </head>
+ <body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3" style="position:fixed;float:left;left:0px">
+			<div>
+			<h2> DBScribe Report for BookLib</h2> <br/>
+			There are 192 database-related methods (out of 336 methods). 
+			Among them, there are 80 SQL Operating Methods,
+			65 Local SQL Methods, and 47 Delegated SQL Methods.
+			</div>
+			<br/>
+
+			<div class="panel panel-default">
+			<div class="panel-heading">Methods</div><div class="panel-body" style="max-height:600px;overflow-x: scroll;overflow-y: scroll">
+
+						<a href="#1">[M-1, SQLOperatingMethod] cfg.hibernate.Beanreadertype.Beanreadertype()
+			()</a><br>
+						
+						<a href="#2">[M-2, SQLOperatingMethod] cfg.hibernate.Beanreadertype.Beanreadertype(String, int)
+			()</a><br>
+						
+						<a href="#3">[M-3, SQLOperatingMethod] cfg.hibernate.Beanreadertype.getReaderTypeId()
+			()</a><br>
+						
+						<a href="#4">[M-4, SQLOperatingMethod] cfg.hibernate.Beanreadertype.setReaderTypeId(Integer)
+			()</a><br>
+						
+						<a href="#5">[M-5, SQLOperatingMethod] cfg.hibernate.Beanreadertype.getReaderTypeName()
+			()</a><br>
+						
+						<a href="#6">[M-6, SQLOperatingMethod] cfg.hibernate.Beanreadertype.setReaderTypeName(String)
+			()</a><br>
+						
+						<a href="#7">[M-7, SQLOperatingMethod] cfg.hibernate.Beanreadertype.getLendBookLimitted()
+			()</a><br>
+						
+						<a href="#8">[M-8, SQLOperatingMethod] cfg.hibernate.Beanreadertype.setLendBookLimitted(int)
+			()</a><br>
+						
+						<a href="#9">[M-9, SQLOperatingMethod] cfg.hibernate.Beanreserve.Beanreserve()
+			()</a><br>
+						
+						<a href="#10">[M-10, SQLOperatingMethod] cfg.hibernate.Beanreserve.Beanreserve(Beanreader, Beanbook, Date)
+			()</a><br>
+						
+						<a href="#11">[M-11, SQLOperatingMethod] cfg.hibernate.Beanreserve.Beanreserve(Beanreader, Beanbook, Date)
+			()</a><br>
+						
+						<a href="#12">[M-12, SQLOperatingMethod] cfg.hibernate.Beanreserve.getReserveid()
+			()</a><br>
+						
+						<a href="#13">[M-13, SQLOperatingMethod] cfg.hibernate.Beanreserve.setReserveid(Integer)
+			()</a><br>
+						
+						<a href="#14">[M-14, SQLOperatingMethod] cfg.hibernate.Beanreserve.getReserveDate()
+			()</a><br>
+						
+						<a href="#15">[M-15, SQLOperatingMethod] cfg.hibernate.Beanreserve.setReserveDate(Date)
+			()</a><br>
+						
+						<a href="#16">[M-16, SQLOperatingMethod] cfg.hibernate.Beanreserve.getCancelDate()
+			()</a><br>
+						
+						<a href="#17">[M-17, SQLOperatingMethod] cfg.hibernate.Beanreserve.setCancelDate(Date)
+			()</a><br>
+						
+						<a href="#18">[M-18, SQLOperatingMethod] cfg.hibernate.Beanpublisher.Beanpublisher()
+			()</a><br>
+						
+						<a href="#19">[M-19, SQLOperatingMethod] cfg.hibernate.Beanpublisher.Beanpublisher(String)
+			()</a><br>
+						
+						<a href="#20">[M-20, SQLOperatingMethod] cfg.hibernate.Beanpublisher.Beanpublisher(String, Set)
+			()</a><br>
+						
+						<a href="#21">[M-21, SQLOperatingMethod] cfg.hibernate.Beanpublisher.getPubid()
+			()</a><br>
+						
+						<a href="#22">[M-22, SQLOperatingMethod] cfg.hibernate.Beanpublisher.setPubid(String)
+			()</a><br>
+						
+						<a href="#23">[M-23, SQLOperatingMethod] cfg.hibernate.Beanpublisher.getPublisherName()
+			()</a><br>
+						
+						<a href="#24">[M-24, SQLOperatingMethod] cfg.hibernate.Beanpublisher.setPublisherName(String)
+			()</a><br>
+						
+						<a href="#25">[M-25, SQLOperatingMethod] cfg.hibernate.Beanpublisher.getAddress()
+			()</a><br>
+						
+						<a href="#26">[M-26, SQLOperatingMethod] cfg.hibernate.Beanpublisher.setAddress(String)
+			()</a><br>
+						
+						<a href="#27">[M-27, SQLOperatingMethod] cfg.hibernate.Beanbook.Beanbook()
+			()</a><br>
+						
+						<a href="#28">[M-28, SQLOperatingMethod] cfg.hibernate.Beanbook.Beanbook(String, double)
+			()</a><br>
+						
+						<a href="#29">[M-29, SQLOperatingMethod] cfg.hibernate.Beanbook.Beanbook(String, Beanpublisher, double, Set)
+			()</a><br>
+						
+						<a href="#30">[M-30, SQLOperatingMethod] cfg.hibernate.Beanbook.getBarcode()
+			()</a><br>
+						
+						<a href="#31">[M-31, SQLOperatingMethod] cfg.hibernate.Beanbook.setBarcode(String)
+			()</a><br>
+						
+						<a href="#32">[M-32, SQLOperatingMethod] cfg.hibernate.Beanbook.getBookname()
+			()</a><br>
+						
+						<a href="#33">[M-33, SQLOperatingMethod] cfg.hibernate.Beanbook.setBookname(String)
+			()</a><br>
+						
+						<a href="#34">[M-34, SQLOperatingMethod] cfg.hibernate.Beanbook.getPrice()
+			()</a><br>
+						
+						<a href="#35">[M-35, SQLOperatingMethod] cfg.hibernate.Beanbook.setPrice(double)
+			()</a><br>
+						
+						<a href="#36">[M-36, SQLOperatingMethod] cfg.hibernate.Beanbook.getState()
+			()</a><br>
+						
+						<a href="#37">[M-37, SQLOperatingMethod] cfg.hibernate.Beanbook.setState(String)
+			()</a><br>
+						
+						<a href="#38">[M-38, SQLOperatingMethod] cfg.hibernate.Beansystemuser.Beansystemuser()
+			()</a><br>
+						
+						<a href="#39">[M-39, SQLOperatingMethod] cfg.hibernate.Beansystemuser.Beansystemuser(String, Date)
+			()</a><br>
+						
+						<a href="#40">[M-40, SQLOperatingMethod] cfg.hibernate.Beansystemuser.Beansystemuser(String, Date, Set)
+			()</a><br>
+						
+						<a href="#41">[M-41, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getUserid()
+			()</a><br>
+						
+						<a href="#42">[M-42, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setUserid(String)
+			()</a><br>
+						
+						<a href="#43">[M-43, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getUsername()
+			()</a><br>
+						
+						<a href="#44">[M-44, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setUsername(String)
+			()</a><br>
+						
+						<a href="#45">[M-45, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getPwd()
+			()</a><br>
+						
+						<a href="#46">[M-46, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setPwd(String)
+			()</a><br>
+						
+						<a href="#47">[M-47, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getUsertype()
+			()</a><br>
+						
+						<a href="#48">[M-48, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setUsertype(String)
+			()</a><br>
+						
+						<a href="#49">[M-49, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getCreateDate()
+			()</a><br>
+						
+						<a href="#50">[M-50, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setCreateDate(Date)
+			()</a><br>
+						
+						<a href="#51">[M-51, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getRemoveDate()
+			()</a><br>
+						
+						<a href="#52">[M-52, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setRemoveDate(Date)
+			()</a><br>
+						
+						<a href="#53">[M-53, SQLOperatingMethod] cfg.hibernate.Beanreader.Beanreader()
+			()</a><br>
+						
+						<a href="#54">[M-54, SQLOperatingMethod] cfg.hibernate.Beanreader.Beanreader(String, Beansystemuser, int, Date)
+			()</a><br>
+						
+						<a href="#55">[M-55, SQLOperatingMethod] cfg.hibernate.Beanreader.Beanreader(String, Beansystemuser, int, Date, Set)
+			()</a><br>
+						
+						<a href="#56">[M-56, SQLOperatingMethod] cfg.hibernate.Beanreader.getReaderid()
+			()</a><br>
+						
+						<a href="#57">[M-57, SQLOperatingMethod] cfg.hibernate.Beanreader.setReaderid(String)
+			()</a><br>
+						
+						<a href="#58">[M-58, SQLOperatingMethod] cfg.hibernate.Beanreader.getReaderName()
+			()</a><br>
+						
+						<a href="#59">[M-59, SQLOperatingMethod] cfg.hibernate.Beanreader.setReaderName(String)
+			()</a><br>
+						
+						<a href="#60">[M-60, SQLOperatingMethod] cfg.hibernate.Beanreader.getReaderTypeId()
+			()</a><br>
+						
+						<a href="#61">[M-61, SQLOperatingMethod] cfg.hibernate.Beanreader.setReaderTypeId(int)
+			()</a><br>
+						
+						<a href="#62">[M-62, SQLOperatingMethod] cfg.hibernate.Beanreader.getLendBookLimitted()
+			()</a><br>
+						
+						<a href="#63">[M-63, SQLOperatingMethod] cfg.hibernate.Beanreader.setLendBookLimitted(int)
+			()</a><br>
+						
+						<a href="#64">[M-64, SQLOperatingMethod] cfg.hibernate.Beanreader.getCreateDate()
+			()</a><br>
+						
+						<a href="#65">[M-65, SQLOperatingMethod] cfg.hibernate.Beanreader.setCreateDate(Date)
+			()</a><br>
+						
+						<a href="#66">[M-66, SQLOperatingMethod] cfg.hibernate.Beanreader.getRemoveDate()
+			()</a><br>
+						
+						<a href="#67">[M-67, SQLOperatingMethod] cfg.hibernate.Beanreader.setRemoveDate(Date)
+			()</a><br>
+						
+						<a href="#68">[M-68, SQLOperatingMethod] cfg.hibernate.Beanreader.getStopDate()
+			()</a><br>
+						
+						<a href="#69">[M-69, SQLOperatingMethod] cfg.hibernate.Beanreader.setStopDate(Date)
+			()</a><br>
+						
+						<a href="#70">[M-70, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.Beanbooklendrecord()
+			()</a><br>
+						
+						<a href="#71">[M-71, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.Beanbooklendrecord(Beanreader, Beansystemuser, Beanbook, Date)
+			()</a><br>
+						
+						<a href="#72">[M-72, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.Beanbooklendrecord(Beansystemuser, Beanreader, Beanbook, Date, Double)
+			()</a><br>
+						
+						<a href="#73">[M-73, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getId()
+			()</a><br>
+						
+						<a href="#74">[M-74, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setId(Integer)
+			()</a><br>
+						
+						<a href="#75">[M-75, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getLendDate()
+			()</a><br>
+						
+						<a href="#76">[M-76, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setLendDate(Date)
+			()</a><br>
+						
+						<a href="#77">[M-77, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getReturnDate()
+			()</a><br>
+						
+						<a href="#78">[M-78, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setReturnDate(Date)
+			()</a><br>
+						
+						<a href="#79">[M-79, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getPenalSum()
+			()</a><br>
+						
+						<a href="#80">[M-80, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setPenalSum(Double)
+			()</a><br>
+						
+						<a href="#81">[M-81, LocalSQLMethod] dao.BookDAO.add(Beanbook)
+			()</a><br>
+						
+						<a href="#82">[M-82, LocalSQLMethod] dao.BookDAO.update(Beanbook)
+			()</a><br>
+						
+						<a href="#83">[M-83, LocalSQLMethod] dao.BookDAO.remove(Beanbook)
+			()</a><br>
+						
+						<a href="#84">[M-84, LocalSQLMethod] dao.BookDAO.delete(String)
+			()</a><br>
+						
+						<a href="#85">[M-85, LocalSQLMethod] dao.BookDAO.listAll()
+			()</a><br>
+						
+						<a href="#86">[M-86, LocalSQLMethod] dao.BookDAO.loadbyid(String)
+			()</a><br>
+						
+						<a href="#87">[M-87, LocalSQLMethod] dao.BookDAO.loadbyname(String)
+			()</a><br>
+						
+						<a href="#88">[M-88, LocalSQLMethod] dao.BookDAO.loadByStateAndName(String)
+			()</a><br>
+						
+						<a href="#89">[M-89, LocalSQLMethod] dao.BookDAO.loadByState(String)
+			()</a><br>
+						
+						<a href="#90">[M-90, LocalSQLMethod] dao.BookDAO.count(Beanpublisher)
+			()</a><br>
+						
+						<a href="#91">[M-91, LocalSQLMethod] dao.BookDAO.countBook()
+			()</a><br>
+						
+						<a href="#92">[M-92, LocalSQLMethod] dao.BookDAO.listBookRecord()
+			()</a><br>
+						
+						<a href="#93">[M-93, LocalSQLMethod] dao.LendDAO.add(Beanbooklendrecord)
+			()</a><br>
+						
+						<a href="#94">[M-94, LocalSQLMethod] dao.LendDAO.update(Beanbooklendrecord)
+			()</a><br>
+						
+						<a href="#95">[M-95, LocalSQLMethod] dao.LendDAO.remove(Beanbooklendrecord)
+			()</a><br>
+						
+						<a href="#96">[M-96, LocalSQLMethod] dao.LendDAO.delete(int)
+			()</a><br>
+						
+						<a href="#97">[M-97, LocalSQLMethod] dao.LendDAO.listAll()
+			()</a><br>
+						
+						<a href="#98">[M-98, LocalSQLMethod] dao.LendDAO.listByReader(Beanreader)
+			()</a><br>
+						
+						<a href="#99">[M-99, LocalSQLMethod] dao.LendDAO.listByReaderid(Beanreader)
+			()</a><br>
+						
+						<a href="#100">[M-100, LocalSQLMethod] dao.LendDAO.listByBook(Beanbook)
+			()</a><br>
+						
+						<a href="#101">[M-101, LocalSQLMethod] dao.LendDAO.listByBook2(Beanbook)
+			()</a><br>
+						
+						<a href="#102">[M-102, LocalSQLMethod] dao.LendDAO.listByBookid(Beanbook)
+			()</a><br>
+						
+						<a href="#103">[M-103, LocalSQLMethod] dao.LendDAO.countPenalSum(Beanreader)
+			()</a><br>
+						
+						<a href="#104">[M-104, LocalSQLMethod] dao.PublisherDAO.add(Beanpublisher)
+			()</a><br>
+						
+						<a href="#105">[M-105, LocalSQLMethod] dao.PublisherDAO.update(Beanpublisher)
+			()</a><br>
+						
+						<a href="#106">[M-106, LocalSQLMethod] dao.PublisherDAO.remove(Beanpublisher)
+			()</a><br>
+						
+						<a href="#107">[M-107, LocalSQLMethod] dao.PublisherDAO.delete(String)
+			()</a><br>
+						
+						<a href="#108">[M-108, LocalSQLMethod] dao.PublisherDAO.listAll()
+			()</a><br>
+						
+						<a href="#109">[M-109, LocalSQLMethod] dao.PublisherDAO.loadbyid(String)
+			()</a><br>
+						
+						<a href="#110">[M-110, LocalSQLMethod] dao.PublisherDAO.loadbyname(String)
+			()</a><br>
+						
+						<a href="#111">[M-111, LocalSQLMethod] dao.ReserveDAO.add(Beanreserve)
+			()</a><br>
+						
+						<a href="#112">[M-112, LocalSQLMethod] dao.ReserveDAO.update(Beanreserve)
+			()</a><br>
+						
+						<a href="#113">[M-113, LocalSQLMethod] dao.ReserveDAO.remove(Beanreserve)
+			()</a><br>
+						
+						<a href="#114">[M-114, LocalSQLMethod] dao.ReserveDAO.listAll()
+			()</a><br>
+						
+						<a href="#115">[M-115, LocalSQLMethod] dao.ReserveDAO.listById(String)
+			()</a><br>
+						
+						<a href="#116">[M-116, LocalSQLMethod] dao.ReserveDAO.listByReader(Beanreader)
+			()</a><br>
+						
+						<a href="#117">[M-117, LocalSQLMethod] dao.ReserveDAO.listByBook(Beanbook)
+			()</a><br>
+						
+						<a href="#118">[M-118, LocalSQLMethod] dao.ReaderTypeDAO.add(Beanreadertype)
+			()</a><br>
+						
+						<a href="#119">[M-119, LocalSQLMethod] dao.ReaderTypeDAO.update(Beanreadertype)
+			()</a><br>
+						
+						<a href="#120">[M-120, LocalSQLMethod] dao.ReaderTypeDAO.remove(Beanreadertype)
+			()</a><br>
+						
+						<a href="#121">[M-121, LocalSQLMethod] dao.ReaderTypeDAO.delete(String)
+			()</a><br>
+						
+						<a href="#122">[M-122, LocalSQLMethod] dao.ReaderTypeDAO.listAll()
+			()</a><br>
+						
+						<a href="#123">[M-123, LocalSQLMethod] dao.ReaderTypeDAO.listType()
+			()</a><br>
+						
+						<a href="#124">[M-124, LocalSQLMethod] dao.ReaderTypeDAO.loadbyid(int)
+			()</a><br>
+						
+						<a href="#125">[M-125, LocalSQLMethod] dao.ReaderTypeDAO.loadbyname(String)
+			()</a><br>
+						
+						<a href="#126">[M-126, LocalSQLMethod] dao.UserDAO.add(Beansystemuser)
+			()</a><br>
+						
+						<a href="#127">[M-127, LocalSQLMethod] dao.UserDAO.update(Beansystemuser)
+			()</a><br>
+						
+						<a href="#128">[M-128, LocalSQLMethod] dao.UserDAO.resetPwd(String)
+			()</a><br>
+						
+						<a href="#129">[M-129, LocalSQLMethod] dao.UserDAO.remove(Beansystemuser)
+			()</a><br>
+						
+						<a href="#130">[M-130, LocalSQLMethod] dao.UserDAO.delete(String)
+			()</a><br>
+						
+						<a href="#131">[M-131, LocalSQLMethod] dao.UserDAO.listAll()
+			()</a><br>
+						
+						<a href="#132">[M-132, LocalSQLMethod] dao.UserDAO.loadbyuserid(String)
+			()</a><br>
+						
+						<a href="#133">[M-133, LocalSQLMethod] dao.UserDAO.checkLogin(String)
+			()</a><br>
+						
+						<a href="#134">[M-134, LocalSQLMethod] dao.ReaderDAO.add(Beanreader)
+			()</a><br>
+						
+						<a href="#135">[M-135, LocalSQLMethod] dao.ReaderDAO.update(Beanreader)
+			()</a><br>
+						
+						<a href="#136">[M-136, LocalSQLMethod] dao.ReaderDAO.remove(Beanreader)
+			()</a><br>
+						
+						<a href="#137">[M-137, LocalSQLMethod] dao.ReaderDAO.delete(String)
+			()</a><br>
+						
+						<a href="#138">[M-138, LocalSQLMethod] dao.ReaderDAO.listAll()
+			()</a><br>
+						
+						<a href="#139">[M-139, LocalSQLMethod] dao.ReaderDAO.loadbyid(String)
+			()</a><br>
+						
+						<a href="#140">[M-140, LocalSQLMethod] dao.ReaderDAO.loadbyname(String)
+			()</a><br>
+						
+						<a href="#141">[M-141, LocalSQLMethod] dao.ReaderDAO.loadByTypeAndName(int, String)
+			()</a><br>
+						
+						<a href="#142">[M-142, LocalSQLMethod] dao.ReaderDAO.loadByType(int)
+			()</a><br>
+						
+						<a href="#143">[M-143, LocalSQLMethod] dao.ReaderDAO.countReader()
+			()</a><br>
+						
+						<a href="#144">[M-144, LocalSQLMethod] dao.ReaderDAO.countLimit(Beanreader)
+			()</a><br>
+						
+						<a href="#145">[M-145, LocalSQLMethod] dao.ReaderDAO.listReaderRecord()
+			()</a><br>
+						
+						<a href="#146">[M-146, DelegatedSQLMethod] action.BookAction.loadAll()
+			()</a><br>
+						
+						<a href="#147">[M-147, DelegatedSQLMethod] action.BookAction.isExist()
+			()</a><br>
+						
+						<a href="#148">[M-148, DelegatedSQLMethod] action.BookAction.add()
+			()</a><br>
+						
+						<a href="#149">[M-149, DelegatedSQLMethod] action.BookAction.delete()
+			()</a><br>
+						
+						<a href="#150">[M-150, DelegatedSQLMethod] action.BookAction.editValueSend()
+			()</a><br>
+						
+						<a href="#151">[M-151, DelegatedSQLMethod] action.BookAction.edit()
+			()</a><br>
+						
+						<a href="#152">[M-152, DelegatedSQLMethod] action.BookAction.loadByBook()
+			()</a><br>
+						
+						<a href="#153">[M-153, DelegatedSQLMethod] action.PublisherAction.loadAll()
+			()</a><br>
+						
+						<a href="#154">[M-154, DelegatedSQLMethod] action.PublisherAction.isExist()
+			()</a><br>
+						
+						<a href="#155">[M-155, DelegatedSQLMethod] action.PublisherAction.add()
+			()</a><br>
+						
+						<a href="#156">[M-156, DelegatedSQLMethod] action.PublisherAction.delete()
+			()</a><br>
+						
+						<a href="#157">[M-157, DelegatedSQLMethod] action.PublisherAction.editValueSend()
+			()</a><br>
+						
+						<a href="#158">[M-158, DelegatedSQLMethod] action.PublisherAction.edit()
+			()</a><br>
+						
+						<a href="#159">[M-159, DelegatedSQLMethod] action.LendAction.loadAll()
+			()</a><br>
+						
+						<a href="#160">[M-160, DelegatedSQLMethod] action.LendAction.loadByReader()
+			()</a><br>
+						
+						<a href="#161">[M-161, DelegatedSQLMethod] action.LendAction.loadByReaderid()
+			()</a><br>
+						
+						<a href="#162">[M-162, DelegatedSQLMethod] action.LendAction.loadByBook()
+			()</a><br>
+						
+						<a href="#163">[M-163, DelegatedSQLMethod] action.LendAction.loadByBookid()
+			()</a><br>
+						
+						<a href="#164">[M-164, DelegatedSQLMethod] action.LendAction.add()
+			()</a><br>
+						
+						<a href="#165">[M-165, DelegatedSQLMethod] action.LendAction.delete()
+			()</a><br>
+						
+						<a href="#166">[M-166, DelegatedSQLMethod] action.LendAction.listMyLend()
+			()</a><br>
+						
+						<a href="#167">[M-167, DelegatedSQLMethod] action.ReaderTypeAction.loadAll()
+			()</a><br>
+						
+						<a href="#168">[M-168, DelegatedSQLMethod] action.ReaderTypeAction.add()
+			()</a><br>
+						
+						<a href="#169">[M-169, DelegatedSQLMethod] action.ReaderTypeAction.delete()
+			()</a><br>
+						
+						<a href="#170">[M-170, DelegatedSQLMethod] action.ReaderTypeAction.edit()
+			()</a><br>
+						
+						<a href="#171">[M-171, DelegatedSQLMethod] action.ReaderTypeAction.editValueSend()
+			()</a><br>
+						
+						<a href="#172">[M-172, DelegatedSQLMethod] action.test.main(String)
+			()</a><br>
+						
+						<a href="#173">[M-173, DelegatedSQLMethod] action.ReserveAction.loadByBook()
+			()</a><br>
+						
+						<a href="#174">[M-174, DelegatedSQLMethod] action.ReserveAction.loadByReader()
+			()</a><br>
+						
+						<a href="#175">[M-175, DelegatedSQLMethod] action.ReserveAction.add()
+			()</a><br>
+						
+						<a href="#176">[M-176, DelegatedSQLMethod] action.ReserveAction.cancelReserve()
+			()</a><br>
+						
+						<a href="#177">[M-177, DelegatedSQLMethod] action.ReaderAction.loadAll()
+			()</a><br>
+						
+						<a href="#178">[M-178, DelegatedSQLMethod] action.ReaderAction.isExist()
+			()</a><br>
+						
+						<a href="#179">[M-179, DelegatedSQLMethod] action.ReaderAction.add()
+			()</a><br>
+						
+						<a href="#180">[M-180, DelegatedSQLMethod] action.ReaderAction.delete()
+			()</a><br>
+						
+						<a href="#181">[M-181, DelegatedSQLMethod] action.ReaderAction.editValueSend()
+			()</a><br>
+						
+						<a href="#182">[M-182, DelegatedSQLMethod] action.ReaderAction.edit()
+			()</a><br>
+						
+						<a href="#183">[M-183, DelegatedSQLMethod] action.ReaderAction.lose()
+			()</a><br>
+						
+						<a href="#184">[M-184, DelegatedSQLMethod] action.ReaderAction.removeLose()
+			()</a><br>
+						
+						<a href="#185">[M-185, DelegatedSQLMethod] action.ReaderAction.loadByReader()
+			()</a><br>
+						
+						<a href="#186">[M-186, DelegatedSQLMethod] action.UserAction.login()
+			()</a><br>
+						
+						<a href="#187">[M-187, DelegatedSQLMethod] action.UserAction.loadAllUser()
+			()</a><br>
+						
+						<a href="#188">[M-188, DelegatedSQLMethod] action.UserAction.isUserExist(String)
+			()</a><br>
+						
+						<a href="#189">[M-189, DelegatedSQLMethod] action.UserAction.register()
+			()</a><br>
+						
+						<a href="#190">[M-190, DelegatedSQLMethod] action.UserAction.addUser()
+			()</a><br>
+						
+						<a href="#191">[M-191, DelegatedSQLMethod] action.UserAction.delete()
+			()</a><br>
+						
+						<a href="#192">[M-192, DelegatedSQLMethod] action.UserAction.resetPwd()
+			()</a><br>
+						
+			
+			</div>
+			</div>
+		</div>
+		<div class="col-xs-9" style="float:right;right:0px">
+		
+
+						<div class="panel panel-primary"><a id="1"></a>
+							<div class="panel-heading"><b>[M-1, SQLOperatingMethod] cfg.hibernate.Beanreadertype.Beanreadertype()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreadertype</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="2"></a>
+							<div class="panel-heading"><b>[M-2, SQLOperatingMethod] cfg.hibernate.Beanreadertype.Beanreadertype(String, int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreadertype</i> with attributes <i>readerTypeName, lendBookLimitted</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreadertype.readerTypeName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+							- beanreadertype.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="3"></a>
+							<div class="panel-heading"><b>[M-3, SQLOperatingMethod] cfg.hibernate.Beanreadertype.getReaderTypeId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>readerTypeId</i> from table <i>beanreadertype</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="4"></a>
+							<div class="panel-heading"><b>[M-4, SQLOperatingMethod] cfg.hibernate.Beanreadertype.setReaderTypeId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>readerTypeId</i> from table <i>beanreadertype</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreadertype.readerTypeId is the primary key. It's type is java.lang.Integer. <br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="5"></a>
+							<div class="panel-heading"><b>[M-5, SQLOperatingMethod] cfg.hibernate.Beanreadertype.getReaderTypeName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>readerTypeName</i> from table <i>beanreadertype</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="6"></a>
+							<div class="panel-heading"><b>[M-6, SQLOperatingMethod] cfg.hibernate.Beanreadertype.setReaderTypeName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>readerTypeName</i> from table <i>beanreadertype</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreadertype.readerTypeName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="7"></a>
+							<div class="panel-heading"><b>[M-7, SQLOperatingMethod] cfg.hibernate.Beanreadertype.getLendBookLimitted()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>lendBookLimitted</i> from table <i>beanreadertype</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="8"></a>
+							<div class="panel-heading"><b>[M-8, SQLOperatingMethod] cfg.hibernate.Beanreadertype.setLendBookLimitted(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>lendBookLimitted</i> from table <i>beanreadertype</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreadertype.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="9"></a>
+							<div class="panel-heading"><b>[M-9, SQLOperatingMethod] cfg.hibernate.Beanreserve.Beanreserve()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreserve</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="10"></a>
+							<div class="panel-heading"><b>[M-10, SQLOperatingMethod] cfg.hibernate.Beanreserve.Beanreserve(Beanreader, Beanbook, Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreserve</i> with attributes <i>reserveDate</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreserve.reserveDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="11"></a>
+							<div class="panel-heading"><b>[M-11, SQLOperatingMethod] cfg.hibernate.Beanreserve.Beanreserve(Beanreader, Beanbook, Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreserve</i> with attributes <i>reserveDate, cancelDate</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreserve.reserveDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+							- beanreserve.cancelDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="12"></a>
+							<div class="panel-heading"><b>[M-12, SQLOperatingMethod] cfg.hibernate.Beanreserve.getReserveid()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>reserveid</i> from table <i>beanreserve</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="13"></a>
+							<div class="panel-heading"><b>[M-13, SQLOperatingMethod] cfg.hibernate.Beanreserve.setReserveid(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>reserveid</i> from table <i>beanreserve</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreserve.reserveid is the primary key. It's type is java.lang.Integer. <br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="14"></a>
+							<div class="panel-heading"><b>[M-14, SQLOperatingMethod] cfg.hibernate.Beanreserve.getReserveDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>reserveDate</i> from table <i>beanreserve</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="15"></a>
+							<div class="panel-heading"><b>[M-15, SQLOperatingMethod] cfg.hibernate.Beanreserve.setReserveDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>reserveDate</i> from table <i>beanreserve</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreserve.reserveDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="16"></a>
+							<div class="panel-heading"><b>[M-16, SQLOperatingMethod] cfg.hibernate.Beanreserve.getCancelDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>cancelDate</i> from table <i>beanreserve</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="17"></a>
+							<div class="panel-heading"><b>[M-17, SQLOperatingMethod] cfg.hibernate.Beanreserve.setCancelDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>cancelDate</i> from table <i>beanreserve</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreserve.cancelDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="18"></a>
+							<div class="panel-heading"><b>[M-18, SQLOperatingMethod] cfg.hibernate.Beanpublisher.Beanpublisher()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanpublisher</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="19"></a>
+							<div class="panel-heading"><b>[M-19, SQLOperatingMethod] cfg.hibernate.Beanpublisher.Beanpublisher(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanpublisher</i> with attributes <i>pubid, publisherName</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanpublisher.pubid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanpublisher.publisherName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="20"></a>
+							<div class="panel-heading"><b>[M-20, SQLOperatingMethod] cfg.hibernate.Beanpublisher.Beanpublisher(String, Set)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanpublisher</i> with attributes <i>pubid, publisherName, address</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanpublisher.pubid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanpublisher.publisherName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+							- beanpublisher.address: It's type is string. Make sure the length is no more than 200.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="21"></a>
+							<div class="panel-heading"><b>[M-21, SQLOperatingMethod] cfg.hibernate.Beanpublisher.getPubid()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>pubid</i> from table <i>beanpublisher</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="22"></a>
+							<div class="panel-heading"><b>[M-22, SQLOperatingMethod] cfg.hibernate.Beanpublisher.setPubid(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>pubid</i> from table <i>beanpublisher</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanpublisher.pubid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="23"></a>
+							<div class="panel-heading"><b>[M-23, SQLOperatingMethod] cfg.hibernate.Beanpublisher.getPublisherName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>publisherName</i> from table <i>beanpublisher</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="24"></a>
+							<div class="panel-heading"><b>[M-24, SQLOperatingMethod] cfg.hibernate.Beanpublisher.setPublisherName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>publisherName</i> from table <i>beanpublisher</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanpublisher.publisherName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="25"></a>
+							<div class="panel-heading"><b>[M-25, SQLOperatingMethod] cfg.hibernate.Beanpublisher.getAddress()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>address</i> from table <i>beanpublisher</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="26"></a>
+							<div class="panel-heading"><b>[M-26, SQLOperatingMethod] cfg.hibernate.Beanpublisher.setAddress(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>address</i> from table <i>beanpublisher</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanpublisher.address: It's type is string. Make sure the length is no more than 200.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="27"></a>
+							<div class="panel-heading"><b>[M-27, SQLOperatingMethod] cfg.hibernate.Beanbook.Beanbook()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanbook</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="28"></a>
+							<div class="panel-heading"><b>[M-28, SQLOperatingMethod] cfg.hibernate.Beanbook.Beanbook(String, double)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanbook</i> with attributes <i>barcode, bookname, price, state</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.barcode is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanbook.bookname: It's type is string. Make sure the length is no more than 200, Make sure the value is not null.<br/>
+							- beanbook.price: It's type is double. Make sure the decimal precision is 22, Make sure the decimal scale is 0, Make sure the value is not null.<br/>
+							- beanbook.state: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="29"></a>
+							<div class="panel-heading"><b>[M-29, SQLOperatingMethod] cfg.hibernate.Beanbook.Beanbook(String, Beanpublisher, double, Set)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanbook</i> with attributes <i>barcode, bookname, price, state</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.barcode is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanbook.bookname: It's type is string. Make sure the length is no more than 200, Make sure the value is not null.<br/>
+							- beanbook.price: It's type is double. Make sure the decimal precision is 22, Make sure the decimal scale is 0, Make sure the value is not null.<br/>
+							- beanbook.state: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="30"></a>
+							<div class="panel-heading"><b>[M-30, SQLOperatingMethod] cfg.hibernate.Beanbook.getBarcode()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>barcode</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="31"></a>
+							<div class="panel-heading"><b>[M-31, SQLOperatingMethod] cfg.hibernate.Beanbook.setBarcode(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>barcode</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.barcode is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="32"></a>
+							<div class="panel-heading"><b>[M-32, SQLOperatingMethod] cfg.hibernate.Beanbook.getBookname()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="33"></a>
+							<div class="panel-heading"><b>[M-33, SQLOperatingMethod] cfg.hibernate.Beanbook.setBookname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.bookname: It's type is string. Make sure the length is no more than 200, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="34"></a>
+							<div class="panel-heading"><b>[M-34, SQLOperatingMethod] cfg.hibernate.Beanbook.getPrice()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>price</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="35"></a>
+							<div class="panel-heading"><b>[M-35, SQLOperatingMethod] cfg.hibernate.Beanbook.setPrice(double)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>price</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.price: It's type is double. Make sure the decimal precision is 22, Make sure the decimal scale is 0, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="36"></a>
+							<div class="panel-heading"><b>[M-36, SQLOperatingMethod] cfg.hibernate.Beanbook.getState()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="37"></a>
+							<div class="panel-heading"><b>[M-37, SQLOperatingMethod] cfg.hibernate.Beanbook.setState(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>state</i> from table <i>beanbook</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.state: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="38"></a>
+							<div class="panel-heading"><b>[M-38, SQLOperatingMethod] cfg.hibernate.Beansystemuser.Beansystemuser()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beansystemuser</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="39"></a>
+							<div class="panel-heading"><b>[M-39, SQLOperatingMethod] cfg.hibernate.Beansystemuser.Beansystemuser(String, Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beansystemuser</i> with attributes <i>userid, username, pwd, usertype, createDate</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.userid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beansystemuser.username: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beansystemuser.pwd: It's type is string. Make sure the length is no more than 32, Make sure the value is not null.<br/>
+							- beansystemuser.usertype: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+							- beansystemuser.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="40"></a>
+							<div class="panel-heading"><b>[M-40, SQLOperatingMethod] cfg.hibernate.Beansystemuser.Beansystemuser(String, Date, Set)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beansystemuser</i> with attributes <i>userid, username, pwd, usertype, createDate, removeDate</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.userid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beansystemuser.username: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beansystemuser.pwd: It's type is string. Make sure the length is no more than 32, Make sure the value is not null.<br/>
+							- beansystemuser.usertype: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+							- beansystemuser.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+							- beansystemuser.removeDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="41"></a>
+							<div class="panel-heading"><b>[M-41, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getUserid()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>userid</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="42"></a>
+							<div class="panel-heading"><b>[M-42, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setUserid(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>userid</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.userid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="43"></a>
+							<div class="panel-heading"><b>[M-43, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getUsername()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>username</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="44"></a>
+							<div class="panel-heading"><b>[M-44, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setUsername(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>username</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.username: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="45"></a>
+							<div class="panel-heading"><b>[M-45, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getPwd()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>pwd</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="46"></a>
+							<div class="panel-heading"><b>[M-46, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setPwd(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>pwd</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.pwd: It's type is string. Make sure the length is no more than 32, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="47"></a>
+							<div class="panel-heading"><b>[M-47, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getUsertype()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>usertype</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="48"></a>
+							<div class="panel-heading"><b>[M-48, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setUsertype(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>usertype</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.usertype: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="49"></a>
+							<div class="panel-heading"><b>[M-49, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getCreateDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>createDate</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="50"></a>
+							<div class="panel-heading"><b>[M-50, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setCreateDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>createDate</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="51"></a>
+							<div class="panel-heading"><b>[M-51, SQLOperatingMethod] cfg.hibernate.Beansystemuser.getRemoveDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>removeDate</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="52"></a>
+							<div class="panel-heading"><b>[M-52, SQLOperatingMethod] cfg.hibernate.Beansystemuser.setRemoveDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>removeDate</i> from table <i>beansystemuser</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.removeDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="53"></a>
+							<div class="panel-heading"><b>[M-53, SQLOperatingMethod] cfg.hibernate.Beanreader.Beanreader()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreader</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="54"></a>
+							<div class="panel-heading"><b>[M-54, SQLOperatingMethod] cfg.hibernate.Beanreader.Beanreader(String, Beansystemuser, int, Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreader</i> with attributes <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.readerid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanreader.readerName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beanreader.readerTypeId: It's type is int. Make sure the value is not null.<br/>
+							- beanreader.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+							- beanreader.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="55"></a>
+							<div class="panel-heading"><b>[M-55, SQLOperatingMethod] cfg.hibernate.Beanreader.Beanreader(String, Beansystemuser, int, Date, Set)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanreader</i> with attributes <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate, removeDate, stopDate</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.readerid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanreader.readerName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beanreader.readerTypeId: It's type is int. Make sure the value is not null.<br/>
+							- beanreader.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+							- beanreader.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+							- beanreader.removeDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+							- beanreader.stopDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="56"></a>
+							<div class="panel-heading"><b>[M-56, SQLOperatingMethod] cfg.hibernate.Beanreader.getReaderid()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>readerid</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="57"></a>
+							<div class="panel-heading"><b>[M-57, SQLOperatingMethod] cfg.hibernate.Beanreader.setReaderid(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>readerid</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.readerid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="58"></a>
+							<div class="panel-heading"><b>[M-58, SQLOperatingMethod] cfg.hibernate.Beanreader.getReaderName()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>readerName</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="59"></a>
+							<div class="panel-heading"><b>[M-59, SQLOperatingMethod] cfg.hibernate.Beanreader.setReaderName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>readerName</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.readerName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="60"></a>
+							<div class="panel-heading"><b>[M-60, SQLOperatingMethod] cfg.hibernate.Beanreader.getReaderTypeId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>readerTypeId</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="61"></a>
+							<div class="panel-heading"><b>[M-61, SQLOperatingMethod] cfg.hibernate.Beanreader.setReaderTypeId(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>readerTypeId</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.readerTypeId: It's type is int. Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="62"></a>
+							<div class="panel-heading"><b>[M-62, SQLOperatingMethod] cfg.hibernate.Beanreader.getLendBookLimitted()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>lendBookLimitted</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="63"></a>
+							<div class="panel-heading"><b>[M-63, SQLOperatingMethod] cfg.hibernate.Beanreader.setLendBookLimitted(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>lendBookLimitted</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="64"></a>
+							<div class="panel-heading"><b>[M-64, SQLOperatingMethod] cfg.hibernate.Beanreader.getCreateDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>createDate</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="65"></a>
+							<div class="panel-heading"><b>[M-65, SQLOperatingMethod] cfg.hibernate.Beanreader.setCreateDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>createDate</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="66"></a>
+							<div class="panel-heading"><b>[M-66, SQLOperatingMethod] cfg.hibernate.Beanreader.getRemoveDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>removeDate</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="67"></a>
+							<div class="panel-heading"><b>[M-67, SQLOperatingMethod] cfg.hibernate.Beanreader.setRemoveDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>removeDate</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.removeDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="68"></a>
+							<div class="panel-heading"><b>[M-68, SQLOperatingMethod] cfg.hibernate.Beanreader.getStopDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>stopDate</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="69"></a>
+							<div class="panel-heading"><b>[M-69, SQLOperatingMethod] cfg.hibernate.Beanreader.setStopDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>stopDate</i> from table <i>beanreader</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.stopDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="70"></a>
+							<div class="panel-heading"><b>[M-70, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.Beanbooklendrecord()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanbooklendrecord</i> without any initial value<br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="71"></a>
+							<div class="panel-heading"><b>[M-71, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.Beanbooklendrecord(Beanreader, Beansystemuser, Beanbook, Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanbooklendrecord</i> with attributes <i>lendDate</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.lendDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="72"></a>
+							<div class="panel-heading"><b>[M-72, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.Beanbooklendrecord(Beansystemuser, Beanreader, Beanbook, Date, Double)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It constructs <i>beanbooklendrecord</i> with attributes <i>lendDate, returnDate, penalSum</i><br/>*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.lendDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+							- beanbooklendrecord.returnDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+							- beanbooklendrecord.penalSum: It's type is java.lang.Double. Make sure the decimal precision is 22, Make sure the decimal scale is 0.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="73"></a>
+							<div class="panel-heading"><b>[M-73, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getId()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>id</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="74"></a>
+							<div class="panel-heading"><b>[M-74, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setId(Integer)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>id</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.id is the primary key. It's type is java.lang.Integer. <br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="75"></a>
+							<div class="panel-heading"><b>[M-75, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getLendDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>lendDate</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="76"></a>
+							<div class="panel-heading"><b>[M-76, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setLendDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>lendDate</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.lendDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="77"></a>
+							<div class="panel-heading"><b>[M-77, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getReturnDate()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>returnDate</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="78"></a>
+							<div class="panel-heading"><b>[M-78, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setReturnDate(Date)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>returnDate</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.returnDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="79"></a>
+							<div class="panel-heading"><b>[M-79, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.getPenalSum()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>penalSum</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="80"></a>
+							<div class="panel-heading"><b>[M-80, SQLOperatingMethod] cfg.hibernate.Beanbooklendrecord.setPenalSum(Double)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It sets attribute <i>penalSum</i> from table <i>beanbooklendrecord</i><br/>
+							*<b>Note</b>: This method will not affect the database util Session built-in function is called<br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.penalSum: It's type is java.lang.Double. Make sure the decimal precision is 22, Make sure the decimal scale is 0.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="81"></a>
+							<div class="panel-heading"><b>[M-81, LocalSQLMethod] dao.BookDAO.add(Beanbook)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>barcode, bookname, price, state</i> into table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="82"></a>
+							<div class="panel-heading"><b>[M-82, LocalSQLMethod] dao.BookDAO.update(Beanbook)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It updates <i>barcode, bookname, price, state</i> into table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="83"></a>
+							<div class="panel-heading"><b>[M-83, LocalSQLMethod] dao.BookDAO.remove(Beanbook)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="84"></a>
+							<div class="panel-heading"><b>[M-84, LocalSQLMethod] dao.BookDAO.delete(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="85"></a>
+							<div class="panel-heading"><b>[M-85, LocalSQLMethod] dao.BookDAO.listAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="86"></a>
+							<div class="panel-heading"><b>[M-86, LocalSQLMethod] dao.BookDAO.loadbyid(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="87"></a>
+							<div class="panel-heading"><b>[M-87, LocalSQLMethod] dao.BookDAO.loadbyname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="88"></a>
+							<div class="panel-heading"><b>[M-88, LocalSQLMethod] dao.BookDAO.loadByStateAndName(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="89"></a>
+							<div class="panel-heading"><b>[M-89, LocalSQLMethod] dao.BookDAO.loadByState(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="90"></a>
+							<div class="panel-heading"><b>[M-90, LocalSQLMethod] dao.BookDAO.count(Beanpublisher)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="91"></a>
+							<div class="panel-heading"><b>[M-91, LocalSQLMethod] dao.BookDAO.countBook()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="92"></a>
+							<div class="panel-heading"><b>[M-92, LocalSQLMethod] dao.BookDAO.listBookRecord()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="93"></a>
+							<div class="panel-heading"><b>[M-93, LocalSQLMethod] dao.LendDAO.add(Beanbooklendrecord)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>id, lendDate, returnDate, penalSum</i> into table <i>beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="94"></a>
+							<div class="panel-heading"><b>[M-94, LocalSQLMethod] dao.LendDAO.update(Beanbooklendrecord)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It updates <i>id, lendDate, returnDate, penalSum</i> into table <i>beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="95"></a>
+							<div class="panel-heading"><b>[M-95, LocalSQLMethod] dao.LendDAO.remove(Beanbooklendrecord)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="96"></a>
+							<div class="panel-heading"><b>[M-96, LocalSQLMethod] dao.LendDAO.delete(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="97"></a>
+							<div class="panel-heading"><b>[M-97, LocalSQLMethod] dao.LendDAO.listAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="98"></a>
+							<div class="panel-heading"><b>[M-98, LocalSQLMethod] dao.LendDAO.listByReader(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="99"></a>
+							<div class="panel-heading"><b>[M-99, LocalSQLMethod] dao.LendDAO.listByReaderid(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="100"></a>
+							<div class="panel-heading"><b>[M-100, LocalSQLMethod] dao.LendDAO.listByBook(Beanbook)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="101"></a>
+							<div class="panel-heading"><b>[M-101, LocalSQLMethod] dao.LendDAO.listByBook2(Beanbook)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="102"></a>
+							<div class="panel-heading"><b>[M-102, LocalSQLMethod] dao.LendDAO.listByBookid(Beanbook)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="103"></a>
+							<div class="panel-heading"><b>[M-103, LocalSQLMethod] dao.LendDAO.countPenalSum(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="104"></a>
+							<div class="panel-heading"><b>[M-104, LocalSQLMethod] dao.PublisherDAO.add(Beanpublisher)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>pubid, publisherName, address</i> into table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="105"></a>
+							<div class="panel-heading"><b>[M-105, LocalSQLMethod] dao.PublisherDAO.update(Beanpublisher)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It updates <i>pubid, publisherName, address</i> into table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="106"></a>
+							<div class="panel-heading"><b>[M-106, LocalSQLMethod] dao.PublisherDAO.remove(Beanpublisher)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="107"></a>
+							<div class="panel-heading"><b>[M-107, LocalSQLMethod] dao.PublisherDAO.delete(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="108"></a>
+							<div class="panel-heading"><b>[M-108, LocalSQLMethod] dao.PublisherDAO.listAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="109"></a>
+							<div class="panel-heading"><b>[M-109, LocalSQLMethod] dao.PublisherDAO.loadbyid(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="110"></a>
+							<div class="panel-heading"><b>[M-110, LocalSQLMethod] dao.PublisherDAO.loadbyname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="111"></a>
+							<div class="panel-heading"><b>[M-111, LocalSQLMethod] dao.ReserveDAO.add(Beanreserve)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>reserveid, reserveDate, cancelDate</i> into table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="112"></a>
+							<div class="panel-heading"><b>[M-112, LocalSQLMethod] dao.ReserveDAO.update(Beanreserve)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>reserveid, reserveDate, cancelDate</i> into table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="113"></a>
+							<div class="panel-heading"><b>[M-113, LocalSQLMethod] dao.ReserveDAO.remove(Beanreserve)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="114"></a>
+							<div class="panel-heading"><b>[M-114, LocalSQLMethod] dao.ReserveDAO.listAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="115"></a>
+							<div class="panel-heading"><b>[M-115, LocalSQLMethod] dao.ReserveDAO.listById(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="116"></a>
+							<div class="panel-heading"><b>[M-116, LocalSQLMethod] dao.ReserveDAO.listByReader(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="117"></a>
+							<div class="panel-heading"><b>[M-117, LocalSQLMethod] dao.ReserveDAO.listByBook(Beanbook)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="118"></a>
+							<div class="panel-heading"><b>[M-118, LocalSQLMethod] dao.ReaderTypeDAO.add(Beanreadertype)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>readerTypeId, readerTypeName, lendBookLimitted</i> into table <i>beanreadertype</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="119"></a>
+							<div class="panel-heading"><b>[M-119, LocalSQLMethod] dao.ReaderTypeDAO.update(Beanreadertype)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It updates <i>readerTypeId, readerTypeName, lendBookLimitted</i> into table <i>beanreadertype</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="120"></a>
+							<div class="panel-heading"><b>[M-120, LocalSQLMethod] dao.ReaderTypeDAO.remove(Beanreadertype)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>beanreadertype</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="121"></a>
+							<div class="panel-heading"><b>[M-121, LocalSQLMethod] dao.ReaderTypeDAO.delete(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="122"></a>
+							<div class="panel-heading"><b>[M-122, LocalSQLMethod] dao.ReaderTypeDAO.listAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="123"></a>
+							<div class="panel-heading"><b>[M-123, LocalSQLMethod] dao.ReaderTypeDAO.listType()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="124"></a>
+							<div class="panel-heading"><b>[M-124, LocalSQLMethod] dao.ReaderTypeDAO.loadbyid(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="125"></a>
+							<div class="panel-heading"><b>[M-125, LocalSQLMethod] dao.ReaderTypeDAO.loadbyname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="126"></a>
+							<div class="panel-heading"><b>[M-126, LocalSQLMethod] dao.UserDAO.add(Beansystemuser)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>userid, username, pwd, usertype, createDate, removeDate</i> into table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="127"></a>
+							<div class="panel-heading"><b>[M-127, LocalSQLMethod] dao.UserDAO.update(Beansystemuser)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It updates <i>userid, username, pwd, usertype, createDate, removeDate</i> into table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="128"></a>
+							<div class="panel-heading"><b>[M-128, LocalSQLMethod] dao.UserDAO.resetPwd(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="129"></a>
+							<div class="panel-heading"><b>[M-129, LocalSQLMethod] dao.UserDAO.remove(Beansystemuser)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="130"></a>
+							<div class="panel-heading"><b>[M-130, LocalSQLMethod] dao.UserDAO.delete(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="131"></a>
+							<div class="panel-heading"><b>[M-131, LocalSQLMethod] dao.UserDAO.listAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="132"></a>
+							<div class="panel-heading"><b>[M-132, LocalSQLMethod] dao.UserDAO.loadbyuserid(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="133"></a>
+							<div class="panel-heading"><b>[M-133, LocalSQLMethod] dao.UserDAO.checkLogin(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="134"></a>
+							<div class="panel-heading"><b>[M-134, LocalSQLMethod] dao.ReaderDAO.add(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It inserts <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate, removeDate, stopDate</i> into table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="135"></a>
+							<div class="panel-heading"><b>[M-135, LocalSQLMethod] dao.ReaderDAO.update(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It updates <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate, removeDate, stopDate</i> into table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="136"></a>
+							<div class="panel-heading"><b>[M-136, LocalSQLMethod] dao.ReaderDAO.remove(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It deletes rows from table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="137"></a>
+							<div class="panel-heading"><b>[M-137, LocalSQLMethod] dao.ReaderDAO.delete(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="138"></a>
+							<div class="panel-heading"><b>[M-138, LocalSQLMethod] dao.ReaderDAO.listAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="139"></a>
+							<div class="panel-heading"><b>[M-139, LocalSQLMethod] dao.ReaderDAO.loadbyid(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="140"></a>
+							<div class="panel-heading"><b>[M-140, LocalSQLMethod] dao.ReaderDAO.loadbyname(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="141"></a>
+							<div class="panel-heading"><b>[M-141, LocalSQLMethod] dao.ReaderDAO.loadByTypeAndName(int, String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="142"></a>
+							<div class="panel-heading"><b>[M-142, LocalSQLMethod] dao.ReaderDAO.loadByType(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="143"></a>
+							<div class="panel-heading"><b>[M-143, LocalSQLMethod] dao.ReaderDAO.countReader()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="144"></a>
+							<div class="panel-heading"><b>[M-144, LocalSQLMethod] dao.ReaderDAO.countLimit(Beanreader)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="145"></a>
+							<div class="panel-heading"><b>[M-145, LocalSQLMethod] dao.ReaderDAO.listReaderRecord()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="146"></a>
+							<div class="panel-heading"><b>[M-146, DelegatedSQLMethod] action.BookAction.loadAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.BookAction.loadAll --> dao.BookDAO.loadByStateAndName</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.loadAll --> dao.BookDAO.loadByState</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.loadAll --> dao.BookDAO.listAll</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.loadAll --> dao.PublisherDAO.listAll</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="147"></a>
+							<div class="panel-heading"><b>[M-147, DelegatedSQLMethod] action.BookAction.isExist()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.BookAction.isExist --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="148"></a>
+							<div class="panel-heading"><b>[M-148, DelegatedSQLMethod] action.BookAction.add()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.BookAction.add --> action.BookAction.isExist --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.add --> cfg.hibernate.Beanbook.setBarcode</i><br/>
+							- It sets attribute <i>barcode</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.add --> cfg.hibernate.Beanbook.setBookname</i><br/>
+							- It sets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.add --> dao.PublisherDAO.loadbyid</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.add --> cfg.hibernate.Beanbook.setPrice</i><br/>
+							- It sets attribute <i>price</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.add --> cfg.hibernate.Beanbook.setState</i><br/>
+							- It sets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.add --> dao.BookDAO.add</i><br/>
+							- It inserts <i>barcode, bookname, price, state</i> into table <i>beanbook</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.barcode is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanbook.bookname: It's type is string. Make sure the length is no more than 200, Make sure the value is not null.<br/>
+							- beanbook.price: It's type is double. Make sure the decimal precision is 22, Make sure the decimal scale is 0, Make sure the value is not null.<br/>
+							- beanbook.state: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="149"></a>
+							<div class="panel-heading"><b>[M-149, DelegatedSQLMethod] action.BookAction.delete()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.BookAction.delete --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.delete --> cfg.hibernate.Beanbook.setState</i><br/>
+							- It sets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.delete --> dao.BookDAO.update</i><br/>
+							- It updates <i>barcode, bookname, price, state</i> into table <i>beanbook</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.state: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="150"></a>
+							<div class="panel-heading"><b>[M-150, DelegatedSQLMethod] action.BookAction.editValueSend()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.BookAction.editValueSend --> dao.PublisherDAO.listAll</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.editValueSend --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="151"></a>
+							<div class="panel-heading"><b>[M-151, DelegatedSQLMethod] action.BookAction.edit()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.BookAction.edit --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.edit --> cfg.hibernate.Beanbook.setBookname</i><br/>
+							- It sets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.edit --> cfg.hibernate.Beanbook.setPrice</i><br/>
+							- It sets attribute <i>price</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.edit --> dao.BookDAO.update</i><br/>
+							- It updates <i>barcode, bookname, price, state</i> into table <i>beanbook</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbook.bookname: It's type is string. Make sure the length is no more than 200, Make sure the value is not null.<br/>
+							- beanbook.price: It's type is double. Make sure the decimal precision is 22, Make sure the decimal scale is 0, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="152"></a>
+							<div class="panel-heading"><b>[M-152, DelegatedSQLMethod] action.BookAction.loadByBook()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.BookAction.loadByBook --> dao.BookDAO.countBook</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.BookAction.loadByBook --> dao.BookDAO.listBookRecord</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="153"></a>
+							<div class="panel-heading"><b>[M-153, DelegatedSQLMethod] action.PublisherAction.loadAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.PublisherAction.loadAll --> dao.PublisherDAO.listAll</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="154"></a>
+							<div class="panel-heading"><b>[M-154, DelegatedSQLMethod] action.PublisherAction.isExist()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.PublisherAction.isExist --> dao.PublisherDAO.loadbyid</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.isExist --> dao.PublisherDAO.loadbyname</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="155"></a>
+							<div class="panel-heading"><b>[M-155, DelegatedSQLMethod] action.PublisherAction.add()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.PublisherAction.add --> action.PublisherAction.isExist --> dao.PublisherDAO.loadbyid</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.add --> action.PublisherAction.isExist --> dao.PublisherDAO.loadbyname</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.add --> cfg.hibernate.Beanpublisher.setPubid</i><br/>
+							- It sets attribute <i>pubid</i> from table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.add --> cfg.hibernate.Beanpublisher.setPublisherName</i><br/>
+							- It sets attribute <i>publisherName</i> from table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.add --> cfg.hibernate.Beanpublisher.setAddress</i><br/>
+							- It sets attribute <i>address</i> from table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.add --> dao.PublisherDAO.add</i><br/>
+							- It inserts <i>pubid, publisherName, address</i> into table <i>beanpublisher</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanpublisher.pubid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanpublisher.publisherName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+							- beanpublisher.address: It's type is string. Make sure the length is no more than 200.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="156"></a>
+							<div class="panel-heading"><b>[M-156, DelegatedSQLMethod] action.PublisherAction.delete()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.PublisherAction.delete --> dao.PublisherDAO.loadbyid</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.delete --> dao.BookDAO.count</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.delete --> cfg.hibernate.Beanpublisher.getPublisherName</i><br/>
+							- It gets attribute <i>publisherName</i> from table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.delete --> dao.PublisherDAO.delete</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="157"></a>
+							<div class="panel-heading"><b>[M-157, DelegatedSQLMethod] action.PublisherAction.editValueSend()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.PublisherAction.editValueSend --> dao.PublisherDAO.loadbyid</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="158"></a>
+							<div class="panel-heading"><b>[M-158, DelegatedSQLMethod] action.PublisherAction.edit()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.PublisherAction.edit --> dao.PublisherDAO.loadbyname</i><br/>
+							- It queries the table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.edit --> cfg.hibernate.Beanpublisher.setPubid</i><br/>
+							- It sets attribute <i>pubid</i> from table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.edit --> cfg.hibernate.Beanpublisher.setPublisherName</i><br/>
+							- It sets attribute <i>publisherName</i> from table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.edit --> cfg.hibernate.Beanpublisher.setAddress</i><br/>
+							- It sets attribute <i>address</i> from table <i>beanpublisher</i><br/>
+							<br/>
+							Via call-chain: <i>action.PublisherAction.edit --> dao.PublisherDAO.update</i><br/>
+							- It updates <i>pubid, publisherName, address</i> into table <i>beanpublisher</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanpublisher.pubid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanpublisher.publisherName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+							- beanpublisher.address: It's type is string. Make sure the length is no more than 200.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="159"></a>
+							<div class="panel-heading"><b>[M-159, DelegatedSQLMethod] action.LendAction.loadAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.loadAll --> dao.LendDAO.listAll</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="160"></a>
+							<div class="panel-heading"><b>[M-160, DelegatedSQLMethod] action.LendAction.loadByReader()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.loadByReader --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByReader --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByReader --> cfg.hibernate.Beanbook.getState</i><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByReader --> cfg.hibernate.Beanbook.getBookname</i><br/>
+							- It gets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByReader --> dao.LendDAO.listByReader</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByReader --> cfg.hibernate.Beanreader.getReaderName</i><br/>
+							- It gets attribute <i>readerName</i> from table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="161"></a>
+							<div class="panel-heading"><b>[M-161, DelegatedSQLMethod] action.LendAction.loadByReaderid()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.loadByReaderid --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByReaderid --> dao.LendDAO.listByReaderid</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByReaderid --> cfg.hibernate.Beanreader.getReaderName</i><br/>
+							- It gets attribute <i>readerName</i> from table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="162"></a>
+							<div class="panel-heading"><b>[M-162, DelegatedSQLMethod] action.LendAction.loadByBook()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.loadByBook --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByBook --> dao.LendDAO.listByBook2</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByBook --> cfg.hibernate.Beanbook.getBookname</i><br/>
+							- It gets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByBook --> cfg.hibernate.Beanbook.getState</i><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="163"></a>
+							<div class="panel-heading"><b>[M-163, DelegatedSQLMethod] action.LendAction.loadByBookid()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.loadByBookid --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByBookid --> dao.LendDAO.listByBookid</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByBookid --> cfg.hibernate.Beanbook.getBookname</i><br/>
+							- It gets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.loadByBookid --> cfg.hibernate.Beanbook.getState</i><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="164"></a>
+							<div class="panel-heading"><b>[M-164, DelegatedSQLMethod] action.LendAction.add()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.add --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> dao.ReserveDAO.listByBook</i><br/>
+							- It queries the table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> cfg.hibernate.Beanbook.getState</i><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> dao.ReaderDAO.countLimit</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> dao.ReaderTypeDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> cfg.hibernate.Beanreader.getReaderTypeId</i><br/>
+							- It gets attribute <i>readerTypeId</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> cfg.hibernate.Beanreadertype.getLendBookLimitted</i><br/>
+							- It gets attribute <i>lendBookLimitted</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> cfg.hibernate.Beanbooklendrecord.setLendDate</i><br/>
+							- It sets attribute <i>lendDate</i> from table <i>beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> cfg.hibernate.Beanbooklendrecord.setPenalSum</i><br/>
+							- It sets attribute <i>penalSum</i> from table <i>beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> cfg.hibernate.Beanbook.setState</i><br/>
+							- It sets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> dao.BookDAO.update</i><br/>
+							- It updates <i>barcode, bookname, price, state</i> into table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> dao.LendDAO.add</i><br/>
+							- It inserts <i>id, lendDate, returnDate, penalSum</i> into table <i>beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> cfg.hibernate.Beanreserve.setCancelDate</i><br/>
+							- It sets attribute <i>cancelDate</i> from table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.add --> dao.ReserveDAO.update</i><br/>
+							- It inserts <i>reserveid, reserveDate, cancelDate</i> into table <i>beanreserve</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.lendDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+							- beanbooklendrecord.penalSum: It's type is java.lang.Double. Make sure the decimal precision is 22, Make sure the decimal scale is 0.<br/>
+							- beanbook.state: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+							- beanreserve.cancelDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="165"></a>
+							<div class="panel-heading"><b>[M-165, DelegatedSQLMethod] action.LendAction.delete()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.delete --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> cfg.hibernate.Beanbook.getState</i><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> dao.LendDAO.listByBook</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> cfg.hibernate.Beanbooklendrecord.setReturnDate</i><br/>
+							- It sets attribute <i>returnDate</i> from table <i>beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> cfg.hibernate.Beanbooklendrecord.getLendDate</i><br/>
+							- It gets attribute <i>lendDate</i> from table <i>beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> cfg.hibernate.Beanbooklendrecord.setPenalSum</i><br/>
+							- It sets attribute <i>penalSum</i> from table <i>beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> cfg.hibernate.Beanbook.setState</i><br/>
+							- It sets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> dao.BookDAO.update</i><br/>
+							- It updates <i>barcode, bookname, price, state</i> into table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.delete --> dao.LendDAO.update</i><br/>
+							- It updates <i>id, lendDate, returnDate, penalSum</i> into table <i>beanbooklendrecord</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanbooklendrecord.returnDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+							- beanbooklendrecord.penalSum: It's type is java.lang.Double. Make sure the decimal precision is 22, Make sure the decimal scale is 0.<br/>
+							- beanbook.state: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="166"></a>
+							<div class="panel-heading"><b>[M-166, DelegatedSQLMethod] action.LendAction.listMyLend()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.LendAction.listMyLend --> dao.ReaderDAO.loadbyname</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.listMyLend --> cfg.hibernate.Beansystemuser.getUsername</i><br/>
+							- It gets attribute <i>username</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.LendAction.listMyLend --> dao.LendDAO.listByReaderid</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="167"></a>
+							<div class="panel-heading"><b>[M-167, DelegatedSQLMethod] action.ReaderTypeAction.loadAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderTypeAction.loadAll --> dao.ReaderTypeDAO.listAll</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="168"></a>
+							<div class="panel-heading"><b>[M-168, DelegatedSQLMethod] action.ReaderTypeAction.add()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderTypeAction.add --> dao.ReaderTypeDAO.loadbyname</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderTypeAction.add --> cfg.hibernate.Beanreadertype.setReaderTypeName</i><br/>
+							- It sets attribute <i>readerTypeName</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderTypeAction.add --> cfg.hibernate.Beanreadertype.setLendBookLimitted</i><br/>
+							- It sets attribute <i>lendBookLimitted</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderTypeAction.add --> dao.ReaderTypeDAO.add</i><br/>
+							- It inserts <i>readerTypeId, readerTypeName, lendBookLimitted</i> into table <i>beanreadertype</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreadertype.readerTypeName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+							- beanreadertype.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="169"></a>
+							<div class="panel-heading"><b>[M-169, DelegatedSQLMethod] action.ReaderTypeAction.delete()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderTypeAction.delete --> dao.ReaderTypeDAO.delete</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="170"></a>
+							<div class="panel-heading"><b>[M-170, DelegatedSQLMethod] action.ReaderTypeAction.edit()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderTypeAction.edit --> dao.ReaderTypeDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderTypeAction.edit --> cfg.hibernate.Beanreadertype.setReaderTypeName</i><br/>
+							- It sets attribute <i>readerTypeName</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderTypeAction.edit --> cfg.hibernate.Beanreadertype.setLendBookLimitted</i><br/>
+							- It sets attribute <i>lendBookLimitted</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderTypeAction.edit --> dao.ReaderTypeDAO.update</i><br/>
+							- It updates <i>readerTypeId, readerTypeName, lendBookLimitted</i> into table <i>beanreadertype</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreadertype.readerTypeName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null, Make sure the value is unique.<br/>
+							- beanreadertype.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="171"></a>
+							<div class="panel-heading"><b>[M-171, DelegatedSQLMethod] action.ReaderTypeAction.editValueSend()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderTypeAction.editValueSend --> dao.ReaderTypeDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="172"></a>
+							<div class="panel-heading"><b>[M-172, DelegatedSQLMethod] action.test.main(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.test.main --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.test.main --> dao.ReaderDAO.countLimit</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="173"></a>
+							<div class="panel-heading"><b>[M-173, DelegatedSQLMethod] action.ReserveAction.loadByBook()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReserveAction.loadByBook --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.loadByBook --> dao.ReserveDAO.listByBook</i><br/>
+							- It queries the table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.loadByBook --> cfg.hibernate.Beanbook.getBookname</i><br/>
+							- It gets attribute <i>bookname</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.loadByBook --> cfg.hibernate.Beanbook.getState</i><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="174"></a>
+							<div class="panel-heading"><b>[M-174, DelegatedSQLMethod] action.ReserveAction.loadByReader()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReserveAction.loadByReader --> dao.ReaderDAO.loadbyname</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.loadByReader --> cfg.hibernate.Beansystemuser.getUsername</i><br/>
+							- It gets attribute <i>username</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.loadByReader --> dao.ReserveDAO.listByReader</i><br/>
+							- It queries the table <i>beanreserve</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="175"></a>
+							<div class="panel-heading"><b>[M-175, DelegatedSQLMethod] action.ReserveAction.add()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReserveAction.add --> dao.BookDAO.loadbyid</i><br/>
+							- It queries the table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.add --> dao.ReserveDAO.listByBook</i><br/>
+							- It queries the table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.add --> cfg.hibernate.Beanbook.getState</i><br/>
+							- It gets attribute <i>state</i> from table <i>beanbook</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.add --> cfg.hibernate.Beanreserve.getReserveid</i><br/>
+							- It gets attribute <i>reserveid</i> from table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.add --> dao.ReaderDAO.loadbyname</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.add --> cfg.hibernate.Beansystemuser.getUsername</i><br/>
+							- It gets attribute <i>username</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.add --> cfg.hibernate.Beanreserve.setReserveDate</i><br/>
+							- It sets attribute <i>reserveDate</i> from table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.add --> dao.ReserveDAO.add</i><br/>
+							- It inserts <i>reserveid, reserveDate, cancelDate</i> into table <i>beanreserve</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreserve.reserveDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="176"></a>
+							<div class="panel-heading"><b>[M-176, DelegatedSQLMethod] action.ReserveAction.cancelReserve()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReserveAction.cancelReserve --> dao.ReserveDAO.listById</i><br/>
+							- It queries the table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.cancelReserve --> cfg.hibernate.Beanreserve.setCancelDate</i><br/>
+							- It sets attribute <i>cancelDate</i> from table <i>beanreserve</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReserveAction.cancelReserve --> dao.ReserveDAO.update</i><br/>
+							- It inserts <i>reserveid, reserveDate, cancelDate</i> into table <i>beanreserve</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreserve.cancelDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="177"></a>
+							<div class="panel-heading"><b>[M-177, DelegatedSQLMethod] action.ReaderAction.loadAll()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.loadAll --> dao.ReaderDAO.loadByTypeAndName</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.loadAll --> dao.ReaderDAO.loadByType</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.loadAll --> dao.ReaderDAO.listAll</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.loadAll --> dao.ReaderTypeDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.loadAll --> cfg.hibernate.Beanreadertype.getReaderTypeName</i><br/>
+							- It gets attribute <i>readerTypeName</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.loadAll --> dao.ReaderTypeDAO.listAll</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="178"></a>
+							<div class="panel-heading"><b>[M-178, DelegatedSQLMethod] action.ReaderAction.isExist()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.isExist --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="179"></a>
+							<div class="panel-heading"><b>[M-179, DelegatedSQLMethod] action.ReaderAction.add()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.add --> action.ReaderAction.isExist --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> cfg.hibernate.Beanreader.setReaderid</i><br/>
+							- It sets attribute <i>readerid</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> cfg.hibernate.Beanreader.setReaderName</i><br/>
+							- It sets attribute <i>readerName</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> cfg.hibernate.Beanreader.setReaderTypeId</i><br/>
+							- It sets attribute <i>readerTypeId</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> cfg.hibernate.Beanreader.setLendBookLimitted</i><br/>
+							- It sets attribute <i>lendBookLimitted</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> dao.ReaderTypeDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> cfg.hibernate.Beanreadertype.getLendBookLimitted</i><br/>
+							- It gets attribute <i>lendBookLimitted</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> cfg.hibernate.Beanreader.setCreateDate</i><br/>
+							- It sets attribute <i>createDate</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.add --> dao.ReaderDAO.add</i><br/>
+							- It inserts <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate, removeDate, stopDate</i> into table <i>beanreader</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.readerid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beanreader.readerName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beanreader.readerTypeId: It's type is int. Make sure the value is not null.<br/>
+							- beanreader.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+							- beanreader.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="180"></a>
+							<div class="panel-heading"><b>[M-180, DelegatedSQLMethod] action.ReaderAction.delete()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.delete --> dao.ReaderDAO.delete</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="181"></a>
+							<div class="panel-heading"><b>[M-181, DelegatedSQLMethod] action.ReaderAction.editValueSend()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.editValueSend --> dao.ReaderTypeDAO.listAll</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.editValueSend --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="182"></a>
+							<div class="panel-heading"><b>[M-182, DelegatedSQLMethod] action.ReaderAction.edit()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.edit --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.edit --> cfg.hibernate.Beanreader.setReaderName</i><br/>
+							- It sets attribute <i>readerName</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.edit --> cfg.hibernate.Beanreader.setReaderTypeId</i><br/>
+							- It sets attribute <i>readerTypeId</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.edit --> cfg.hibernate.Beanreader.setLendBookLimitted</i><br/>
+							- It sets attribute <i>lendBookLimitted</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.edit --> dao.ReaderTypeDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreadertype, beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.edit --> cfg.hibernate.Beanreadertype.getLendBookLimitted</i><br/>
+							- It gets attribute <i>lendBookLimitted</i> from table <i>beanreadertype</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.edit --> dao.ReaderDAO.update</i><br/>
+							- It updates <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate, removeDate, stopDate</i> into table <i>beanreader</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.readerName: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beanreader.readerTypeId: It's type is int. Make sure the value is not null.<br/>
+							- beanreader.lendBookLimitted: It's type is int. Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="183"></a>
+							<div class="panel-heading"><b>[M-183, DelegatedSQLMethod] action.ReaderAction.lose()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.lose --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.lose --> cfg.hibernate.Beanreader.setStopDate</i><br/>
+							- It sets attribute <i>stopDate</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.lose --> dao.ReaderDAO.update</i><br/>
+							- It updates <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate, removeDate, stopDate</i> into table <i>beanreader</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.stopDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="184"></a>
+							<div class="panel-heading"><b>[M-184, DelegatedSQLMethod] action.ReaderAction.removeLose()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.removeLose --> dao.ReaderDAO.loadbyid</i><br/>
+							- It queries the table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.removeLose --> cfg.hibernate.Beanreader.setStopDate</i><br/>
+							- It sets attribute <i>stopDate</i> from table <i>beanreader</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.removeLose --> dao.ReaderDAO.update</i><br/>
+							- It updates <i>readerid, readerName, readerTypeId, lendBookLimitted, createDate, removeDate, stopDate</i> into table <i>beanreader</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beanreader.stopDate: It's type is timestamp. Make sure the length is no more than 19.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="185"></a>
+							<div class="panel-heading"><b>[M-185, DelegatedSQLMethod] action.ReaderAction.loadByReader()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.ReaderAction.loadByReader --> dao.ReaderDAO.countReader</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.loadByReader --> dao.ReaderDAO.listReaderRecord</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+							<br/>
+							Via call-chain: <i>action.ReaderAction.loadByReader --> dao.LendDAO.countPenalSum</i><br/>
+							- It queries the table <i>beanbook, beanbooklendrecord</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="186"></a>
+							<div class="panel-heading"><b>[M-186, DelegatedSQLMethod] action.UserAction.login()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.UserAction.login --> dao.UserDAO.checkLogin</i><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.login --> cfg.hibernate.Beansystemuser.getUsertype</i><br/>
+							- It gets attribute <i>usertype</i> from table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="187"></a>
+							<div class="panel-heading"><b>[M-187, DelegatedSQLMethod] action.UserAction.loadAllUser()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.UserAction.loadAllUser --> dao.UserDAO.listAll</i><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="188"></a>
+							<div class="panel-heading"><b>[M-188, DelegatedSQLMethod] action.UserAction.isUserExist(String)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.UserAction.isUserExist --> dao.UserDAO.loadbyuserid</i><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="189"></a>
+							<div class="panel-heading"><b>[M-189, DelegatedSQLMethod] action.UserAction.register()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.UserAction.register --> action.UserAction.isUserExist --> dao.UserDAO.loadbyuserid</i><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.register --> cfg.hibernate.Beansystemuser.setUserid</i><br/>
+							- It sets attribute <i>userid</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.register --> cfg.hibernate.Beansystemuser.setUsername</i><br/>
+							- It sets attribute <i>username</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.register --> cfg.hibernate.Beansystemuser.setPwd</i><br/>
+							- It sets attribute <i>pwd</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.register --> cfg.hibernate.Beansystemuser.setUsertype</i><br/>
+							- It sets attribute <i>usertype</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.register --> cfg.hibernate.Beansystemuser.setCreateDate</i><br/>
+							- It sets attribute <i>createDate</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.register --> dao.UserDAO.add</i><br/>
+							- It inserts <i>userid, username, pwd, usertype, createDate, removeDate</i> into table <i>beansystemuser</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.userid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beansystemuser.username: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beansystemuser.pwd: It's type is string. Make sure the length is no more than 32, Make sure the value is not null.<br/>
+							- beansystemuser.usertype: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+							- beansystemuser.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="190"></a>
+							<div class="panel-heading"><b>[M-190, DelegatedSQLMethod] action.UserAction.addUser()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.UserAction.addUser --> action.UserAction.isUserExist --> dao.UserDAO.loadbyuserid</i><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.addUser --> cfg.hibernate.Beansystemuser.setUserid</i><br/>
+							- It sets attribute <i>userid</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.addUser --> cfg.hibernate.Beansystemuser.setUsername</i><br/>
+							- It sets attribute <i>username</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.addUser --> cfg.hibernate.Beansystemuser.setPwd</i><br/>
+							- It sets attribute <i>pwd</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.addUser --> cfg.hibernate.Beansystemuser.setUsertype</i><br/>
+							- It sets attribute <i>usertype</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.addUser --> cfg.hibernate.Beansystemuser.setCreateDate</i><br/>
+							- It sets attribute <i>createDate</i> from table <i>beansystemuser</i><br/>
+							<br/>
+							Via call-chain: <i>action.UserAction.addUser --> dao.UserDAO.add</i><br/>
+							- It inserts <i>userid, username, pwd, usertype, createDate, removeDate</i> into table <i>beansystemuser</i><br/>
+							<br/>
+							<b>-- Some constraints that should be taken into account are the following: </b><br/>
+							- beansystemuser.userid is the primary key. It's type is string. Make sure the length is no more than 20.<br/>
+							- beansystemuser.username: It's type is string. Make sure the length is no more than 50, Make sure the value is not null.<br/>
+							- beansystemuser.pwd: It's type is string. Make sure the length is no more than 32, Make sure the value is not null.<br/>
+							- beansystemuser.usertype: It's type is string. Make sure the length is no more than 20, Make sure the value is not null.<br/>
+							- beansystemuser.createDate: It's type is timestamp. Make sure the length is no more than 19, Make sure the value is not null.<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="191"></a>
+							<div class="panel-heading"><b>[M-191, DelegatedSQLMethod] action.UserAction.delete()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.UserAction.delete --> dao.UserDAO.delete</i><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="192"></a>
+							<div class="panel-heading"><b>[M-192, DelegatedSQLMethod] action.UserAction.resetPwd()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<span class="glyphicon glyphicon-comment"></span>
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i>action.UserAction.resetPwd --> dao.UserDAO.resetPwd</i><br/>
+							- It queries the table <i>beansystemuser</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+</body>
+</html>

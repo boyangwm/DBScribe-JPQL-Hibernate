@@ -33,10 +33,15 @@ namespace DBScribeHibernate.DBScribeHibernate
 
         //// Real projects
         //public static readonly string ProjName = @"_RealProjects\EducationManagementSystem";    // XML mapping
+        //public static readonly string ProjName = @"_RealProjects\EEIT76"; //XML mapping
+        //public static readonly string ProjName = @"_RealProjects\MusicBrainZ"; // Annotation mapping
+
+        // Show result report
+        public static readonly string ProjName = @"_RealProjects\BookLib"; //XML mapping
+        //public static readonly string ProjName = @"_RealProjects\SISCLIV"; //XML mapping
         //public static readonly string ProjName = @"_RealProjects\chat";  // Annotation mapping
         //public static readonly string ProjName = @"_RealProjects\UserManagementAccessControl";  // Annotation mapping
-        //public static readonly string ProjName = @"_RealProjects\MusicBrainZ"; // Annotation mapping
-        public static readonly string ProjName = @"_RealProjects\SpringMVCHibernate";
+        
 
         /// <summary>
         /// SrcML Location

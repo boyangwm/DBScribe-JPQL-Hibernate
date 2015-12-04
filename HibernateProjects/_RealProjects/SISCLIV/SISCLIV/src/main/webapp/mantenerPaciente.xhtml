@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Bienvenidos a SISCLIV!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+              media="screen" />
+        <link href="resources/css/fondo.css" rel="stylesheet" media="screen" />
+        <link rel="shortcut icon" href="resources/images/favicon.jpg"
+              type="image/x-icon" />
+    </h:head>
+    <h:body>
+        <section class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <b>Mantenimiento de Pacientes</b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <h:form id="agregarForm" styleClass="form-horizontal">
+                        <div class="form-group">
+                            <p:commandButton value="Agregar" oncomplete="PF('dlgagregar').show();" update=":formAgregar"/>
+                        </div>
+                    </h:form>
+                </div>
+                <h:form id="formMostrar">
+                    <p:dataTable var="pac" value="#{pacienteBean.pacientes}" emptyMessage="No hay pacientes registrados"
+                                 paginator="true" rows="10" paginatorPosition="top"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10"
+                                 style="width: 98%;margin: auto;">
+                        <p:column filterBy="#{pac.idPaciente}" headerText="N° Historial" style="text-align: left;" filterMatchMode="contains">
+                            <h:outputText value="#{pac.idPaciente}" />
+                        </p:column>
+                        <p:column headerText="Nombre" style="text-align: left; width: 120px">
+                            <h:outputText value="#{pac.nombre}" />
+                        </p:column>
+                        <p:column headerText="Fecha Nacimiento" style="text-align: left; width: 120px">
+                            <h:outputText value="#{fn:substring(pac.fechaNac,0,11)}" />
+                        </p:column>
+                        <p:column headerText="Castrado" style="text-align: left; width: 110px">
+                            <h:outputText value="#{pac.cuandoCastrado != null ? fn:substring(pac.cuandoCastrado,0,11) : 'No'}" />
+                        </p:column>
+                        <p:column headerText="Color/Señas" style="text-align: left;">
+                            <h:outputText value="#{pac.colorSennas}" />
+                        </p:column>
+                        <p:column headerText="Especie" style="text-align: left;">
+                            <h:outputText value="#{pac.especie}" />
+                        </p:column>
+                        <p:column headerText="Raza" style="text-align: left;">
+                            <h:outputText value="#{pac.raza}" />
+                        </p:column>
+                        <p:column headerText="Sexo" style="text-align: left;">
+                            <h:outputText value="#{pac.sexo == 1 ? 'Macho' : 'Hembra'}" />
+                        </p:column>
+                        <p:column headerText="" style="text-align: center; width: 100px">
+                            <p:commandButton value="Editar" oncomplete="PF('dlgmodificar').show();" update=":formModificar">
+                                <f:setPropertyActionListener target="#{pacienteBean.paciente}" value="#{pac}" />                 
+                            </p:commandButton>
+                        </p:column>
+                        <p:column headerText="Carnet">
+                            <p:commandButton style="width: 35px;" value="" actionListener="#{pacienteBean.generarCarnetPaciente(actionEvent, pac.idPaciente)}"
+                                    ajax="false" styleClass="btn btn-primary" icon="ui-icon-document" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <p:dialog id="dlgModificar" header="Modificar Datos de Paciente" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgmodificar" modal="true" resizable="false">
+                    <h:form id="formModificar" class="form-horizontal">
+                        <p:growl id="msgModificar" showDetail="true"/>
+                        <div class="form-group">
+                            <label for="m_nombrePac" class="col-sm-2 control-label">Nombre</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="m_nombrePac"
+                                             value="#{pacienteBean.paciente.nombre}"
+                                             styleClass="form-control" required="true"/>
+                            </div>
+                            <label for="m_especie" class="col-sm-2 control-label">Especie</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="m_especie"
+                                             value="#{pacienteBean.paciente.especie}"
+                                             styleClass="form-control" required="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="m_raza" class="col-sm-2 control-label">Raza</label>
+                                <div class="col-sm-4">
+                                    <p:inputText id="m_raza" value="#{pacienteBean.paciente.raza}"
+                                                 styleClass="form-control" />
+                                </div>
+                                <label for="m_fechaNac" class="col-sm-2 control-label">Fecha
+                                    de Nacimiento</label>
+                                <div class="col-sm-4">
+                                    <p:calendar id="m_fechaNac"
+                                                value="#{pacienteBean.paciente.fechaNac}" locale="de"
+                                                navigator="true" pattern="yyyy-MM-dd" required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="m_sexo" class="col-sm-2 control-label">Sexo</label>
+                            <div class="col-sm-4">
+                                <p:selectOneRadio id="m_sexo" value="#{pacienteBean.paciente.sexo}" required="true">
+                                    <f:selectItem itemLabel="Macho" itemValue="1" />
+                                    <f:selectItem itemLabel="Hembra" itemValue="2" />
+                                </p:selectOneRadio>
+                            </div>
+                            <label for="m_intacto" class="col-sm-2 control-label">Intacto</label>
+                            <div class="col-sm-4">
+                                <p:selectOneRadio id="m_intacto" value="#{pacienteBean.paciente.intacto}" required="true">
+                                    <f:selectItem itemLabel="Si" itemValue="1" />
+                                    <f:selectItem itemLabel="No" itemValue="0" />
+                                </p:selectOneRadio>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="m_castrado" class="col-sm-2 control-label">Castrado</label>
+                            <div class="col-sm-4">
+                                <p:selectOneRadio id="m_castrado" value="#{pacienteBean.paciente.castrado}" >
+                                    <f:selectItem itemLabel="Si" itemValue="1" />
+                                    <f:selectItem itemLabel="No" itemValue="0" />
+                                    <f:ajax render="m_cuandoCas"/>
+                                </p:selectOneRadio>
+                            </div>
+                            <label for="m_cuandoCas" class="col-sm-2 control-label">Cuando</label>
+                            <div class="col-sm-4">
+                                <p:calendar id="m_cuandoCas"
+                                            value="#{pacienteBean.paciente.cuandoCastrado}" locale="de"
+                                            navigator="true" pattern="yyyy-MM-dd" 
+                                            disabled="#{pacienteBean.paciente.castrado == '0'}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="m_color" class="col-sm-2 control-label">Color</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="m_color" required="true"
+                                             value="#{pacienteBean.paciente.colorSennas}"
+                                             styleClass="form-control" />
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-4" style="padding-left: 75px">
+                                <p:commandButton value="Guardar" ajax="false"
+                                                 action="#{pacienteBean.actualizarPaciente()}"
+                                                 styleClass="btn btn-primary" />
+                            </div>
+                        </div>
+                    </h:form>
+                </p:dialog>
+
+                <p:dialog id="dlgAgregar" header="Agregar un Paciente" showEffect="explode" hideEffect="explode"
+                          widgetVar="dlgagregar" modal="true" resizable="false">
+                    <h:form id="formAgregar" class="form-horizontal">
+                        <p:growl id="msgAgregar" showDetail="true"/>
+                        <div class="form-group">
+                            <label for="dniCliente" class="col-sm-2 control-label">DNI
+                                Cliente:</label>
+                            <div class="col-sm-4">
+                                <p:autoComplete id="dniCliente" value="#{pacienteBean.cliente}"
+                                                completeMethod="#{pacienteBean.completeCliente}" var="cliente"
+                                                itemLabel="#{cliente.dni}" itemValue="#{cliente}"
+                                                converter="clienteConverter" forceSelection="true" />
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-4" style="padding-left: 75px">
+                                <p:commandButton value="Completar" ajax="true"
+                                                 styleClass="btn btn-primary" update="output" />
+                            </div>
+                        </div>
+                        <br />
+                        <p:panel id="output">
+                            <div class="form-group">
+                                <label for="nombres" class="col-sm-2 control-label">Nombres
+                                    y Apellidos</label>
+                                <div class="col-sm-4">
+                                    <p:inputText id="nombres"
+                                                 value="#{pacienteBean.cliente.nombres} 
+                                                 #{pacienteBean.cliente.apellidos}"
+                                                 styleClass="form-control" readonly="true" />
+                                </div>
+                                <label for="dni" class="col-sm-2 control-label">N° DNI</label>
+                                <div class="col-sm-4">
+                                    <p:inputText id="dni" value="#{pacienteBean.cliente.dni}"
+                                                 readonly="true" styleClass="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="direccion" class="col-sm-2 control-label">Direccion</label>
+                                <div class="col-sm-4">
+                                    <p:inputText id="direccion"
+                                                 value="#{pacienteBean.cliente.direccion} 
+                                                 #{pacienteBean.cliente.distrito}"
+                                                 styleClass="form-control" readonly="true" />
+                                </div>
+                                <label for="telefono" class="col-sm-2 control-label">Telefono</label>
+                                <div class="col-sm-4">
+                                    <p:inputText id="telefono"
+                                                 value="#{pacienteBean.cliente.telefono}" readonly="true"
+                                                 styleClass="form-control" />
+                                </div>
+                            </div>
+                        </p:panel>
+                    </h:form>
+                    <h:form id="formAgregar2" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="nombrePac" class="col-sm-2 control-label">Nombre</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="nombrePac"
+                                             value="#{pacienteBean.paciente.nombre}"
+                                             styleClass="form-control" required="true"/>
+                            </div>
+                            <label for="especie" class="col-sm-2 control-label">Especie</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="especie"
+                                             value="#{pacienteBean.paciente.especie}"
+                                             styleClass="form-control" required="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="raza" class="col-sm-2 control-label">Raza</label>
+                                <div class="col-sm-4">
+                                    <p:inputText id="raza" value="#{pacienteBean.paciente.raza}"
+                                                 styleClass="form-control" />
+                                </div>
+                                <label for="fechaNac" class="col-sm-2 control-label">Fecha
+                                    de Nacimiento</label>
+                                <div class="col-sm-4">
+                                    <p:calendar id="fechaNac"
+                                                value="#{pacienteBean.paciente.fechaNac}" locale="de"
+                                                navigator="true" pattern="yyyy-MM-dd" required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sexo" class="col-sm-2 control-label">Sexo</label>
+                            <div class="col-sm-4">
+                                <p:selectOneRadio id="sexo" value="#{pacienteBean.paciente.sexo}" required="true">
+                                    <f:selectItem itemLabel="Macho" itemValue="1" />
+                                    <f:selectItem itemLabel="Hembra" itemValue="2" />
+                                </p:selectOneRadio>
+                            </div>
+                            <label for="intacto" class="col-sm-2 control-label">Intacto</label>
+                            <div class="col-sm-4">
+                                <p:selectOneRadio id="intacto" value="#{pacienteBean.paciente.intacto}" required="true">
+                                    <f:selectItem itemLabel="Si" itemValue="1" />
+                                    <f:selectItem itemLabel="No" itemValue="0" />
+                                </p:selectOneRadio>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="castrado" class="col-sm-2 control-label">Castrado</label>
+                            <div class="col-sm-4">
+                                <p:selectOneRadio id="castrado" value="#{pacienteBean.paciente.castrado}" >
+                                    <f:selectItem itemLabel="Si" itemValue="1" />
+                                    <f:selectItem itemLabel="No" itemValue="0" />
+                                    <f:ajax render="cuandoCas"/>
+                                </p:selectOneRadio>
+                            </div>
+                            <label for="cuandoCas" class="col-sm-2 control-label">Cuando</label>
+                            <div class="col-sm-4">
+                                <p:calendar id="cuandoCas"
+                                            value="#{pacienteBean.paciente.cuandoCastrado}" locale="de"
+                                            navigator="true" pattern="yyyy-MM-dd" 
+                                            disabled="#{pacienteBean.paciente.castrado == '0'}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="color" class="col-sm-2 control-label">Color</label>
+                            <div class="col-sm-4">
+                                <p:inputText id="color" required="true"
+                                             value="#{pacienteBean.paciente.colorSennas}"
+                                             styleClass="form-control" />
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-4" style="padding-left: 75px">
+                                <p:commandButton value="Guardar" ajax="false"
+                                                 action="#{pacienteBean.registrarPaciente()}"
+                                                 styleClass="btn btn-primary" />
+                            </div>
+                        </div>
+                    </h:form>
+                </p:dialog>
+
+
+
+            </div>
+        </section>
+    </h:body>
+</html>

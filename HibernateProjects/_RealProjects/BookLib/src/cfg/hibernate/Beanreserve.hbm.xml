@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-16 1:29:29 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="cfg.hibernate.Beanreserve" table="beanreserve" catalog="booklib">
+        <id name="reserveid" type="java.lang.Integer">
+            <column name="reserveid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="beanreader" class="cfg.hibernate.Beanreader" fetch="select">
+            <column name="readerid" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="beanbook" class="cfg.hibernate.Beanbook" fetch="select">
+            <column name="bookBarcode" length="20" not-null="true" />
+        </many-to-one>
+        <property name="reserveDate" type="timestamp">
+            <column name="reserveDate" length="19" not-null="true" />
+        </property>
+        <property name="cancelDate" type="timestamp">
+            <column name="cancelDate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

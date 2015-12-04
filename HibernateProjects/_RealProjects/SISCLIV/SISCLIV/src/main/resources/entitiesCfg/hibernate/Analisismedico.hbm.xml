@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2015 10:49:37 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="pe.edu.unmsm.veterinaria.clinica.entities.Analisismedico" table="analisismedico" catalog="eleganti_siscliv">
+        <id name="idAnalisisMedico" type="java.lang.Integer">
+            <column name="idAnalisisMedico" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="atencionmedica" class="pe.edu.unmsm.veterinaria.clinica.entities.Atencionmedica" fetch="select">
+            <column name="AtencionMedica_idAtencionMedica" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoanalisis" class="pe.edu.unmsm.veterinaria.clinica.entities.Tipoanalisis" fetch="select">
+            <column name="TipoAnalisis_idTipoAnalisis" not-null="true" />
+        </many-to-one>
+        <many-to-one name="clinicoveterinario" class="pe.edu.unmsm.veterinaria.clinica.entities.Clinicoveterinario" fetch="select">
+            <column name="ClinicoVeterinario_idClinicoVeterinario" />
+        </many-to-one>
+        <property name="estadoAnalisisMedico" type="string">
+            <column name="EstadoAnalisisMedico" length="30" />
+        </property>
+        <property name="ucolor" type="string">
+            <column name="UColor" length="45" />
+        </property>
+        <property name="uaspecto" type="string">
+            <column name="UAspecto" length="45" />
+        </property>
+        <property name="udensidad" type="string">
+            <column name="UDensidad" length="10" />
+        </property>
+        <property name="upH" type="string">
+            <column name="UpH" length="10" />
+        </property>
+        <property name="uproteinas" type="string">
+            <column name="UProteinas" length="20" />
+        </property>
+        <property name="uglucosa" type="string">
+            <column name="UGlucosa" length="20" />
+        </property>
+        <property name="uhemoglobina" type="string">
+            <column name="UHemoglobina" length="20" />
+        </property>
+        <property name="unitritos" type="string">
+            <column name="UNitritos" length="20" />
+        </property>
+        <property name="uleucocitos" type="string">
+            <column name="ULeucocitos" length="20" />
+        </property>
+        <property name="ueritrocitos" type="string">
+            <column name="UEritrocitos" length="20" />
+        </property>
+        <property name="ubacterias" type="string">
+            <column name="UBacterias" length="40" />
+        </property>
+        <property name="uobservaciones" type="string">
+            <column name="UObservaciones" length="1000" />
+        </property>
+        <property name="shematocrito" type="string">
+            <column name="SHematocrito" length="10" />
+        </property>
+        <property name="shemoglobina" type="string">
+            <column name="SHemoglobina" length="10" />
+        </property>
+        <property name="sleucocitos" type="string">
+            <column name="SLeucocitos" length="10" />
+        </property>
+        <property name="sneutrofilos" type="string">
+            <column name="SNeutrofilos" length="10" />
+        </property>
+        <property name="slinfocitos" type="string">
+            <column name="SLinfocitos" length="10" />
+        </property>
+        <property name="splaquetas" type="string">
+            <column name="SPlaquetas" length="10" />
+        </property>
+        <property name="sobservaciones" type="string">
+            <column name="SObservaciones" length="1000" />
+        </property>
+    </class>
+</hibernate-mapping>

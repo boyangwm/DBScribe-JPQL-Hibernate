@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/11/2015 10:49:37 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="pe.edu.unmsm.veterinaria.clinica.entities.Atencionmedica" table="atencionmedica" catalog="eleganti_siscliv">
+        <id name="idAtencionMedica" type="java.lang.Integer">
+            <column name="idAtencionMedica" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="historial" class="pe.edu.unmsm.veterinaria.clinica.entities.Historial" fetch="select">
+            <column name="Historial_idHistorial" />
+        </many-to-one>
+        <many-to-one name="medicoveterinario" class="pe.edu.unmsm.veterinaria.clinica.entities.Medicoveterinario" fetch="select">
+            <column name="MedicoVeterinario_idMedicoVeterinario" />
+        </many-to-one>
+        <property name="estadoAtencionMedica" type="string">
+            <column name="EstadoAtencionMedica" length="30" />
+        </property>
+        <property name="temperatura" type="string">
+            <column name="Temperatura" length="5" />
+        </property>
+        <property name="vacunas" type="string">
+            <column name="Vacunas" length="50" />
+        </property>
+        <property name="peso" type="string">
+            <column name="Peso" length="20" />
+        </property>
+        <property name="diagnostico" type="string">
+            <column name="Diagnostico" length="1000" />
+        </property>
+        <property name="tratamiento" type="string">
+            <column name="Tratamiento" length="2000" />
+        </property>
+        <property name="proximaCita" type="string">
+            <column name="ProximaCita" length="20" />
+        </property>
+        <property name="observacionesReceta" type="string">
+            <column name="ObservacionesReceta" length="100" />
+        </property>
+        <property name="fechaHoraRegistro" type="timestamp">
+            <column name="fechaHoraRegistro" length="19" />
+        </property>
+        <set name="recetas" table="receta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="AtencionMedica_idAtencionMedica" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Receta" />
+        </set>
+        <set name="analisismedicos" table="analisismedico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="AtencionMedica_idAtencionMedica" not-null="true" />
+            </key>
+            <one-to-many class="pe.edu.unmsm.veterinaria.clinica.entities.Analisismedico" />
+        </set>
+    </class>
+</hibernate-mapping>
