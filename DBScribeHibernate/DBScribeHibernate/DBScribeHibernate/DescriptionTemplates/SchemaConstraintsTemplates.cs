@@ -16,64 +16,30 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             return line;
         }
 
-        public static string SchemaConstraintsVarchar(string tableName, string limits)
-        {
-            string line = SchemaConstraintsHeader();
-            line += "Make sure the strings to be stored in " + tableName + " do not overflow the varchar limits: ";
-            line += limits;
-            return line;
-        }
-
-        public static string SchemaConstraintsNotNull(string tableName, string attr)
-        {
-            string line = SchemaConstraintsHeader();
-            line += "Make sure the values in " + tableName + "." + attr + " are not null";
-            return line;
-        }
-
         public static string SchemaConstraintsPK(SinglePK singlePK)
         {
-            //return "Primary key: " + singlePK.TablePK + " (type = " + singlePK.Type + ", generator class = " + singlePK.GeneratorClass + ")";
-            //string onlyTablePK = singlePK.TablePK;
-            //string[] segs = onlyTablePK.Split('.');
-            //if (segs.Length > 1)
-            //{
-            //    onlyTablePK = segs[segs.Length - 1];
-            //}
-            string line = "Primary key: " + singlePK.TablePK + " (type=" + singlePK.Type;
-            if (singlePK.ConstraintInfo == "")
+            string line = singlePK.TablePK + " is the primary key. ";
+
+            if (singlePK.Type != "")
             {
-                line += ")";
+                line += "It's type is " + singlePK.Type + ". ";
             }
-            else
+            
+            if (singlePK.ConstraintInfo != "")
             {
-                line += ", " + singlePK.ConstraintInfo + ")";
+                line += singlePK.ConstraintInfo + ".";
             }
             return line;
         }
 
         public static string SchemaConstraintsPK(CompositePK compositePK)
         {
-            string line = "Primary key: ";
+            string line = "";
             foreach (SinglePK pk in compositePK.PKList)
             {
-                //string onlyTablePk = pk.TablePK;
-                //string[] segs = onlyTablePk.Split('.');
-                //if (segs.Length > 1)
-                //{
-                //    onlyTablePk = segs[segs.Length - 1];
-                //}
-                line += pk.TablePK + " (type=" + pk.Type;
-                if (pk.ConstraintInfo == "")
-                {
-                    line += "), ";
-                }
-                else
-                {
-                    line += ", " + pk.ConstraintInfo + "), ";
-                }
+                line += SchemaConstraintsPK(pk) + "<br/>- ";
             }
-            return line.Substring(0, line.Length - 2);
+            return line.Substring(0, line.Length - 7);
         }
 
         public static string SchemaConstraintsClassProp(ClassProperty classProp)
@@ -83,14 +49,14 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 return "";
             }
 
-            string line = classProp.TableAttr + " (type=" + classProp.Type;
-            if (classProp.ConstraintInfo == "")
+            string line = classProp.TableAttr + ": ";
+            if (classProp.Type != "")
             {
-                line += ")";
+                line += "It's type is " + classProp.Type + ". ";
             }
-            else
+            if (classProp.ConstraintInfo != "")
             {
-                line += ", " + classProp.ConstraintInfo + ")";
+                line += classProp.ConstraintInfo + ".";
             }
             return line;
         }

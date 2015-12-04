@@ -37,7 +37,20 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
                 }
                 else if (ColumnConSet.Contains(nameEle.Value))
                 {
-                    constraintList.Add(exprEle.Value.ToString());
+                    //constraintList.Add(exprEle.Value.ToString());
+                    if (exprEle.Value.Contains("unique") && exprEle.Value.ToLower().Contains("true"))
+                    {
+                        constraintList.Add("Make sure it is unique");
+                    }
+                    else if (exprEle.Value.Contains("nullable") && exprEle.Value.ToLower().Contains("false"))
+                    {
+                        constraintList.Add("Make sure it is no null");
+                    }
+                    else if (exprEle.Value.Contains("length"))
+                    {
+                        string[] tokens = exprEle.Value.Split('=');
+                        constraintList.Add("Make sure the lenght is not more than " + tokens[1]);
+                    }
                 }
             }
 
@@ -47,7 +60,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
             }
             else
             {
-                string cInfo = "(" + string.Join("), (", constraintList) + ")";
+                string cInfo = string.Join(", ", constraintList);
                 return Tuple.Create(columnName, cInfo);
             }
         }

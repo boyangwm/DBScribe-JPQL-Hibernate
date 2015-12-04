@@ -28,13 +28,20 @@ namespace DBScribeHibernate.DBScribeHibernate
                     }
                     else if (cType == "precision" || cType == "scale")
                     {
-                        cInfo += "Make sure the " + cType + " is " + cAttr.Value + ", ";
+                        cInfo += "Make sure the decimal " + cType + " is " + cAttr.Value + ", ";
                     }
-                    else if (cType == "not-null" || cType == "unique")
+                    else if (cType == "not-null")
                     {
                         if (cAttr.Value.ToLower() == "true")
                         {
-                            cInfo += "Make sure the value is " + cType + ", ";
+                            cInfo += "Make sure the value is not null, ";
+                        }
+                    }
+                    else if (cType == "unique")
+                    {
+                        if (cAttr.Value.ToLower() == "true")
+                        {
+                            cInfo += "Make sure the value is unique, ";
                         }
                     }
                     else if (cType == "default")
