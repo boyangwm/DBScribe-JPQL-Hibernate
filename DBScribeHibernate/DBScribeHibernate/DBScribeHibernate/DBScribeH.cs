@@ -51,6 +51,8 @@ namespace DBScribeHibernate
         public List<string> AllMethodHeaders;
         public Dictionary<string, string> AllMethodFullDescriptions;
 
+        Dictionary<string, int> GlobalMethodHeaderToIndex;
+
 
         public DBScribeH(string targetProjPath, string projName)
         {
@@ -79,7 +81,7 @@ namespace DBScribeHibernate
                 method_count[Constants.SQLMethodCategory.SQLOperatingMethod.ToString()],
                 method_count[Constants.SQLMethodCategory.LocalSQLMethod.ToString()],
                 method_count[Constants.SQLMethodCategory.DelegatedSQLMethod.ToString()],
-                AllMethodHeaders, AllMethodFullDescriptions);
+                AllMethodHeaders, AllMethodFullDescriptions, GlobalMethodHeaderToIndex);
             homeGenerator.Generate(Constants.ResultPath + "DBScribe_" + projName + ".html");
         }
 
@@ -289,6 +291,15 @@ namespace DBScribeHibernate
 
         public Tuple<int, string> Step3_1_BottomUpTraverseMethods()
         {
+            GlobalMethodHeaderToIndex = new Dictionary<string, int>();
+            int midx = 1;
+            foreach (MethodDefinition method in bottomUpSortedMethods)
+            {
+                string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
+                GlobalMethodHeaderToIndex.Add(methodHeader, midx++);
+            }
+
+
             AllMethodHeaders = new List<string>();
             AllMethodFullDescriptions = new Dictionary<string, string>();
 
@@ -298,26 +309,24 @@ namespace DBScribeHibernate
             Dictionary<string, List<string>> DBMethodToConstraitList = new Dictionary<string, List<string>>();
             Dictionary<string, List<string>> DBMethodToTableAttrNames = new Dictionary<string, List<string>>();
 
-            int idx_m = 0;
             method_count = new Dictionary<string, int>();
             method_count.Add(Constants.SQLMethodCategory.SQLOperatingMethod.ToString(), 0);
             method_count.Add(Constants.SQLMethodCategory.LocalSQLMethod.ToString(), 0);
             method_count.Add(Constants.SQLMethodCategory.DelegatedSQLMethod.ToString(), 0);
 
             bool isDBMethod = true;
+            int db_m_idx = 0;
             foreach (MethodDefinition method in bottomUpSortedMethods)
             {
-
+                string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                 isDBMethod = true;
 
                 // (1) Check if POJO Class's Get/Set Function
                 BasicMethod basicMethod = MethodUtil.CheckIfGetSetMethodsInPOJOClass(method, allDBClassToTableName, allDBClassPropToTableAttr);
                 if (basicMethod != null)
                 {
-                    
-                    string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                     string curMethodType = Constants.SQLMethodCategory.SQLOperatingMethod.ToString();
-                    string curMethodTitle = "[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader;
+                    string curMethodTitle = "[M-" + ++db_m_idx + ", " + curMethodType + "] " + methodHeader;
                     outputBuilder.Append(curMethodTitle);
                     AllMethodHeaders.Add(curMethodTitle);
                     method_count[curMethodType] += 1;
@@ -339,9 +348,8 @@ namespace DBScribeHibernate
                     List<SessionBuiltInFunction> sessionBuiltInFuncList = MethodUtil.CheckIfCallSessionBuiltInFunction(method, allDBClassToTableName);
                     if (sessionBuiltInFuncList != null && sessionBuiltInFuncList.Count() != 0)
                     {
-                        string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                         string curMethodType = Constants.SQLMethodCategory.LocalSQLMethod.ToString();
-                        string curMethodTitle = "[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader;
+                        string curMethodTitle = "[M-" + ++db_m_idx + ", " + curMethodType + "] " + methodHeader;
                         outputBuilder.Append(curMethodTitle);
                         AllMethodHeaders.Add(curMethodTitle);
                         method_count[curMethodType] += 1;
@@ -350,7 +358,8 @@ namespace DBScribeHibernate
                         IEnumerable<string> invokedDBMethodNameHeaders = MethodUtil.GetInvokedMethodNameHeaderInTheMethod(method).Intersect(_DBRelatedMethods);
                         List<List<MethodDefinition>> calleeList = cgm.findCalleeList(method);
                         MethodDescription curMD = MethodDescriptionUtil.DescribeSessionMethod(method, methodHeader, calleeList, sessionBuiltInFuncList,
-                            DBMethodToOpList, DBMethodToConstraitList, DBMethodToTableAttrNames, allDBClassToTableName, allDBClassPropToTableAttr);
+                            DBMethodToOpList, DBMethodToConstraitList, DBMethodToTableAttrNames, allDBClassToTableName, allDBClassPropToTableAttr,
+                            tableNameToTableConstraints, GlobalMethodHeaderToIndex);
                         outputBuilder.AppendLine(curMD.MethodDescriptionStr);
                         AllMethodFullDescriptions.Add(curMethodTitle, curMD.MethodDescriptionStr);
                         DBMethodToOpList.Add(methodHeader, curMD.MethodOperationList);
@@ -366,16 +375,15 @@ namespace DBScribeHibernate
                         IEnumerable<string> invokedDBMethodNameHeaders = MethodUtil.GetInvokedMethodNameHeaderInTheMethod(method).Intersect(_DBRelatedMethods);
                         if (invokedDBMethodNameHeaders.Count() != 0)
                         {
-                            string methodHeader = MethodDescriptionUtil.BuildMethodHeader(method);
                             string curMethodType = Constants.SQLMethodCategory.DelegatedSQLMethod.ToString();
-                            string curMethodTitle = "[M-" + ++idx_m + ", " + curMethodType + "] " + methodHeader;
+                            string curMethodTitle = "[M-" + ++db_m_idx + ", " + curMethodType + "] " + methodHeader;
                             outputBuilder.Append(curMethodTitle);
                             AllMethodHeaders.Add(curMethodTitle);
                             method_count[curMethodType] += 1;
 
                             List<List<MethodDefinition>> calleeList = cgm.findCalleeList(method);
-                            MethodDescription curMD = MethodDescriptionUtil.DescribeDelegatedMethod(methodHeader, calleeList, 
-                                DBMethodToOpList, DBMethodToConstraitList);
+                            MethodDescription curMD = MethodDescriptionUtil.DescribeDelegatedMethod(methodHeader, calleeList,
+                                DBMethodToOpList, DBMethodToConstraitList, GlobalMethodHeaderToIndex);
                             outputBuilder.AppendLine(curMD.MethodDescriptionStr);
                             AllMethodFullDescriptions.Add(curMethodTitle, curMD.MethodDescriptionStr);
                             if (!DBMethodToOpList.ContainsKey(methodHeader))
@@ -400,7 +408,7 @@ namespace DBScribeHibernate
                 }
             }
 
-            return Tuple.Create(idx_m, outputBuilder.ToString());
+            return Tuple.Create(db_m_idx, outputBuilder.ToString());
         }
 
     }

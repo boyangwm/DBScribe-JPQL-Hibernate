@@ -18,10 +18,12 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
         public int num_delegated;
         public List<string> allMethodHeaders;
         public Dictionary<string, string> allMethodFullDescriptions;
+        public Dictionary<string, int> globalMethodHeaderToIndex;
 
         public HomeGenerator(String projName, int num_db_methods, int num_total_methods, 
             int num_sql_operating, int num_local, int num_delegated,
-            List<string> allMethodHeaders, Dictionary<string, string> allMethodFullDescriptions)
+            List<string> allMethodHeaders, Dictionary<string, string> allMethodFullDescriptions,
+            Dictionary<string, int> globalMethodHeaderToIndex)
         {
             this.projName = projName;
             this.num_db_methods = num_db_methods;
@@ -31,6 +33,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
             this.num_delegated = num_delegated;
             this.allMethodHeaders = allMethodHeaders;
             this.allMethodFullDescriptions = allMethodFullDescriptions;
+            this.globalMethodHeaderToIndex = globalMethodHeaderToIndex;
         }
 
         public void Generate(string path)
@@ -43,12 +46,13 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
             st.SetAttribute("NUM_SQL_OPERATING", this.num_sql_operating);
             st.SetAttribute("NUM_LOCAL", this.num_local);
             st.SetAttribute("NUM_DELEGATED", this.num_delegated);
-            int ID = 1;
             foreach (string methodTitle in allMethodHeaders)
             {
+                string[] tokens = methodTitle.Split(new string[] { "] " }, StringSplitOptions.None);
+                string methodHeader = tokens[1];
                 string methodDescription = allMethodFullDescriptions[methodTitle];
 
-                st.SetAttribute("IDNum", ID++);
+                st.SetAttribute("IDNum", globalMethodHeaderToIndex[methodHeader]);
                 st.SetAttribute("MethodSignature", methodTitle);
                 //st.SetAttribute("SourceCode", "...");
                 //st.SetAttribute("SwumDesc", "xxx");

@@ -68,7 +68,7 @@ div.tooltip-inner {
 				<div class="panel-heading"><b>$ms$</b></div>
 				<div class="panel-body">				
 				<p>
-				<span class="glyphicon glyphicon-comment"></span>
+				<!-- <span class="glyphicon glyphicon-comment"></span> -->
 				$mbd$
 				</p>
 				</div>

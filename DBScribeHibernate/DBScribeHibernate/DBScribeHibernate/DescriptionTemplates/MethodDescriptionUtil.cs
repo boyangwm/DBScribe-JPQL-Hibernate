@@ -12,12 +12,13 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
     class MethodDescriptionUtil
     {
         private static string LocalMethodHeader = "-- This method implements the following db-related operations: ";
-        private static string POJOClassMethodNote = "*<b>Note</b>: This method will not affect the database util Session built-in function is called";
+        private static string POJOClassMethodNote = "*<b>Note</b>: This method will not affect the database until Session built-in function is called";
         private static string ConstraitsHeader = "-- Some constraints that should be taken into account are the following: ";
         private static string DelegatedMethodHeader = "-- This method invokes db-related operations via delegation: ";
 
         public static MethodDescription DescribeDelegatedMethod(string methodHeader, List<List<MethodDefinition>> calleeList,
-            Dictionary<string, List<string>> DBMethodToOpList, Dictionary<string, List<string>> DBMethodToConstraitList)
+            Dictionary<string, List<string>> DBMethodToOpList, Dictionary<string, List<string>> DBMethodToConstraitList,
+            Dictionary<string, int> GlobalMethodHeaderToIndex)
         {
             StringBuilder builder = new StringBuilder();
             List<string> opList = new List<string>();
@@ -35,7 +36,9 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 Stack<MethodDefinition> mStack = new Stack<MethodDefinition>();
                 foreach (MethodDefinition md in path)
                 {
-                    methodAlongCallChain.Add(md.GetFullName());
+                    //methodAlongCallChain.Add(md.GetFullName());
+                    string mdHeader = BuildMethodHeader(md);
+                    methodAlongCallChain.Add("<a href=\"#" + GlobalMethodHeaderToIndex[mdHeader] + "\">" + md.GetFullName() + "</a>");
                     mStack.Push(md);
                 }
                 string callChain = string.Join(" --> ", methodAlongCallChain);
@@ -104,12 +107,13 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
         public static MethodDescription DescribeSessionMethod(MethodDefinition method, string methodHeader, List<List<MethodDefinition>> calleeList,
             List<SessionBuiltInFunction> sessionBuiltInFuncList, Dictionary<string, List<string>> DBMethodToOpList,
             Dictionary<string, List<string>> DBMethodToConstraitList, Dictionary<string, List<string>> DBMethodToTableNames,
-            Dictionary<string, string> allDBClassToTableName, Dictionary<string, string> allDBClassPropToTableAttr)
+            Dictionary<string, string> allDBClassToTableName, Dictionary<string, string> allDBClassPropToTableAttr,
+            Dictionary<string, List<string>> tableNameToTableConstraints, Dictionary<string, int> GlobalMethodHeaderToIndex)
         {
 
             StringBuilder builder = new StringBuilder();
             List<string> opList = new List<string>(); // only contains local method's operation
-            List<string> constraintList = new List<string>(); // only contains local method's constraints (hence, empty)
+            List<string> constraintList = new List<string>(); // only contains local method's constraints
 
             // Get Description From Call Chain
             StringBuilder deleBuilder = new StringBuilder();
@@ -125,7 +129,9 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 Stack<MethodDefinition> mStack = new Stack<MethodDefinition>();
                 foreach (MethodDefinition md in path)
                 {
-                    methodAlongCallChain.Add(md.GetFullName());
+                    //methodAlongCallChain.Add(md.GetFullName());
+                    string mdHeader = BuildMethodHeader(md);
+                    methodAlongCallChain.Add("<a href=\"#" + GlobalMethodHeaderToIndex[mdHeader] + "\">" + md.GetFullName() + "</a>");
                     mStack.Push(md);
                 }
 
@@ -187,6 +193,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 
             // Describe Session Method
             StringBuilder sessFuncBuilder = new StringBuilder();
+            Dictionary<string, string> sessFuncTableNameAndAttrList = new Dictionary<string, string>();
             foreach (SessionBuiltInFunction sessFunc in sessionBuiltInFuncList)
             {
                 if (SessionBuiltInFunction.Querys.Contains(sessFunc.FunctionName))
@@ -235,7 +242,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     }
                     //Console.WriteLine(attrListStr);
                     sessFuncBuilder.AppendLine("- It inserts <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
-                    
+                    sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
                 }
                 else if (SessionBuiltInFunction.Deletes.Contains(sessFunc.FunctionName))
                 {
@@ -258,6 +265,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         attrListStr = string.Join(", ", attrList);
                     }
                     sessFuncBuilder.AppendLine("- It updates <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
+                    sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
                 }
                 else if (SessionBuiltInFunction.SaveOrUpdates.Contains(sessFunc.FunctionName))
                 {
@@ -276,6 +284,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         attrListStr = string.Join(", ", attrList);
                     }
                     sessFuncBuilder.AppendLine("- It saves or updates <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
+                    sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
                 }
             }
 
@@ -290,10 +299,38 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                 builder.Append(deleBuilder.ToString());
             }
 
-            if (prevDBConstraints.Count() != 0)
+            // Get DB constraints
+            StringBuilder curConsBuilder = new StringBuilder();
+            foreach (KeyValuePair<string, string> item in sessFuncTableNameAndAttrList)
+            {
+                string tablename = item.Key;
+                if (tablename == "")
+                {
+                    continue;
+                }
+                string attrListStr = item.Value;
+                string[] attrs = attrListStr.Split(new char[] { ' ', ',' });
+                List<string> allConstraintList = tableNameToTableConstraints[tablename];
+                foreach (string cons in allConstraintList)
+                {
+                    foreach (string attr in attrs)
+                    {
+                        if (attr != "" && cons.Contains(attr))
+                        {
+                            curConsBuilder.AppendLine("- " + cons + "<br/>");
+                            constraintList.Add("- " + cons);
+                            break;
+                        }
+                    }
+                }
+            }
+            
+
+            if (prevDBConstraints.Count() != 0 || curConsBuilder.Length != 0)
             {
                 builder.AppendLine("<br/>");
                 builder.AppendLine("<b>" + ConstraitsHeader + "</b><br/>");
+                builder.Append(curConsBuilder.ToString());
                 foreach (string pc in prevDBConstraints)
                 {
                     builder.AppendLine(pc + "<br/>");
@@ -404,6 +441,15 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 
         public static string BuildMethodHeader(MethodDefinition method)
         {
+            if (method.GetFullName() == "com.jspdev.biyesheji.base._BaseRootDAO.getNamedQuery")
+            {
+                foreach (VariableDeclaration para in method.Parameters)
+                {
+                    Console.WriteLine(para.GetType());
+                    Console.WriteLine(para.VariableType);
+                    Console.ReadKey();
+                }
+            }
             StringBuilder builder = new StringBuilder();
             builder.Append(method.GetFullName() + "(");
             if (method.Parameters.Count() == 0)
@@ -412,7 +458,7 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             }
             else
             {
-                HashSet<string> paraTypes = new HashSet<string>();
+                List<string> paraTypes = new List<string>();
                 foreach (VariableDeclaration para in method.Parameters)
                 {
                     paraTypes.Add(para.VariableType.ToString());
