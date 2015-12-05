@@ -23,7 +23,7 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly string TargetProjPath = CurWorkspace + @"HibernateProjects";
 
         //// IF using <mapping resource="...xml" /> ---> xml
-        public static readonly string ProjName = @"MyFirstHibernate";
+        //public static readonly string ProjName = @"MyFirstHibernate";
         //public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
         //public static readonly string ProjName = @"HibernateComponentMappingExample";
 
@@ -31,14 +31,11 @@ namespace DBScribeHibernate.DBScribeHibernate
         //public static readonly string ProjName = @"HibernateOneToOneAnnotation";
         //public static readonly string ProjName = @"HibernateManyToManyAnnotation";
 
-        //// Real projects
-        //public static readonly string ProjName = @"_RealProjects\EEIT76"; //XML mapping
-        //public static readonly string ProjName = @"_RealProjects\MusicBrainZ"; // Annotation mapping
 
         // Show result report
-        //public static readonly string ProjName = @"_RealProjects\BookLib"; //XML mapping
+        public static readonly string ProjName = @"_RealProjects\BookLib"; //XML mapping
         //public static readonly string ProjName = @"_RealProjects\SISCLIV"; //XML mapping
-        //public static readonly string ProjName = @"_RealProjects\chat";  // Annotation mapping
+        //public static readonly string ProjName = @"_RealProjects\Chat";  // Annotation mapping
         //public static readonly string ProjName = @"_RealProjects\UserManagementAccessControl";  // Annotation mapping
         
 
