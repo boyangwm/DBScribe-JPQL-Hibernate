@@ -242,7 +242,10 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                     }
                     //Console.WriteLine(attrListStr);
                     sessFuncBuilder.AppendLine("- It inserts <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
-                    sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
+                    if (!sessFuncTableNameAndAttrList.ContainsKey(sessFunc.TargetTableName))
+                    {
+                        sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
+                    }
                 }
                 else if (SessionBuiltInFunction.Deletes.Contains(sessFunc.FunctionName))
                 {
@@ -265,7 +268,10 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         attrListStr = string.Join(", ", attrList);
                     }
                     sessFuncBuilder.AppendLine("- It updates <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
-                    sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
+                    if (!sessFuncTableNameAndAttrList.ContainsKey(sessFunc.TargetTableName))
+                    {
+                        sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
+                    }
                 }
                 else if (SessionBuiltInFunction.SaveOrUpdates.Contains(sessFunc.FunctionName))
                 {
@@ -284,7 +290,10 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
                         attrListStr = string.Join(", ", attrList);
                     }
                     sessFuncBuilder.AppendLine("- It saves or updates <i>" + attrListStr + "</i> into table <i>" + sessFunc.TargetTableName + "</i><br/>");
-                    sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
+                    if (!sessFuncTableNameAndAttrList.ContainsKey(sessFunc.TargetTableName))
+                    {
+                        sessFuncTableNameAndAttrList.Add(sessFunc.TargetTableName, attrListStr);
+                    }
                 }
             }
 
