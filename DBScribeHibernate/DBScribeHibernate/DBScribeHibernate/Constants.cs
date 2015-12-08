@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace DBScribeHibernate.DBScribeHibernate
 {
     /// <summary>
-    /// This class defines the common configurations throughout the entire projects
-    /// Author: Bin Nie
+    /// This class defines the common configurations throughout the entire DBScribeHibernate project.
     /// </summary>
     class Constants
     {
@@ -16,7 +15,6 @@ namespace DBScribeHibernate.DBScribeHibernate
         public static readonly string LogPath = "_TempLog";
         public static readonly string CurWorkspace = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\";
         public static readonly string ResultPath = CurWorkspace + @"DBScribeReports\";
-
 
         /// <summary>
         /// Target Project Location
@@ -30,7 +28,6 @@ namespace DBScribeHibernate.DBScribeHibernate
         //public static readonly string ProjName = @"_RealProjects\SISCLIV"; //XML mapping
         //public static readonly string ProjName = @"_RealProjects\Chat";  // Annotation mapping
         //public static readonly string ProjName = @"_RealProjects\UserManagementAccessControl";  // Annotation mapping
-        
 
         /// <summary>
         /// SrcML Location
@@ -51,40 +48,43 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// </summary>
         public static readonly string CfgFileName = "hibernate.cfg.xml";
 
+
         /// <summary>
-        /// Self-defined enumerations
+        /// Self-defined enumeration for Hibernate mapping file type
         /// </summary>
         public enum MappingFileType { XMLMapping, AnnotationMapping, OtherMapping, BaseMapping };
+        /// <summary>
+        /// Self-defined enumeration for basic methods in Java POJO class
+        /// </summary>
         public enum BasicMethodType { Get, Set, Construct };
+        /// <summary>
+        /// Self-defined enumeration for typical database operations
+        /// </summary>
         public enum MethodOperationType { Insert, Delete, Update, Query };
+        /// <summary>
+        /// Self-defined enumeration for three categories of methods in the target project
+        /// </summary>
         public enum SQLMethodCategory { SQLOperatingMethod, LocalSQLMethod, DelegatedSQLMethod};
 
         /// <summary>
-        /// Hibernate Session built-in functions
+        /// Hibernate Session keyword: "Session"
         /// </summary>
         public static readonly string Session = "Session";
 
 
         /// <summary>
-        /// SrcML.Net keywords
+        /// SrcML.Net keyword: "ABB.SrcML.Data.NameUse"
         /// </summary>
         public static readonly string SrcML_NameUse = "ABB.SrcML.Data.NameUse";
+        /// <summary>
+        /// SrcML.Net keyword: "ABB.SrcML.Data.MethodCall"
+        /// </summary>
         public static readonly string SrcML_MethodCall = "ABB.SrcML.Data.MethodCall";
 
-
-        public static string getMainMethodFullName()
-        {
-            if (ProjName.Equals(@"MyFirstHibernate"))
-            {
-                return "ManageEmployee.main";
-            }
-            else if (ProjName.Equals(@"HibernateOneToManyXMLMapping"))
-            {
-                return "com.mkyong.StockManager.main";
-            }
-            return "";
-        }
-
+        
+        /// <summary>
+        /// A line divider for separating output
+        /// </summary>
         public static readonly string Divider = "-----------------------------------------------------------";
     }
 }

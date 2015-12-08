@@ -12,7 +12,7 @@ using System.Xml.Linq;
 namespace DBScribeHibernate.DBScribeHibernate
 {
     /// <summary>
-    /// This is the main entrance
+    /// This is the main entrance of DBScribeHibernate
     /// </summary>
     class Program
     {
