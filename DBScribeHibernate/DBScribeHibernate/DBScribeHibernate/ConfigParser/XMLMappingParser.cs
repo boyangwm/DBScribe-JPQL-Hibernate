@@ -11,18 +11,37 @@ using DBScribeHibernate.DBScribeHibernate.Util;
 
 namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
+    /// <summary>
+    /// This class inherents from MappingParser. Analyze Hibernate projects using XML mapping.
+    /// </summary>
     class XMLMappingParser : MappingParser
     {
+        /// <summary>
+        /// List of all mapping file for every POJO class
+        /// </summary>
         private List<string> mappingFileNameList;
+        /// <summary>
+        /// Dictionary that maps mapping file to POJO class
+        /// </summary>
         private Dictionary<string, string> mappingFileNameToClassFullName;
+        /// <summary>
+        /// Dictionary that maps POJO class to database table
+        /// </summary>
         private Dictionary<string, string> classFullNameToTableName;
         /// <summary>
         /// FullClassName.Property --> TableName.Attribute
         /// </summary>
         private Dictionary<string, string> classPropertyToTableColumn;
+        /// <summary>
+        /// Dictionary that maps database table to its constraints
+        /// </summary>
         private Dictionary<string, List<string>> tableNameToTableConstraints;
 
-
+        /// <summary>
+        /// Constructor. Analyze all needed information.
+        /// </summary>
+        /// <param name="targetProjPath"></param>
+        /// <param name="cfgFileName"></param>
         public XMLMappingParser(string targetProjPath, string cfgFileName) : base(targetProjPath, cfgFileName)
         {
             mappingFileNameList = new List<string>();
@@ -396,21 +415,38 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return propList;
         }
 
+        /// <summary>
+        /// Get POJO class to db table mapping
+        /// </summary>
+        /// <returns></returns>
         public override Dictionary<string, string> GetClassFullNameToTableName()
         {
             return classFullNameToTableName;
         }
 
+        /// <summary>
+        /// Get class properites to table attributes mapping
+        /// </summary>
+        /// <returns></returns>
         public override Dictionary<string, string> GetClassPropertyToTableColumn()
         {
             return classPropertyToTableColumn;
         }
 
+        /// <summary>
+        /// Get database constraints for each db table
+        /// </summary>
+        /// <returns></returns>
         public override Dictionary<string, List<string>> GetTableNameToTableConstraints()
         {
             return tableNameToTableConstraints;
         }
 
+        /// <summary>
+        /// Get class file path via its full name
+        /// </summary>
+        /// <param name="classFullName"></param>
+        /// <returns></returns>
         private string _GetClassFilePathByClassFullName(string classFullName)
         {
             string classFilePath = "";

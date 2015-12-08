@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace DBScribeHibernate.DBScribeHibernate.Util
 {
     /// <summary>
-    /// This class use SrcML.exe to generate XML file for a Java class
-    /// Author: Boyang Li
+    /// This class use SrcML.exe to generate XML file for a Java class.
+    /// (Borrowed from Boyang Li)
     /// </summary>
     public class Src2XML
     {

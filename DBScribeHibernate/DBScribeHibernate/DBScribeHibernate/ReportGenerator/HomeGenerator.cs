@@ -8,18 +8,43 @@ using System.IO;
 
 namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
 {
+    /// <summary>
+    /// This class generates HTML-formate DBScribeHibernate report using StringTemplate. 
+    /// The template (stored in /Templates/Home.st) is borrowed from Boyang Li.
+    /// </summary>
     class HomeGenerator
     {
+        /// <summary> Target project name </summary>
         public string projName;
+        /// <summary> Number of database methods </summary>
         public int num_db_methods;
+        /// <summary> Number of total methods in the target project </summary>
         public int num_total_methods;
+        /// <summary> Number of SQL operating methods </summary>
         public int num_sql_operating;
+        /// <summary> Number of Local SQL methods </summary>
         public int num_local;
+        /// <summary> Number of Delegated SQL methods </summary>
         public int num_delegated;
+        /// <summary> List of all database method headers </summary>
         public List<string> allMethodHeaders;
+        /// <summary> Dictionary that maps method header to method's full description, including method operations and database constraints</summary>
         public Dictionary<string, string> allMethodFullDescriptions;
+        /// <summary> Dictionary that maps method header to its global method index </summary>
         public Dictionary<string, int> globalMethodHeaderToIndex;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="projName"></param>
+        /// <param name="num_db_methods"></param>
+        /// <param name="num_total_methods"></param>
+        /// <param name="num_sql_operating"></param>
+        /// <param name="num_local"></param>
+        /// <param name="num_delegated"></param>
+        /// <param name="allMethodHeaders"></param>
+        /// <param name="allMethodFullDescriptions"></param>
+        /// <param name="globalMethodHeaderToIndex"></param>
         public HomeGenerator(String projName, int num_db_methods, int num_total_methods, 
             int num_sql_operating, int num_local, int num_delegated,
             List<string> allMethodHeaders, Dictionary<string, string> allMethodFullDescriptions,
@@ -36,6 +61,10 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
             this.globalMethodHeaderToIndex = globalMethodHeaderToIndex;
         }
 
+        /// <summary>
+        /// Given the output report path, generate HTML-formate report for the target project.
+        /// </summary>
+        /// <param name="path">Report location</param>
         public void Generate(string path)
         {
             StringTemplateGroup group = new StringTemplateGroup("myGroup", Constants.TemplatesLoc);

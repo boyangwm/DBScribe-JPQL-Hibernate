@@ -8,20 +8,34 @@ using System.Xml.Linq;
 
 namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
 {
+    /// <summary>
+    /// This class extracts database constraints for Hibernate projects using Annotation mapping.
+    /// </summary>
     class DBConstraintExtractorAnnotation
     {
+        /// <summary> SrcML add this prefix to all the XML element's name </summary>
         public static string srcml_prefix = "{http://www.sdml.info/srcML/src}";
 
+        /// <summary> Annotation keywords array </summary>
         public static readonly string[] AnnotationList
             = { "Length", "Max", "Min", "NotNull", "NotEmpty", "Pattern", "Patterns", "Range", "Size", 
                   "Email", "CreditCardNumber", "Digits", "EAN" };
+        /// <summary> Annotation keywords set </summary>
         public static readonly HashSet<string> AnnontationSet =
             new HashSet<string>(AnnotationList);
+        /// <summary> Column constraint keywords array </summary>
         public static readonly string[] ColumnConstraints
             = { "unique", "nullable", "length" };
+        /// <summary> Column constraint keywords set </summary>
         public static readonly HashSet<string> ColumnConSet
             = new HashSet<string>(ColumnConstraints);
 
+        /// <summary>
+        /// Get database constraints that defined in "@Column" Annotation
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="annotationEle"></param>
+        /// <returns></returns>
         public static Tuple<string, string> GetConstraintInfoFromColumnAnnotation(string TableName, XElement annotationEle)
         {
             string columnName = "";
@@ -67,6 +81,15 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
         }
 
 
+        /// <summary>
+        /// Get database constraints that defined using all kinds of annotations, except "@Column" Annotation
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="annotationEle"></param>
+        /// <param name="annotationType"></param>
+        /// <param name="mappingClass"></param>
+        /// <param name="classPropertyToTableColumn"></param>
+        /// <returns></returns>
         public static Tuple<string, string> GetConstraintInfoFromOtherAnnotation(string TableName,
             XElement annotationEle, string annotationType, string mappingClass, Dictionary<string, string> classPropertyToTableColumn)
         {
@@ -187,6 +210,11 @@ namespace DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor
             return Tuple.Create(columnName, cInfo);
         }
 
+        /// <summary>
+        /// Given a function element, return its class property name
+        /// </summary>
+        /// <param name="funcEle"></param>
+        /// <returns></returns>
         private static string _GetClassPropName(XElement funcEle)
         {
             string classPropName = "";

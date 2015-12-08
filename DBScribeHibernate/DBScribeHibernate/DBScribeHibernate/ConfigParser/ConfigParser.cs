@@ -8,15 +8,32 @@ using System.Xml.Linq;
 
 namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
+    /// <summary>
+    /// This class locates Hibernate configuration file to detect which mapping method is used in the target project: 
+    /// XML mapping or Annotation mappping
+    /// </summary>
     class ConfigParser
     {
+        /// <summary>
+        /// Hibernate configuration file path
+        /// </summary>
         public readonly string configFilePath;
+        /// <summary>
+        /// Hibernate mapping method: either XML mapping or Annoatation mapping
+        /// </summary>
         public readonly Constants.MappingFileType MappingFileType;
+        /// <summary>
+        /// Hibernate version
+        /// </summary>
         public readonly string HibernateDTD;
+        /// <summary>
+        /// If the configuration file indicates all the POJO classes to database table mapping
+        /// </summary>
         public readonly bool ifHasMappingList;
         
 
         /// <summary>
+        /// Constructor. Analyze the mapping method type.
         /// </summary>
         /// <param name="targetProjPath"></param>
         /// <param name="cfgFileName"></param>

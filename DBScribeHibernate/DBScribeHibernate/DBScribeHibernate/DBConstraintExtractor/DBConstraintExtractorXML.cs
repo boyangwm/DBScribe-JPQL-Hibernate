@@ -8,11 +8,24 @@ using System.Xml.Linq;
 
 namespace DBScribeHibernate.DBScribeHibernate
 {
+    /// <summary>
+    /// This class extracts database constraints for Hibernate projects using XML mapping.
+    /// </summary>
     class DBConstraintExtractorXML
     {
+        /// <summary>
+        /// Array of database constraint keywords
+        /// </summary>
         public static readonly string[] DBConstraintType_XML 
             = {"length", "precision", "scale", "not-null", "unique", "default"};
 
+
+        /// <summary>
+        /// Given an XML element (the one defined a class property), 
+        /// return constraint information, if any.
+        /// </summary>
+        /// <param name="ele"></param>
+        /// <returns></returns>
         public static string GetConstraintInfo(XElement ele)
         {
             string cInfo = "";

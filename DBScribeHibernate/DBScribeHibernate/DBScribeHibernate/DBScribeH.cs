@@ -59,7 +59,7 @@ namespace DBScribeHibernate
         /// <summary> All classes in the project and their parent classes</summary>
         public Dictionary<string, List<string>> allClassToParentClasses;
 
-        /// <summary> Method headers for all methods in target project </summary>
+        /// <summary> Method headers for all database methods in target project </summary>
         public List<string> AllMethodHeaders;
         /// <summary> For each method in target project: method header --> method full description </summary>
         public Dictionary<string, string> AllMethodFullDescriptions;

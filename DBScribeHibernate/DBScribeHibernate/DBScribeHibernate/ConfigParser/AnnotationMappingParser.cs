@@ -11,26 +11,56 @@ using System.Threading;
 
 namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
 {
+    /// <summary>
+    /// This class inherents from MappingParser. Analyze Hibernate projects using Annotation mapping.
+    /// </summary>
     class AnnotationMappingParser : MappingParser
     {
+        /// <summary>
+        /// If Hibernate configuration file found in the target project. 
+        /// If not, need manually detect POJO class by matching "@Entity" keyword.
+        /// </summary>
         private bool IfFoundHibernateCfgXml;
 
+        /// <summary>
+        /// SrcML add this prefix to all the XML element's name
+        /// </summary>
         private string prefix = "{http://www.sdml.info/srcML/src}";
 
+        /// <summary>
+        /// List of all POJO classes
+        /// </summary>
         private List<string> mappingPOJOClasses;
+        /// <summary>
+        /// Dictionary that maps mapping class to its file path
+        /// </summary>
         private Dictionary<string, string> mappingFileList;
-        //private Dictionary<string, string> mappingFileNameToClassFullName;
 
+        /// <summary>
+        /// Dictionary that maps POJO classes to database tables
+        /// </summary>
         private Dictionary<string, string> classFullNameToTableName;
         /// <summary>
         /// FullClassName.Property --> TableName.Attribute
         /// </summary>
         private Dictionary<string, string> classPropertyToTableColumn;
+        /// <summary>
+        /// Dictionary that maps database table to its contraints
+        /// </summary>
         private Dictionary<string, List<string>> tableNameToTableConstraints;
 
+        /// <summary>
+        /// A set of Hibernate mapping annotation keywords
+        /// </summary>
         public static readonly HashSet<string> DBConstraintType_Annotation = DBConstraintExtractorAnnotation.AnnontationSet;
 
 
+        /// <summary>
+        /// Constructor. Analyze all information needed.
+        /// </summary>
+        /// <param name="targetProjPath"></param>
+        /// <param name="cfgFileName"></param>
+        /// <param name="ifFoundHibernateCfgXml"></param>
         public AnnotationMappingParser(string targetProjPath, string cfgFileName, bool ifFoundHibernateCfgXml)
             : base(targetProjPath, cfgFileName)
         {
@@ -79,7 +109,9 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             
         }
 
-
+        /// <summary>
+        /// Manully detect each POJO class by the annotation keyword "@Entity" 
+        /// </summary>
         private void _FindAllPojoClassesWithEntityAnnotation()
         {
             string[] pathList = Directory.GetFiles(_targetProjPath, "*.java", SearchOption.AllDirectories);
@@ -135,7 +167,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             }
         }
 
-
+        /// <summary>
+        /// For a given POJO class, find the mapping from database table to contraints
+        /// </summary>
+        /// <param name="mappingClass"></param>
+        /// <param name="mappingFilePath"></param>
         private void _GetTableNameToTableConstraintsnOneByOne(string mappingClass, string mappingFilePath)
         {
             string TableName = classFullNameToTableName[mappingClass];
@@ -198,6 +234,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             }
         }
 
+        /// <summary>
+        /// For a given POJO class, find the mapping from class properties to table attributes
+        /// </summary>
+        /// <param name="mappingClass"></param>
+        /// <param name="mappingFilePath"></param>
         private void _GetClassPropertyToTableColumnOneByOne(string mappingClass, string mappingFilePath)
         {
             string TableName = classFullNameToTableName[mappingClass];
@@ -259,6 +300,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             }
         }
 
+        /// <summary>
+        /// Given a function element in XML file, return its class property name
+        /// </summary>
+        /// <param name="funcEle"></param>
+        /// <returns></returns>
         private string _GetClassPropName(XElement funcEle)
         {
             string classPropName = "";
@@ -274,6 +320,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return classPropName;
         }
 
+        /// <summary>
+        /// Given a function element in XML file, return its table attribute name
+        /// </summary>
+        /// <param name="funcEle"></param>
+        /// <returns></returns>
         private string _GetTableColumn(XElement funcEle)
         {
             string columnName = "";
@@ -304,7 +355,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return columnName;
         }
 
-
+        /// <summary>
+        /// For a given POJO class, find the mapping from POJO class to database table name
+        /// </summary>
+        /// <param name="mappingClass"></param>
+        /// <param name="mappingFilePath"></param>
         private void _GetClassFullNameToTableNameOneByOne(string mappingClass, string mappingFilePath)
         {
             string TableName = "";
@@ -360,7 +415,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             }
         }
 
-
+        /// <summary>
+        /// Given an annotation element in XML file, get its type
+        /// </summary>
+        /// <param name="annotationEle"></param>
+        /// <returns></returns>
         private string _GetAnnotationEleType(XElement annotationEle)
         {
             XElement typeEle = annotationEle.Descendants(prefix + "name").FirstOrDefault();
@@ -386,6 +445,9 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             }
         }
 
+        /// <summary>
+        /// Obtain each POJO class's file path
+        /// </summary>
         private void _GetMappingClassFilePath()
         {
             foreach (string mappingClass in mappingPOJOClasses)
@@ -426,6 +488,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             }
         }
 
+        /// <summary>
+        /// Get the package name of POJO class by analyzing the SrcML output XML file
+        /// </summary>
+        /// <param name="srcml_output_path"></param>
+        /// <returns></returns>
         private string _GetPackageNameFromSrcmlOutput(string srcml_output_path)
         {
             string packageName = "";
@@ -448,22 +515,37 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
             return packageName;
         }
 
+        /// <summary>
+        /// Get mapping parse type
+        /// </summary>
+        /// <returns></returns>
         public override Constants.MappingFileType GetMappingParserType()
         {
             return Constants.MappingFileType.AnnotationMapping;
         }
 
-
+        /// <summary>
+        /// Get POJO class to db table mapping
+        /// </summary>
+        /// <returns></returns>
         public override Dictionary<string, string> GetClassFullNameToTableName()
         {
             return classFullNameToTableName;
         }
 
+        /// <summary>
+        /// Get class properites to table attributes mapping
+        /// </summary>
+        /// <returns></returns>
         public override Dictionary<string, string> GetClassPropertyToTableColumn()
         {
             return classPropertyToTableColumn;
         }
 
+        /// <summary>
+        /// Get database constraints for each db table
+        /// </summary>
+        /// <returns></returns>
         public override Dictionary<string, List<string>> GetTableNameToTableConstraints()
         {
             return tableNameToTableConstraints;
