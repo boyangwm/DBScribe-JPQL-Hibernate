@@ -7,21 +7,39 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
+    /// <summary>
+    /// This class defines properties and functions that DBScribeHibernet needs for a SrcML.Net Variable type
+    /// Author: Boyang Li
+    /// </summary>
     public class VariableInfo {
 
-        // the veriable declaration
+        /// <summary>
+        /// the veriable declaration
+        /// </summary>
         public VariableDeclaration Variable { get; set; }
-        // record the variable is init or not. 
+        /// <summary>
+        /// record the variable is init or not. 
+        /// </summary>
         public bool Initialized { get; set; }
-        // the variable is returned in the method                     
+        /// <summary>
+        /// the variable is returned in the method    
+        /// </summary>
         public bool IsReturned { get; set; }
-        // the variable has been modified                           
+        /// <summary>
+        /// the variable has been modified  
+        /// </summary>
         public bool IsModified { get; set; }
-
-        // the fields have been assigned to this variable
+        /// <summary>
+        /// the fields have been assigned to this variable
+        /// </summary>
         public HashSet<VariableDeclaration> AssignedFields;
-        // the variable is isInstantiated in the method          
-        public bool IsInstantiated { get; set; }                                
+        /// <summary>
+        /// the variable is isInstantiated in the method
+        /// </summary>
+        public bool IsInstantiated { get; set; }
+        /// <summary>
+        /// the variable is IsFieldChange in the method
+        /// </summary>                      
         public bool IsFieldChange { get; set; }
 
         /// <summary>
@@ -55,12 +73,20 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             return this.Variable.VariableType;
         }
 
+        /// <summary>
+        /// Get a brief description for Variable inforamtion
+        /// </summary>
+        /// <returns></returns>
         public string GetInitialVariableInfo()
         {
             string info = this.Variable.Name + "<" + this.Variable.VariableType + "> Initialized=" + this.Initialized;
             return info;
         }
 
+        /// <summary>
+        /// Get a full description for Variable inforamtion
+        /// </summary>
+        /// <returns></returns>
         public string GetFullVariableInfo()
         {
             string info = this.Variable.Name + "<" + this.Variable.VariableType + "> Initialized=" + this.Initialized;

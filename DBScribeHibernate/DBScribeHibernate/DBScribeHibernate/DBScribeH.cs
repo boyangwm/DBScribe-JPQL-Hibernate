@@ -16,6 +16,11 @@ using DBScribeHibernate.DBScribeHibernate.ReportGenerator;
 
 namespace DBScribeHibernate
 {
+    /// <summary>
+    /// This class calls all the DBScribeHibernateComponents.
+    /// It collects information from source code and executes every step, then generete database report
+    /// Author: Bin Nie
+    /// </summary>
     class DBScribeH
     {
         public string TargetProjPath;

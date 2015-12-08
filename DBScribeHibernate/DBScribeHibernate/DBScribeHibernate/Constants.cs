@@ -6,46 +6,44 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate
 {
+    /// <summary>
+    /// This class defines the common configurations throughout the entire projects
+    /// Author: Bin Nie
+    /// </summary>
     class Constants
     {
         public static readonly Boolean ShowLog = true;
         public static readonly string LogPath = "_TempLog";
-
         public static readonly string CurWorkspace = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\";
-
         public static readonly string ResultPath = CurWorkspace + @"DBScribeReports\";
 
 
         /// <summary>
-        /// Target Project Location and Name
+        /// Target Project Location
         /// </summary>
-        //public static readonly string TargetProjPath = @"E:\workspace_hibernate";
         public static readonly string TargetProjPath = CurWorkspace + @"HibernateProjects";
 
-        //// IF using <mapping resource="...xml" /> ---> xml
-        //public static readonly string ProjName = @"MyFirstHibernate";
-        //public static readonly string ProjName = @"HibernateOneToManyXMLMapping";
-        //public static readonly string ProjName = @"HibernateComponentMappingExample";
-
-        //// IF using <mapping class="..."/>  ---> annotation
-        //public static readonly string ProjName = @"HibernateOneToOneAnnotation";
-        //public static readonly string ProjName = @"HibernateManyToManyAnnotation";
-
-
-        // Show result report
-        //public static readonly string ProjName = @"_RealProjects\BookLib"; //XML mapping
+        /// <summary>
+        /// Target Prject Name
+        /// </summary>
+        public static readonly string ProjName = @"_RealProjects\BookLib"; //XML mapping
         //public static readonly string ProjName = @"_RealProjects\SISCLIV"; //XML mapping
         //public static readonly string ProjName = @"_RealProjects\Chat";  // Annotation mapping
-        public static readonly string ProjName = @"_RealProjects\UserManagementAccessControl";  // Annotation mapping
+        //public static readonly string ProjName = @"_RealProjects\UserManagementAccessControl";  // Annotation mapping
         
 
         /// <summary>
         /// SrcML Location
         /// </summary>
-        //public static readonly string SrcmlLoc = @"E:\Research\SrcML\";
         public static readonly string SrcmlLoc = CurWorkspace + @"SrcML\";
+        /// <summary>
+        /// SrcML output location
+        /// </summary>
         public static readonly string SrcmlOutput = @"_SrcmlOutput\" + Util.Utility.GetProjectName(ProjName) + @"\";
 
+        /// <summary>
+        /// StringTemplate templates location
+        /// </summary>
         public static readonly string TemplatesLoc = CurWorkspace + @"DBScribeHibernate\DBScribeHibernate\DBScribeHibernate\Templates";
 
         /// <summary>
@@ -65,7 +63,6 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// Hibernate Session built-in functions
         /// </summary>
         public static readonly string Session = "Session";
-        
 
 
         /// <summary>

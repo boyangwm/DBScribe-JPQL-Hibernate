@@ -29,7 +29,6 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// <summary>
         /// Checks the return type is void or not
         /// </summary>
-        /// <param name="type"></param>
         /// <returns></returns>
         public override bool RTypeIsVoid() {
             TypeUse type = this.ReturnType;
@@ -43,7 +42,6 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// <summary>
         /// Checks the type is bool or not
         /// </summary>
-        /// <param name="type"></param>
         /// <returns></returns>
         public override bool RTypeIsBoolean() {
             TypeUse type = this.ReturnType;

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
+    /// <summary>
+    /// This class is used to analyze each SrcML.Net MethodDefinition.
+    /// Author: Boyang Li
+    /// </summary>
     public abstract class MethodAnalyzer {
 
         /// <summary>
@@ -34,6 +38,9 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// The declaring class
         /// </summary>
         public TypeDefinition DeclaringClass { get; private set; }
+        /// <summary>
+        /// List of parent classes
+        /// </summary>
         public IEnumerable<TypeDefinition> ParentClasses { get; private set; }
 
         /// <summary>
@@ -105,6 +112,9 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 
         private int InReturnStmt;
 
+        /// <summary>
+        /// If susscesfull get the declaring class for this analyzed method
+        /// </summary>
         public int IsSuccess;
 
 
@@ -126,6 +136,10 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             IsSuccess = Analyze();
         }
 
+        /// <summary>
+        /// Show failure information based on IsSuccess value
+        /// </summary>
+        /// <returns></returns>
         public string GetFailInfo()
         {
             string info = "[Error] " + Method.GetFullName() + ": ";
@@ -441,6 +455,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// <param name="subExps"></param>
         /// <param name="startPos"></param>
         /// <param name="newPos"></param>
+        /// <param name="IsUpdate"></param>
         /// <returns></returns>
         private NameUse FindAndUpdateNextVarUse(List<Expression> subExps, int startPos, out int newPos, bool IsUpdate) {
             bool haveSeenUniop = false; //have seen uniop which (should) bind with a variable
@@ -538,6 +553,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// <param name="subExps"></param>
         /// <param name="curPos"></param>
         /// <param name="vi"></param>
+        /// <param name="IsFieldUpdate"></param>
         /// <returns></returns>
         private int UpdateAssignmentExpRightHand(List<Expression> subExps, int curPos, VariableInfo vi, bool IsFieldUpdate) {
             //update if vi is a local variable
@@ -581,6 +597,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// Analyze the expression and return NameUse it belongs
         /// </summary>
         /// <param name="exp"></param>
+        /// <param name="IsFieldUpdate"></param>
         /// <returns></returns>
         private NameUse GetNameUseOrObj(Expression exp, out bool IsFieldUpdate) {
 
@@ -787,23 +804,19 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// <summary>
         /// Checks the type is priliminary or not
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="tu"></param>
         /// <returns></returns>
         public abstract bool IsPrimitiveType(TypeUse tu);
-
-
 
         /// <summary>
         /// Checks the return type is void or not
         /// </summary>
-        /// <param name="type"></param>
         /// <returns></returns>
         public abstract bool RTypeIsVoid();
 
         /// <summary>
         /// Checks the type is bool or not
         /// </summary>
-        /// <param name="type"></param>
         /// <returns></returns>
         public abstract bool RTypeIsBoolean();
     }

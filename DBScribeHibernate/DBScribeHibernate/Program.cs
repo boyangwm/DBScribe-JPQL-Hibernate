@@ -11,10 +11,11 @@ using System.Xml.Linq;
 
 namespace DBScribeHibernate.DBScribeHibernate
 {
+    /// <summary>
+    /// This is the main entrance
+    /// </summary>
     class Program
     {
-
-
         static void Main(string[] args)
         {
             Util.Utility.CreateDirectoryIfNotExist(Constants.LogPath);

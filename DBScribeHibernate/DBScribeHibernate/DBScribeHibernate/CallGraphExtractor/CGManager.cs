@@ -7,10 +7,15 @@ using ABB.SrcML.Data;
 
 namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 {
+    /// <summary>
+    /// This class gets caller and callee list for each method in the target project
+    /// and generates call graph.
+    /// Author: Boyang Li
+    /// </summary>
     public class CGManager
     {
         /// <summary>
-        /// level bound
+        /// level bound, to avoid infinite recursive calls
         /// </summary>
         readonly int LEVELTHRESHOLD = 20;
 

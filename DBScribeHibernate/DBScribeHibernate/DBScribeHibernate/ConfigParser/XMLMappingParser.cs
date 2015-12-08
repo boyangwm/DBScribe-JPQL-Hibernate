@@ -350,7 +350,9 @@ namespace DBScribeHibernate.DBScribeHibernate.ConfigParser
         /// Given the mapping file name,
         /// Return all properties (excluding pk)
         /// </summary>
-        /// <param name="mappingFileName"></param>
+        /// <param name="classEle"></param>
+        /// <param name="classFullName"></param>
+        /// <param name="tableName"></param>
         /// <returns></returns>
         private List<ClassProperty> _GetMappingFilePropertyList(XElement classEle, string classFullName, string tableName)
         {

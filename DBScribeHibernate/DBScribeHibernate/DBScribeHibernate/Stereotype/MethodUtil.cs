@@ -275,7 +275,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// paras, local variables, get/set field, property fields
         /// </summary>
         /// <param name="md"></param>
-        /// <returns>Dictionary<string, string>: link variable name to variable type</returns>
+        /// <returns>link variable name to variable type</returns>
         public static Dictionary<string, string> GetVariableListForMethod(MethodDefinition md)
         {
             Dictionary<string, string> varList = new Dictionary<string, string>();
