@@ -36,9 +36,9 @@ namespace DBScribeHibernate.DBScribeHibernate
         /// <summary>
         /// Target Prject Name
         /// </summary>
-        public static readonly string ProjName = @"_RealProjects\BookLib"; //XML mapping
+        //public static readonly string ProjName = @"_RealProjects\BookLib"; //XML mapping
         //public static readonly string ProjName = @"_RealProjects\SISCLIV"; //XML mapping
-        //public static readonly string ProjName = @"_RealProjects\Chat";  // Annotation mapping
+        public static readonly string ProjName = @"_RealProjects\Chat";  // Annotation mapping
         //public static readonly string ProjName = @"_RealProjects\UserManagementAccessControl";  // Annotation mapping
 
         /// <summary>

@@ -9,18 +9,27 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
 {
+    /// <summary>
+    /// This class provides function for every type of database methods to generate their full descriptions, 
+    /// including operation list, call-chain, and database constraints.
+    /// </summary>
     class MethodDescriptionUtil
     {
+        /// <summary> Description header for Local SQL methods </summary>
         private static string LocalMethodHeader = "-- This method implements the following db-related operations: ";
+        /// <summary> Description header for SQL Operating methods </summary>
         private static string POJOClassMethodNote = "*<b>Note</b>: This method will not affect the database until Session built-in function is called";
-        private static string ConstraitsHeader = "-- Some constraints that should be taken into account are the following: ";
+        /// <summary> Description header for Delegated SQL methods </summary>
         private static string DelegatedMethodHeader = "-- This method invokes db-related operations via delegation: ";
+        /// <summary> Description header for database constraints </summary>
+        private static string ConstraitsHeader = "-- Some constraints that should be taken into account are the following: ";
+        
 
         public static MethodDescription DescribeDelegatedMethod(string methodHeader, List<List<MethodDefinition>> calleeList,
             Dictionary<string, List<string>> DBMethodToOpList, Dictionary<string, List<string>> DBMethodToConstraitList,
             Dictionary<string, int> GlobalMethodHeaderToIndex)
         {
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new StringBuilder(); // Build all description for the method
             List<string> opList = new List<string>();
             List<string> constraintList = new List<string>();
 
