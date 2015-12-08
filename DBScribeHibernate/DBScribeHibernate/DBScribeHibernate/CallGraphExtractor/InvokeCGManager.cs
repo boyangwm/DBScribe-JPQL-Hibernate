@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 {
+    /// <summary>
+    /// This class provides some higher-level functions for call graph
+    /// </summary>
     class InvokeCGManager
     {
         /// <summary>
@@ -16,7 +19,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// </summary>
         /// <param name="methods"></param>
         /// <param name="cgm"></param>
-        /// <returns>Bottom-up ordering of the methods, which is later used to propagate method description!</returns>
+        /// <returns>Bottom-up ordering of the methods, which is later used to propagate method description.</returns>
         public static List<MethodDefinition> GetBottomUpSortedMethodsFromCallGraph(IEnumerable<MethodDefinition> methods, CGManager cgm)
         {
             if (Constants.ShowLog)
@@ -40,6 +43,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 
             return sortedMethodsBottomToTop;
         }
+
 
         /// <summary>
         /// Get all edges in call graph

@@ -10,7 +10,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
     /// <summary>
     /// This class gets caller and callee list for each method in the target project
     /// and generates call graph.
-    /// Author: Boyang Li
+    /// (Borrowed from BoyangLi)
     /// </summary>
     public class CGManager
     {
@@ -25,7 +25,9 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         /// <summary> A dictionary for finding a method by the signiture </summary>
         readonly Dictionary<String, MethodDefinition> methodDictionary = new Dictionary<String, MethodDefinition>();
 
+        /// <summary> Callee List for each method </summary>
         private List<List<MethodDefinition>> _calleeList;
+        /// <summary> Caller List for each method </summary>
         private List<List<MethodDefinition>> _callerList;
 
         /// <summary>

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 {
+    /// <summary>
+    /// This class provides some commonly used call graph related functions
+    /// </summary>
     class CallGraphUtil
     {
         /// <summary>

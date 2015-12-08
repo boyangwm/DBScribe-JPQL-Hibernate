@@ -25,6 +25,15 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
         private static string ConstraitsHeader = "-- Some constraints that should be taken into account are the following: ";
         
 
+        /// <summary>
+        /// Generate method description for Delegated SQL Method
+        /// </summary>
+        /// <param name="methodHeader"></param>
+        /// <param name="calleeList"></param>
+        /// <param name="DBMethodToOpList"></param>
+        /// <param name="DBMethodToConstraitList"></param>
+        /// <param name="GlobalMethodHeaderToIndex"></param>
+        /// <returns></returns>
         public static MethodDescription DescribeDelegatedMethod(string methodHeader, List<List<MethodDefinition>> calleeList,
             Dictionary<string, List<string>> DBMethodToOpList, Dictionary<string, List<string>> DBMethodToConstraitList,
             Dictionary<string, int> GlobalMethodHeaderToIndex)
@@ -113,6 +122,22 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
         }
 
 
+        /// <summary>
+        /// Generate method description for Hibernate Session built-in functions, 
+        /// i.e. Save(), Update(), Delete(), etc.
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="methodHeader"></param>
+        /// <param name="calleeList"></param>
+        /// <param name="sessionBuiltInFuncList"></param>
+        /// <param name="DBMethodToOpList"></param>
+        /// <param name="DBMethodToConstraitList"></param>
+        /// <param name="DBMethodToTableNames"></param>
+        /// <param name="allDBClassToTableName"></param>
+        /// <param name="allDBClassPropToTableAttr"></param>
+        /// <param name="tableNameToTableConstraints"></param>
+        /// <param name="GlobalMethodHeaderToIndex"></param>
+        /// <returns></returns>
         public static MethodDescription DescribeSessionMethod(MethodDefinition method, string methodHeader, List<List<MethodDefinition>> calleeList,
             List<SessionBuiltInFunction> sessionBuiltInFuncList, Dictionary<string, List<string>> DBMethodToOpList,
             Dictionary<string, List<string>> DBMethodToConstraitList, Dictionary<string, List<string>> DBMethodToTableNames,
@@ -359,6 +384,12 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
         }
 
 
+        /// <summary>
+        /// Given a Hibernate Session query function, return the database table it interacts with.
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="allDBClassToTableName"></param>
+        /// <returns></returns>
         public static string GetSessionQueryFuncTragetTableName(MethodDefinition method, Dictionary<string, string> allDBClassToTableName)
         {
             HashSet<string> targetTableNames = new HashSet<string>();
@@ -390,6 +421,13 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
         }
 
 
+        /// <summary>
+        /// Generate method description for SQL Operating methods,
+        /// which are the gets, sets, and constructors defined in POJO classes
+        /// </summary>
+        /// <param name="basicMethod"></param>
+        /// <param name="tableNameToTableConstraints"></param>
+        /// <returns></returns>
         public static MethodDescription DescribeBasicMethod(BasicMethod basicMethod, Dictionary<string, List<string>> tableNameToTableConstraints)
         {
             StringBuilder builder = new StringBuilder();
@@ -457,6 +495,12 @@ namespace DBScribeHibernate.DBScribeHibernate.DescriptionTemplates
             return new MethodDescription(builder.ToString(), opList, constraintList, dBTableAttrList);
         }
 
+
+        /// <summary>
+        /// Build the method header for a given method: method full name (contains package name) + full passed-in parameter list
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
         public static string BuildMethodHeader(MethodDefinition method)
         {
             if (method.GetFullName() == "com.jspdev.biyesheji.base._BaseRootDAO.getNamedQuery")

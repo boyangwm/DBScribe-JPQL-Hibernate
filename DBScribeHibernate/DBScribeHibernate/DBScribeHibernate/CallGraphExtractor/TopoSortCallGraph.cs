@@ -14,15 +14,28 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
     /// </summary>
     class TopoSortCallGraph
     {
+        /// <summary>
+        /// List of all methods in the target project
+        /// </summary>
         private List<MethodDefinition> methods;
-        private Dictionary<MethodDefinition, List<MethodDefinition>> callerToCalleeEdges; //Adjacency List (callerList)
+        /// <summary>
+        /// Adjacency list, which is the callerLsit for each method
+        /// </summary>
+        private Dictionary<MethodDefinition, List<MethodDefinition>> callerToCalleeEdges; 
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public TopoSortCallGraph()
         {
             methods = new List<MethodDefinition>();
             callerToCalleeEdges = new Dictionary<MethodDefinition, List<MethodDefinition>>();
         }
 
+        /// <summary>
+        /// Add a method (act as a node in the graph)
+        /// </summary>
+        /// <param name="m"></param>
         public void addMethod(MethodDefinition m)
         {
             methods.Add(m);
@@ -30,7 +43,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         }
 
         /// <summary>
-        /// Edge: (caller --> callee)
+        /// Add a directed edge (caller --> callee)
         /// </summary>
         /// <param name="caller"></param>
         /// <param name="callee"></param>
@@ -38,6 +51,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         {
             callerToCalleeEdges[caller].Add(callee);
         }
+
 
         /// <summary>
         /// Topologically sort the methods in call graph
@@ -96,7 +110,7 @@ namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
         }
 
         /// <summary>
-        /// Print Call Graph
+        /// Print Call Graph (For testing purpose)
         /// </summary>
         public void printGraph()
         {

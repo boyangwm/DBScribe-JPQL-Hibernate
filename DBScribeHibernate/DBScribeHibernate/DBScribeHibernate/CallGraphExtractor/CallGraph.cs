@@ -7,6 +7,10 @@ using ABB.SrcML.Data;
 
 namespace DBScribeHibernate.DBScribeHibernate.CallGraphExtractor
 {
+    /// <summary>
+    /// This class builds the call graph for the target Hibernate project.
+    /// (Borrowed from Boyang Li)
+    /// </summary>
     class CallGraph
     {
         /// <summary>call graph nodes</summary>
