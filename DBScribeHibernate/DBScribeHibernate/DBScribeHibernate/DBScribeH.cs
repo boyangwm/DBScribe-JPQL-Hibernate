@@ -106,7 +106,12 @@ namespace DBScribeHibernate
             homeGenerator.Generate(Constants.ResultPath + "DBScribe_" + projName + ".html");
         }
 
-
+        /// <summary>
+        /// Step1 part 1 of DBSCribeHibernate: 
+        /// (1) Map POJO classes and their properties to Database table and attributes. 
+        /// (2) Get constraints for each database table. 
+        /// There are two ways of mapping: one through XML mapping file; the other through Annotation.
+        /// </summary>
         public void Step1_1_ConfigParser()
         {
             Console.WriteLine("Project Name: " + ProjName);
@@ -161,6 +166,12 @@ namespace DBScribeHibernate
             //Environment.Exit(0);
         }
 
+
+        /// <summary>
+        /// Step 2 of DBScribeHibernate. 
+        /// Build call graph for the target project. 
+        /// Also, topologically sorted the methods in the call graph, for later bottom-up method description propagation.
+        /// </summary>
         public void Step2_1_GenerateCallGraph()
         {
             // Get methods from SrcML.net
@@ -198,6 +209,11 @@ namespace DBScribeHibernate
             }
         }
 
+        /// <summary>
+        /// Step 1 part 2 of DBSribeHibernate. 
+        /// Complete unmapped infomation with the newly get information Step 2. 
+        /// (Mainly consider POJO class hierarchy)
+        /// </summary>
         public void Step1_2_ConfigParser()
         {
             // all DB class full name <--> table name
@@ -216,6 +232,10 @@ namespace DBScribeHibernate
             //Utility.PrintDictionary(allDBClassPropToTableAttr);
         }
 
+        /// <summary>
+        /// Get mapping of all DB class full name to table name. 
+        /// Mainly add mapping for registered class's parent classes
+        /// </summary>
         private void _SetAllDBClassToTableName()
         {
             allDBClassToTableName = new Dictionary<string, string>();
@@ -253,6 +273,9 @@ namespace DBScribeHibernate
             }
         }
 
+        /// <summary>
+        /// Get all the classes in the project and their parent classes
+        /// </summary>
         private void _SetAllClassToParentClasses()
         {
             allClassToParentClasses = new Dictionary<string, List<string>>();
@@ -282,6 +305,10 @@ namespace DBScribeHibernate
             }
         }
 
+        /// <summary>
+        /// Get mapping of all DB class property to table attribute
+        /// Mainly add mapping for registered class's parent classes
+        /// </summary>
         private void _SetAllDBClassPropToTableAttr()
         {
             allDBClassPropToTableAttr = new Dictionary<string, string>();
@@ -310,6 +337,10 @@ namespace DBScribeHibernate
             }
         }
 
+        /// <summary>
+        /// Bottom-up traverse the call graph, generate and propagate method description
+        /// </summary>
+        /// <returns> A Tuple: Item 1 --> total number of DB methods. Item 2 --> an output for text file format.</returns>
         public Tuple<int, string> Step3_1_BottomUpTraverseMethods()
         {
             GlobalMethodHeaderToIndex = new Dictionary<string, int>();
