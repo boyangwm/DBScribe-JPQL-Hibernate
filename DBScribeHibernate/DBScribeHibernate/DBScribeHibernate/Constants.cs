@@ -11,9 +11,21 @@ namespace DBScribeHibernate.DBScribeHibernate
     /// </summary>
     class Constants
     {
+        /// <summary>
+        /// If show log information in the console output
+        /// </summary>
         public static readonly Boolean ShowLog = true;
+        /// <summary>
+        /// Log file location
+        /// </summary>
         public static readonly string LogPath = "_TempLog";
+        /// <summary>
+        /// Current DBScribeHibernate project working location
+        /// </summary>
         public static readonly string CurWorkspace = @"E:\workspace_vs2013\DBScribe-JPQL-Hibernate\";
+        /// <summary>
+        /// DBScribeHibernate reports location
+        /// </summary>
         public static readonly string ResultPath = CurWorkspace + @"DBScribeReports\";
 
         /// <summary>

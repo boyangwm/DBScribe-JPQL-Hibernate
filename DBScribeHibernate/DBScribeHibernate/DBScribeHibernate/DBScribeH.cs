@@ -19,11 +19,12 @@ namespace DBScribeHibernate
     /// <summary>
     /// This class calls all the DBScribeHibernateComponents.
     /// It collects information from source code and executes every step, then generete database report
-    /// Author: Bin Nie
     /// </summary>
     class DBScribeH
     {
+        /// <summary> Target project loaction </summary>
         public string TargetProjPath;
+        /// <summary> Target project name </summary>
         public string ProjName;
 
         /// <summary> Hibernate Configure File Related Variables</summary>
@@ -33,6 +34,7 @@ namespace DBScribeHibernate
         public Dictionary<string, string> registeredClassFullNameToTableName;
         /// <summary> POJO DB Class's property --> table attributes </summary>
         public Dictionary<string, string> classPropertyToTableColumn;
+        /// <summary> DB tables --> table constraints </summary>
         public Dictionary<string, List<string>> tableNameToTableConstraints;
 
         /// <summary> POJO DB Classes that are registered in the mapping file, as well as their parent classes</summary>
@@ -41,31 +43,43 @@ namespace DBScribeHibernate
         public Dictionary<string, string> allDBClassPropToTableAttr;
 
 
-        /// <summary> Call Graph Related Variables</summary>
+        /// <summary> Target project global namespace</summary>
         public NamespaceDefinition globalNamespace;
+        /// <summary> List of all MethodDefinitions in target Hibernate project </summary>
         public IEnumerable<MethodDefinition> methods;
+        /// <summary> Call graph manager </summary>
         public CGManager cgm;
-        public int num_of_methods; // total method number
-        public Dictionary<string, int> method_count; // each type of DB method count
+        /// <summary> total number of methods in target project, including db methods and non-db methods </summary>
+        public int num_of_methods;
+        /// <summary> Dictionary for the number of methods for each DB method type </summary>
+        public Dictionary<string, int> method_count;
+        /// <summary> A sorted list of all methods in target project </summary>
         public List<MethodDefinition> bottomUpSortedMethods;
 
         /// <summary> All classes in the project and their parent classes</summary>
         public Dictionary<string, List<string>> allClassToParentClasses;
 
-
+        /// <summary> Method headers for all methods in target project </summary>
         public List<string> AllMethodHeaders;
+        /// <summary> For each method in target project: method header --> method full description </summary>
         public Dictionary<string, string> AllMethodFullDescriptions;
-
+        /// <summary> For each method in target project: method header --> global unique index </summary>
         Dictionary<string, int> GlobalMethodHeaderToIndex;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="targetProjPath">Target project location</param>
+        /// <param name="projName">Target prject name</param>
         public DBScribeH(string targetProjPath, string projName)
         {
             this.TargetProjPath = targetProjPath;
             this.ProjName = projName;
         }
 
-
+        /// <summary>
+        /// Run each step of DBSrcibeHibernate
+        /// </summary>
         public void run()
         {
             Step1_1_ConfigParser(); // Analyze Hibernate Configuration files
@@ -75,13 +89,15 @@ namespace DBScribeHibernate
 
             Step1_2_ConfigParser(); // allDBClass --> table name; all DB class properties --> table column
 
+            // Bottom-up travse call graph to generate and propate method descriptions
             Tuple<int, string> results = Step3_1_BottomUpTraverseMethods();
-            int num_methods = results.Item1;
-            string output = results.Item2;
+            int num_methods = results.Item1; // total number of db methods
+            string output = results.Item2; // an output for text file
 
             Utility.CreateDirectoryIfNotExist(Constants.ResultPath);
             string projName = Utility.GetProjectName(Constants.ProjName);
 
+            // Generate DBScribe report using StringTemplate
             HomeGenerator homeGenerator = new HomeGenerator(projName, num_methods, num_of_methods, 
                 method_count[Constants.SQLMethodCategory.SQLOperatingMethod.ToString()],
                 method_count[Constants.SQLMethodCategory.LocalSQLMethod.ToString()],
