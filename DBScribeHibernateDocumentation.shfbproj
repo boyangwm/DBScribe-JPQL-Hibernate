@@ -29,10 +29,10 @@
     </DocumentationSources>
     <MaximumGroupParts>10</MaximumGroupParts>
     <NamespaceGrouping>False</NamespaceGrouping>
-    <SyntaxFilters>Standard</SyntaxFilters>
+    <SyntaxFilters>C#</SyntaxFilters>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <RootNamespaceContainer>False</RootNamespaceContainer>
-    <PresentationStyle>VS2013</PresentationStyle>
+    <PresentationStyle>VS2010</PresentationStyle>
     <Preliminary>False</Preliminary>
     <NamingMethod>MemberName</NamingMethod>
     <HelpTitle>A Documented Class Library for DBScribeHibernate</HelpTitle>
@@ -42,15 +42,16 @@
 This project, DBScribeHibernate, aims at automatically generating always-up-to-date natural language descriptions of database operations and schema constraints in source code methods for Hibernate projects.</ProjectSummary>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="(global)" isDocumented="False" />
-<NamespaceSummaryItem name="DBScribeHibernate" isDocumented="True">This is the root name space for the project. Class DBScribeH connects all the components of DBScribeHibernate projects and generates the HTML-format report.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate" isDocumented="True">This name space contains three static classes, which provide commonly used functions or constants throughout the project.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.CallGraphExtractor" isDocumented="True">This name space is for CallGraphExtractor component. It generates caller list and callee list for each method in the target project. Then, it builds a call graph. It all topologically sorts all the methods in the project in order to prepare for later bottom-up method description propagation.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.ConfigParser" isDocumented="True">This name space is for "ConfigParser" component. It analyze Hibernate project to map Java POJO class to database table. It works for both XML mapping and Annotation mapping.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor" isDocumented="True">This name space is for "ConstraintExtractor" component. It extracts database constraints from configuration files or Java POJO classes.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.DescriptionTemplates" isDocumented="True">This name space defines method and database constraint description templates.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.ReportGenerator" isDocumented="True">This name space is to generate HTML-format report.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.Stereotype" isDocumented="True">This name space provides functions that can detect SQL operating methods and Local SQL methods. It also proviods important functions to get information from source code at method-level.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.Util" isDocumented="True">This name space provides commonly used functions for the entire project.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="DBScribeHibernate" isDocumented="True">This is the root name space for the project. Class DBScribeH connects all the components of DBScribeHibernate projects and generates the HTML-format report.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate" isDocumented="True">This name space contains three static classes, which provide commonly used functions or constants throughout the project.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.CallGraphExtractor" isDocumented="True">This name space is for CallGraphExtractor component. It generates caller list and callee list for each method in the target project. Then, it builds a call graph. It all topologically sorts all the methods in the project in order to prepare for later bottom-up method description propagation.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.ConfigParser" isDocumented="True">This name space is for "ConfigParser" component. It analyze Hibernate project to map Java POJO class to database table. It works for both XML mapping and Annotation mapping.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.DBConstraintExtractor" isDocumented="True">This name space is for "ConstraintExtractor" component. It extracts database constraints from configuration files or Java POJO classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.DescriptionTemplates" isDocumented="True">This name space defines method and database constraint description templates.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.ReportGenerator" isDocumented="True">This name space is to generate HTML-format report.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.Stereotype" isDocumented="True">This name space provides functions that can detect SQL operating methods and Local SQL methods. It also proviods important functions to get information from source code at method-level.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DBScribeHibernate.DBScribeHibernate.Util" isDocumented="True">This name space provides commonly used functions for the entire project.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <MissingTags>AutoDocumentCtors, AutoDocumentDispose</MissingTags>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform

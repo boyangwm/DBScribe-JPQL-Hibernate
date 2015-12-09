@@ -27,7 +27,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
         /// <summary> Number of Delegated SQL methods </summary>
         public int num_delegated;
         /// <summary> List of all database method headers </summary>
-        public List<string> allMethodHeaders;
+        public List<string> allMethodTitles;
         /// <summary> Dictionary that maps method header to method's full description, including method operations and database constraints</summary>
         public Dictionary<string, string> allMethodFullDescriptions;
         /// <summary> Dictionary that maps method header to its global method index </summary>
@@ -56,7 +56,7 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
             this.num_sql_operating = num_sql_operating;
             this.num_local = num_local;
             this.num_delegated = num_delegated;
-            this.allMethodHeaders = allMethodHeaders;
+            this.allMethodTitles = allMethodHeaders;
             this.allMethodFullDescriptions = allMethodFullDescriptions;
             this.globalMethodHeaderToIndex = globalMethodHeaderToIndex;
         }
@@ -67,6 +67,8 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
         /// <param name="path">Report location</param>
         public void Generate(string path)
         {
+            List<string> methodFullNameAndParams = new List<string>();
+
             StringTemplateGroup group = new StringTemplateGroup("myGroup", Constants.TemplatesLoc);
             StringTemplate st = group.GetInstanceOf("Home");
             st.SetAttribute("ProjName", this.projName);
@@ -75,10 +77,11 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
             st.SetAttribute("NUM_SQL_OPERATING", this.num_sql_operating);
             st.SetAttribute("NUM_LOCAL", this.num_local);
             st.SetAttribute("NUM_DELEGATED", this.num_delegated);
-            foreach (string methodTitle in allMethodHeaders)
+            foreach (string methodTitle in allMethodTitles)
             {
                 string[] tokens = methodTitle.Split(new string[] { "] " }, StringSplitOptions.None);
                 string methodHeader = tokens[1];
+                methodFullNameAndParams.Add(methodHeader);
                 string methodDescription = allMethodFullDescriptions[methodTitle];
 
                 st.SetAttribute("IDNum", globalMethodHeaderToIndex[methodHeader]);
@@ -88,11 +91,12 @@ namespace DBScribeHibernate.DBScribeHibernate.ReportGenerator
                 st.SetAttribute("MethodBodyDesc", methodDescription);
                 //allMethodSigniture.Add(methodTitle);
             }
-            //allMethodSigniture.Sort();
+            
+            methodFullNameAndParams.Sort();
             //hyper index
-            foreach (string methodTitle in allMethodHeaders)
+            foreach (string mh in methodFullNameAndParams)
             {
-                st.SetAttribute("MethodLinkID", methodTitle);
+                st.SetAttribute("MethodLinkID", mh);
 
             }
 
