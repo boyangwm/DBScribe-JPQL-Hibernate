@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
+    /// <summary>
+    /// This class extends MethodAnalyzer to perform Hibernate only method analysis.
+    /// </summary>
     class HibernateMethodAnalyzer : MethodAnalyzer
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="method"></param>
         public HibernateMethodAnalyzer(MethodDefinition method) : base(method) { }
-        
-        // BuildInTypeFactory
+
         /// <summary>
         /// Checks the type is priliminary or not
         /// </summary>
@@ -38,7 +44,6 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             return false;
         }
 
-
         /// <summary>
         /// Checks the type is bool or not
         /// </summary>
@@ -51,6 +56,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             }
             return false;
         }
+         
 
     }
 }

@@ -109,46 +109,46 @@ $(document).ready(function () {
 						<a href="#51">[M-20, DelegatedSQLMethod] com.mpakhomov.chat.controller.HomeController.register(Model)
 			()</a><br>
 						
-						<a href="#53">[M-21, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.getMessage(Long)
+						<a href="#59">[M-21, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getMessage()
 			()</a><br>
 						
-						<a href="#54">[M-22, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.addMessage(ChatMessage)
+						<a href="#60">[M-22, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getTimestamp()
 			()</a><br>
 						
-						<a href="#60">[M-23, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getUser(Long)
+						<a href="#62">[M-23, DelegatedSQLMethod] com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory(int)
 			()</a><br>
 						
-						<a href="#61">[M-24, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getMiddleName()
+						<a href="#68">[M-24, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User, boolean)
 			()</a><br>
 						
-						<a href="#62">[M-25, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setMiddleName(String)
+						<a href="#69">[M-25, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.addUser(User)
 			()</a><br>
 						
-						<a href="#63">[M-26, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.save(User)
+						<a href="#72">[M-26, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User)
 			()</a><br>
 						
-						<a href="#64">[M-27, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getAllUsers()
+						<a href="#79">[M-27, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.getMessage(Long)
 			()</a><br>
 						
-						<a href="#65">[M-28, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.delete(Long)
+						<a href="#80">[M-28, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.addMessage(ChatMessage)
 			()</a><br>
 						
-						<a href="#76">[M-29, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getMessage()
+						<a href="#83">[M-29, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getUser(Long)
 			()</a><br>
 						
-						<a href="#77">[M-30, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getTimestamp()
+						<a href="#84">[M-30, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getMiddleName()
 			()</a><br>
 						
-						<a href="#79">[M-31, DelegatedSQLMethod] com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory(int)
+						<a href="#85">[M-31, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setMiddleName(String)
 			()</a><br>
 						
-						<a href="#83">[M-32, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User, boolean)
+						<a href="#86">[M-32, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.save(User)
 			()</a><br>
 						
-						<a href="#84">[M-33, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.addUser(User)
+						<a href="#87">[M-33, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getAllUsers()
 			()</a><br>
 						
-						<a href="#86">[M-34, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User)
+						<a href="#88">[M-34, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.delete(Long)
 			()</a><br>
 						
 						<a href="#90">[M-35, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.ChatMessage()
@@ -573,8 +573,110 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="53"></a>
-							<div class="panel-heading"><b>[M-21, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.getMessage(Long)
+						<div class="panel panel-primary"><a id="59"></a>
+							<div class="panel-heading"><b>[M-21, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getMessage()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<!-- <span class="glyphicon glyphicon-comment"></span> -->
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>message</i> from table <i>messages</i><br/>
+							*<b>Note</b>: This method will not affect the database until Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="60"></a>
+							<div class="panel-heading"><b>[M-22, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getTimestamp()
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<!-- <span class="glyphicon glyphicon-comment"></span> -->
+							<b>-- This method implements the following db-related operations: </b><br/>
+							- It gets attribute <i>timestamp</i> from table <i>messages</i><br/>
+							*<b>Note</b>: This method will not affect the database until Session built-in function is called<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="62"></a>
+							<div class="panel-heading"><b>[M-23, DelegatedSQLMethod] com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory(int)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<!-- <span class="glyphicon glyphicon-comment"></span> -->
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i><a href="#62">com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory</a> --> <a href="#60">com.mpakhomov.chat.domain.ChatMessage.getTimestamp</a></i><br/>
+							- It gets attribute <i>timestamp</i> from table <i>messages</i><br/>
+							<br/>
+							Via call-chain: <i><a href="#62">com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
+							- It gets attribute <i>nick</i> from table <i>user</i><br/>
+							<br/>
+							Via call-chain: <i><a href="#62">com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory</a> --> <a href="#59">com.mpakhomov.chat.domain.ChatMessage.getMessage</a></i><br/>
+							- It gets attribute <i>message</i> from table <i>messages</i><br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="68"></a>
+							<div class="panel-heading"><b>[M-24, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User, boolean)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<!-- <span class="glyphicon glyphicon-comment"></span> -->
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i><a href="#68">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
+							- It gets attribute <i>nick</i> from table <i>user</i><br/>
+							<br/>
+							Via call-chain: <i><a href="#68">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#22">com.mpakhomov.chat.domain.User.getId</a></i><br/>
+							- It gets attribute <i>id</i> from table <i>user</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="69"></a>
+							<div class="panel-heading"><b>[M-25, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.addUser(User)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<!-- <span class="glyphicon glyphicon-comment"></span> -->
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i><a href="#69">com.mpakhomov.chat.service.UserServiceImpl.addUser</a> --> <a href="#68">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
+							- It gets attribute <i>nick</i> from table <i>user</i><br/>
+							<br/>
+							Via call-chain: <i><a href="#69">com.mpakhomov.chat.service.UserServiceImpl.addUser</a> --> <a href="#68">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#22">com.mpakhomov.chat.domain.User.getId</a></i><br/>
+							- It gets attribute <i>id</i> from table <i>user</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="72"></a>
+							<div class="panel-heading"><b>[M-26, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User)
+			</b></div>
+							<div class="panel-body">				
+							<p>
+							<!-- <span class="glyphicon glyphicon-comment"></span> -->
+							<b>-- This method invokes db-related operations via delegation: </b><br/>
+							Via call-chain: <i><a href="#72">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#68">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
+							- It gets attribute <i>nick</i> from table <i>user</i><br/>
+							<br/>
+							Via call-chain: <i><a href="#72">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#68">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#22">com.mpakhomov.chat.domain.User.getId</a></i><br/>
+							- It gets attribute <i>id</i> from table <i>user</i><br/>
+							<br/>
+
+							</p>
+							</div>
+						</div>
+						
+						<div class="panel panel-primary"><a id="79"></a>
+							<div class="panel-heading"><b>[M-27, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.getMessage(Long)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -586,8 +688,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="54"></a>
-							<div class="panel-heading"><b>[M-22, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.addMessage(ChatMessage)
+						<div class="panel panel-primary"><a id="80"></a>
+							<div class="panel-heading"><b>[M-28, LocalSQLMethod] com.mpakhomov.chat.dao.MessageDaoImpl.addMessage(ChatMessage)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -603,8 +705,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="60"></a>
-							<div class="panel-heading"><b>[M-23, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getUser(Long)
+						<div class="panel panel-primary"><a id="83"></a>
+							<div class="panel-heading"><b>[M-29, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getUser(Long)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -616,8 +718,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="61"></a>
-							<div class="panel-heading"><b>[M-24, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getMiddleName()
+						<div class="panel panel-primary"><a id="84"></a>
+							<div class="panel-heading"><b>[M-30, SQLOperatingMethod] com.mpakhomov.chat.domain.User.getMiddleName()
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -630,8 +732,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="62"></a>
-							<div class="panel-heading"><b>[M-25, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setMiddleName(String)
+						<div class="panel panel-primary"><a id="85"></a>
+							<div class="panel-heading"><b>[M-31, SQLOperatingMethod] com.mpakhomov.chat.domain.User.setMiddleName(String)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -647,8 +749,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="63"></a>
-							<div class="panel-heading"><b>[M-26, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.save(User)
+						<div class="panel panel-primary"><a id="86"></a>
+							<div class="panel-heading"><b>[M-32, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.save(User)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -658,10 +760,10 @@ $(document).ready(function () {
 							- It saves or updates <i>middleName</i> into table <i>user</i><br/>
 							<br/>
 							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i><a href="#63">com.mpakhomov.chat.dao.UserDaoImpl.save</a> --> <a href="#61">com.mpakhomov.chat.domain.User.getMiddleName</a></i><br/>
+							Via call-chain: <i><a href="#86">com.mpakhomov.chat.dao.UserDaoImpl.save</a> --> <a href="#84">com.mpakhomov.chat.domain.User.getMiddleName</a></i><br/>
 							- It gets attribute <i>middleName</i> from table <i>user</i><br/>
 							<br/>
-							Via call-chain: <i><a href="#63">com.mpakhomov.chat.dao.UserDaoImpl.save</a> --> <a href="#62">com.mpakhomov.chat.domain.User.setMiddleName</a></i><br/>
+							Via call-chain: <i><a href="#86">com.mpakhomov.chat.dao.UserDaoImpl.save</a> --> <a href="#85">com.mpakhomov.chat.domain.User.setMiddleName</a></i><br/>
 							- It sets attribute <i>middleName</i> from table <i>user</i><br/>
 							<br/>
 							<br/>
@@ -673,8 +775,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="64"></a>
-							<div class="panel-heading"><b>[M-27, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getAllUsers()
+						<div class="panel panel-primary"><a id="87"></a>
+							<div class="panel-heading"><b>[M-33, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.getAllUsers()
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -686,8 +788,8 @@ $(document).ready(function () {
 							</div>
 						</div>
 						
-						<div class="panel panel-primary"><a id="65"></a>
-							<div class="panel-heading"><b>[M-28, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.delete(Long)
+						<div class="panel panel-primary"><a id="88"></a>
+							<div class="panel-heading"><b>[M-34, LocalSQLMethod] com.mpakhomov.chat.dao.UserDaoImpl.delete(Long)
 			</b></div>
 							<div class="panel-body">				
 							<p>
@@ -696,110 +798,8 @@ $(document).ready(function () {
 							- It deletes rows from table <i>user</i><br/>
 							<br/>
 							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i><a href="#65">com.mpakhomov.chat.dao.UserDaoImpl.delete</a> --> <a href="#60">com.mpakhomov.chat.dao.UserDaoImpl.getUser</a></i><br/>
+							Via call-chain: <i><a href="#88">com.mpakhomov.chat.dao.UserDaoImpl.delete</a> --> <a href="#83">com.mpakhomov.chat.dao.UserDaoImpl.getUser</a></i><br/>
 							- It queries the table <i>user</i><br/>
-							<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="76"></a>
-							<div class="panel-heading"><b>[M-29, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getMessage()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<!-- <span class="glyphicon glyphicon-comment"></span> -->
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>message</i> from table <i>messages</i><br/>
-							*<b>Note</b>: This method will not affect the database until Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="77"></a>
-							<div class="panel-heading"><b>[M-30, SQLOperatingMethod] com.mpakhomov.chat.domain.ChatMessage.getTimestamp()
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<!-- <span class="glyphicon glyphicon-comment"></span> -->
-							<b>-- This method implements the following db-related operations: </b><br/>
-							- It gets attribute <i>timestamp</i> from table <i>messages</i><br/>
-							*<b>Note</b>: This method will not affect the database until Session built-in function is called<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="79"></a>
-							<div class="panel-heading"><b>[M-31, DelegatedSQLMethod] com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory(int)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<!-- <span class="glyphicon glyphicon-comment"></span> -->
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i><a href="#79">com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory</a> --> <a href="#77">com.mpakhomov.chat.domain.ChatMessage.getTimestamp</a></i><br/>
-							- It gets attribute <i>timestamp</i> from table <i>messages</i><br/>
-							<br/>
-							Via call-chain: <i><a href="#79">com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
-							- It gets attribute <i>nick</i> from table <i>user</i><br/>
-							<br/>
-							Via call-chain: <i><a href="#79">com.mpakhomov.chat.service.MessageServiceImpl.fetchChatHistory</a> --> <a href="#76">com.mpakhomov.chat.domain.ChatMessage.getMessage</a></i><br/>
-							- It gets attribute <i>message</i> from table <i>messages</i><br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="83"></a>
-							<div class="panel-heading"><b>[M-32, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User, boolean)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<!-- <span class="glyphicon glyphicon-comment"></span> -->
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i><a href="#83">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
-							- It gets attribute <i>nick</i> from table <i>user</i><br/>
-							<br/>
-							Via call-chain: <i><a href="#83">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#22">com.mpakhomov.chat.domain.User.getId</a></i><br/>
-							- It gets attribute <i>id</i> from table <i>user</i><br/>
-							<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="84"></a>
-							<div class="panel-heading"><b>[M-33, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.addUser(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<!-- <span class="glyphicon glyphicon-comment"></span> -->
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i><a href="#84">com.mpakhomov.chat.service.UserServiceImpl.addUser</a> --> <a href="#83">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
-							- It gets attribute <i>nick</i> from table <i>user</i><br/>
-							<br/>
-							Via call-chain: <i><a href="#84">com.mpakhomov.chat.service.UserServiceImpl.addUser</a> --> <a href="#83">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#22">com.mpakhomov.chat.domain.User.getId</a></i><br/>
-							- It gets attribute <i>id</i> from table <i>user</i><br/>
-							<br/>
-
-							</p>
-							</div>
-						</div>
-						
-						<div class="panel panel-primary"><a id="86"></a>
-							<div class="panel-heading"><b>[M-34, DelegatedSQLMethod] com.mpakhomov.chat.service.UserServiceImpl.saveUser(User)
-			</b></div>
-							<div class="panel-body">				
-							<p>
-							<!-- <span class="glyphicon glyphicon-comment"></span> -->
-							<b>-- This method invokes db-related operations via delegation: </b><br/>
-							Via call-chain: <i><a href="#86">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#83">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#23">com.mpakhomov.chat.domain.User.getNick</a></i><br/>
-							- It gets attribute <i>nick</i> from table <i>user</i><br/>
-							<br/>
-							Via call-chain: <i><a href="#86">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#83">com.mpakhomov.chat.service.UserServiceImpl.saveUser</a> --> <a href="#22">com.mpakhomov.chat.domain.User.getId</a></i><br/>
-							- It gets attribute <i>id</i> from table <i>user</i><br/>
 							<br/>
 
 							</p>
@@ -921,7 +921,7 @@ $(document).ready(function () {
 							Via call-chain: <i><a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#97">com.mpakhomov.chat.domain.User.getFirstName</a></i><br/>
 							- It gets attribute <i>firstName</i> from table <i>user</i><br/>
 							<br/>
-							Via call-chain: <i><a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#61">com.mpakhomov.chat.domain.User.getMiddleName</a></i><br/>
+							Via call-chain: <i><a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#84">com.mpakhomov.chat.domain.User.getMiddleName</a></i><br/>
 							- It gets attribute <i>middleName</i> from table <i>user</i><br/>
 							<br/>
 							Via call-chain: <i><a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#98">com.mpakhomov.chat.domain.User.getLastName</a></i><br/>
@@ -941,7 +941,7 @@ $(document).ready(function () {
 							Via call-chain: <i><a href="#100">com.mpakhomov.chat.domain.ChatMessage.getAuthorFullName</a> --> <a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#97">com.mpakhomov.chat.domain.User.getFirstName</a></i><br/>
 							- It gets attribute <i>firstName</i> from table <i>user</i><br/>
 							<br/>
-							Via call-chain: <i><a href="#100">com.mpakhomov.chat.domain.ChatMessage.getAuthorFullName</a> --> <a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#61">com.mpakhomov.chat.domain.User.getMiddleName</a></i><br/>
+							Via call-chain: <i><a href="#100">com.mpakhomov.chat.domain.ChatMessage.getAuthorFullName</a> --> <a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#84">com.mpakhomov.chat.domain.User.getMiddleName</a></i><br/>
 							- It gets attribute <i>middleName</i> from table <i>user</i><br/>
 							<br/>
 							Via call-chain: <i><a href="#100">com.mpakhomov.chat.domain.ChatMessage.getAuthorFullName</a> --> <a href="#99">com.mpakhomov.chat.domain.User.getFullName</a> --> <a href="#98">com.mpakhomov.chat.domain.User.getLastName</a></i><br/>
@@ -1064,7 +1064,7 @@ $(document).ready(function () {
 							Via call-chain: <i><a href="#108">com.mpakhomov.chat.domain.User.setFullName</a> --> <a href="#103">com.mpakhomov.chat.domain.User.setFirstName</a></i><br/>
 							- It sets attribute <i>firstName</i> from table <i>user</i><br/>
 							<br/>
-							Via call-chain: <i><a href="#108">com.mpakhomov.chat.domain.User.setFullName</a> --> <a href="#62">com.mpakhomov.chat.domain.User.setMiddleName</a></i><br/>
+							Via call-chain: <i><a href="#108">com.mpakhomov.chat.domain.User.setFullName</a> --> <a href="#85">com.mpakhomov.chat.domain.User.setMiddleName</a></i><br/>
 							- It sets attribute <i>middleName</i> from table <i>user</i><br/>
 							<br/>
 							Via call-chain: <i><a href="#108">com.mpakhomov.chat.domain.User.setFullName</a> --> <a href="#104">com.mpakhomov.chat.domain.User.setLastName</a></i><br/>

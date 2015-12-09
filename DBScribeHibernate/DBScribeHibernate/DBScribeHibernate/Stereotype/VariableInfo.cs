@@ -9,7 +9,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
     /// <summary>
     /// This class defines properties and functions that DBScribeHibernet needs for a SrcML.Net Variable type
-    /// Author: Boyang Li
+    /// (Borrowed from Boyang Li)
     /// </summary>
     public class VariableInfo {
 

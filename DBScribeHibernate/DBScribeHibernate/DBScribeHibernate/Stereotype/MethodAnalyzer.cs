@@ -9,7 +9,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
     /// <summary>
     /// This class is used to analyze each SrcML.Net MethodDefinition.
-    /// Author: Boyang Li
+    /// (Borrowed from Boyang Li)
     /// </summary>
     public abstract class MethodAnalyzer {
 

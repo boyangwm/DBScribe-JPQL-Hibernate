@@ -9,8 +9,19 @@ using System.Threading.Tasks;
 
 namespace DBScribeHibernate.DBScribeHibernate.Stereotype
 {
+    /// <summary>
+    /// This class provides functions to get information from a given MethodDefinition
+    /// </summary>
     class MethodUtil
     {
+        /// <summary>
+        /// Check if the given method is a SQL Operating method, 
+        /// that is get/set/constructor defined in a POJO class
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="allDBClassToTableName"></param>
+        /// <param name="allDBClassPropToTableAttr"></param>
+        /// <returns>Return null if not SQL Operating method.</returns>
         public static BasicMethod CheckIfGetSetMethodsInPOJOClass(MethodDefinition method, Dictionary<string, string> allDBClassToTableName, Dictionary<string, string> allDBClassPropToTableAttr)
         {
             BasicMethod basictMethod = null;
@@ -91,12 +102,12 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         
 
         /// <summary>
-        /// Check if the given method calls Session built-in function!
-        /// Return a list of Session Built-in Functions(in sequency)
+        /// Check if the given method calls Session built-in function.
+        /// Return a list of Session Built-in Functions(sequence-reserved)
         /// </summary>
         /// <param name="md"></param>
         /// <param name="allDBClassToTableName"></param>
-        /// <returns></returns>
+        /// <returns>Return null if doesn't call any Session built-in function</returns>
         public static List<SessionBuiltInFunction> CheckIfCallSessionBuiltInFunction(MethodDefinition md, 
             Dictionary<string, string> allDBClassToTableName)
         {
@@ -173,8 +184,19 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         }
 
 
-        // Next, find the target POJO class for normal session functions
-        // And find query string for query session functions
+        /// <summary>
+        /// Find the target POJO class for normal session functions
+        /// and find query string for query session functions
+        /// </summary>
+        /// <param name="md"></param>
+        /// <param name="sessionFunctionName"></param>
+        /// <param name="i"></param>
+        /// <param name="len"></param>
+        /// <param name="itemsInSameLevel"></param>
+        /// <param name="PojoClassNames"></param>
+        /// <param name="varList"></param>
+        /// <param name="fStack"></param>
+        /// <param name="allDBClassToTableName"></param>
         private static void _FindSessionFunctionInfo(MethodDefinition md, string sessionFunctionName, int i, int len, List<NameUse> itemsInSameLevel,
             HashSet<string> PojoClassNames, Dictionary<string, string> varList, Stack<SessionBuiltInFunction> fStack, 
             Dictionary<string, string> allDBClassToTableName)
@@ -240,6 +262,12 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             }
         }
 
+        /// <summary>
+        /// Get database table name from class name
+        /// </summary>
+        /// <param name="className"></param>
+        /// <param name="allDBClassToTableName"></param>
+        /// <returns></returns>
         private static string GetTableNameFromClassName(string className, Dictionary<string, string> allDBClassToTableName)
         {
             string tableName = "";
@@ -324,7 +352,7 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
         /// Get all the methods invoked by this methods: both locally or externally
         /// </summary>
         /// <param name="md"></param>
-        /// <returns></returns>
+        /// <returns>Return list of method's full name</returns>
         public static HashSet<string> GetInvokedMethodNameInTheMethod(MethodDefinition md)
         {
             HashSet<string> invokedMethodNames = new HashSet<string>();
@@ -343,6 +371,11 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             return invokedMethodNames;
         }
 
+        /// <summary>
+        /// Get all the methods invoked by this methods: both locally or externally
+        /// </summary>
+        /// <param name="md"></param>
+        /// <returns>Return list of method's header(full name + full list of passed-in parameters)</returns>
         public static HashSet<string> GetInvokedMethodNameHeaderInTheMethod(MethodDefinition md)
         {
             HashSet<string> invokedMethodNameHeaders = new HashSet<string>();
@@ -390,30 +423,55 @@ namespace DBScribeHibernate.DBScribeHibernate.Stereotype
             return invokedMethodNames;
         }
 
+        /// <summary>
+        /// Get the class that defines this method
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
         public static TypeDefinition GetDeclaringClass(MethodDefinition method)
         {
             TypeDefinition declaringClass = method.GetAncestors<TypeDefinition>().FirstOrDefault();
             return declaringClass;
         }
 
+        /// <summary>
+        /// Given a class (TypeDefintion), return its parent classes
+        /// </summary>
+        /// <param name="curClass"></param>
+        /// <returns></returns>
         public static IEnumerable<TypeDefinition> GetParentClasses(TypeDefinition curClass)
         {
             IEnumerable<TypeDefinition> parentClasses = curClass.GetParentTypes(true);
             return parentClasses;
         }
 
+        /// <summary>
+        /// Given a class, return all MethodDefinition in this class
+        /// </summary>
+        /// <param name="curClass"></param>
+        /// <returns></returns>
         public static IEnumerable<MethodDefinition> GetAllMethodDefinitionsInOneClass(TypeDefinition curClass)
         {
             IEnumerable<MethodDefinition> methods = curClass.GetDescendants<MethodDefinition>();
             return methods;
         }
 
+        /// <summary>
+        /// Given a class, return all MethodCall in this class
+        /// </summary>
+        /// <param name="curClass"></param>
+        /// <returns></returns>
         public static IEnumerable<MethodCall> GetAllMethodCallsInOneClass(TypeDefinition curClass)
         {
             IEnumerable<MethodCall> methods = curClass.GetDescendants<MethodCall>();
             return methods;
         }
 
+        /// <summary>
+        /// Given a method, return its passed-in parameters
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
         public static IReadOnlyCollection<VariableDeclaration> GetParametersInitialInfo(MethodDefinition method)
         {
             return method.Parameters;
